@@ -1,0 +1,18 @@
+services: memcached
+
+language: php
+
+php:
+  - 5.5
+
+before_script:
+  - echo "extension = memcached.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - .travis/load-vendor.sh
+
+script:
+  - mkdir -p build/logs
+  - php vendor/bin/phpunit --bootstrap tests/bootstrap.php --configuration .travis/phpunit.xml tests
+
+after_script:
+  - php vendor/bin/coveralls
+
