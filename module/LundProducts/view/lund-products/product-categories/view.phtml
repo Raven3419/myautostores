@@ -1,0 +1,33 @@
+                    <h5 class="widget-name"><i class="icon-external-link"></i>View Product Category</h5>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="widget">
+                                <div class="navbar">
+                                    <div class="navbar-inner">
+                                        <h6><i class="icon-th"></i>Product Category Details</h6>
+                                        <a class="btn btn-danger confirm pull-right" href="/admin/products/productcategories/delete/<?php echo $this->recordId; ?>"><b class="icon-trash"></b>Delete Product Category</a>
+                                        <a class="btn btn-info pull-right" href="/admin/products/productcategories/edit/<?php echo $this->recordId; ?>"><b class="icon-pencil"></b>Edit Product Category</a>
+                                        <a class="btn btn-inverse pull-right" href="/admin/products/productcategories"><b class="icon-table"></b>Return to List</a>
+                                    </div>
+                                </div>
+                                <?php if ($this->brandProductCategories) { ?>
+                                <div class="navbar">
+                                    <div class="navbar-inner">
+                                        <h6>Brand - Product Category Relationships</h6>
+                                        <?php foreach ($this->brandProductCategories as $brandProductCategory) { ?>
+                                        <a class="btn pull-right" href="/admin/products/brands/view/<?php echo $brandProductCategory->getBrand()->getBrandId(); ?>/productcategory/view/<?php echo $brandProductCategory->getBrandProductCategoryId(); ?>"><b class="icon-th"></b>View <?php echo $brandProductCategory->getBrand()->getLabel(); ?> Relationship</a>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                                <?php } ?>
+                                <div class="well">
+<?php
+echo $this->partial('admin/form-readonly-partial', array(
+    'form'     => $this->form,
+    'fieldset' => 'product-category-fieldset',
+));
+?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

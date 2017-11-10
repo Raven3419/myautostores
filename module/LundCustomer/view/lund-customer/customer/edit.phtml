@@ -1,0 +1,296 @@
+<?php
+$form = $this->form;
+$form->setAttributes(array(
+    'action' => '/admin/accounts/customer/edit/' . $this->customerId,
+    'method' => 'POST',
+    'class'  => 'form-horizontal',
+))->prepare();
+$fieldset = $form->getBaseFieldset();
+$errors = $this->formElementErrors()
+            ->setMessageOpenFormat('<span class="help-block">')
+            ->setMessageSeparatorString('</span><span class="help-block">')
+            ->setMessageCloseString('</span>');
+?>
+                    <h5 class="widget-name"><i class="icon-pencil"></i>Edit Customer</h5>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="widget">
+                                <div class="navbar">
+                                    <div class="navbar-inner">
+                                        <h6><i class="icon-sitemap"></i>Customer Details</h6>
+                                        <a class="btn btn-danger confirm pull-right" href="/admin/accounts/customer/delete/<?php echo $this->customerId; ?>"><b class="icon-trash"></b>Delete Customer</a>
+                                    </div>
+                                </div>
+                                <div class="well">
+                                    <?php echo $this->form()->openTag($form); ?>
+                                    <?php echo $this->formElement($form->get('secret')); ?>
+                                    <?php echo $this->formElement($fieldset->get('customerId')); ?>
+                                    <div class="alert alert-error margin">
+                                        <span class="text">* denotes a required field</span>
+                                    </div>
+                                    <?php $name = $fieldset->get('name'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($name) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $name->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($name); ?>
+                                            <?php echo ($this->formElementErrors($name) ? $errors->render($name) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $custId = $fieldset->get('custId'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($custId) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $custId->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($custId); ?>
+                                            <?php echo ($this->formElementErrors($custId) ? $errors->render($custId) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $email = $fieldset->get('email'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($email) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $email->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($email); ?>
+                                            <?php echo ($this->formElementErrors($email) ? $errors->render($email) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $contactName = $fieldset->get('contactName'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($contactName) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $contactName->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($contactName); ?>
+                                            <?php echo ($this->formElementErrors($contactName) ? $errors->render($contactName) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $filePickup = $fieldset->get('filePickup'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($filePickup) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $filePickup->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($filePickup); ?>
+                                            <?php echo ($this->formElementErrors($filePickup) ? $errors->render($filePickup) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $filePush = $fieldset->get('filePush'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($filePush) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $filePush->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($filePush); ?>
+                                            <?php echo ($this->formElementErrors($filePush) ? $errors->render($filePush) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $ftpSite = $fieldset->get('ftpSite'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($ftpSite) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $ftpSite->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($ftpSite); ?>
+                                            <?php echo ($this->formElementErrors($ftpSite) ? $errors->render($ftpSite) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $ftpUser = $fieldset->get('ftpUser'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($ftpUser) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $ftpUser->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($ftpUser); ?>
+                                            <?php echo ($this->formElementErrors($ftpUser) ? $errors->render($ftpUser) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $ftpPass = $fieldset->get('ftpPass'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($ftpPass) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $ftpPass->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($ftpPass); ?>
+                                            <?php echo ($this->formElementErrors($ftpPass) ? $errors->render($ftpPass) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $updateType = $fieldset->get('updateType'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($updateType) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $updateType->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($updateType); ?>
+                                            <?php echo ($this->formElementErrors($updateType) ? $errors->render($updateType) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $frequency = $fieldset->get('frequency'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($frequency) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $frequency->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($frequency); ?>
+                                            <?php echo ($this->formElementErrors($frequency) ? $errors->render($frequency) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $acesVersion = $fieldset->get('acesVersion'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($acesVersion) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $acesVersion->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($acesVersion); ?>
+                                            <?php echo ($this->formElementErrors($acesVersion) ? $errors->render($acesVersion) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $piesVersion = $fieldset->get('piesVersion'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($piesVersion) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $piesVersion->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($piesVersion); ?>
+                                            <?php echo ($this->formElementErrors($piesVersion) ? $errors->render($piesVersion) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $lund = $fieldset->get('lund'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($lund) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $lund->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($lund); ?>
+                                            <?php echo ($this->formElementErrors($lund) ? $errors->render($lund) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $dfmal = $fieldset->get('dfmal'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($dfmal) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $dfmal->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($dfmal); ?>
+                                            <?php echo ($this->formElementErrors($dfmal) ? $errors->render($dfmal) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $avs = $fieldset->get('avs'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($avs) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $avs->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($avs); ?>
+                                            <?php echo ($this->formElementErrors($avs) ? $errors->render($avs) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $nifty = $fieldset->get('nifty'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($nifty) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $nifty->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($nifty); ?>
+                                            <?php echo ($this->formElementErrors($nifty) ? $errors->render($nifty) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $tradesman = $fieldset->get('tradesman'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($tradesman) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $tradesman->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($tradesman); ?>
+                                            <?php echo ($this->formElementErrors($tradesman) ? $errors->render($tradesman) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $lmp = $fieldset->get('lmp'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($lmp) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $lmp->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($lmp); ?>
+                                            <?php echo ($this->formElementErrors($lmp) ? $errors->render($lmp) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $amp = $fieldset->get('amp'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($amp) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $amp->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($amp); ?>
+                                            <?php echo ($this->formElementErrors($amp) ? $errors->render($amp) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $htam = $fieldset->get('htam'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($htam) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $htam->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($htam); ?>
+                                            <?php echo ($this->formElementErrors($htam) ? $errors->render($htam) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $belmor = $fieldset->get('belmor'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($belmor) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $belmor->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($belmor); ?>
+                                            <?php echo ($this->formElementErrors($belmor) ? $errors->render($belmor) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $lundAll = $fieldset->get('lundAll'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($lundAll) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $lundAll->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($lundAll); ?>
+                                            <?php echo ($this->formElementErrors($lundAll) ? $errors->render($lundAll) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $rampage = $fieldset->get('rampage'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($rampage) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $rampage->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($rampage); ?>
+                                            <?php echo ($this->formElementErrors($rampage) ? $errors->render($rampage) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $bushwacker = $fieldset->get('bushwacker'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($bushwacker) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $bushwacker->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($bushwacker); ?>
+                                            <?php echo ($this->formElementErrors($bushwacker) ? $errors->render($bushwacker) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $stampede = $fieldset->get('stampede'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($stampede) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $stampede->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($stampede); ?>
+                                            <?php echo ($this->formElementErrors($stampede) ? $errors->render($stampede) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $imageType = $fieldset->get('imageType'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($imageType) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $imageType->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($imageType); ?>
+                                            <?php echo ($this->formElementErrors($imageType) ? $errors->render($imageType) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $renameImages = $fieldset->get('renameImages'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($renameImages) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $renameImages->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($renameImages); ?>
+                                            <?php echo ($this->formElementErrors($renameImages) ? $errors->render($renameImages) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $acceptVideo = $fieldset->get('acceptVideo'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($acceptVideo) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $acceptVideo->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($acceptVideo); ?>
+                                            <?php echo ($this->formElementErrors($acceptVideo) ? $errors->render($acceptVideo) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $videoType = $fieldset->get('videoType'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($videoType) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $videoType->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($videoType); ?>
+                                            <?php echo ($this->formElementErrors($videoType) ? $errors->render($videoType) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $disabled = $fieldset->get('disabled'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($disabled) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $disabled->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($disabled); ?>
+                                            <?php echo ($this->formElementErrors($disabled) ? $errors->render($disabled) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $customerOrDealer = $fieldset->get('customerOrDealer'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($customerOrDealer) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $disabled->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($customerOrDealer); ?>
+                                            <?php echo ($this->formElementErrors($customerOrDealer) ? $errors->render($customerOrDealer) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions align-right">
+                                        <button id="form-submit-btn" type="submit" class="btn btn-primary">Submit</button>
+                                        <button id="form-cancel-btn" type="button" class="btn btn-danger">Cancel</button>
+                                        <button id="form-reset-btn" type="reset" class="btn">Reset</button>
+                                    </div>
+                                    <?php echo $this->form()->closeTag($form); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

@@ -1,0 +1,23 @@
+                    <h5 class="widget-name"><i class="icon-external-link"></i>View Brand</h5>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="widget">
+                                <div class="navbar">
+                                    <div class="navbar-inner">
+                                        <h6><i class="icon-th-large"></i>Brand Details</h6>
+                                        <a class="btn btn-info pull-right" href="/admin/products/brands/edit/<?php echo $this->recordId; ?>"><b class="icon-pencil"></b>Edit Brand</a>
+                                        <a class="btn btn-inverse pull-right" href="/admin/products/brands"><b class="icon-table"></b>Return to List</a>
+                                        <a class="btn pull-right" href="/admin/products/brands/view/<?php echo $this->recordId; ?>/productcategory"><b class="icon-th"></b>View Product Categories</a>
+                                    </div>
+                                </div>
+                                <div class="well">
+<?php
+echo $this->partial('admin/form-readonly-partial', array(
+    'form'     => $this->form,
+    'fieldset' => 'brandfieldset',
+));
+?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

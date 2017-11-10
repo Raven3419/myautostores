@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="LundCustomer\Entity\Customer" table="customer">
+        <indexes>
+            <index name="deleted" columns="deleted"/>
+            <index name="filePickup" columns="file_pickup"/>
+            <index name="filePush" columns="file_push"/>
+        </indexes>
+        <id name="customerId" column="customer_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="createdAt" column="created_at" type="datetime" nullable="true"/>
+        <field name="createdBy" column="created_by" type="string" length="255" nullable="true"/>
+        <field name="modifiedAt" column="modified_at" type="datetime" nullable="true"/>
+        <field name="modifiedBy" column="modified_by" type="string" length="255" nullable="true"/>
+        <field name="deleted" type="boolean" nullable="true"/>
+        <field name="disabled" type="boolean" nullable="true"/>
+        <field name="custId" column="cust_id" type="bigint" length="10"/>
+        <field name="name" column="name" type="string" length="255"/>
+        <field name="filePickup" column="file_pickup" type="boolean" nullable="true"/>
+        <field name="filePush" column="file_push" type="boolean" nullable="true"/>
+        <field name="ftpSite" column="ftp_site" type="string" length="255" nullable="true"/>
+        <field name="ftpUser" column="ftp_user" type="string" length="255" nullable="true"/>
+        <field name="ftpPass" column="ftp_pass" type="string" length="255" nullable="true"/>
+        <field name="email" type="string" length="255"/>
+        <field name="contactName" column="contact_name" type="string" length="@55" nullable="true"/>
+        <field name="updateType" column="update_type" type="string" length="5" nullable="true"/>
+        <field name="frequency" type="string" length="5" nullable="true"/>
+        <field name="lastUpdate" column="last_update" type="datetime" nullable="true"/>
+        <field name="acesVersion" column="aces_version" type="string" length="10" nullable="true"/>
+        <field name="piesVersion" column="pies_version" type="string" length="10" nullable="true"/>
+        <field name="lund" type="boolean" nullable="true"/>
+        <field name="dfmal" type="boolean" nullable="true"/>
+        <field name="avs" type="boolean" nullable="true"/>
+        <field name="nifty" type="boolean" nullable="true"/>
+        <field name="tradesman" type="boolean" nullable="true"/>
+        <field name="lmp" type="boolean" nullable="true"/>
+        <field name="amp" type="boolean" nullable="true"/>
+        <field name="htam" type="boolean" nullable="true"/>
+        <field name="belmor" type="boolean" nullable="true"/>
+        <field name="lundAll" column="lund_all" type="boolean" nullable="true"/>
+        <field name="rampage" type="boolean" nullable="true"/>
+        <field name="bushwacker" type="boolean" nullable="true"/>
+        <field name="stampede" type="boolean" nullable="true"/>
+        <field name="tonnopro" type="boolean" nullable="true"/>
+        <field name="imageType" column="image_type" type="string" length="50" nullable="true"/>
+        <field name="renameImages" column="rename_images" type="boolean" nullable="true"/>
+        <field name="acceptVideo" column="accept_video" type="boolean" nullable="true"/>
+        <field name="videoType" column="video_type" type="string" length="50" nullable="true"/>
+        <field name="customerOrDealer" column="customer_or_dealer" type="string" length="2" nullable="true"/>
+        <many-to-one field="user" target-entity="RocketUser\Entity\User" fetch="EAGER">
+            <join-column name="user_id" referenced-column-name="user_id"/>
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

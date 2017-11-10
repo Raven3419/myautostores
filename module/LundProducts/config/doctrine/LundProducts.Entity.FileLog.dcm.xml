@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="LundProducts\Entity\FileLog" table="file_log">
+        <id name="fileLogId" column="file_log_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="createdAt" column="created_at" type="datetime" nullable="false" />
+        <field name="brand" column="brand" type="string" length="255" nullable="true" />
+        <field name="type" column="type" type="string" length="255" nullable="false" /><!-- full/incremental/master -->
+        <many-to-one field="changesets" target-entity="LundProducts\Entity\Changesets" fetch="EAGER">
+            <join-column name="changeset_id" referenced-column-name="changeset_id" />
+        </many-to-one>
+        <many-to-one field="asset" target-entity="RocketDam\Entity\Asset" fetch="EAGER">
+            <join-column name="asset_id" referenced-column-name="asset_id"/>
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

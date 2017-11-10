@@ -1,0 +1,23 @@
+                    <h5 class="widget-name"><i class="icon-external-link"></i>View Part</h5>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="widget">
+                                <div class="navbar">
+                                    <div class="navbar-inner">
+                                        <h6><i class="icon-truck"></i>Part Details</h6>
+                                        <a class="btn btn-inverse pull-right" href="/admin/products/parts"><b class="icon-table"></b>Return to List</a>
+                                        <a class="btn pull-right" href="/admin/products/parts/vehicles/<?php echo $this->recordId; ?>"><b class="icon-truck"></b>View Vehicles</a>
+                                        <a class="btn pull-right" href="/admin/products/parts/view/<?php echo $this->recordId; ?>/asset"><b class="icon-picture"></b>View Part Assets</a>
+                                    </div>
+                                </div>
+                                <div class="well">
+<?php
+echo $this->partial('admin/form-readonly-partial', array(
+    'form'     => $this->form,
+    'fieldset' => 'partfieldset',
+));
+?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

@@ -1,0 +1,192 @@
+
+<?php
+$form = $this->form;
+
+	$form->setAttributes(array(
+	    'action' => '/contact-information',
+	    'method' => 'POST',
+	    'id'     => 'forms',
+	))->prepare();
+
+$fieldset = $form->getBaseFieldset();
+$errors = $this->formElementErrors()
+            ->setMessageOpenFormat('<span class="help-block">')
+            ->setMessageSeparatorString('</span><span class="help-block">')
+            ->setMessageCloseString('</span>');
+?>
+
+					<div class="col-lg-9 col-md-8 col-sm-7 col-xs-6">
+						<div class="b-submit__main">
+							<header class="s-headerSubmit s-lineDownLeft wow zoomInUp" data-wow-delay="0.5s">
+								<h2 class="">Contact Information</h2>
+							</header>
+							
+							<?php if(isset($this->errorMessage)) { ?>
+    				    	<ul class="messages"  style="color:red"><li class="error-msg"><ul><li><span><?php echo $this->errorMessage?></span></li></ul></li></ul>    
+        				  	<?php } ?>
+        				  	
+    				      	<?php echo $this->form()->openTag($form); ?>
+        						<div class="s-submit clearfix">
+    								<div class="row">
+        								<div class="panel-body">
+        									<div class="row">
+              									<div class="form-group col-md-6">
+        										
+                									<?php $firstName = $fieldset->get('firstName'); ?>
+                        							<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                        								<label><?php echo $firstName->getLabel(); ?> <span>*</span></label>
+                        								<div class='s-relative'>
+                        									<?php echo $this->formElement($firstName); ?>
+                        								</div>
+                        							</div>
+                        						</div>
+                        						<div class="form-group col-md-6">
+                        								
+                        							<?php $lastName = $fieldset->get('lastName'); ?>
+                        							<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                        								<label><?php echo $lastName->getLabel(); ?> <span>*</span></label>
+                        								<div class='s-relative'>
+                        									<?php echo $this->formElement($lastName); ?>
+                        								</div>
+                        							</div>
+                								</div>
+                							</div>
+        									<div class="row">
+              									<div class="form-group col-md-12">
+        										
+                									<?php $email = $fieldset->get('email'); ?>
+                        							<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                        								<label><?php echo $email->getLabel(); ?> <span>*</span></label>
+                        								<div class='s-relative'>
+                        									<?php echo $this->formElement($email); ?>
+                        								</div>
+                        							</div>
+                								</div>
+                                        	</div>
+        									<div class="row">
+              									<div class="form-group col-md-12">
+                									<input type="checkbox" name="change_password" id="change_password" value="1" onclick="setPasswordForm(this.checked)" title="Change Password" class="checkbox" <?php ($this->passwordChange ? print 'checked="checked"' : ''); ?>  /><label for="change_password">Change Password</label>
+                								</div>
+                                        	</div>
+                                        	<div class="fieldset" style="display:none;">
+                                        		
+            									<div class="row">
+                  									<div class="form-group col-md-12">
+                            							<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                            								<label>Current Password <span>*</span></label>
+                            								<div class='s-relative'>
+                            									<input type="password" title="Current Password" class="input-text" name="ecom-customer-fieldset&#x5B;current_password&#x5D;" id="current_password" />
+                            								</div>
+                            							</div>
+                    								</div>
+                                            	</div>
+                                            	<div class="row">
+                  									<div class="form-group col-md-6">
+                            							<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                            								<label>New Password <span>*</span></label>
+                            								<div class='s-relative'>
+                            									<input type="password" title="New Password" class="input-text validate-password" name="ecom-customer-fieldset&#x5B;password&#x5D;" id="password" />
+                            								</div>
+                            							</div>
+                    								</div>
+                    								<div class="form-group col-md-6">
+                            							<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                            								<label>Confirm New Password <span>*</span></label>
+                            								<div class='s-relative'>
+                            									<input type="password" title="Confirm New Password" class="input-text validate-cpassword" name="ecom-customer-fieldset&#x5B;confirmation&#x5D;" id="confirmation" />
+                            								</div>
+                            							</div>
+                    								</div>
+                                            	</div>
+                                        	</div>
+                                        </div>
+            						</div>
+            						<button type="submit" class="btn m-btn pull-right">Submit<span class="fa fa-angle-right"></span></button>
+            					</div>
+            				<?php echo $this->form()->closeTag($form); ?>
+            				
+            				
+                            <script type="text/javascript">
+                    
+                                jQuery(document).ready(function () {
+                        
+                                    $("form").submit(function(){
+                            
+                                    	var valid = true;
+                    					var current_password = jQuery('#current_password').val();
+                    					var password = jQuery('#password').val();
+                    					var confirmation = jQuery('#confirmation').val();
+                    					var change_password = jQuery("input[id='change_password']:checked").val();
+
+                    					if(change_password == '1')
+                    					{
+                        					if('false' == current_password) {
+                        						$('#current_password').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                        				    	valid = false;
+                        					}
+                        					if('' == current_password) {
+                        						$('#current_password').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                        				    	valid = false;
+                        					}
+                        					if('false' == password) {
+                        						$('#password').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                        				    	valid = false;
+                        					}
+                        					if('' == password) {
+                        						$('#password').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                        				    	valid = false;
+                        					}
+                        					if('false' == confirmation) {
+                        						$('#confirmation').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                        				    	valid = false;
+                        					}
+                        					if('' == confirmation) {
+                        						$('#confirmation').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                        				    	valid = false;
+                        					}
+                        					if(password != confirmation) {
+                        						$('#confirmation').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                        						$('#password').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                        				    	valid = false;
+                        					}
+                    					}
+
+
+                    					if(valid){
+                    						return true;
+                    					} else {
+                    				    	return false;
+                    					}
+                    					
+                                    });
+                                });
+                                
+    						  
+    						    function setPasswordForm(arg){
+    						        if(arg){
+    						            $('.fieldset').show();
+    						            $('#current_password').addClassName('required-entry');
+    						            $('#password').addClassName('required');
+    						            $('#confirmation').addClassName('required-entry');
+    						            
+    						            jQuery('#current_password').prop('required',true);
+    						            jQuery('#password').prop('required',true);
+    						            jQuery('#confirmation').prop('required',true);
+    	
+    
+    									return false;							
+    						        }else{
+    						            $('.fieldset').hide();
+    						            $('current_password').removeClassName('required-entry');
+    						            $('password').removeClassName('required-entry');
+    						            $('confirmation').removeClassName('required-entry');
+    
+    						            jQuery('#current_password').prop('required',false);
+    						            jQuery('#password').prop('required',false);
+    						            jQuery('#confirmation').prop('required',false);
+    						        }
+    						    }
+    						</script>
+
+						</div>
+					</div>

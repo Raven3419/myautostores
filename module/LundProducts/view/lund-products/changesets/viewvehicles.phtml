@@ -1,0 +1,49 @@
+                    <h5 class="widget-name"><i class="icon-table"></i>View Changeset Vehicles</h5>
+                    <div class="widget">
+                        <div class="navbar">
+                            <div class="navbar-inner">
+                                <h6><i class="icon-th-large"></i>Changeset Vehicles</h6>
+                            </div>
+                        </div>
+                        <div class="table-overflow">
+                            <table class="table table-striped table-bordered" id="data-table">
+                                 <thead>
+                                    <tr>
+                                        <th>Year</th>
+                                        <th>Make</th>
+                                        <th>Model</th>
+                                        <th>Submodel</th>
+                                        <th>Class</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($this->records as $record) { ?>
+                                        <?php
+                                        $make = $model = $submodel = $year = $class = null;
+
+                                        if ($record->getVehCollection()) {
+                                            $make     = $record->getVehCollection()->getVehMake()->getName();
+                                            $model    = $record->getVehCollection()->getVehModel()->getName();
+                                            $submodel = ($record->getVehCollection()->getVehSubmodel()) ? $record->getVehCollection()->getVehSubmodel()->getName() : '';
+                                            $year     = $record->getVehCollection()->getVehYear()->getName();
+                                            $class    = $record->getVehCollection()->getVehModel()->getVehClass()->getShortCode();
+                                        } else {
+                                            $make     = (($record->getVehMake()) ? $record->getVehMake()->getName() : $record->getVehMakeLabel());
+                                            $model    = (($record->getVehModel()) ? $record->getVehModel()->getName() : $record->getVehModelLabel());
+                                            $submodel = (($record->getVehSubmodel()) ? $record->getVehSubmodel()->getName() : $record->getVehSubmodelLabel());
+                                            $year     = (($record->getVehYear()) ? $record->getVehYear()->getName() : $record->getVehYearLabel());
+                                            $class    = (($record->getVehClass()) ? $record->getVehClass()->getShortCode() : $record->getVehClasslabel());
+                                        }
+                                        ?>
+                                    <tr>
+                                        <td><?php echo $year; ?></td>
+                                        <td><?php echo $make; ?> </td>
+                                        <td><?php echo $model; ?></td>
+                                        <td><?php echo $submodel; ?></td>
+                                        <td><?php echo $class; ?></td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>

@@ -1,0 +1,22 @@
+                    <h5 class="widget-name"><i class="icon-pencil"></i>Edit Comparison Chart</h5>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="widget">
+                                <div class="navbar">
+                                    <div class="navbar-inner">
+                                        <h6><i class="icon-th-list"></i>Comparison Chart Details </h6>
+                                        <a class="btn btn-danger confirm pull-right" href="/admin/lund/comparison-chart/delete/<?php echo $this->comparisonChartId; ?>"><b class="icon-trash"></b>Delete Comparison Chart</a>
+                                    </div>
+                                </div>
+                                <div class="well">
+								<?php
+								echo $this->partial('admin/form-partial', array(
+								    'form'     => $this->form,
+								    'url'      => '/admin/lund/comparison-chart/edit/' . $this->comparisonChartId,
+								    'fieldset' => 'comparison-chart-fieldset',
+								));
+								?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

@@ -1,0 +1,251 @@
+<?php
+$form = $this->form;
+
+$form->setAttributes(array(
+    'action' => 'ecom-login',
+    'method' => 'POST',
+))->prepare();
+
+
+
+$fieldset = $form->getBaseFieldset();
+$errors = $this->formElementErrors()
+            ->setMessageOpenFormat('<span class="help-block">')
+            ->setMessageSeparatorString('</span><span class="help-block">')
+            ->setMessageCloseString('</span>');
+?>
+
+		<div class="b-infoBar">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+						<div class="b-infoBar__progress-line clearfix">
+							<div class="b-infoBar__progress-line-step m-active">
+								<div class="b-infoBar__progress-line-step-circle">
+									<div class="b-infoBar__progress-line-step-circle-inner m-active"></div>
+								</div>
+							</div>
+							<div class="b-infoBar__progress-line-step">
+								<div class="b-infoBar__progress-line-step-circle">
+									<div class="b-infoBar__progress-line-step-circle-inner m-active"></div>
+								</div>
+							</div>
+							<div class="b-infoBar__progress-line-step">
+								<div class="b-infoBar__progress-line-step-circle">
+									<div class="b-infoBar__progress-line-step-circle-inner"></div>
+								</div>
+							</div>
+							<div class="b-infoBar__progress-line-step">
+								<div class="b-infoBar__progress-line-step-circle">
+									<div class="b-infoBar__progress-line-step-circle-inner"></div>
+								</div>
+								<div class="b-infoBar__progress-line-step-circle m-last">
+									<div class="b-infoBar__progress-line-step-circle-inner"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--b-infoBar-->
+		<div class="b-submit">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+						<aside class="b-submit__aside">
+							<div class="b-submit__aside-step wow zoomInUp" data-wow-delay="0.5s">
+								<h3>Step 1</h3>
+								<div class="b-submit__aside-step-inner clearfix">
+									<div class="b-submit__aside-step-inner-icon">
+										<span class="fa fa-shopping-cart"></span>
+									</div>
+									<div class="b-submit__aside-step-inner-info">
+										<h4>Shopping Cart</h4>
+										<p>Manage Your Products</p>
+									</div>
+								</div>
+							</div>
+							<div class="b-submit__aside-step m-active wow zoomInUp" data-wow-delay="0.5s">
+								<h3>Step 2</h3>
+								<div class="b-submit__aside-step-inner m-active clearfix">
+									<div class="b-submit__aside-step-inner-icon">
+										<span class="fa fa-user"></span>
+									</div>
+									<div class="b-submit__aside-step-inner-info">
+										<h4>Registration</h4>
+										<p>Give your information</p>
+										<div class="b-submit__aside-step-inner-info-triangle"></div>
+									</div>
+								</div>
+							</div>
+							<div class="b-submit__aside-step wow zoomInUp" data-wow-delay="0.5s">
+								<h3>Step 3</h3>
+								<div class="b-submit__aside-step-inner clearfix">
+									<div class="b-submit__aside-step-inner-icon">
+										<span class="fa fa-ship"></span>
+									</div>
+									<div class="b-submit__aside-step-inner-info">
+										<h4>Billing & Shipping</h4>
+										<p>Shipping Address</p>
+										
+									</div>
+								</div>
+							</div>
+							<div class="b-submit__aside-step wow zoomInUp" data-wow-delay="0.5s">
+								<h3>Step 4</h3>
+								<div class="b-submit__aside-step-inner clearfix">
+									<div class="b-submit__aside-step-inner-icon">
+										<span class="fa fa-cc-visa"></span>
+									</div>
+									<div class="b-submit__aside-step-inner-info">
+										<h4>Payment</h4>
+										<p>Complete Payment</p>
+									</div>
+								</div>
+							</div>
+							<div class="b-submit__aside-step">
+								<h3>Step 5</h3>
+								<div class="b-submit__aside-step-inner clearfix">
+									<div class="b-submit__aside-step-inner-icon">
+										<span class="fa fa-money"></span>
+									</div>
+									<div class="b-submit__aside-step-inner-info">
+										<h4>Receipt</h4>
+										<p>Collect your invoice</p>
+									</div>
+								</div>
+							</div>
+						</aside>
+					</div>
+					<div class="col-lg-9 col-md-8 col-sm-7 col-xs-6">
+						<div class="b-submit__main">
+							<header class="s-headerSubmit s-lineDownLeft wow zoomInUp" data-wow-delay="0.5s">
+								<h2 class="">Registration</h2>
+							</header>
+							<div class="row">
+								<?php if(isset($this->errorMessage)) { ?>
+            				    	<ul class="messages"  style="color:red"><li class="error-msg"><ul><li><span><?php echo $this->errorMessage?></span></li></ul></li></ul>    
+            				  	<?php } ?>
+        				      	<?php echo $this->form()->openTag($form); ?>
+								<div class="s-submit clearfix">
+                                    <div class="panel panel-default">
+                                    	<div class="panel-heading">Login: <small> If you have an account exists then login</small></div>
+                                    	<div class="panel-body">
+                                    		<div class="row">
+                                    			<input type="hidden" name="loginForm" id="loginForm" value="1" />
+                                    			
+                                    			<?php $email = $fieldset->get('email'); ?>
+                                    			<div class="col-md-12 col-xs-12">
+                                    				<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                                    					<label><?php echo $email->getLabel(); ?> <span>*</span></label>
+                                    					<div class='s-relative'>
+                                    						<?php echo $this->formElement($email); ?>
+                                    					</div>
+                                    				</div>
+                                    			</div>
+                                    			
+                                    			<?php $password = $fieldset->get('password'); ?>
+                                    			<div class="col-md-12 col-xs-12">
+                                    				<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                                    					<label><?php echo $password->getLabel(); ?> <span>*</span></label>
+                                    					<div class='s-relative'>
+                                    						<?php echo $this->formElement($password); ?>
+                                    					</div>
+                                    				</div>
+                                    			</div>
+                                    		</div>
+                                    	</div>
+										<button type="submit" class="btn m-btn pull-right">Continue Checkout<span class="fa fa-angle-right"></span></button>
+                                    </div>
+                           		</div>
+                           		<?php echo $this->form()->closeTag($form); ?>
+								<?php if(isset($this->errorMessage)) { ?>
+            				    	<ul class="messages"  style="color:red"><li class="error-msg"><ul><li><span><?php echo $this->errorMessage?></span></li></ul></li></ul>    
+            				  	<?php } ?>
+        				      	<?php echo $this->form()->openTag($form); ?>
+    								<div class="s-submit clearfix">
+                                        <h2 class="text-center">- OR -</h2>
+    									<div class="panel panel-default">
+    										<div class="panel-heading">Register: <small>Fill up the form if you have not any account</small></div>
+    										<div class="panel-body">
+    											<div class="row">
+                                    				<input type="hidden" name="loginForm" id="loginForm" value="2" />
+                									<div class="col-md-6 col-xs-12">
+                                    					<?php $firstName = $fieldset->get('firstName'); ?>
+                										<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                											<label><?php echo $firstName->getLabel(); ?> <span>*</span></label>
+                											<div class='s-relative'>
+                												<?php echo $this->formElement($firstName); ?>
+                											</div>
+                										</div>
+                										
+                                    					<?php $billingCountry = $fieldset->get('billingCountry'); ?>
+                										<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                											<label><?php echo $billingCountry->getLabel(); ?><span>*</span></label>
+                											<div class='s-relative'>
+                												<?php echo $this->formElement($billingCountry); ?>
+                											</div>
+                										</div>
+                										
+                                    					<?php $phoneNumber = $fieldset->get('phoneNumber'); ?>
+                										<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                											<label><?php echo $phoneNumber->getLabel(); ?> <span>*</span></label>
+                											<div class='s-relative'>
+                												<?php echo $this->formElement($phoneNumber); ?>
+                											</div>
+                										</div>
+        									
+        												<?php $password = $fieldset->get('password'); ?>
+                										<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                											<label><?php echo $password->getLabel(); ?> <span>*</span></label>
+                											<div class='s-relative'>
+                												<?php echo $this->formElement($password); ?>
+                											</div>
+                										</div>
+                									</div>
+                									<div class="col-md-6 col-xs-12">
+                									
+                										<?php $lastName = $fieldset->get('lastName'); ?>
+                										<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                											<label><?php echo $lastName->getLabel(); ?> <span>*</span></label>
+                											<div class='s-relative'>
+                												<?php echo $this->formElement($lastName); ?>
+                											</div>
+                										</div>
+                										
+                										<?php $billingState = $fieldset->get('billingState'); ?>
+                    									<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                    										<label><?php echo $billingState->getLabel(); ?> <span>*</span></label>
+                    										<div class='s-relative'>
+                    											<?php echo $this->formElement($billingState); ?>
+                    										</div>
+                    									</div>
+                    									
+                    									<?php $email = $fieldset->get('email'); ?>
+                    									<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                    										<label><?php echo $email->getLabel(); ?> <span>*</span></label>
+                    										<div class='s-relative'>
+                    											<?php echo $this->formElement($email); ?>
+                    										</div>
+                    									</div>
+                    									
+                    									<?php $passwordVerification = $fieldset->get('passwordVerification'); ?>
+                    									<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                    										<label><?php echo $passwordVerification->getLabel(); ?> <span>*</span></label>
+                    										<div class='s-relative'>
+                		                            			<?php echo $this->formElement($passwordVerification); ?>
+                    										</div>
+                    									</div>
+                									</div>
+                								</div>
+    										</div>
+    									</div>
+        								<button type="submit" class="btn m-btn pull-right">Continue Checkout<span class="fa fa-angle-right"></span></button>
+        							</div>
+        						<?php echo $this->form()->closeTag($form); ?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--b-submit-->

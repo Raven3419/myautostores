@@ -1,0 +1,84 @@
+<?php
+$form = $this->form;
+$form->setAttributes(array(
+    'action' => '/admin/products/parts/view/' . $this->partId . '/asset/create',
+    'method' => 'POST',
+    'class'  => 'form-horizontal',
+))->prepare();
+$fieldset = $form->getBaseFieldset();
+$errors = $this->formElementErrors()
+            ->setMessageOpenFormat('<span class="help-block">')
+            ->setMessageSeparatorString('</span><span class="help-block">')
+            ->setMessageCloseString('</span>');
+?>
+                    <h5 class="widget-name"><i class="icon-plus"></i>Add a Part Asset</h5>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="widget">
+                                <div class="navbar">
+                                    <div class="navbar-inner"><h6><i class="icon-picture"></i>Asset Details</h6></div>
+                                </div>
+                                <div class="well">
+                                    <?php echo $this->form()->openTag($form); ?>
+                                    <?php echo $this->formElement($form->get('secret')); ?>
+                                    <div class="alert alert-error margin">
+                                        <span class="text">* denotes a required field</span>
+                                    </div>
+                                    <?php $asset = $fieldset->get('asset'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($asset) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $asset->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($asset); ?>
+                                            <?php echo ($this->formElementErrors($asset) ? $errors->render($asset) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $assetType = $fieldset->get('assetType'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($assetType) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $assetType->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($assetType); ?>
+                                            <?php echo ($this->formElementErrors($assetType) ? $errors->render($assetType) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $picType = $fieldset->get('picType'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($picType) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $picType->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($picType); ?>
+                                            <?php echo ($this->formElementErrors($picType) ? $errors->render($picType) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $videoType = $fieldset->get('videoType'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($videoType) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $videoType->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($videoType); ?>
+                                            <?php echo ($this->formElementErrors($videoType) ? $errors->render($videoType) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $amazonName = $fieldset->get('amazonName'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($amazonName) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $amazonName->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($amazonName); ?>
+                                            <?php echo ($this->formElementErrors($amazonName) ? $errors->render($amazonName) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $assetSeq = $fieldset->get('assetSeq'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($assetSeq) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $assetSeq->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($assetSeq); ?>
+                                            <?php echo ($this->formElementErrors($assetSeq) ? $errors->render($assetSeq) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions align-right">
+                                        <button id="form-submit-btn" type="submit" class="btn btn-primary">Submit</button>
+                                        <button id="form-cancel-btn" type="button" class="btn btn-danger">Cancel</button>
+                                        <button id="form-reset-btn" type="reset" class="btn">Reset</button>
+                                    </div>
+                                    <?php echo $this->form()->closeTag($form); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

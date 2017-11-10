@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="LundProducts\Entity\BrandProductCategory" table="brand_product_category">
+        <id name="brandProductCategoryId" column="brand_product_category_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="createdAt" column="created_at" type="datetime" nullable="true"/>
+        <field name="createdBy" column="created_by" type="string" length="255" nullable="true"/>
+        <field name="modifiedAt" column="modified_at" type="datetime" nullable="true"/>
+        <field name="modifiedBy" column="modified_by" type="string" length="255" nullable="true"/>
+        <field name="deleted" type="boolean" nullable="true"/>
+        <field name="disabled" type="boolean" nullable="true"/>
+        <many-to-one field="brand" target-entity="LundProducts\Entity\Brands" fetch="EAGER">
+            <join-column name="brand_id" referenced-column-name="brand_id"/>
+        </many-to-one>
+        <many-to-one field="productCategory" target-entity="LundProducts\Entity\ProductCategories" fetch="EAGER">
+            <join-column name="product_category_id" referenced-column-name="product_category_id"/>
+        </many-to-one>
+        <field name="displayStyles" column="display_styles" type="boolean" nullable="true"/>
+        <field name="featured" column="featured" type="integer" nullable="true"/>
+        <field name="position" column="position" type="integer" nullable="true"/>
+        <field name="shortDescr" column="short_descr" type="text" nullable="true"/>
+        <field name="longDescr" column="long_descr" type="text" nullable="true"/>
+        <field name="metaTitle" column="meta_title" type="text" nullable="true"/>
+        <field name="metaKeywords" column="meta_keywords" type="text" nullable="true"/>
+        <field name="metaDescr" column="meta_descr" type="text" nullable="true"/>
+    </entity>
+</doctrine-mapping>

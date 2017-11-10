@@ -1,0 +1,41 @@
+                    <h5 class="widget-name"><i class="icon-table"></i>View All Product Categories</h5>
+                    <div class="widget">
+                        <div class="navbar">
+                            <div class="navbar-inner">
+                                <h6><i class="icon-th"></i>Product Categories</h6>
+                                <a class="btn btn-info pull-right" href="/admin/products/productcategories/create"><b class="icon-plus"></b>Add New Product Category</a>
+                            </div>
+                        </div>
+                        <div class="table-overflow">
+                            <table class="table table-striped table-bordere" id="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Display Name</th>
+                                        <th>Short Code</th>
+                                        <th>Media Asset</th>
+                                        <th class="actnCol">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($this->records as $record) { ?>
+                                    <tr>
+                                        <td><?php echo $record->getDisplayName(); ?><?php echo ($record->getBpcsCode() ? ' [' . $record->getBpcsCode() . ']' : ''); ?></td>
+                                        <td><?php echo $record->getShortCode(); ?></td>
+                                        <td>
+                                            <?php if ($record->getAsset()) { ?>
+                                            <img src="/admin/imagine/<?php echo $record->getAsset()->getHash(); ?>/200/200" alt="<?php echo $record->getAsset()->getLabel(); ?>" />
+                                            <?php } else { echo 'not available'; } ?>
+                                        </td>
+                                        <td>
+                                            <ul class="table-controls">
+                                                <li><a href="/admin/products/productcategories/edit/<?php echo $record->getProductCategoryId(); ?>" class="btn tip" title="Edit Record"><i class="icon-edit"></i> edit</a></li>
+                                                <li><a href="/admin/products/productcategories/view/<?php echo $record->getProductCategoryId(); ?>" class="btn tip" title="View Record"><i class="icon-external-link"></i> view</a></li>
+                                                <li><a href="/admin/products/productcategories/delete/<?php echo $record->getProductCategoryId(); ?>" class="btn tip confirm"><i class="icon-trash"></i> delete</a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>

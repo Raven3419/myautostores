@@ -1,0 +1,243 @@
+
+    				<div class="col-md-9 col-xs-12">
+    					<div class="b-blog__posts-one wow zoomInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: zoomInUp;">
+    						<div class="row m-noBlockPadding">
+        						<div class="col-sm-12 col-xs-12">
+        							<header class="s-lineDownLeft b-best__info-head b-install__info-head">
+                                    	<h2 class="wow zoomInUp" data-wow-delay="0.5s">Installation guides are available for products</h2>
+                                    </header>
+    								<div class="b-blog__posts-one-body-main">
+    									<p>We strive to make installation of all products as easy as possible. To find instructions for a product, enter the part number in the search field below. If you don't have the part number, you can find it by locating the vehicle and product you are searching.</p>
+    								</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="b-article__main-add">
+								<div class="s-lineDownLeft  s-titleLeft">
+									<div>
+										<h2 class="s-titleDet">I Know The Part Number</h2>
+									</div>
+								</div>
+								<div class="clearfix"></div>
+								<p>You can directly enter the part number and get the installation guide.</p>
+								<div class="form-inline np" style="margin-top:-20px;">
+									<div class="form-group">
+										<input type="text" name="part" id="part" class="form-control" placeholder="Type Part Number" style="height: 45px; padding:10px;margin-top: 25px;">
+								  	</div>
+								  	<button type="submit" name="submitPart" id="submitPart" class="btn m-btn"  style="height: 45px;">Go<span class="fa fa-angle-right"></span></button><br><br>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-8">
+							<div class="b-article__main-add">
+								<div class="s-lineDownLeft  s-titleLeft">
+									<div>
+										<h2 class="s-titleDet">I Don't Know The Part Number</h2>
+									</div>
+								</div>
+								<div class="clearfix"></div>
+								<p>No worries. Select your vehicle from the list below and we'll show you a list of all available installation guide.</p>
+								<div class="form-inline b-search__main-form">
+									<div class="form-group col-md-3 np">
+										<select class="form-control" name="year" id="year" required="true" style="height: 45px;">
+                                   	 		<option value="">   Select Year   </option>
+                                   	 		<?php foreach($this->years as $year) {?>
+												<option value="<?php echo $year['name']; ?>"><?php echo $year['name']; ?></option>
+											<?php } ?>
+                                  		</select>
+								  	</div>
+    								<div class="form-group col-md-3 np">
+										<select class="form-control" name="make" id="make" required="true" style="height: 45px;">
+                                   			<option value="0">   Select Make   </option>
+                           				</select>
+									</div>
+								  	<div class="form-group col-md-4">
+										<select class="form-control" name="model" id="model" required="true" style="height: 45px;">
+                                   			<option value="0">   Select Model   </option>
+                           				</select>
+								  	</div>
+								 	<div class="form-group col-md-2">
+								  		<button type="submit" name="submitApp" id="submitApp" class="btn m-btn"  style="height: 45px;">Go<span class="fa fa-angle-right"></span></button>
+								  	</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12" id="isheets"></div>
+					</div>
+					
+					<script type="text/javascript">
+								
+						jQuery(document).ready(function () {
+
+							jQuery('#year').on('change', function () {
+
+								var year = this.value;
+
+							    jQuery('#make').attr('disabled', "");
+							 	jQuery('#model').attr('disabled', "");
+								var data = {module : 'getMake', vehYear : year}
+
+								jQuery.ajax({
+									url: "/ajax-vehicleSelector",
+								 	type: 'POST',
+								 	dataType: 'json',
+								  	data: data,
+								  	success: function(res) {
+										var $secondChoice = jQuery("#make");
+								   		$secondChoice.empty();
+										$secondChoice.append("<option value='false'>Select Make</option>");
+								   		$.each(res, function(index, value){
+											
+								   			$.each(value, function(key2, value2 )
+										   	{
+												$secondChoice.append("<option value='" + value2 + "'>" + value2 + "</option>");
+										   	});
+							          	});
+								   		jQuery('#make').removeAttr('disabled');
+								   	},
+									error: function(){
+	
+										alert("An error occurred Please re-select");
+									}
+								});
+							});
+
+							jQuery('#make').on('change', function(){
+
+								var year = jQuery('#year').val();
+					            var make = this.value;
+
+					            jQuery("#model").empty();
+
+								var data = {module : 'getModelSubmodel', vehYear : year, vehMake : make}
+								
+								jQuery.ajax({
+							        url: "/ajax-vehicleSelector",
+						            type: 'POST',
+						            dataType: 'json',
+						            data: data,
+							   		success: function(res) {
+										var $thirdChoice = jQuery("#model");
+								   		$thirdChoice.empty();
+										$thirdChoice.append("<option value='false'>Select Model</option>");
+							   			$.each(res, function(index, value){
+								   			
+
+								   			$.each(value, function(key2, value2 )
+											{
+												$thirdChoice.append("<option value='" + value2 + "'>" + value2 + "</option>");
+											});
+						                });
+
+								   		jQuery('#model').removeAttr('disabled');
+								    },
+							    	error: function(){
+								        alert("An error occurred Please re-select");
+							    	}
+							    }); 
+							});
+
+							
+							jQuery('#submitApp').on('click', function(){
+
+								var year  = jQuery('#year').val();
+					            var make  = jQuery('#make').val();
+					            var model = jQuery('#model').val();
+					            var code = '';
+					            var partNumber;
+					            var isheet;
+					            var PLname;
+					            var PCname;
+
+					            var data = {module : 'getIsheet', vehYear : year, vehMake : make, vehModel : model}
+
+					            jQuery.ajax({
+							        url: "/ajax-vehicleSelector",
+						            type: 'POST',
+						            dataType: 'json',
+						            data: data,
+							   		success: function(res) {
+							   			$.each(res, function(index, value){
+							   				$.each(value, function(key2, value2 )
+											{
+												if(key2 == 'part_number'){
+													partNumber = value2;
+												}else if(key2 == 'isheet'){
+													isheet = value2;
+												}else if(key2 == 'PLname'){
+													PLname = value2;
+												}else if(key2 == 'PCname'){
+													PCname = value2;
+												}
+											});
+
+							   				code = code +'<div class="b-items__cars-one"><div class="col-md-8"><p>'+PLname+', '+PCname+
+											'</p><span>Part #: '+partNumber+'</span></div><div class="col-md-4"><ul class="guid-list-link">'+
+											'<a href="/assets/library/products/isheets/'+isheet+'" target="_blank_">'+
+											'<img src="/assets/application/myautostores/images/adobe-pdf-icon.svg" width="50px">'+
+											'</a>&nbsp;&nbsp;&nbsp;&nbsp;Installation Guide</ul></div></div>';
+
+											
+							   			});
+
+							   			jQuery('#isheets').html(code);
+								    },
+							    	error: function(){
+								        alert("An error occurred Please re-select");
+							    	}
+							    }); 
+							});
+
+							
+							jQuery('#submitPart').on('click', function(){
+
+								var part  = jQuery('#part').val();
+								var code = '';
+					            var partNumber;
+					            var isheet;
+					            var PLname;
+					            var PCname;
+
+					            var data = {module : 'getIsheetPart', partNumber : part}
+
+					            jQuery.ajax({
+							        url: "/ajax-vehicleSelector",
+						            type: 'POST',
+						            dataType: 'json',
+						            data: data,
+							   		success: function(res) {
+							   			$.each(res, function(index, value){
+							   				$.each(value, function(key2, value2 )
+											{
+												if(key2 == 'part_number'){
+													partNumber = value2;
+												}else if(key2 == 'isheet'){
+													isheet = value2;
+												}else if(key2 == 'PLname'){
+													PLname = value2;
+												}else if(key2 == 'PCname'){
+													PCname = value2;
+												}
+											});
+
+							   				code = code +'<div class="b-items__cars-one"><div class="col-md-8"><p>'+PLname+', '+PCname+
+											'</p><span>Part #: '+partNumber+'</span></div><div class="col-md-4"><ul class="guid-list-link">'+
+											'<a href="/assets/library/products/isheets/'+isheet+'" target="_blank_">'+
+											'<img src="/assets/application/myautostores/images/adobe-pdf-icon.svg" width="50px">'+
+											'</a>&nbsp;&nbsp;&nbsp;&nbsp;Installation Guide</ul></div></div>';
+
+											
+							   			});
+
+							   			jQuery('#isheets').html(code);
+								    },
+							    	error: function(){
+								        alert("An error occurred Please re-select");
+							    	}
+							    }); 
+							});
+							
+						});
+
+					</script>					        

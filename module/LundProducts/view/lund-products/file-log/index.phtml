@@ -1,0 +1,34 @@
+                    <h5 class="widget-name"><i class="icon-table"></i>View All File Logs</h5>
+                    <div class="widget">
+                        <div class="navbar">
+                            <div class="navbar-inner">
+                                <h6><i class="icon-th-large"></i>File Logs</h6>
+                            </div>
+                        </div>
+                        <div class="table-overflow">
+                            <table class="table table-striped table-bordered" id="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>File Log ID</th>
+                                        <th>Created At</th>
+                                        <th>Type</th>
+                                        <th>Brand</th>
+                                        <th>Changeset</th>
+                                        <th>Asset</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($this->records as $record) { ?>
+                                    <tr>
+                                        <td><?php echo $record->getFileLogId(); ?></td>
+                                        <td><?php echo $record->getCreatedAt()->format('Y-m-d H:i:s'); ?></td>
+                                        <td><?php echo $record->getType(); ?></td>
+                                        <td><?php echo $record->getBrand(); ?></td>
+                                        <td><?php echo (null != $record->getChangesets() ? $record->getChangesets()->getChangesetId() . ' (uploaded at: ' . $record->getChangesets()->getUploadedAt()->format('Y-m-d H:i:s') . ')' : ''); ?></td>
+                                        <td><a href="/assets/<?php echo $record->getAsset()->getFilePath(); ?>" target="_blank"><?php echo $record->getAsset()->getFileName(); ?></a></td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>

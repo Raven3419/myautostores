@@ -1,0 +1,22 @@
+                    <h5 class="widget-name"><i class="icon-pencil"></i>Edit Product Category</h5>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="widget">
+                                <div class="navbar">
+                                    <div class="navbar-inner">
+                                        <h6><i class="icon-th"></i>Product Category Details</h6>
+                                        <a class="btn btn-danger confirm pull-right" href="/admin/products/productcategories/delete/<?php echo $this->recordId; ?>"><b class="icon-trash"></b>Delete Product Category</a>
+                                    </div>
+                                </div>
+                                <div class="well">
+<?php
+echo $this->partial('admin/form-partial', array(
+    'form'     => $this->form,
+    'url'      => '/admin/products/productcategories/edit/' . $this->recordId,
+    'fieldset' => 'product-category-fieldset',
+));
+?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

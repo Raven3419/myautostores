@@ -1,0 +1,20 @@
+<h1>A 403 error occured</h1>
+<h2>Unauthorized Access Attempt</h2>
+<?php if (isset($error) && $error) { ?>
+<?php
+$message= '';
+switch ($error) {
+    case 'error-route-unauthorized':
+        $message = "Identity (with roles " . implode(',', $identity->getRoles()) . ") is not authorized to access " . $route . ".";
+        break;
+    case 'error-controller-unauthorized':
+        $message = "Identity (with roles " . implode(',', $identity->getRoles()) . ") is not authorized to access " . $controller . " " . ($action ? ' :: ' . $action . 'Action()' : '') . ".";
+        break;
+    default:
+        $reasonMessage = $this->translate('We cannot determine at this time why a 403 was generated.');
+        break;
+}
+?>
+
+<p><?php echo $message ?></p>
+<?php } ?>

@@ -1,0 +1,48 @@
+                    <h5 class="widget-name"><i class="icon-table"></i>View All Changesets</h4>
+                    <div class="widget">
+                        <div class="navbar">
+                            <div class="navbar-inner">
+                                <h6><i class="icon-th-large"></i>Changesets</h6>
+                                <!--<a class="btn btn-info pull-right" href="/admin/brands/create"><b class="icon-plus"></b>Add New Brand</a>-->
+                            </div>
+                        </div>
+                        <div class="table-overflow">
+                            <table class="table table-striped table-bordered" id="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Uploaded Date</th>
+                                        <th>Approved?</th>
+                                        <th>Deployed?</th>
+                                        <th>Summary</th>
+                                        <th class="actnCol">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $iterator=0; ?>
+                                    <?php foreach($this->records as $record) { ?>
+                                    <tr>
+                                        <td><?php echo $this->dateFormat($record->getUploadedAt(), IntlDateFormatter::LONG, IntlDateFormatter::LONG, 'en_us'); ?></td>
+                                        <td><?php echo ($record->getApproved() ? 'Yes' : 'No'); ?></td>
+                                        <td><?php echo ($record->getDeployed() ? 'Yes' : 'No'); ?></td>
+                                        <td><?php echo $record->getSummary(); ?></td>
+                                        <td width="20%">
+                                            <ul class="table-controls">
+                                            <?php if ($record->getApproved() == false) { ?>
+                                                <li><a href="/admin/products/changesets/approve/<?php echo $record->getChangesetId(); ?>" class="btn tip" title="Approve"><i class="icon-plus"></i> Approve</a></li>
+                                            <?php } ?>
+                                            <?php if ($record->getApproved() == true && $record->getDeployed() == false) { ?>
+                                                <li><a href="/admin/products/changesets/deploy/<?php echo $record->getChangesetId(); ?>" class="btn tip" title="Deploy"><i class="icon-plus"></i> Deploy</a></li>
+                                            <?php } ?>
+                                            <?php if ($record->getApproved() == false) { ?>
+                                                <li><a href="/admin/products/changesets/deny/<?php echo $record->getChangesetId(); ?>" class="btn tip confirm" title="Deny"><i class="icon-trash"></i>Deny</a></li>
+                                            <?php } ?>
+                                                <li><a href="/admin/products/changesets/view/<?php echo $record->getChangesetId(); ?>" class="btn tip" title="View Record"><i class="icon-external-link"></i> View</a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                        <?php $iterator++; ?>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>

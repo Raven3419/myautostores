@@ -1,0 +1,63 @@
+                    <script type="text/javascript" language="javascript">
+                    $(function() {
+                        new $.fn.dataTable.Api('#data-table');
+                    });
+                    </script>
+                    <h5 class="widget-name"><i class="icon-table"></i>View All Sliders</h5>
+                    <div class="widget">
+                        <div class="navbar">
+                            <div class="navbar-inner">
+                                <h6><i class="icon-asterisk"></i>Sliders</h6>
+                                <a class="btn btn-info pull-right" href="/admin/lund/slider/create"><b class="icon-plus"></b>Add Slider</a>
+                            </div>
+                        </div>
+                        <div class="table-overflow">
+                            <table class="table table-striped table-bordered" id="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Position</th>
+                                        <th>Adjust</th>
+                                        <th>Site</th>
+                                        <th>Media Asset</th>
+                                        <th>URL</th>
+                                        <th>Content</th>
+                                        <th>Disabled</th>
+                                        <th class="actnCol">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($this->records as $record) { ?>
+                                    <tr>
+                                        <td><?php echo $record->getPosition(); ?></td>
+                                        <td>
+                                            <ul class="table-controls">
+                                                <?php if ($record->getPosition() != 1) { ?>
+                                                <li><a href="/admin/lund/slider/rank-up/<?php echo $record->getSliderId(); ?>" class="btn tip" title="Rank Up Slider"><i class="icon-arrow-up"></i></a></li>
+                                                <?php } ?>
+                                                <?php if ($record->getPosition() != $this->max) { ?>
+                                                <li><a href="/admin/lund/slider/rank-down/<?php echo $record->getSliderId(); ?>" class="btn tip" title="Rank Down Slider"><i class="icon-arrow-down"></i></a></li>
+                                                <?php } ?>
+                                            </ul>
+                                        </td>
+                                        <td><?php echo $record->getSite()->getName(); ?></td>
+                                        <td>
+                                            <?php if ($record->getAsset()) { ?>
+                                            <img src="/admin/imagine/<?php echo $record->getAsset()->getHash(); ?>/301/200" alt="<?php echo $record->getAsset()->getLabel(); ?>" />
+                                            <?php } else { echo 'not available'; } ?>
+                                        </td>
+                                        <td><?php echo $record->getUrl(); ?></td>
+                                        <td><pre><?php echo htmlspecialchars($record->getContent(), ENT_QUOTES); ?></pre></td>
+                                        <td><?php echo ($record->getDisabled() ? 'Yes' : 'No'); ?></td>
+                                        <td>
+                                            <ul class="table-controls">
+                                                <li><a href="/admin/lund/slider/edit/<?php echo $record->getSliderId(); ?>" class="btn tip" title="Edit Record"><i class="icon-edit"></i> edit</a></li>
+                                                <li><a href="/admin/lund/slider/view/<?php echo $record->getSliderId(); ?>" class="btn tip" title="View Record"><i class="icon-external-link"></i> view</a></li>
+                                                <li><a href="/admin/lund/slider/delete/<?php echo $record->getSliderId(); ?>" class="btn tip confirm"><i class="icon-trash"></i> delete</a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>

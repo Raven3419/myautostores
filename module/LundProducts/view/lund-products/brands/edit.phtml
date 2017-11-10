@@ -1,0 +1,22 @@
+                    <h5 class="widget-name"><i class="icon-pencil"></i>Edit Brand</h5>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="widget">
+                                <div class="navbar">
+                                    <div class="navbar-inner">
+                                        <h6><i class="icon-th-large"></i>Brand Details</h6>
+                                        <a class="btn btn-danger confirm pull-right" href="/admin/products/brands/delete/<?php echo $this->recordId; ?>"><b class="icon-trash"></b>Delete Brand</a>
+                                    </div>
+                                </div>
+                                <div class="well">
+<?php
+echo $this->partial('admin/form-partial', array(
+    'form'     => $this->form,
+    'url'      => '/admin/products/brands/edit/' . $this->recordId,
+    'fieldset' => 'brand-fieldset',
+));
+?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

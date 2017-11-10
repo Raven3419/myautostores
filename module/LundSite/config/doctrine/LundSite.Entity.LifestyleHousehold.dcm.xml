@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="LundSite\Entity\LifestyleHousehold" table="lifestyle_household">
+        <indexes>
+            <index name="deleted" columns="deleted"/>
+        </indexes>
+        <id name="lifestyleHouseholdId" column="lifestyle_household_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="deleted" type="boolean" nullable="true"/>
+        <field name="title" type="string" length="255" nullable="true"/>
+    </entity>
+</doctrine-mapping>

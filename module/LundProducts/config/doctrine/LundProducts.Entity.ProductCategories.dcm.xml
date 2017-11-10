@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="LundProducts\Entity\ProductCategories" table="product_categories">
+        <indexes>
+            <index name="deleted" columns="deleted"/>
+        </indexes>
+        <id name="productCategoryId" column="product_category_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="createdAt" column="created_at" type="datetime" nullable="true"/>
+        <field name="createdBy" column="created_by" type="string" length="255" nullable="true"/>
+        <field name="modifiedAt" column="modified_at" type="datetime" nullable="true"/>
+        <field name="modifiedBy" column="modified_by" type="string" length="255" nullable="true"/>
+        <field name="deleted" type="boolean" nullable="true"/>
+        <field name="disabled" type="boolean" nullable="true"/>
+        <field name="name" column="name" type="string" length="255" nullable="true"/>
+        <field name="bpcsCode" column="bpcs_code" type="string" length="50" nullable="true"/>
+        <field name="shortCode" column="short_code" type="string" length="255" nullable="true"/>
+        <field name="displayName" column="display_name" type="string" length="255" nullable="true"/>
+        <field name="groupName" column="group_name" type="string" length="2" nullable="true"/>
+        <one-to-many field="brandProductCategory" target-entity="LundProducts\Entity\BrandProductCategory" mapped-by="productCategory"/>
+        <many-to-one field="asset" target-entity="RocketDam\Entity\Asset" fetch="EAGER">
+            <join-column name="asset_id" referenced-column-name="asset_id"/>
+        </many-to-one>
+        <many-to-one field="headerAsset" target-entity="RocketDam\Entity\Asset" fetch="EAGER">
+            <join-column name="header_asset_id" referenced-column-name="asset_id"/>
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

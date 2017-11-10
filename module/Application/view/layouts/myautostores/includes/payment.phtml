@@ -1,0 +1,228 @@
+		<div class="b-infoBar">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+						<div class="b-infoBar__progress wow zoomInUp" data-wow-delay="0.3s">
+							<div class="b-infoBar__progress-line clearfix">
+								<div class="b-infoBar__progress-line-step m-active">
+									<div class="b-infoBar__progress-line-step-circle">
+										<div class="b-infoBar__progress-line-step-circle-inner m-active"></div>
+									</div>
+								</div>
+								<div class="b-infoBar__progress-line-step m-active">
+									<div class="b-infoBar__progress-line-step-circle">
+										<div class="b-infoBar__progress-line-step-circle-inner m-active"></div>
+									</div>
+								</div>
+								<div class="b-infoBar__progress-line-step m-active">
+									<div class="b-infoBar__progress-line-step-circle">
+										<div class="b-infoBar__progress-line-step-circle-inner m-active"></div>
+									</div>
+								</div>
+								<div class="b-infoBar__progress-line-step">
+									<div class="b-infoBar__progress-line-step-circle">
+										<div class="b-infoBar__progress-line-step-circle-inner m-active"></div>
+									</div>
+									<div class="b-infoBar__progress-line-step-circle m-last">
+										<div class="b-infoBar__progress-line-step-circle-inner"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--b-infoBar-->
+		<div class="b-submit">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+						<aside class="b-submit__aside">
+							<div class="b-submit__aside-step wow zoomInUp" data-wow-delay="0.5s">
+								<h3>Step 1</h3>
+								<div class="b-submit__aside-step-inner clearfix">
+									<div class="b-submit__aside-step-inner-icon">
+										<span class="fa fa-shopping-cart"></span>
+									</div>
+									<div class="b-submit__aside-step-inner-info">
+										<h4>Shopping Cart</h4>
+										<p>Manage Your Products</p>
+									</div>
+								</div>
+							</div>
+							<div class="b-submit__aside-step wow zoomInUp" data-wow-delay="0.5s">
+								<h3>Step 2</h3>
+								<div class="b-submit__aside-step-inner clearfix">
+									<div class="b-submit__aside-step-inner-icon">
+										<span class="fa fa-user"></span>
+									</div>
+									<div class="b-submit__aside-step-inner-info">
+										<h4>Registration</h4>
+										<p>Give your information</p>
+									</div>
+								</div>
+							</div>
+							<div class="b-submit__aside-step wow zoomInUp" data-wow-delay="0.5s">
+								<h3>Step 3</h3>
+								<div class="b-submit__aside-step-inner clearfix">
+									<div class="b-submit__aside-step-inner-icon">
+										<span class="fa fa-ship"></span>
+									</div>
+									<div class="b-submit__aside-step-inner-info">
+										<h4>Billing & Shipping</h4>
+										<p>Give your information</p>
+									</div>
+								</div>
+							</div>
+							<div class="b-submit__aside-step m-active wow zoomInUp" data-wow-delay="0.5s">
+								<h3>Step 4</h3>
+								<div class="b-submit__aside-step-inner m-active clearfix">
+									<div class="b-submit__aside-step-inner-icon">
+										<span class="fa fa-cc-visa"></span>
+									</div>
+									<div class="b-submit__aside-step-inner-info">
+										<h4>Payment</h4>
+										<p>Complete Payment</p>
+										<div class="b-submit__aside-step-inner-info-triangle"></div>
+									</div>
+								</div>
+							</div>
+							<div class="b-submit__aside-step">
+								<h3>Step 5</h3>
+								<div class="b-submit__aside-step-inner clearfix">
+									<div class="b-submit__aside-step-inner-icon">
+										<span class="fa fa-money"></span>
+									</div>
+									<div class="b-submit__aside-step-inner-info">
+										<h4>Receipt</h4>
+										<p>Collect your invoice</p>
+									</div>
+								</div>
+							</div>
+						</aside>
+					</div>
+					<div class="col-lg-9 col-md-8 col-sm-7 col-xs-6">
+						<div class="b-submit__main">
+							<header class="s-headerSubmit s-lineDownLeft wow zoomInUp" data-wow-delay="0.5s">
+								<h2 class="">Summary & Payment</h2>
+							</header>
+							<div class="s-submit clearfix">
+								<div class="row">
+									<div class="panel panel-default">
+										<div class="panel-heading">All Products</div>
+        							  	<div class="panel-body">
+        									<div class="table-responsive">
+												<table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ITEM</th>
+                                                            <th>QTY</th>
+                                                            <th>PRICE</th>
+                                                            <th>TOTAL</th>
+                                                            <th> </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php foreach($this->layout()->cartItems as $cartItems) { 
+                                						    $total = $total + $cartItems->getPrice();
+                                						?>
+                                                        <tr>
+                                                            <td>
+                                                				<div class="row">
+                                                                    <div class="col-md-4">
+                                                            			<img class="img-responsive" src="/assets/library/products/product_lines/<?php echo $cartItems->getProductLinesAsset();?>" alt="<?php echo $cartItems->getProductLinesAsset();?>" title="<?php echo $cartItems->getProductLinesAsset();?>" >
+                                                            		</div>
+                                                            		<div class="col-md-8">
+                                                            			<h4><?php echo $cartItems->getDescription(); ?></h4>
+                                                            		</div>
+                                                            	</div>
+                                                            </td>
+                                                            <td><input style="width:50px;" type="number" value="<?php echo $cartItems->getQuantity(); ?>"></td>
+                                                           	<td><?php echo $cartItems->getPrice(); ?></td>
+                                                          	<td><?php echo $cartItems->getPrice(); ?></td>
+                                                            <td style="width:160px;">
+                                                          		<button type="button" class="btn btn-sm btn-warning">Update</button>
+                                                          		<a href="/cart/remove/<?php echo $cartItems->getCartItemId(); ?>"><button type="button" class="btn btn-sm btn-danger">Remove</button></a>
+                                                            </td>
+                                                       	</tr>
+                                                       	<?php } ?>
+                                                        <tr>
+                                                            <td colspan="4" class="text-right">SUBTOTAL</td>
+                                                            <td>$ <?php echo $total; ?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="4" class="text-right">SHIPPING</td>
+                                                            <td><?php echo money_format('%(#10n', number_format((float)($this->cart->getShippingCost()), 2, '.', '')); ?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="4" class="text-right">TAX</td>
+                                                            <td>$ 0</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="4" class="text-right">TOTAL</td>
+                                                            <td>$ <?php echo $total; ?></td>
+                                                        </tr>
+                                                	</tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+									</div>
+									<form method="POST" name="payment-form" action="/payment" id="payment-form">
+        								<div class="panel panel-default">
+          									<div class="panel-heading">Credit Card Info: <small>Fillout your credit card info</small></div>
+          									<div class="panel-body">
+        										<div class="form-group">
+            										<label for="exampleInputEmail1">Credit Card Number</label>
+            										<input type="text" class="form-control" id="ccNumber" placeholder="Credit Card Number">
+          										</div>
+        										<div class="row">
+              										<div class="form-group col-md-6">
+                                                    	<label for="exampleInputEmail1">Expiration Month</label>
+                                                    	<select id="expMonth">
+                                                    		<option value="">Select Expiration Month</option>
+                                                    		<option value="01">January</option>
+                                                    		<option value="02">February</option>
+                                                    		<option value="03">March</option>
+                                                    		<option value="04">April</option>
+                                                    		<option value="05">May</option>
+                                                    		<option value="06">June</option>
+                                                    		<option value="07">July</option>
+                                                    		<option value="08">August</option>
+                                                    		<option value="09">September</option>
+                                                    		<option value="10">October</option>
+                                                    		<option value="11">November</option>
+                                                    		<option value="12">December</option>
+                                                    	</select>
+                                                    </div>
+              										<div class="form-group col-md-6">
+              											<label for="exampleInputEmail1">Expiration Year</label>
+                                                    	<select id="expYear">
+                                                    		<option value="">Select Expiration Year</option>
+                                                    		<option value="2018">2018</option>
+                                                    		<option value="2019">2019</option>
+                                                    		<option value="2020">2020</option>
+                                                    		<option value="2021">2021</option>
+                                                    		<option value="2022">2022</option>
+                                                    		<option value="2023">2023</option>
+                                                    		<option value="2024">2024</option>
+                                                    		<option value="2025">2025</option>
+                                                    	</select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Security Code</label>
+                                                    <input type="text" class="form-control" id="SSC" placeholder="Security Code">
+                                                </div>
+        									</div>
+        									
+											<button type="submit" class="btn m-btn pull-right">Process<span class="fa fa-angle-right"></span></button>
+        								</div>
+    								</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--b-submit-->
+		

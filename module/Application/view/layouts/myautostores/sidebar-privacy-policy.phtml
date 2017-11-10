@@ -1,0 +1,47 @@
+<?php
+	$menu = $this->layout()->menuService->getMenuByShortCode($this->layout()->site, 'getavs-privacy-policy-side-menu');
+	$elements = $this->layout()->menuElementService->getParentElements($menu);
+
+	?>
+
+	<?php if(null === $this->layout()->page->getAsset()) { ?>
+		<div class="subheader" style="background-image: url(/assets/application/lundinternationalcorp/images/bottom-banner.jpg) ;">
+	<?php } else { ?>
+		<div class="subheader" style="background-image: url(/assets/library/cms/LundInternational/Headers/<?php echo $this->layout()->page->getAsset()->getFileName(); ?>) ;">
+	<?php } ?>
+	
+   		<div class="container">
+      		<h1><?php echo $this->layout()->page->getTitle();?></h1>
+            <p></p>
+      	</div>
+	</div>
+ 	<div class="container">
+		<div class="layout layout-2-cols">
+			<aside role="complementary">
+    			<h3 class="recent"><a href="/privacy-policy">Privacy Policy</a></h3>
+     			<ul id="nav-sub">
+     				<?php foreach ($elements as $element) { ?>
+						<li><a href="<?php echo $element->getUrl(); ?>"><?php echo $element->getTitle(); ?></a></li>
+					<?php } ?>
+				</ul>
+				<div class="help">
+			       <div class="item">
+			           <p><span>Contact us at:</span><br>1-800-241-7219</p>
+			       </div>
+			       <div class="item">
+			          <p><span>or click for our</span><br><a href="javascript:void(0)" onclick="javascript:window.open('http://dm5.contactatonce.com/CaoClientContainer.aspx?MerchantId=57316&amp;Providerid=3766&amp;PlacementId=15&amp;OriginationUrl='+encodeURIComponent(location.href),'','resizable=yes,toolbar=no,menubar=no,location=no,scrollbars=no,status=no,height=400,width=600');return false;">Live Chat</a></p>
+			       </div>
+			    </div>
+				<div class="social-link">
+       				<div class="thried">
+						<h3 class="heading">Connect</h3>
+						<ul>
+							<li class="social-link">
+								<a class="fa fa-facebook" href="https://www.facebook.com/autoventshade" target="_blank"><span>&nbsp;</span></a> 
+								<a class="fa fa-twitter" href="https://twitter.com/autoventshade" target="_blank"><span>&nbsp;</span></a> 
+								<a class="fa fa-instagram" href="https://www.instagram.com/autoventshade" target="_blank"><span>&nbsp;</span></a>
+							</li>
+						</ul>
+					</div>
+    			</div>
+    		</aside>

@@ -1,0 +1,43 @@
+                    <h5 class="widget-name"><i class="icon-table"></i>View All Brands</h5>
+                    <div class="widget">
+                        <div class="navbar">
+                            <div class="navbar-inner">
+                                <h6><i class="icon-th-large"></i>Brands</h6>
+                                <a class="btn btn-info pull-right" href="/admin/products/brands/create"><b class="icon-plus"></b>Add New Brand</a>
+                            </div>
+                        </div>
+                        <div class="table-overflow">
+                            <table class="table table-striped table-bordered" id="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Short Code</th>
+                                        <th>Label</th>
+                                        <th>Parent</th>
+                                        <th>AAIA ID</th>
+                                        <th>Disabled</th>
+                                        <th class="actnCol">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($this->records as $record) { ?>
+                                    <tr>
+                                        <td><?php echo $record->getName(); ?></td>
+                                        <td><?php echo $record->getShortCode(); ?></td>
+                                        <td><?php echo $record->getLabel(); ?></td>
+                                        <td><?php if ($record->getParentBrand()) { echo $record->getParentBrand()->getName(); } ?></td>
+                                        <td><?php echo $record->getAaiaid(); ?></td>
+                                        <td><?php echo ($record->getDisabled() ? 'Yes' : 'No'); ?></td>
+                                        <td>
+                                            <ul class="table-controls">
+                                                <li><a href="/admin/products/brands/edit/<?php echo $record->getBrandId(); ?>" class="btn tip" title="Edit Record"><i class="icon-edit"></i> edit</a></li>
+                                                <li><a href="/admin/products/brands/view/<?php echo $record->getBrandId(); ?>" class="btn tip" title="View Record"><i class="icon-external-link"></i> view</a></li>
+                                                <li><a href="/admin/products/brands/delete/<?php echo $record->getBrandId(); ?>" class="btn tip confirm"><i class="icon-trash"></i> delete</a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>

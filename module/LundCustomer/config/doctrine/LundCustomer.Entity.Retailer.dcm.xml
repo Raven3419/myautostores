@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="LundCustomer\Entity\Retailer" table="retailer">
+        <indexes>
+            <index name="deleted" columns="deleted"/>
+        </indexes>
+        <id name="retailerId" column="retailer_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="createdAt" column="created_at" type="datetime" nullable="true"/>
+        <field name="createdBy" column="created_by" type="string" length="255" nullable="true"/>
+        <field name="modifiedAt" column="modified_at" type="datetime" nullable="true"/>
+        <field name="modifiedBy" column="modified_by" type="string" length="255" nullable="true"/>
+        <field name="deleted" type="boolean" nullable="true"/>
+        <field name="disabled" type="boolean" nullable="true"/>
+        <field name="retailerType" column="retailer_type" type="string" length="255" nullable="true"/>
+        <field name="companyName" column="company_name" type="string" length="255" nullable="true"/>
+        <field name="streetAddress" column="street_address" type="string" length="255" nullable="true"/>
+        <field name="extStreetAddress" column="ext_street_address" type="string" length="255" nullable="true"/>
+        <field name="locality" type="string" length="255" nullable="true"/>
+        <many-to-one field="region" target-entity="RocketBase\Entity\State" fetch="EAGER">
+            <join-column name="state_id" referenced-column-name="state_id"/>
+        </many-to-one>
+        <field name="postCode" column="post_code" type="string" length="10" nullable="true"/>
+        <many-to-one field="country" target-entity="RocketBase\Entity\Country" fetch="EAGER" nullable="true">
+            <join-column name="country_id" referenced-column-name="country_id"/>
+        </many-to-one>
+        <field name="phoneNumber" column="phone_number" type="string" length="15" nullable="true"/>
+        <field name="latitude" type="string" length="20" nullable="true"/>
+        <field name="longitude" type="string" length="20" nullable="true"/>
+        <field name="website" type="text" nullable="true"/>
+        <many-to-many field="brand" target-entity="LundProducts\Entity\Brands" mapped-by="retailer"/>
+        <many-to-many field="shipsCountry" target-entity="RocketBase\Entity\Country" mapped-by="retailer"/>
+        <many-to-one field="logoAsset" target-entity="RocketDam\Entity\Asset" fetch="EAGER">
+            <join-column name="logo_asset_id" referenced-column-name="asset_id"/>
+        </many-to-one>
+        <field name="discount" type="boolean" nullable="true"/>
+        <many-to-one field="discountAsset" target-entity="RocketDam\Entity\Asset" fetch="EAGER">
+            <join-column name="discount_asset_id" referenced-column-name="asset_id"/>
+        </many-to-one>
+        <field name="discountCopy" column="discount_copy" type="text" nullable="true"/>
+        <field name="discountUrl" column="discount_url" type="text" nullable="true"/>
+        <many-to-one field="poiAsset" target-entity="RocketDam\Entity\Asset" fetch="EAGER">
+            <join-column name="poi_asset_id" referenced-column-name="asset_id"/>
+        </many-to-one>
+        <many-to-one field="customerId" target-entity="LundCustomer\Entity\Customer" fetch="EAGER">
+            <join-column name="customer_id" referenced-column-name="customer_id"/>
+        </many-to-one>
+        <field name="customerOrDealer" column="customer_or_dealer" type="string" length="2" nullable="true"/>
+    </entity>
+</doctrine-mapping>

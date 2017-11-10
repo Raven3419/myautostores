@@ -1,0 +1,212 @@
+		<div class="b-infoBar">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+						<div class="b-infoBar__progress wow zoomInUp" data-wow-delay="0.5s">
+							<div class="b-infoBar__progress wow zoomInUp" data-wow-delay="0.5s">
+    							<div class="b-infoBar__progress-line clearfix">
+    								<div class="b-infoBar__progress-line-step">
+    									<div class="b-infoBar__progress-line-step-circle">
+    										<div class="b-infoBar__progress-line-step-circle-inner m-active"></div>
+    									</div>
+    								</div>
+    								<div class="b-infoBar__progress-line-step">
+    									<div class="b-infoBar__progress-line-step-circle">
+    										<div class="b-infoBar__progress-line-step-circle-inner"></div>
+    									</div>
+    								</div>
+    								<div class="b-infoBar__progress-line-step">
+    									<div class="b-infoBar__progress-line-step-circle">
+    										<div class="b-infoBar__progress-line-step-circle-inner"></div>
+    									</div>
+    								</div>
+    								<div class="b-infoBar__progress-line-step">
+    									<div class="b-infoBar__progress-line-step-circle">
+    										<div class="b-infoBar__progress-line-step-circle-inner"></div>
+    									</div>
+    									<div class="b-infoBar__progress-line-step-circle m-last">
+    										<div class="b-infoBar__progress-line-step-circle-inner"></div>
+    									</div>
+    								</div>
+    							</div>
+    						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--b-infoBar-->
+		<div class="b-submit">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+						<aside class="b-submit__aside">
+							<div class="b-submit__aside-step m-active wow zoomInUp" data-wow-delay="0.5s">
+								<h3>Step 1</h3>
+								<div class="b-submit__aside-step-inner m-active clearfix">
+									<div class="b-submit__aside-step-inner-icon">
+										<span class="fa fa-shopping-cart"></span>
+									</div>
+									<div class="b-submit__aside-step-inner-info">
+										<h4>Shopping Cart</h4>
+										<p>Manage Your Products</p>
+										<div class="b-submit__aside-step-inner-info-triangle"></div>
+									</div>
+								</div>
+							</div>
+							<div class="b-submit__aside-step wow zoomInUp" data-wow-delay="0.5s">
+								<h3>Step 2</h3>
+								<div class="b-submit__aside-step-inner clearfix">
+									<div class="b-submit__aside-step-inner-icon">
+										<span class="fa fa-user"></span>
+									</div>
+									<div class="b-submit__aside-step-inner-info">
+										<h4>Registration</h4>
+										<p>Give your information</p>
+									</div>
+								</div>
+							</div>
+							<div class="b-submit__aside-step wow zoomInUp" data-wow-delay="0.5s">
+								<h3>Step 3</h3>
+								<div class="b-submit__aside-step-inner clearfix">
+									<div class="b-submit__aside-step-inner-icon">
+										<span class="fa fa-ship"></span>
+									</div>
+									<div class="b-submit__aside-step-inner-info">
+										<h4>Billing & Shipping</h4>
+										<p>Shipping Address</p>
+									</div>
+								</div>
+							</div>
+							<div class="b-submit__aside-step wow zoomInUp" data-wow-delay="0.5s">
+								<h3>Step 4</h3>
+								<div class="b-submit__aside-step-inner clearfix">
+									<div class="b-submit__aside-step-inner-icon">
+										<span class="fa fa-cc-visa"></span>
+									</div>
+									<div class="b-submit__aside-step-inner-info">
+										<h4>Payment</h4>
+										<p>Complete Payment</p>
+									</div>
+								</div>
+							</div>
+							<div class="b-submit__aside-step">
+								<h3>Step 5</h3>
+								<div class="b-submit__aside-step-inner clearfix">
+									<div class="b-submit__aside-step-inner-icon">
+										<span class="fa fa-money"></span>
+									</div>
+									<div class="b-submit__aside-step-inner-info">
+										<h4>Receipt</h4>
+										<p>Collect your invoice</p>
+									</div>
+								</div>
+							</div>
+						</aside>
+					</div>
+					<div class="col-lg-9 col-md-8 col-sm-7 col-xs-6">
+						<div class="b-submit__main">
+							<header class="s-headerSubmit s-lineDownLeft wow zoomInUp" data-wow-delay="0.5s">
+								<h2 class="">Shopping Cart</h2>
+							</header>
+							<form class="s-submit clearfix" action="/ecom-login" method="POST">
+								<div class="row">
+									<div class="panel panel-default">
+										<div class="panel-heading">All Products</div>
+        							  	<div class="panel-body">
+        									<div class="table-responsive">
+												<table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ITEM</th>
+                                                            <th>QTY</th>
+                                                            <th>PRICE</th>
+                                                            <th>TOTAL</th>
+                                                            <th> </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php 
+                                                        $count = 1;
+                                                        foreach($this->layout()->cartItems as $cartItems) { 
+                                						    $total = $total + $cartItems->getPrice();
+                                						    
+                                						?>
+                                                        <tr>
+                                                            <td>
+                                                				<div class="row">
+                                                                    <div class="col-md-4">
+                                                            			<img class="img-responsive" src="/assets/library/products/product_lines/<?php echo $cartItems->getProductLinesAsset();?>" alt="<?php echo $cartItems->getProductLinesAsset();?>" title="<?php echo $cartItems->getProductLinesAsset();?>" >
+                                                            		</div>
+                                                            		<div class="col-md-8">
+                                                            			<h4><?php echo $cartItems->getDescription(); ?></h4>
+                                                            		</div>
+                                                            	</div>
+                                                            </td>
+                                                            <td><input style="width:50px;" type="number" min="1" id="number_<?php echo $count; ?>" value="<?php echo $cartItems->getQuantity(); ?>"></td>
+                                                           	<td><?php echo $cartItems->getPrice(); ?></td>
+                                                          	<td><?php echo $cartItems->getPrice(); ?></td>
+                                                            <td style="width:160px;">
+                                                          		<button type="button" class="btn btn-sm btn-warning" onclick="updateQuantity('<?php echo $cartItems->getCartItemId(); ?>', '<?php echo $count; ?>')">Update</button>
+                                                          		<a href="/cart/remove/<?php echo $cartItems->getCartItemId(); ?>"><button type="button" class="btn btn-sm btn-danger">Remove</button></a>
+                                                            </td>
+                                                       	</tr>
+                                                       	<?php 
+                                                        $count++;
+                                                        } ?>
+                                                        <tr>
+                                                            <td colspan="4" class="text-right">SUBTOTAL</td>
+                                                            <td><?php echo $total; ?></td>
+                                                        </tr>
+                                                        <!--  
+                                                		<tr>
+                                                			<td>
+                                                    			<div class="col-md-4" style="padding:0px;">Promo Code  </div>
+                                                    			<div class="col-md-6" style="padding:0px;"><input type="text" placeholder="Enter Promo Code" class="cd"></div>
+                                                    			<div class="col-md-2"> <button type="button" class="btn btn-sm btn-primary">Enter</button></div>
+                                                			</td>
+                                                			<td colspan="3" class="text-right">DISCOUNT</td>
+                                                            <td>$ 0</td>
+                                                        </tr>
+                                                		<tr>
+                                                			<td>
+                                                    			<div class="col-md-4 col-sm-3" style="padding:0px;">Shopping Option  </div>
+                                                    			<div class="col-md-6 col-sm-7" style="padding:0px;"><input type="text" placeholder="Enter your zip" class="cd"></div>
+                                                    			<div class="col-md-2 col-sm-2"> <button type="button" class="btn btn-sm btn-primary">Enter</button></div>			
+                                                			</td>
+                                                            <td colspan="3" class="text-right">SHIPPING</td>
+                                                            <td>TBD</td>
+                                                        </tr>
+                                                        -->
+                                                		<tr>
+                                                    		<td>
+                                                    			<div class="col-md-4" style="padding:0px;">We Accept </div>
+                                                    			<div class="col-md-6" style="padding:0px;"><img src="/assets/application/myautostores/images/main.png" class="img-responsive" style="width:250px;"></div>			
+                                                			</td>
+                                                           	<td colspan="3" class="text-right">TOTAL</td>
+                                                            <td><b><?php echo $total; ?></b></td>
+                                                      	</tr>
+                                                	</tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+									</div>
+								</div>
+								<button type="submit" class="btn m-btn pull-right">PROCEED TO CHECKOUT<span class="fa fa-angle-right"></span></button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--b-submit-->
+		
+		<script type="text/javascript">
+		    	function updateQuantity(cartItemId, quantity)
+		    	{
+
+					var number = jQuery('#number_'+quantity).val();
+
+					window.location.href = '/cart/change/'+cartItemId+'/'+number;
+
+		    	}
+
+		</script>

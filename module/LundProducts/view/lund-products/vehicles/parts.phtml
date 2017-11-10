@@ -1,0 +1,75 @@
+                    <h5 class="widget-name"><i class="icon-table"></i>View Vehicle Parts</h5>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="widget">
+                                <div class="navbar">
+                                    <div class="navbar-inner">
+                                        <h6><i class="icon-truck"></i>Vehicle Details</h6>
+                                        <a class="btn btn-info pull-right" href="/admin/products/vehicles"><b class="icon-external-link"></b>Back to Vehicle List</a>
+                                    </div>
+                                </div>
+                                <div class="well">
+                                    <form action="" method="post" name="vehicle-part-form" class="form-horizontal" id="vehicle-part-form">
+                                     <div class="control-group">
+                                        <label class="control-label">Year</label>
+                                        <div class="controls"><input class="span12" type="text" value="<?php echo $record->getVehYear()->getName(); ?>" readonly="" name="make"></div>
+                                    </div>
+                                    <div class="control-group"> 
+                                        <label class="control-label">Make</label>
+                                        <div class="controls"><input class="span12" type="text" value="<?php echo $record->getVehMake()->getName(); ?>" readonly="" name="make"></div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Model</label>
+                                        <div class="controls"><input class="span12" type="text" value="<?php echo $record->getVehModel()->getName(); ?>" readonly="" name="make"></div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Submodel</label>
+                                        <div class="controls"><input class="span12" type="text" value="<?php echo (($record->getVehSubmodel()) ? $record->getVehSubmodel()->getName() : ''); ?>" readonly="" name="make"></div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Class</label>
+                                        <div class="controls"><input class="span12" type="text" value="<?php echo $record->getVehModel()->getVehClass()->getName(); ?>" readonly="" name="make"></div>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget">
+                        <div class="navbar">
+                            <div class="navbar-inner">
+                                <h6><i class="icon-truck"></i>Parts</h6>
+                            </div>
+                        </div>
+                        <div class="table-overflow">
+                            <table class="table table-striped table-bordered" id="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Part Number</th>
+                                        <th>UPC</th>
+                                        <th>Product Line</th>
+                                        <th>Color</th>
+                                        <th>MSRP Price</th>
+                                        <th>I-Sheet</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($record->getVehCollections() as $vehCollection) { ?>
+                                    <?php $part = $vehCollection->getPart(); ?>
+                                    <tr>
+                                        <td><?php echo $part->getPartNumber(); ?></td>
+                                        <td><?php echo $part->getUpcCode(); ?></td>
+                                        <td><a href="/admin/products/productlines/view/<?php echo $part->getProductLine()->getProductLineId(); ?>" class="btn btn-primary tip" title="<?php echo $part->getProductLine()->getName(); ?>"><i class="icon-external-link"></i><span style="margin-left:5px;"><?php echo $part->getProductLine()->getName(); ?></span></a></td>
+                                        <td><?php echo $part->getColor(); ?></td>
+                                        <td><?php echo $part->getMsrpPrice(); ?></td>
+                                        <td>
+                                            <?php if (null !== $part->getIsheet()) { ?>
+                                            <a href="/assets/library/products/isheets/<?php echo $part->getIsheet(); ?>.pdf" target="_blank" class="btn btn-primary tip" title="<?php echo $part->getIsheet(); ?>"><i class="icon-external-link"></i><span style="margin-left: 5px;"><?php echo $part->getIsheet(); ?></span></a></td>
+                                            <?php } ?>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>

@@ -1,0 +1,45 @@
+<?php
+	$menu = $this->layout()->menuService->getMenuByShortCode($this->layout()->site, 'login-side-menu');
+	$elements = $this->layout()->menuElementService->getParentElements($menu);
+
+	?>
+
+
+					<div class="col-md-3 col-xs-12">
+						<aside class="b-blog__aside">
+							
+							
+							
+							<div class="b-blog__aside-categories wow zoomInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: zoomInUp;">
+								<header class="s-lineDownLeft">
+									<h2 class="s-titleDet">MY ACCOUNT</h2>
+								</header>
+								<nav>
+									<ul class="b-blog__aside-categories-list">
+										<?php foreach ($elements as $element) { ?>
+                    						<li><a href="<?php echo $element->getUrl(); ?>"><?php echo $element->getTitle(); ?></a></li>
+                    					<?php } ?>
+									</ul>
+								</nav>
+							</div>
+							
+							
+							<div class="b-blog__aside-categories wow zoomInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: zoomInUp;">
+								
+								<div class="b-footer__content-social">
+								<a href="#"><span class="fa fa-facebook-square"></span></a>
+								<a href="#"><span class="fa fa-twitter-square"></span></a>
+								<a href="#"><span class="fa fa-google-plus-square"></span></a>
+								<a href="#"><span class="fa fa-instagram"></span></a>
+								<a href="#"><span class="fa fa-youtube-square"></span></a>
+								<a href="#"><span class="fa fa-skype"></span></a>
+							</div>
+							</div>
+							
+							
+							
+						</aside>
+					</div>
+				</div>
+			</div>
+		</section><!--b-best-->

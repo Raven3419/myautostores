@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="LundProducts\Entity\VehMake" table="veh_make">
+        <id name="vehMakeId" column="veh_make_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="name" column="name" type="string" length="255" nullable="true"/>
+        <field name="shortCode" column="short_code" type="string" length="255" nullable="true"/>
+    </entity>
+</doctrine-mapping>

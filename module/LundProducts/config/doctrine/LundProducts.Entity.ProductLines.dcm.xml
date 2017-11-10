@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="LundProducts\Entity\ProductLines" table="product_lines">
+        <indexes>
+            <index name="deleted" columns="deleted"/>
+        </indexes>
+        <id name="productLineId" column="product_line_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="createdAt" column="created_at" type="datetime" nullable="true"/>
+        <field name="createdBy" column="created_by" type="string" length="255" nullable="true"/>
+        <field name="modifiedAt" column="modified_at" type="datetime" nullable="true"/>
+        <field name="modifiedBy" column="modified_by" type="string" length="255" nullable="true"/>
+        <field name="deleted" type="boolean" nullable="true"/>
+        <field name="disabled" type="boolean" nullable="true"/>
+        <field name="name" column="name" type="string" length="255" nullable="true"/>
+        <field name="bpcsCode" column="bpcs_code" type="string" length="50" nullable="true"/>
+        <field name="shortCode" column="short_code" type="string" length="255" nullable="true"/>
+        <field name="displayName" column="display_name" type="string" length="255" nullable="true"/>
+        <field name="overview" column="overview" type="text" nullable="true"/>
+        <field name="websiteOverview" column="website_overview" type="text" nullable="true"/>
+        <field name="teaser" column="teaser" type="text" nullable="true"/>
+        <field name="position" column="position" type="integer" nullable="true"/>
+        <field name="brandPosition" column="brand_position" type="integer" nullable="true"/>
+        <field name="saleable" column="saleable" type="integer" nullable="true"/>
+        <field name="installationVideo" column="installation_video" type="string" length="255" nullable="true"/>
+        <field name="metaTitle" column="meta_title" type="text" nullable="true"/>
+        <field name="metaKeywords" column="meta_keywords" type="text" nullable="true"/>
+        <field name="metaDescr" column="meta_descr" type="text" nullable="true"/>
+        <field name="totalRating" column="total_rating" type="decimal" scale="2" precision="6" nullable="true" />
+        <field name="totalCount" column="total_count" type="integer" nullable="true"/>
+        <one-to-many field="productLineAsset" target-entity="LundProducts\Entity\ProductLineAsset" mapped-by="productLine"/>
+        <many-to-one field="productCategory" target-entity="LundProducts\Entity\ProductCategories" fetch="EAGER">
+            <join-column name="product_category_id" referenced-column-name="product_category_id"/>
+        </many-to-one>
+        <many-to-one field="brand" target-entity="LundProducts\Entity\Brands" fetch="EAGER">
+            <join-column name="brand_id" referenced-column-name="brand_id"/>
+        </many-to-one>
+        <many-to-one field="origBrand" target-entity="LundProducts\Entity\Brands" fetch="EAGER">
+            <join-column name="orig_brand_id" referenced-column-name="brand_id"/>
+        </many-to-one>
+        <many-to-one field="comparisonChart" target-entity="LundSite\Entity\ComparisonChart" fetch="EAGER">
+            <join-column name="comparison_chart_id" referenced-column-name="comparison_chart_id"/>
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

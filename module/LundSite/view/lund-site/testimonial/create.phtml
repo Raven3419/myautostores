@@ -1,0 +1,68 @@
+<?php
+$form = $this->form;
+$form->setAttributes(array(
+    'action' => '/admin/lund/testimonial/create',
+    'method' => 'POST',
+    'class'  => 'form-horizontal',
+))->prepare();
+$fieldset = $form->getBaseFieldset();
+$errors = $this->formElementErrors()
+            ->setMessageOpenFormat('<span class="help-block">')
+            ->setMessageSeparatorString('</span><span class="help-block">')
+            ->setMessageCloseString('</span>');
+?>
+                    <h5 class="widget-name"><i class="icon-plus"></i>Create a Testimonial</h5>
+                    <div class="row-fluid">
+                        <div class="span8">
+                            <div class="widget">
+                                <div class="navbar">
+                                    <div class="navbar-inner"><h6><i class="icon-asterisk"></i>Testimonial Details</h6></div>
+                                </div>
+                                <div class="well">
+                                    <?php echo $this->form()->openTag($form); ?>
+                                    <?php echo $this->formElement($form->get('secret')); ?>
+                                    <div class="alert alert-error margin">
+                                        <span class="text">* denotes a required field</span>
+                                    </div>
+                                    <?php $site = $fieldset->get('site'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($site) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $site->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($site); ?>
+                                            <?php echo ($this->formElementErrors($site) ? $errors->render($site) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $disabled = $fieldset->get('disabled'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($disabled) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $disabled->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($disabled); ?>
+                                            <?php echo ($this->formElementErrors($disabled) ? $errors->render($disabled) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $position = $fieldset->get('position'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($position) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $position->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($position); ?>
+                                            <?php echo ($this->formElementErrors($position) ? $errors->render($position) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $content = $fieldset->get('content'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($content) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $content->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($content); ?>
+                                            <?php echo ($this->formElementErrors($content) ? $errors->render($content) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions align-right">
+                                        <button id="form-submit-btn" type="submit" class="btn btn-primary">Submit</button>
+                                        <button id="form-cancel-btn" type="button" class="btn btn-danger">Cancel</button>
+                                        <button id="form-reset-btn" type="reset" class="btn">Reset</button>
+                                    </div>
+                                    <?php echo $this->form()->closeTag($form); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

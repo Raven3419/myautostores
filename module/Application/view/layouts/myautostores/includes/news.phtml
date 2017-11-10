@@ -1,0 +1,107 @@
+<?php if($this->type == 'detail') { ?>
+
+
+					<div class="col-md-9 col-xs-12">
+						<div class="b-blog__posts">
+							
+							<div class="b-blog__posts-one wow zoomInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: zoomInUp;">
+								<div class="row m-noBlockPadding">
+									<div class="col-sm-1 col-xs-2">
+										<div class="b-blog__posts-one-author">
+											<div class="b-blog__posts-one-author-img">
+
+											</div>
+											<div class="b-blog__posts-one-share s-lineDownCenter">SHARE THIS</div>
+											<div class="b-blog__posts-one-social">
+												<div>
+													<a href="#"><span class="fa fa-google-plus-square "></span></a>
+													<a href="#"><span class="fa  fa-facebook-square"></span></a>
+												</div>
+												<div>
+													<a href="#"><span class="fa fa-twitter-square "></span></a>
+													<a href="#"><span class="fa fa-pinterest-square"></span></a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-11 col-xs-10">
+										<div class="b-blog__posts-one-body">
+											<header class="b-blog__posts-one-body-head">
+												<h2 class="s-titleDet"><?php echo $this->news->getTitle(); ?></h2>
+												<div class="b-blog__posts-one-body-head-notes">
+													<span class="b-blog__posts-one-body-head-notes-note"><span class="fa fa-user"></span>Our Admin</span>
+													<span class="b-blog__posts-one-body-head-notes-note"><span class="fa fa-calendar-o"></span><?php echo $news->getDisplayDate()->format('F j, Y'); ?></span>
+													<!-- 
+													<span class="b-blog__posts-one-body-head-notes-note"><span class="fa fa-comment"></span>5 Comments</span>
+													 -->
+												</div>
+											</header>
+											<div class="b-blog__posts-one-body-main">
+												<div class="b-blog__posts-one-body-main-img">
+													<img class="img-responsive" src="/assets/<?php echo $this->news->getImage()->getFilePath(); ?>" alt="<?php echo $this->news->getImage()->getFileName(); ?>" title="<?php echo $this->news->getImage()->getFileName(); ?>">
+												</div>
+												<?php echo $this->news->getHtml(); ?>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>         
+
+<?php } else { ?>
+					<div class="col-sm-9 col-xs-12">
+						<div class="b-contacts__form">
+							<header class="b-contacts__form-header s-lineDownLeft wow zoomInUp" data-wow-delay="0.5s">
+								<h2 class="s-titleDet">News</h2> 
+							</header>
+							<?php foreach($this->news as $news) { ?>
+							<div class="b-blog__posts-one wow zoomInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: zoomInUp;">
+								<div class="row m-noBlockPadding">
+									<div class="col-sm-1 col-xs-2">
+										<div class="b-blog__posts-one-author">
+											<div class="b-blog__posts-one-author-img">
+
+											</div>
+											<div class="b-blog__posts-one-share s-lineDownCenter">SHARE THIS</div>
+											<div class="b-blog__posts-one-social">
+												<div>
+													<a href="#"><span class="fa fa-google-plus-square "></span></a>
+													<a href="#"><span class="fa  fa-facebook-square"></span></a>
+												</div>
+												<div>
+													<a href="#"><span class="fa fa-twitter-square "></span></a>
+													<a href="#"><span class="fa fa-pinterest-square"></span></a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-11 col-xs-10">
+										<div class="b-blog__posts-one-body">
+											<header class="b-blog__posts-one-body-head">
+												<h2 class="s-titleDet"><?php echo $news->getTitle(); ?></h2>
+												<div class="b-blog__posts-one-body-head-notes">
+													<span class="b-blog__posts-one-body-head-notes-note"><span class="fa fa-user"></span>Our Admin</span>
+													<span class="b-blog__posts-one-body-head-notes-note"><span class="fa fa-calendar-o"></span><?php echo $news->getDisplayDate()->format('F j, Y'); ?></span>
+													<!-- 
+													<span class="b-blog__posts-one-body-head-notes-note"><span class="fa fa-comment"></span>5 Comments</span>
+													 -->
+												</div>
+											</header>
+											<div class="b-blog__posts-one-body-main">
+												<div class="b-blog__posts-one-body-main-img">
+													<img class="img-responsive" src="/assets/<?php echo $news->getImage()->getFilePath(); ?>" alt="<?php echo $news->getImage()->getFileName(); ?>" title="<?php echo $news->getImage()->getFileName(); ?>" >
+												</div>
+												<p><?php echo $news->getTeaser(); ?></p>
+												<a href="/news/<?php echo $news->getUrl(); ?>" class="btn m-btn m-readMore">READ MORE<span class="fa fa-angle-right"></span></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<?php } ?>
+						</div>
+					</div>
+<?php } ?>					
+					

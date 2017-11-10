@@ -1,0 +1,19 @@
+                    <h5 class="widget-name"><i class="icon-plus"></i>Create a New Product Category</h5>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="widget">
+                                <div class="navbar">
+                                    <div class="navbar-inner"><h6><i class="icon-th"></i>Product Category Details</h6></div>
+                                </div>
+                                <div class="well">
+<?php
+echo $this->partial('admin/form-partial', array(
+    'form'     => $this->form,
+    'url'      => '/admin/products/productcategories/create',
+    'fieldset' => 'product-category-fieldset',
+));
+?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

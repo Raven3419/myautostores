@@ -1,0 +1,50 @@
+
+<?php
+$form = $this->form;
+
+	$form->setAttributes(array(
+	    'action' => '/newsletter',
+	    'method' => 'POST',
+	    'id'     => 'forms',
+	))->prepare();
+
+$fieldset = $form->getBaseFieldset();
+$errors = $this->formElementErrors()
+            ->setMessageOpenFormat('<span class="help-block">')
+            ->setMessageSeparatorString('</span><span class="help-block">')
+            ->setMessageCloseString('</span>');
+?>
+
+					<div class="col-lg-9 col-md-8 col-sm-7 col-xs-6">
+						<div class="b-submit__main">
+							<header class="s-headerSubmit s-lineDownLeft wow zoomInUp" data-wow-delay="0.5s">
+								<h2 class="">Newsletter Subscription</h2>
+							</header>
+							
+							<?php if(isset($this->errorMessage)) { ?>
+    				    	<ul class="messages"  style="color:red"><li class="error-msg"><ul><li><span><?php echo $this->errorMessage?></span></li></ul></li></ul>    
+        				  	<?php } ?>
+        				  	
+    				      	<?php echo $this->form()->openTag($form); ?>
+        						<div class="s-submit clearfix">
+    								<div class="row">
+        								<div class="panel-body">
+        									<div class="row">
+              									<div class="form-group col-md-12">
+        										
+                									<?php $firstName = $fieldset->get('firstName'); ?>
+                        							<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                        								<input type="checkbox" name="ecom-customer-fieldset&#x5B;newsletters&#x5D;" id="subscription" value="1" title="Newsletter Subscription" class="checkbox" <?php ( $this->ecomCustomer->getNewsletters() ? print 'checked="checked"' : '') ?> />
+					            						<label for="subscription">  Newsletter Subscription</label>
+					            						<p>Subscription to get discount offers and special announcements.</p>
+                        							</div>
+                                            	</div>
+                                        	</div>
+                                        </div>
+            						</div>
+            						<button type="submit" class="btn m-btn pull-right">Submit<span class="fa fa-angle-right"></span></button>
+            					</div>
+            				<?php echo $this->form()->closeTag($form); ?>
+            				
+						</div>
+					</div>

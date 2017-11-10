@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="LundProducts\Entity\PartVehCollection" table="part_veh_collection">
+        <id name="partVehCollectionId" column="part_veh_collection_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <many-to-one field="part" target-entity="LundProducts\Entity\Parts" fetch="EAGER">
+            <join-column name="part_id" referenced-column-name="part_id"/>
+        </many-to-one>
+        <many-to-one field="vehCollection" target-entity="LundProducts\Entity\VehCollection" fetch="EAGER">
+            <join-column name="veh_collection_id" referenced-column-name="veh_collection_id"/>
+        </many-to-one>
+        <field name="sequence" column="sequence" type="integer" nullable="true"/>
+        <field name="subdetail" column="subdetail" type="string" nullable="true" />
+        <many-to-one field="changesetDetail" target-entity="LundProducts\Entity\ChangesetDetails" fetch="EAGER">
+            <join-column name="changeset_detail_id" referenced-column-name="changeset_detail_id" />
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

@@ -1,0 +1,286 @@
+
+<?php
+$form = $this->form;
+
+	$form->setAttributes(array(
+	    'action' => '/address',
+	    'method' => 'POST',
+	    'id'     => 'forms',
+	))->prepare();
+
+$fieldset = $form->getBaseFieldset();
+$errors = $this->formElementErrors()
+            ->setMessageOpenFormat('<span class="help-block">')
+            ->setMessageSeparatorString('</span><span class="help-block">')
+            ->setMessageCloseString('</span>');
+?>
+
+					<div class="col-lg-9 col-md-8 col-sm-7 col-xs-6">
+						<div class="b-submit__main">
+							<header class="s-headerSubmit s-lineDownLeft wow zoomInUp" data-wow-delay="0.5s">
+								<h2 class="">Address Information</h2>
+							</header>
+							
+							<?php if(isset($this->errorMessage)) { ?>
+    				    	<ul class="messages"  style="color:red"><li class="error-msg"><ul><li><span><?php echo $this->errorMessage?></span></li></ul></li></ul>    
+        				  	<?php } ?>
+        				  	
+        				  	
+        				  	
+    				      	<?php echo $this->form()->openTag($form); ?>
+        						<div class="s-submit clearfix">
+    								<div class="row">
+        								<div class="panel panel-default">
+        									<div class="panel-heading">Billing: <small>Where is your credit card statement sent?</small></div>
+        									<div class="panel-body">
+                								
+                								<?php $companyName = $fieldset->get('companyName'); ?>
+                								<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                									<label><?php echo $companyName->getLabel(); ?> </label>
+                									<div class='s-relative'>
+                										<?php echo $this->formElement($companyName); ?>
+                									</div>
+                								</div>
+                								
+                								<?php $billingStreetAddress = $fieldset->get('billingStreetAddress'); ?>
+                								<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                									<label><?php echo $billingStreetAddress->getLabel(); ?> <span>*</span></label>
+                									<div class='s-relative'>
+                										<?php echo $this->formElement($billingStreetAddress); ?>
+                									</div>
+                								</div>
+                								
+                								<?php $billingCity = $fieldset->get('billingCity'); ?>
+                								<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                									<label><?php echo $billingCity->getLabel(); ?> <span>*</span></label>
+                									<div class='s-relative'>
+                										<?php echo $this->formElement($billingCity); ?>
+                									</div>
+                								</div>
+                								
+                								<div class="row">
+              										<div class="form-group col-md-6">
+              										
+                        								<?php $billingState = $fieldset->get('billingState'); ?>
+                        								<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                        									<label><?php echo $billingState->getLabel(); ?> <span>*</span></label>
+                        									<div class='s-relative'>
+                        										<?php echo $this->formElement($billingState); ?>
+                        									</div>
+                        								</div>
+                        							</div>
+                        							<div class="form-group col-md-6">
+                        								<?php $billingPostCode = $fieldset->get('billingPostCode'); ?>
+                        								<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                        									<label><?php echo $billingPostCode->getLabel(); ?> <span>*</span></label>
+                        									<div class='s-relative'>
+                        										<?php echo $this->formElement($billingPostCode); ?>
+                        									</div>
+                        								</div>
+                        							</div>
+                        						</div>
+                                        	</div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                        	<div class="panel-heading">Shipping: <small> Where would you like your items shipped? (For best delivery, ship to a business address)</small></div>
+                                        	<div class="panel-body">
+                                        		<div class="radio">
+                                        			<label>
+                                        				<input type="radio" name="ecom-customer-fieldset[sameAsBilling]" id="sameAsBilling" value="1" onclick="removePinpoint();" <?php (( trim($this->ecomCustomer->getSameAsBilling()) == '1' ) ? print 'checked="checked"' : '')  ?> >
+                                        				Use Billing address as shipping address
+                                        			</label>
+                                        		</div>
+                                                <div class="radio">
+                                                	<label>
+                                                		<input type="radio" name="ecom-customer-fieldset[sameAsBilling]" id="sameAsBilling" value="2" onclick="addPinpoint();" <?php (( trim($this->ecomCustomer->getSameAsBilling()) == '2' ) ? print 'checked="checked"' : '')  ?> >
+                                                		Use different address
+                                                	</label>
+                                                </div>
+        										<div id="pinpoint-container">
+        										
+                    								<?php $shippingStreetAddress = $fieldset->get('shippingStreetAddress'); ?>
+                    								<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                    									<label><?php echo $shippingStreetAddress->getLabel(); ?> <span>*</span></label>
+                    									<div class='s-relative'>
+                    										<?php echo $this->formElement($shippingStreetAddress); ?>
+                    									</div>
+                    								</div>
+                    								
+                    								<?php $shippingCity = $fieldset->get('shippingCity'); ?>
+                    								<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                    									<label><?php echo $shippingCity->getLabel(); ?> <span>*</span></label>
+                    									<div class='s-relative'>
+                    										<?php echo $this->formElement($shippingCity); ?>
+                    									</div>
+                    								</div>
+                    								
+                    								<div class="row">
+                  										<div class="form-group col-md-6">
+                  										
+                            								<?php $shippingState = $fieldset->get('shippingState'); ?>
+                            								<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                            									<label><?php echo $shippingState->getLabel(); ?> <span>*</span></label>
+                            									<div class='s-relative'>
+                            										<?php echo $this->formElement($shippingState); ?>
+                            									</div>
+                            								</div>
+                            							</div>
+                            							<div class="form-group col-md-6">
+                            								<?php $shippingPostCode = $fieldset->get('shippingPostCode'); ?>
+                            								<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                            									<label><?php echo $shippingPostCode->getLabel(); ?> <span>*</span></label>
+                            									<div class='s-relative'>
+                            										<?php echo $this->formElement($shippingPostCode); ?>
+                            									</div>
+                            								</div>
+                            							</div>
+                            						</div>
+            									</div>
+                                        	</div>
+                                        </div>
+            						</div>
+            						<button type="submit" class="btn m-btn pull-right">Submit<span class="fa fa-angle-right"></span></button>
+            					</div>
+            				<?php echo $this->form()->closeTag($form); ?>
+            				
+                            <script type="text/javascript">
+                    
+                                jQuery(document).ready(function () {
+                        
+                                    $("form").submit(function(){
+                            
+                                    	var valid = true;
+                    					var billingStreetAddress = jQuery('#billingStreetAddress').val();
+                    					var billingCity = jQuery('#billingCity').val();
+                    					var billingState = jQuery('#billingState').val();
+                    					var billingPostCode = jQuery('#billingPostCode').val();
+                    					var sameAsBilling = jQuery("input[id='sameAsBilling']:checked").val();
+                    					var shippingStreetAddress = jQuery('#shippingStreetAddress').val();
+                    					var shippingCity = jQuery('#shippingCity').val();
+                    					var shippingState = jQuery('#shippingState').val();
+                    					var shippingPostCode = jQuery('#shippingPostCode').val();
+                    
+                    
+                    					if('false' == billingStreetAddress) {
+                    						$('#billingStreetAddress').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                    				    	valid = false;
+                    					}
+                    
+                    					if('' == billingStreetAddress) {
+                    						$('#billingStreetAddress').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                    				    	valid = false;
+                    					}
+                    					
+                    					if('false' == billingCity) {
+                    						$('#billingState').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                    				    	valid = false;
+                    					}
+                    
+                    					if('' == billingState) {
+                    						$('#billingState').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                    				    	valid = false;
+                    					}
+                    					
+                    					if('false' == billingCity) {
+                    						$('#billingCity').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                    				    	valid = false;
+                    					}
+                    
+                    					if('' == billingCity) {
+                    						$('#billingCity').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                    				    	valid = false;
+                    					}
+                    					
+                    					if('false' == billingPostCode) {
+                    						$('#billingPostCode').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                    				    	valid = false;
+                    					}
+                    
+                    					if('' == billingPostCode) {
+                    						$('#billingPostCode').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                    				    	valid = false;
+                    					}
+                    
+                    					if('2' == sameAsBilling)
+                    					{
+                    						
+                    						if('false' == shippingStreetAddress) {
+                    							$('#shippingStreetAddress').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                    					    	valid = false;
+                    						}
+                    
+                    						if('' == shippingStreetAddress) {
+                    							$('#shippingStreetAddress').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                    					    	valid = false;
+                    						}
+                    						
+                    						if('false' == shippingCity) {
+                    							$('#shippingCity').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                    					    	valid = false;
+                    						}
+                    
+                    						if('' == shippingCity) {
+                    							$('#shippingCity').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                    					    	valid = false;
+                    						}
+                    						
+                    						if('false' == shippingState) {
+                    							$('#shippingState').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                    					    	valid = false;
+                    						}
+                    
+                    						if('' == shippingState) {
+                    							$('#shippingState').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                    					    	valid = false;
+                    						}
+                    						
+                    						if('false' == shippingPostCode) {
+                    							$('#shippingPostCode').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                    					    	valid = false;
+                    						}
+                    
+                    						if('' == shippingPostCode) {
+                    							$('#shippingPostCode').attr('style', "border-radius: 30px; border:#FF0000 1px solid;");
+                    					    	valid = false;
+                    						}
+                    
+                    					}
+                    					
+                    					if(valid){
+                    						return true;
+                    					} else {
+                    				    	return false;
+                    					}
+                            			
+                            		});
+                    
+                                    if(<?php ( print trim($this->ecomCustomer->getSameAsBilling()) ) ?> == 1) {
+                    
+                                    	var y = document.getElementById('pinpoint-container');
+                                    	y.style.display = 'none';
+                                    	
+                                    }
+                    
+                                    if(<?php ( print trim($this->ecomCustomer->getSameAsBilling()) ) ?> == 2) {
+                    
+                                    	var y = document.getElementById('pinpoint-container');
+                                    	y.style.display = 'block';
+                                    	
+                                    }
+                                });
+                                function removePinpoint() {
+                                    var y = document.getElementById('pinpoint-container');
+                                	
+                                    y.style.display = 'none';
+                                    
+                                }
+                                
+                                function addPinpoint() {
+                                    var y = document.getElementById('pinpoint-container');
+                                	
+                                    y.style.display = 'block';
+                                    
+                                }
+                            </script>
+						</div>
+					</div>

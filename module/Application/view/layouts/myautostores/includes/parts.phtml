@@ -1,0 +1,954 @@
+		<section class="b-pageHeader">
+			<div class="container">
+				<h1 class="wow zoomInLeft" data-wow-delay="0.5s"><?php echo $this->productLines[0]->getDisplayName(); ?></h1>
+			</div>
+		</section><!--b-pageHeader-->
+
+		<div class="b-breadCumbs s-shadow wow zoomInUp" data-wow-delay="0.5s">
+			<div class="container">
+				<a href="/" alt="<?php echo $this->productLines[0]->getDisplayName(); ?>" title="<?php echo $this->productLines[0]->getDisplayName(); ?>" class="b-breadCumbs__page">Home</a><span class="fa fa-angle-right"></span>
+				<a href="/products/<?php echo urlencode(strtolower($this->category)); ?>" alt="<?php echo $this->category; ?>" title="<?php echo $this->category; ?>" class="b-breadCumbs__page"><?php echo ucwords($this->category); ?></a><span class="fa fa-angle-right"></span>
+				<a href="#" class="b-breadCumbs__page m-active"><?php echo $this->productLines[0]->getDisplayName(); ?></a>
+			</div>
+		</div><!--b-breadCumbs-->
+		<!--  
+		<div class="b-infoBar">
+			<div class="container">
+				<div class="row wow zoomInUp" data-wow-delay="0.5s">
+					<div class="col-xs-3">
+						<div class="b-infoBar__premium">Premium Listing</div>
+					</div>
+					<div class="col-xs-9">
+						<div class="b-infoBar__btns">
+							<a href="#" class="btn m-btn m-infoBtn"><i class="fa fa-heart"></i> ADD TO FAVOURITES<span class="fa fa-angle-right"></span></a>
+							<a href="#" class="btn m-btn m-infoBtn"><i class="fa fa-print"></i> PRINT THIS PAGE<span class="fa fa-angle-right"></span></a>
+							<a href="#" class="btn m-btn m-infoBtn"><i class="fa fa-download"></i> DOWNLOAD MANUAL<span class="fa fa-angle-right"></span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		-->
+		<!--b-infoBar-->
+		<section class="b-detail s-shadow">
+			<div class="container">
+				<header class="b-detail__head s-lineDownLeft wow zoomInUp" data-wow-delay="0.5s">
+					<div class="row">
+						<div class="col-sm-9 col-xs-12">
+							<div class="b-detail__head-title">
+								<h1><?php echo $this->productLines[0]->getDisplayName(); ?></h1>
+								<!--<h3>Fully Redesigned Upscale Midsize Car</h3>-->
+							</div>
+						</div>
+						<div class="col-sm-3 col-xs-12">
+							<div class="b-detail__head-price">
+								<div class="b-detail__head-price-num">Starting at $0</div>
+								
+							</div>
+						</div>
+					</div>
+				</header>
+				<div class="b-detail__main">
+					<div class="row">
+						<div class="col-md-8 col-xs-12">
+							<div class="b-detail__main-info">
+								<div class="b-detail__main-info-images">
+									<div class="row m-smallPadding">
+										<div class="col-xs-10">
+											<ul class="b-detail__main-info-images-big bxslider enable-bx-slider" data-pager-custom="#bx-pager" data-mode="horizontal" data-pager-slide="true" data-mode-pager="vertical" data-pager-qty="5">
+											<?php 
+									    		$counter = 0;
+									    		$differentImage = array();
+									    		foreach($this->productLines as $productLines)
+									    		{
+									    		    foreach($productLines->getProductLineAsset() as $productLineAsset)
+									    		    { ?>
+        									    				
+                										<li class="s-relative">    
+                							                 <!--                                    
+                											     <a data-toggle="modal" data-target="#myModal" href="#" class="b-items__cars-one-img-video"><span class="fa fa-film"></span>VIDEO</a>
+                											  --> 
+                											 <img class="img-responsive center-block" src="/assets/<?php echo $productLineAsset->getAsset()->getFilePath() ?>" alt="<?php echo $this->productLines[0]->getDisplayName()."-".$counter; ?>" title="<?php echo $this->productLines[0]->getDisplayName()."-".$counter; ?>" />
+                										</li>                
+    				                        	<?php 
+    				                        	   $counter++;
+									    		    } 
+									    		} ?>
+											</ul>
+										</div>
+										<div class="col-xs-2 pagerSlider pagerVertical">
+											<div class="b-detail__main-info-images-small" id="bx-pager">
+											<?php 
+									    		$count = 0;
+									    		$differentImage = array();
+									    		foreach($this->productLines as $productLines)
+									    		{
+									    		    foreach($productLines->getProductLineAsset() as $productLineAsset)
+									    		    { ?>
+        									    		<?php $tempImage =  $productLineAsset->getAsset()->getFilePath(); ?>
+        												<a href="#" data-slide-index="<?php echo $count?>" class="b-detail__main-info-images-small-one">
+        													<img class="img-responsive" src="/assets/<?php echo $productLineAsset->getAsset()->getFilePath() ?>" alt="<?php echo $this->productLines[0]->getDisplayName()."-".$count; ?>" title="<?php echo $this->productLines[0]->getDisplayName()."-".$count; ?>" />
+        												</a>	              
+    				                        	<?php 
+    				                        	   $count++;
+									    		    } 
+									    		} ?>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="b-detail__main-info-text">
+									<div class="b-detail__main-aside-about-form-links">
+										<a href="#" class="j-tab m-active s-lineDownCenter" data-to='#info1'>GENERAL INFO</a>
+										<a href="#" class="j-tab" data-to='#info2'>RETURN INFORMATION</a>
+										<a href="#" class="j-tab" data-to='#info3'>MANUFACTURER INFO</a>
+										<!--  
+										<a href="#" class="j-tab" data-to='#info4'>CUSTOMER REVIEWS </a>
+										-->
+									</div>
+									<div id="info1">
+                                	<h2 class="s-titleDet">FEATURES</h2>
+                    		
+                                	<ul style='font: 300 13px/1.9 "Open Sans",sans-serif;'>
+                                		<?php for($x=0; $x<count($this->features); $x++) { ?>
+                                			<li><?php echo $this->features[$x]['feature_copy']?></li>
+                                		<?php } ?>
+                                	</ul>
+			
+                        			<h2 class="s-titleDet">Details</h2>
+                        			
+                        			<?php echo $this->productLines[0]->getName(); ?>
+                        			<br /><br />
+									<?php echo $this->productLines[0]->getOverview(); ?>
+                        			
+                        			<div class="b-detail__main-info-extra">
+    									<h2 class="s-titleDet">EXTRA DETAILS</h2>
+    									<div class="row">
+										<table class="table table-striped">
+                                            <tbody>
+                                            	<?php if($this->parts[0]->getWidth() != '0.00') { ?>
+                                                <tr>
+                                                    <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span> Weight</th>
+                                                    <td><?php echo $this->parts[0]->getWidth(); ?></td>
+                                                </tr>
+                                                <?php } ?>
+                                               
+                                            	<?php if($this->parts[0]->getHeight() != '0.00') { ?>
+                                        	    <tr>
+                                                    <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span> Height</th>
+                                                    <td><?php echo $this->parts[0]->getHeight(); ?></td>
+                                                </tr>
+                                                <?php } ?>
+                                               
+                                            	<?php if($this->parts[0]->getWidth() != '0.00') { ?>
+                                        		<tr>
+                                                    <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span> Width</th>
+                                                    <td><?php echo $this->parts[0]->getWidth(); ?></td>
+                                                </tr>
+                                                <?php } ?>
+                                               
+                                            	<?php if($this->parts[0]->getLength() != '0.00') { ?>
+                                        		<tr>
+                                                    <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span> Length</th>
+                                                    <td><?php echo $this->parts[0]->getLength(); ?></td>
+                                                </tr>
+                                                <?php } ?>
+                                               
+                                            	<?php if($this->parts[0]->getBedLength() != '0.00') { ?>
+                                        		<tr>
+                                                    <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span>  Bed Length</th>
+                                                    <td><?php echo $this->parts[0]->getBedLength(); ?></td>
+                                                </tr>
+                                                <?php } ?>
+                                               
+                                            	<?php if($this->parts[0]->getFinish() != null) { ?>
+                                        		<tr>
+                                                    <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span>  Finish</th>
+                                                    <td><?php echo $this->parts[0]->getFinish(); ?></td>
+                                                </tr>
+                                                <?php } ?>
+                                               
+                                            	<?php if($this->parts[0]->getStyle() != null) { ?>
+                                        		<tr>
+                                                    <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span>  Style</th>
+                                                    <td><?php echo $this->parts[0]->getStyle(); ?></td>
+                                                </tr>
+                                                <?php } ?>
+                                               
+                                            	<?php if($this->parts[0]->getMaterial() != null) { ?>
+                                        		<tr>
+                                                    <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span>  Material</th>
+                                                    <td><?php echo $this->parts[0]->getMaterial(); ?></td>
+                                                </tr>
+                                                <?php } ?>
+                                               
+                                            	<?php if($this->parts[0]->getFlareHeight() != '0.00') { ?>
+                                        		<tr>
+                                                    <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span>  Front Flare Height</th>
+                                                    <td><?php echo $this->parts[0]->getFlareHeight(); ?></td>
+                                                </tr>
+                                                <?php } ?>
+                                               
+                                            	<?php if($this->parts[0]->getRearFlareHeight() != '0.00') { ?>
+                                        		<tr>
+                                                    <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span> Rear Flare Height</th>
+                                                    <td><?php echo $this->parts[0]->getRearFlareHeight(); ?></td>
+                                                </tr>
+                                                <?php } ?>
+                                               
+                                            	<?php if($this->parts[0]->getFlareTireCoverage() != '0.00') { ?>
+                                        		<tr>
+                                                    <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span> Front Flare Tire Coverage</th>
+                                                    <td><?php echo $this->parts[0]->getFlareTireCoverage(); ?></td>
+                                                </tr>
+                                                <?php } ?>
+                                               
+                                            	<?php if($this->parts[0]->getRearFlareTireCoverage() != '0.00') { ?>
+                                        		<tr>
+                                                    <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span> Rear Flare Tire Coverage</th>
+                                                    <td><?php echo $this->parts[0]->getRearFlareTireCoverage(); ?></td>
+                                                </tr>
+                                                <?php } ?>
+                                               
+                                            	<?php if($this->parts[0]->getTubeShape() != null) { ?>
+                                        		<tr>
+                                                    <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span> Tube Shape</th>
+                                                    <td><?php echo $this->parts[0]->getTubeShape(); ?></td>
+                                                </tr>
+                                                <?php } ?>
+                                               
+                                            	<?php if($this->parts[0]->getTubeSize() != '0.00') { ?>
+                                        		<tr>
+                                                    <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span> Tube Size</th>
+                                                    <td><?php echo $this->parts[0]->getTubeSize(); ?></td>
+                                                </tr>
+                                                <?php } ?>
+                                               
+                                            	<?php if($this->parts[0]->getWarranty() != null) { ?>
+                                        		<tr>
+                                                    <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span> Warranty</th>
+                                                    <td><?php echo $this->parts[0]->getWarranty(); ?></td>
+                                                </tr>
+                                                <?php } ?>
+                                            </tbody>
+                                        </table>
+									</div>
+								</div>
+    						</div>
+							<div id="info2">
+
+                                <p>The vast majority of products available at AutoAnything are returnable, provided they are returned with all original packaging, paperwork and parts in new and unused condition.</p>
+                                <p>To initiate a return, a Return Authorization Number (RA#) must be requested within 30 days of receipt of the product. When shipping the return, this RA# must be clearly labeled on the package. Items returned without an RA# are not eligible for refund or exchange.</p>
+                                <h3>International Orders</h3>
+                                <p>International orders are not eligible for return or exchange, unless in the case of manufacturer defect or AutoAnything error.</p>
+                                <h3>Return Procedure</h3>
+                                <p>1. Contact an AutoAnything Customer Care Specialist at (800) 874-8888 and select the "Returns" option (#2).</p>
+                                <p>2. Our Customer Care Specialists will provide you with an RA#, and email you detailed return instructions.</p>
+                                <p>3. Clearly write and/or affix the RA# on the package and return to the address specified in the email.</p>
+                                <p>4. Unless the return is due to manufacturer defect or AutoAnything error, the customer is responsible for return shipping costs. For your convenience, AutoAnything offers discounted return shipping labels. Should you choose this option, the cost of the label will be deducted from the refund amount.</p>
+                                <p>5. The original method of payment used to place the order will be credited the purchase price, excluding return shipping costs. AutoAnything will send a confirmation email once the refund has been issued. Please allow 5-7 business days for your bank to process the credit.</p>
+                                <h3>Defective Items</h3>
+                                <p>If you receive an item that is broken or defective, AutoAnything will provide a prepaid return shipping label. To obtain the return shipping label, follow the above return procedure.</p>
+                                <h3>Restocking Fees</h3>
+                                <p>Certain products require a 15% restocking fee. These items qualify for a refund, less the restocking fee and any return shipping costs, when returned with all original packaging, paperwork and parts in new and unused condition.</p>
+                                <h3>Non-Returnable Products</h3>
+                                <p>Some products, including (but not limited to) custom patterned and custom painted items, are not returnable. In the case of manufacturer defect or AutoAnything error, these items may be returned for credit.</p>
+                                <h3>Holiday Returns</h3>
+                                <p>AutoAnything extends the eligible return period from 30 to 60 days on orders placed between “Black Friday” (the Friday following Thanksgiving) and Dec 24th. All other standard return policies and procedures apply.</p>
+
+							</div>
+							<div id="info3">
+							
+								<?php echo $this->productLines[0]->getBrand()->getName(); ?>
+								<br /><br />
+									
+								<?php echo $this->productLines[0]->getBrand()->getHtml(); ?>
+										
+							</div>
+							<div id="info4">
+								<div class="col-xs-12">
+									<div class="b-article__main-comments-one">
+										<div class="b-article__main-comments-one-person">
+											<div class="b-blog__posts-one-author-img"></div>
+										</div>
+										<div class="b-article__main-comments-one-text">
+											<header class="b-article__main-comments-one-text-head">
+												<h6>William Shane</h6>
+												<div class="b-article__main-comments-one-text-head-date">
+													<span>30 MAY 2015</span>
+													<span>Posted at 12:25 AM</span>
+												</div>
+												<span class="b-article__main-comments-one-text-head-answer  pull-right" style="color:#F76D2B;"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span>
+											</header>
+											<p>
+												In eget dolor. Lorem ipsum dolor sit amet consectetuer adipiscing elit. Ut ornare cursus nibh. Sed lorem volutpat purus scel erisque dapibus. Etiam adipiscing ante nec nibh. In in felis in metus mollis blandit.
+											</p>
+										</div>
+									</div>
+									<div class="b-article__main-comments-one">
+										<div class="b-article__main-comments-one-person">
+											<div class="b-blog__posts-one-author-img m-woomen"></div>
+										</div>
+										<div class="b-article__main-comments-one-text">
+											<header class="b-article__main-comments-one-text-head">
+												<h6>William Shane</h6>
+												<div class="b-article__main-comments-one-text-head-date">
+													<span>30 MAY 2015</span>
+													<span>Posted at 12:25 AM</span>
+												</div>
+												<span class="b-article__main-comments-one-text-head-answer  pull-right" style="color:#F76D2B;"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span>
+											</header>
+											<p>
+												In eget dolor. Lorem ipsum dolor sit amet consectetuer adipiscing elit. Ut ornare cursus nibh. Sed lorem volutpat purus scel erisque dapibus. Etiam adipiscing ante nec nibh. In in felis in metus mollis blandit.
+											</p>
+										</div>
+									</div>
+									<div class="b-article__main-comments-one">
+										<div class="b-article__main-comments-one-person">
+											<div class="b-blog__posts-one-author-img"></div>
+										</div>
+										<div class="b-article__main-comments-one-text">
+											<header class="b-article__main-comments-one-text-head">
+												<h6>William Shane</h6>
+												<div class="b-article__main-comments-one-text-head-date">
+													<span>30 MAY 2015</span>
+													<span>Posted at 12:25 AM</span>
+												</div>
+												<span class="b-article__main-comments-one-text-head-answer  pull-right" style="color:#F76D2B;"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span>
+											</header>
+											<p>
+												In eget dolor. Lorem ipsum dolor sit amet consectetuer adipiscing elit. Ut ornare cursus nibh. Sed lorem volutpat purus scel erisque dapibus. Etiam adipiscing ante nec nibh. In in felis in metus mollis blandit.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 col-xs-12">
+					<aside class="b-detail__main-aside">
+						<div class="b-detail__main-aside-payment">
+							<h2 class="s-titleDet">What Do You Drive?</h2>
+							<div class="b-detail__main-aside-payment-form">
+								<form action="#" method="post">
+									<div class="row">
+										<div class="col-xs-4">
+											<h4 class="b-detail__main-aside-desc-title">Year</h4>
+										</div>
+										<div class="col-xs-8">
+											<div class="s-relative">
+												<select name="year" id="year" class="m-select" style="height: 35px;padding: 2px 12px 0px">
+													<option value="">  Select Year  </option>
+													<?php foreach($this->years as $year) {?>
+														<option value="<?php echo $year['name']; ?>"><?php echo $year['name']; ?></option>
+													<?php } ?>
+												</select>
+												<span class="fa fa-caret-down"></span>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-4">
+											<h4 class="b-detail__main-aside-desc-title">Make</h4>
+										</div>
+										<div class="col-xs-8">
+											<div class="s-relative">
+												<select name="make" id="make" class="m-select" style="height: 35px;padding: 2px 12px 0px">
+													<option value="">  Select Make  </option>
+												</select>
+												<span class="fa fa-caret-down"></span>
+											</div>
+										</div>
+									</div>
+									<div class="row" >
+										<div class="col-xs-4">
+											<h4 class="b-detail__main-aside-desc-title">Model</h4>
+										</div>
+										<div class="col-xs-8">
+											<div class="s-relative">
+												<select name="model" id="model"  class="m-select" style="height: 35px;padding: 2px 12px 0px">
+													<option value="">  Select Model  </option>
+												</select>
+												<span class="fa fa-caret-down"></span>
+											</div>
+										</div>
+									</div>
+									<div class="row bedLength">
+										<div class="col-xs-4">
+											<h4 class="b-detail__main-aside-desc-title">Body Length</h4>
+										</div>
+										<div class="col-xs-8">
+											<div class="s-relative">
+												<select name="bedLength" id="bedLength" class="m-select" style="height: 35px;padding: 2px 12px 0px">
+													<option value="">  Select Body Body Length  </option>
+												</select>
+												<span class="fa fa-caret-down"></span>
+											</div>
+										</div>
+									</div>	
+									<div class="row bodyType">
+										<div class="col-xs-4">
+											<h4 class="b-detail__main-aside-desc-title">Body Type</h4>
+										</div>
+										<div class="col-xs-8">
+											<div class="s-relative">
+												<select name="bodyType" id="bodyType" class="m-select" style="height: 35px;padding: 2px 12px 0px">
+													<option value="">  Select Body Type  </option>
+												</select>
+												<span class="fa fa-caret-down"></span>
+											</div>
+										</div>
+									</div>		
+									<div class="row soldAs">
+										<div class="col-xs-4">
+											<h4 class="b-detail__main-aside-desc-title">Sold As</h4>
+										</div>
+										<div class="col-xs-8">
+											<div class="s-relative">
+												<select name="soldAs" id="soldAs" class="m-select" style="height: 35px;padding: 2px 12px 0px">
+													<option value="">  Select Style  </option>
+												</select>
+												<span class="fa fa-caret-down"></span>
+											</div>
+										</div>
+									</div>
+									<div class="row finish">
+										<div class="col-xs-4">
+											<h4 class="b-detail__main-aside-desc-title">Finish</h4>
+										</div>
+										<div class="col-xs-8">
+											<div class="s-relative">
+												<select name="finish" id="finish" class="m-select" style="height: 35px;padding: 2px 12px 0px">
+													<option value="">  Select Finish  </option>
+												</select>
+												<span class="fa fa-caret-down"></span>
+											</div>
+										</div>
+									</div>
+									<div class="row color">
+										<div class="col-xs-4">
+											<h4 class="b-detail__main-aside-desc-title">Color</h4>
+										</div>
+										<div class="col-xs-8">
+											<div class="s-relative">
+												<select name="color" id="color" class="m-select" style="height: 35px;padding: 2px 12px 0px">
+													<option value="">  Select Color  </option>
+												</select>
+												<span class="fa fa-caret-down"></span>
+											</div>
+										</div>
+									</div>
+									<!--  
+									<div class="row">
+										<div class="col-xs-4">
+											<h4 class="b-detail__main-aside-desc-title">Rating</h4>
+										</div>
+										<div class="col-xs-8">
+											<p class="b-detail__main-aside-desc-value"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></p>
+										</div>
+									</div>
+									-->
+									<button type="button" class="btn m-btn ">Go <span class="fa fa-angle-right"></span></button>
+										
+								</form>
+							</div>
+						</div>
+						
+						<br>
+						<div class="b-cartPart">
+    						<h5>Part Number : </h5>
+                            <h2 style="color: #F76D2B; margin:0px 0 20px;" class="partNumber"></h2>
+                            <input type="hidden" name="partID" id="partID" value="" />
+                            <input type="hidden" name="partNumber" id="partNumber" value="" />
+                            <div class="b-cartPrice">
+        						<h5>Price : </h5>
+                                <h2 style="color: #F76D2B; margin:0px 0 20px;" class="price"></h2>
+                            	<input type="hidden" name="price" id="price" value="" />
+        						<!--  
+        						  <p>On Sale: <b>20% Off</b></p>
+                                -->
+                                <a href="#" class="btn btn-lg btn-warning btn-block cartButton" data-toggle="modal" data-target="#myModal"><span class="fa fa-shopping-cart"></span> ADD TO CART</a>
+							</div>
+						</div>	
+					</aside>
+				</div>
+			</div>
+		</section><!--b-detail-->
+		<script type="text/javascript">
+		
+			jQuery(document).ready(function () {
+
+				jQuery('#year').on('change', function(){
+
+					var yearForMake = this.value;
+			
+				 	var data = {module : 'getMake', productCategory : '<?php print $this->category;?>', vehYear : yearForMake, productLine : '<?php echo $this->productLines[0]->getDisplayName(); ?>'}
+
+				 	jQuery.ajax({
+						url: "/ajax-vehicleSelector",
+				      	type: 'POST',
+				       	dataType: 'json',
+				      	data: data,
+					   	success: function(res) {
+							var $secondChoice = jQuery("#make");
+					   		$secondChoice.empty();
+							$secondChoice.append("<option value='false'>Select Make</option>");
+					   		$.each(res, function(index, value){
+								
+					   			$.each(value, function(key2, value2 )
+							   	{
+									$secondChoice.append("<option value='" + value2 + "'>" + value2 + "</option>");
+							   	});
+				          	});
+					   	},
+					 	error: function(){
+							alert("An error occurred Please re-select");
+						}
+					});
+
+				});
+
+				jQuery('#make').on('change', function(){
+
+					var yearForModel = jQuery('#year').val();
+		            var makeForModel = this.value;
+
+		            jQuery("#model").empty();
+
+					var data = {module : 'getModelSubmodel', vehYear : yearForModel, productCategory : '<?php print $this->category;?>', vehMake : makeForModel, productLine : '<?php echo $this->productLines[0]->getDisplayName(); ?>'}
+					
+					jQuery.ajax({
+				        url: "/ajax-vehicleSelector",
+			            type: 'POST',
+			            dataType: 'json',
+			            data: data,
+				   		success: function(res) {
+							var $thirdChoice = jQuery("#model");
+					   		$thirdChoice.empty();
+							$thirdChoice.append("<option value='false'>Select Model</option>");
+				   			$.each(res, function(index, value){
+					   			
+
+					   			$.each(value, function(key2, value2 )
+								{
+									$thirdChoice.append("<option value='" + value2 + "'>" + value2 + "</option>");
+								});
+			                });
+					    },
+				    	error: function(){
+					        alert("An error occurred Please re-select");
+				    	}
+				    }); 
+				});
+
+				jQuery('#model').on('change', function(){
+
+					if(!bedLength())
+					{
+						if(!bodyType())
+						{
+							if(!soldAs())
+							{
+								if(!finish())
+								{
+									color()
+								}
+							}
+						}
+					}
+
+				});
+
+				jQuery('.m-btn').on('click', function(){
+
+					var year = jQuery('#year').val();
+		            var make = jQuery('#make').val();
+		            var model = jQuery('#model').val();
+		            var bedLength = jQuery('#bedLength').val();
+		            var bodyType = jQuery('#bodyType').val();
+		            var soldAs = jQuery('#soldAs').val();
+		            var finish = jQuery('#finish').val();
+		            var color = jQuery('#color').val();
+		            
+					var data = {module : 'getPartId', vehYear : year, vehMake : make, vehModel : model, bedLength: bedLength, bodyType: bodyType, soldAs: soldAs, finish: finish, color: color, productCategory : '<?php print $this->category;?>', productLine : '<?php echo $this->productLines[0]->getDisplayName(); ?>'}
+
+		            $.ajax({
+				        url: "/ajax-vehicleSelector",
+			            type: 'POST',
+			            dataType: 'json',
+			            data: data,
+				   		success: function(json) {
+
+					   		var partNumber 	= json[0]['part_number'];
+					   		var price 		= json[0]['sale_price'];
+					   		var partID		= json[0]['part_id'];
+					   		
+				   			jQuery('.partNumber').html('<b>'+partNumber+'</b>');
+
+							jQuery('.b-cartPart').show();
+							
+					   		if(json[0]['saleable'] == '0')
+					   		{
+
+						   		jQuery("#partID").val(partID);
+						   		jQuery("#partNumber").val(partNumber);
+						   		jQuery('.price').html('<b>$ '+price+'</b>');
+						   		jQuery('#price').val(price);
+								jQuery('.b-cartPrice').show();
+					   		}
+							return true;
+				   		},	
+				    	error: function(){
+					        alert("An error occurred Please re-select");
+				    	}
+		            });
+
+		            return false;
+				});
+
+				jQuery('.cartButton').on('click', function(){
+					
+		    		var partID = jQuery('#partID').val();
+		    		var price = jQuery('#price').val();
+		    		var partNumber = jQuery("#partNumber").val();
+			       	
+			     	jQuery.ajax({
+					 	url: "/cart/add/"+partID,
+				      	type: 'GET',
+				     	dataType: 'html',
+					  	success: function(json) {
+						  	jQuery('.cartNumber').empty();
+							jQuery('.cartNumber').html('<?php echo count($this->layout()->cartItems)+ 1; ?>');
+							jQuery('.cartAmount').html('<?php echo count($this->layout()->cartItems)+ 1; ?>');
+
+							jQuery('.modal-body').append('<div class="row">'+
+									'<div class="col-md-3">'+
+									'<img class="img-responsive" src="/assets/<?php echo $tempImage;?> ">'+
+								
+								'</div>'+
+								'<div class="col-md-8">'+
+									'<h4><?php echo $this->productLines[0]->getDisplayName(); ?> (Part# '+partNumber+')</h4>'+
+									'<p>'+
+	            					'</p>'+
+									'<p>Qty: <input class="img-control" type="number" value="1"></p>'+
+									'<h4 style="color: #F76D2B;">'+price+'</h4>'+
+								'</div>'+
+								'<div class="col-md-1">'+
+								'</div>'+
+							'</div>'+
+							'<hr>');
+					  	}
+			     	});
+
+			     	
+		    	
+				});
+
+				function bedLength()
+                {
+					var yearForModel = jQuery('#year').val();
+		            var makeForModel = jQuery('#make').val();
+		            var model = jQuery('#model').val();
+		            
+					var data = {module : 'getBedLength', vehYear : yearForModel, productCategory : '<?php print $this->category;?>', vehMake : makeForModel, vehModel : model, productLine : '<?php echo $this->productLines[0]->getDisplayName(); ?>'}
+
+		            $.ajax({
+				        url: "/ajax-vehicleSelector",
+			            type: 'POST',
+			            dataType: 'json',
+			            data: data,
+				   		success: function(json) {
+
+					   		if(json.length == '1')
+					   		{
+    				   			if( json[0]['bed_length'] === '0.0' || json[0]['bed_length'] == null ) 
+        				   		{ 
+
+    				   				var $thirdChoice = jQuery("#bedLength");
+    						   		$thirdChoice.empty();
+    								$thirdChoice.append("<option value='' selected='selected'></option>");
+    								
+    								jQuery('.bedLength').hide();
+
+        						} else {
+        							var $thirdChoice = jQuery("#bedLength");
+    						   		$thirdChoice.empty();
+    								$thirdChoice.append("<option value='"+json[0]['bed_length']+"' selected='selected'>"+json[0]['bed_length']+"</option>");
+        						} 
+
+    							return true;
+					   		} else {
+
+					   			var $thirdChoice = jQuery("#bedLength");
+						   		$thirdChoice.empty();
+						   		$thirdChoice.append("<option value='' >  Select Bed Length  </option>");
+						   		
+					   			for (var i=0;i<json.length;++i) {
+					   				$thirdChoice.append("<option value='"+json[i]['bedLength']+"' >"+json[i]['bedLength']+"</option>");
+					   			}
+					   		}
+				   		},
+				    	error: function(){
+					        alert("An error occurred Please re-select");
+				    	}
+		            });
+
+		            return false;
+                }
+
+				function bodyType()
+                {
+					var yearForModel = jQuery('#year').val();
+		            var makeForModel = jQuery('#make').val();
+		            var model = jQuery('#model').val();
+		            var bedLength = jQuery('#bedLength').val();
+		            
+					var data = {module : 'getBodyType', vehYear : yearForModel, vehMake : makeForModel, vehModel : model, bedLength: bedLength, productCategory : '<?php print $this->category;?>', productLine : '<?php echo $this->productLines[0]->getDisplayName(); ?>'}
+
+		            $.ajax({
+				        url: "/ajax-vehicleSelector",
+			            type: 'POST',
+			            dataType: 'json',
+			            data: data,
+				   		success: function(json) {
+
+					   		if(json.length == '1')
+					   		{
+    				   			if( json[0]['body_type'] === '' || json[0]['body_type'] == null ) 
+        				   		{ 
+
+    				   				var $thirdChoice = jQuery("#bodyType");
+    						   		$thirdChoice.empty();
+    								$thirdChoice.append("<option value='' selected='selected'></option>");
+    								
+    								jQuery('.bodyType').hide();
+
+        						} else {
+        							var $thirdChoice = jQuery("#bodyType");
+    						   		$thirdChoice.empty();
+    								$thirdChoice.append("<option value='"+json[0]['body_type']+"' selected='selected'>"+json[0]['body_type']+"</option>");
+        						} 
+
+    							return true;
+					   		} else {
+
+					   			var $thirdChoice = jQuery("#bodyType");
+						   		$thirdChoice.empty();
+						   		$thirdChoice.append("<option value='' >  Select Body Type  </option>");
+						   		
+					   			for (var i=0;i<json.length;++i) {
+					   				$thirdChoice.append("<option value='"+json[i]['bodyType']+"' >"+json[i]['bodyType']+"</option>");
+					   			}
+					   		}
+				   		},
+				    	error: function(){
+					        alert("An error occurred Please re-select");
+				    	}
+		            });
+
+		            return false;
+                }
+
+				function soldAs()
+                {
+					var yearForModel = jQuery('#year').val();
+		            var makeForModel = jQuery('#make').val();
+		            var model = jQuery('#model').val();
+		            var bedLength = jQuery('#bedLength').val();
+		            var bodyType = jQuery('#bodyType').val();
+		            
+					var data = {module : 'getSoldAs', vehYear : yearForModel, vehMake : makeForModel, vehModel : model, bedLength: bedLength, bodyType: bodyType, productCategory : '<?php print $this->category;?>', productLine : '<?php echo $this->productLines[0]->getDisplayName(); ?>'}
+
+		            $.ajax({
+				        url: "/ajax-vehicleSelector",
+			            type: 'POST',
+			            dataType: 'json',
+			            data: data,
+				   		success: function(json) {
+
+					   		if(json.length == '1')
+					   		{
+    				   			if( json[0]['sold_as'] === '' || json[0]['sold_as'] == null ) { 
+
+    				   				var $thirdChoice = jQuery("#soldAs");
+    						   		$thirdChoice.empty();
+    								$thirdChoice.append("<option value='' selected='selected'></option>");
+    								
+    								jQuery('.soldAs').hide();
+
+        							} else {
+            							
+        								var $thirdChoice = jQuery("#soldAs");
+        						   		$thirdChoice.empty();
+        								$thirdChoice.append("<option value='"+json[0]['sold_as']+"' selected='selected'>"+json[0]['sold_as']+"</option>");
+        								
+        							} 
+    							
+
+    							return true;
+					   		} else {
+					   			var $thirdChoice = jQuery("#soldAs");
+						   		$thirdChoice.empty();
+						   		$thirdChoice.append("<option value='' >  Select Sold As  </option>");
+						   		
+					   			for (var i=0;i<json.length;++i) {
+					   				$thirdChoice.append("<option value='"+json[i]['soldAs']+"' >"+json[i]['soldAs']+"</option>");
+					   			}
+					   		}
+				   		},
+				    	error: function(){
+					        alert("An error occurred Please re-select");
+				    	}
+		            });
+
+		            return false;
+                }
+
+				function finish()
+                {
+					var yearForModel = jQuery('#year').val();
+		            var makeForModel = jQuery('#make').val();
+		            var model = jQuery('#model').val();
+		            var bedLength = jQuery('#bedLength').val();
+		            var bodyType = jQuery('#bodyType').val();
+		            var soldAs = jQuery('#soldAs').val();
+		            
+					var data = {module : 'getFinish', vehYear : yearForModel, vehMake : makeForModel, vehModel : model, bedLength: bedLength, bodyType: bodyType, soldAs: soldAs, productCategory : '<?php print $this->category;?>', productLine : '<?php echo $this->productLines[0]->getDisplayName(); ?>'}
+
+		            $.ajax({
+				        url: "/ajax-vehicleSelector",
+			            type: 'POST',
+			            dataType: 'json',
+			            data: data,
+				   		success: function(json) {
+
+					   		if(json.length == '1')
+					   		{
+    				   			if( json[0]['finish'] === '' || json[0]['finish'] == null ) { 
+
+    				   				var $thirdChoice = jQuery("#finish");
+    						   		$thirdChoice.empty();
+    								$thirdChoice.append("<option value='' selected='selected'></option>");
+    								
+    								jQuery('.finish').hide();
+
+        						} else {
+        							var $thirdChoice = jQuery("#finish");
+    						   		$thirdChoice.empty();
+    								$thirdChoice.append("<option value='"+json[0]['finish']+"' selected='selected'>"+json[0]['finish']+"</option>");
+        						} 
+
+    							return true;
+					   		} else {
+					   			var $thirdChoice = jQuery("#finish");
+						   		$thirdChoice.empty();
+						   		$thirdChoice.append("<option value='' >  Select Finish  </option>");
+						   		
+					   			for (var i=0;i<json.length;++i) {
+					   				$thirdChoice.append("<option value='"+json[i]['finish']+"' >"+json[i]['finish']+"</option>");
+					   			}
+					   		}
+				   		},
+				    	error: function(){
+					        alert("An error occurred Please re-select");
+				    	}
+		            });
+
+		            return false;
+                }
+
+				function color()
+                {
+					var yearForModel = jQuery('#year').val();
+		            var makeForModel = jQuery('#make').val();
+		            var model = jQuery('#model').val();
+		            var bedLength = jQuery('#bedLength').val();
+		            var bodyType = jQuery('#bodyType').val();
+		            var soldAs = jQuery('#soldAs').val();
+		            var finish = jQuery('#finish').val();
+		            
+					var data = {module : 'getColor', vehYear : yearForModel, vehMake : makeForModel, vehModel : model, bedLength: bedLength, bodyType: bodyType, soldAs: soldAs, finish: finish, productCategory : '<?php print $this->category;?>', productLine : '<?php echo $this->productLines[0]->getDisplayName(); ?>'}
+
+		            $.ajax({
+				        url: "/ajax-vehicleSelector",
+			            type: 'POST',
+			            dataType: 'json',
+			            data: data,
+				   		success: function(json) {
+
+					   		if(json.length == '1')
+					   		{
+    				   			if( json[0]['color'] === '' || json[0]['color'] == null ) { 
+
+    				   				var $thirdChoice = jQuery("#color");
+    						   		$thirdChoice.empty();
+    								$thirdChoice.append("<option value='' selected='selected'></option>");
+    								
+    								jQuery('.color').hide();
+    							} else {
+        							
+    								var $thirdChoice = jQuery("#color");
+    						   		$thirdChoice.empty();
+    								$thirdChoice.append("<option value='"+json[0]['color']+"' selected='selected'>"+json[0]['color']+"</option>");
+    								
+    							}
+
+    							return true;
+					   		} else {
+						   		
+					   			var $thirdChoice = jQuery("#color");
+						   		$thirdChoice.empty();
+						   		$thirdChoice.append("<option value='' >  Select Color  </option>");
+						   		
+					   			for (var i=0;i<json.length;++i) {
+					   				$thirdChoice.append("<option value='"+json[i]['color']+"' >"+json[i]['color']+"</option>");
+					   			}
+					   		}
+				   		},
+				    	error: function(){
+					        alert("An error occurred Please re-select");
+				    	}
+		            });
+
+		            return false;
+                }
+			})
+
+		</script>										
+		<section class="b-brands s-shadow">
+			<div class="container">
+				<h2 class="s-title">RELATED PRODUCTS</h2>
+				<div id="carousel-small" class="owl-carousel enable-owl-carousel" data-items="4" data-navigation="true" data-auto-play="true" data-stop-on-hover="true" data-items-desktop="4" data-items-desktop-small="4" data-items-tablet="3" data-items-tablet-small="2">
+					<?php 
+					for($x=0; $x<count($this->upsale); $x++) { ?>
+					
+					<div>
+						<div class="b-featured__item">
+							<a href="/products/<?php echo urlencode(strtolower($this->upsale[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($this->upsale[$x]['PL_Display'])); ?>">
+								<img src="/assets/library/products/product_lines/<?php echo $this->upsale[$x]['fileName']?>" alt='<?php echo $this->upsale[$x]['PL_Display']; ?>' title='<?php echo $this->upsale[$x]['PL_Display']; ?>' />
+								<!--  
+								    <span class="m-premium">Premium</span>
+								-->
+							</a>
+							<div class="b-featured__item-price">
+								<a href="/products/<?php echo urlencode(strtolower($this->upsale[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($this->upsale[$x]['PL_Display'])); ?>">
+									<?php echo $this->upsale[$x]['sale_price']; ?>
+								</a>
+							</div>
+							<div class="clearfix"></div>
+							<div class="b-title">
+							<h5><a href="/products/<?php echo urlencode(strtolower($this->upsale[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($this->upsale[$x]['PL_Display'])); ?>"><?php echo $this->upsale[$x]['PL_Display']; ?></a></h5>
+							</div>
+							<div class="b-featured__item-links">
+								<a href="/products/<?php echo urlencode(strtolower($this->upsale[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($this->upsale[$x]['PL_Display'])); ?>"><?php echo $this->upsale[$x]['teaser'];?></a>
+							</div>
+						</div>
+					</div>
+					
+					<?php } ?>
+					
+				</div>
+			</div>
+		</section><!--b-brands-->
+		

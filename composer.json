@@ -1,0 +1,51 @@
+{
+    "name": "raven3419/thesmartdata.com",
+    "description": "The Smart Data Digital Platform",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "zf2"
+    ],
+    "homepage": "http://www.thesmartdata.com",
+    "authors": [
+        {
+            "name": "Raven Sampson",
+            "email": "rsampson@thesmartdata.com",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.lundinternational.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "zendframework/zendframework": "2.4.9",
+        "doctrine/doctrine-module": "0.8.0",
+        "doctrine/doctrine-orm-module": "0.8.0",
+        "evandotpro/edp-module-layouts": "dev-master",
+        "rwoverdijk/assetmanager": "1.*",
+        "evandotpro/edp-superluminal": "dev-master",
+        "ocramius/ocra-cached-view-resolver": "1.0.*",
+        "zf-commons/zfc-rbac": "0.2.2",
+        "dwoitas/rocketbase": "dev-master",
+        "dwoitas/rocketuser": "dev-master",
+        "dwoitas/rocketdam": "dev-master",
+        "dwoitas/rocketecom": "dev-master",
+        "dwoitas/rocketadmin": "dev-master",
+        "aws/aws-sdk-php-zf2": "1.2.*",
+        "imagine/Imagine": "0.5.*",
+        "dg/ftp-php": "dev-master"
+    },
+    "require-dev": {
+        "zendframework/zend-developer-tools": "1.0",
+        "phpunit/PHPUnit": "3.7.*",
+        "satooshi/php-coveralls": "dev-master",
+        "squizlabs/php_codesniffer": "1.*"
+    },
+    "config":{
+    	"secure-http":false
+    }
+}

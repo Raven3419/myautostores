@@ -1,0 +1,35 @@
+                    <h5 class="widget-name"><i class="icon-table"></i>View All FAQ</h5>
+                    <div class="widget">
+                        <div class="navbar">
+                            <div class="navbar-inner">
+                                <h6><i class="icon-asterisk"></i>FAQ</h6>
+                                <a class="btn btn-info pull-right" href="/admin/lund/faq/create"><b class="icon-plus"></b>Add FAQ</a>
+                            </div>
+                        </div>
+                        <div class="table-overflow">
+                            <table class="table table-striped table-bordered" id="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Brands</th>
+                                        <th>Question</th>
+                                        <th class="actnCol">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($this->records as $record) { ?>
+                                    <tr>
+                                        <td><?php (empty($record->getBrand())? print 'All Brands' : print $record->getBrand()->getName()); ?></td>
+                                        <td><?php echo $record->getQuestion(); ?></td>
+                                        <td>
+                                            <ul class="table-controls">
+                                                <li><a href="/admin/lund/faq/edit/<?php echo $record->getFaqId(); ?>" class="btn tip" title="Edit Record"><i class="icon-edit"></i> edit</a></li>
+                                                <li><a href="/admin/lund/faq/view/<?php echo $record->getFaqId(); ?>" class="btn tip" title="View Record"><i class="icon-external-link"></i> view</a></li>
+                                                <li><a href="/admin/lund/faq/delete/<?php echo $record->getFaqId(); ?>" class="btn tip confirm"><i class="icon-trash"></i> delete</a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>

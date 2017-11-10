@@ -1,0 +1,45 @@
+                    <h5 class="widget-name"><i class="icon-table"></i>View All Video Testimonials</h5>
+                    <div class="widget">
+                        <div class="navbar">
+                            <div class="navbar-inner">
+                                <h6><i class="icon-asterisk"></i>Video Testimonials</h6>
+                                <a class="btn btn-info pull-right" href="/admin/lund/video-testimonials/create"><b class="icon-plus"></b>Add Video Testimonials</a>
+                            </div>
+                        </div>
+                        <div class="table-overflow">
+                            <table class="table table-striped table-bordered" id="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Status</th>
+                                        <th>URL</th>
+                                        <th class="actnCol">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($this->records as $record) { ?>
+                                    <tr>
+                                    	<td><?php switch ($record->getStatus()) {
+                                    				case 0 :
+                                    					echo 'Published';
+                                    					break;
+                                    				case 1 :
+                                    					echo 'Disabled';
+                                    					break;
+                                    				default :
+                                    					echo 'Pending';
+                                    					break;
+                                    			} ?></td>
+                                        <td><?php echo $record->getUrl(); ?></td>
+                                        <td>
+                                            <ul class="table-controls">
+                                                <li><a href="/admin/lund/video-testimonials/edit/<?php echo $record->getVideoTestimonialsId(); ?>" class="btn tip" title="Edit Record"><i class="icon-edit"></i> edit</a></li>
+                                                <li><a href="/admin/lund/video-testimonials/view/<?php echo $record->getVideoTestimonialsId(); ?>" class="btn tip" title="View Record"><i class="icon-external-link"></i> view</a></li>
+                                                <li><a href="/admin/lund/video-testimonials/delete/<?php echo $record->getVideoTestimonialsId(); ?>" class="btn tip confirm"><i class="icon-trash"></i> delete</a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>

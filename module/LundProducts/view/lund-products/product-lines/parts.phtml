@@ -1,0 +1,39 @@
+                    <h5 class="widget-name"><i class="icon-table"></i>View All Product Line Parts</h5>
+                    <div class="widget">
+                        <div class="navbar">
+                            <div class="navbar-inner">
+                                <h6><i class="icon-th-list"></i>Parts</h6>
+                                <a class="btn btn-info pull-right" href="/admin/products/productlines/view/<?php echo $this->productLine->getProductLineId(); ?>"><b class="icon-plus"></b>Return to Product Line</a>
+                            </div>
+                        </div>
+                        <div class="table-overflow">
+                            <table class="table table-striped table-bordered" id="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Part Number</th>
+                                        <th>UPC</th>
+                                        <th>Product Line</th>
+                                        <th>Color</th>
+                                        <th>MSRP Price</th>
+                                        <th class="actnCol">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($this->parts as $record) { ?>
+                                    <tr>
+                                        <td><?php echo $record->getPartNumber(); ?></td>
+                                        <td><?php echo $record->getUpcCode(); ?></td>
+                                        <td><?php echo $record->getProductLine()->getName(); ?></td>
+                                        <td><?php echo $record->getColor(); ?></td>
+                                        <td><?php echo $record->getMsrpPrice(); ?></td>
+                                        <td>
+                                            <ul class="table-controls">
+                                                <li><a href="/admin/products/parts/view/<?php echo $record->getPartId(); ?>" class="btn tip" title="View Record"><i class="icon-external-link"></i> view</a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>

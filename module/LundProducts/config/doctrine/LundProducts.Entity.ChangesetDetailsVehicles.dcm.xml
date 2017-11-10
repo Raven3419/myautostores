@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="LundProducts\Entity\ChangesetDetailsVehicles" table="changeset_details_vehicles">
+        <id name="changesetDetailVehicleId" column="changeset_detail_vehicle_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <many-to-one field="vehCollection" target-entity="LundProducts\Entity\VehCollection" fetch="EAGER">
+            <join-column name="veh_collection_id" referenced-column-name="veh_collection_id"/>
+        </many-to-one>
+        <many-to-one field="vehMake" target-entity="LundProducts\Entity\VehMake" fetch="EAGER">
+            <join-column name="veh_make_id" referenced-column-name="veh_make_id"/>
+        </many-to-one>
+        <field name="vehMakeLabel" column="veh_make_label" type="string" length="255" nullable="true" />
+        <many-to-one field="vehModel" target-entity="LundProducts\Entity\VehModel" fetch="EAGER">
+            <join-column name="veh_model_id" referenced-column-name="veh_model_id"/>
+        </many-to-one>
+        <field name="vehModelLabel" column="veh_model_label" type="string" length="255" nullable="true" />
+        <many-to-one field="vehSubmodel" target-entity="LundProducts\Entity\VehSubmodel" fetch="EAGER">
+            <join-column name="veh_submodel_id" referenced-column-name="veh_submodel_id"/>
+        </many-to-one>
+        <field name="vehSubmodelLabel" column="veh_submodel_label" type="string" length="255" nullable="true" />
+        <many-to-one field="vehYear" target-entity="LundProducts\Entity\VehYear" fetch="EAGER">
+            <join-column name="veh_year_id" referenced-column-name="veh_year_id"/>
+        </many-to-one>
+        <field name="vehYearLabel" column="veh_year_label" type="string" length="255" nullable="true" />
+        <many-to-one field="vehClass" target-entity="LundProducts\Entity\VehClass" fetch="EAGER">
+            <join-column name="veh_class_id" referenced-column-name="veh_class_id"/>
+        </many-to-one>
+        <field name="vehClassLabel" column="veh_class_label" type="string" length="255" nullable="true" />
+        <many-to-one field="changesetDetails" target-entity="LundProducts\Entity\ChangesetDetails" fetch="EAGER">
+            <join-column name="changeset_detail_id" referenced-column-name="changeset_detail_id"/>
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

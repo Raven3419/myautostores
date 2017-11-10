@@ -1,0 +1,22 @@
+                    <h5 class="widget-name"><i class="icon-external-link"></i>View Showroom Submission</h5>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="widget">
+                                <div class="navbar">
+                                    <div class="navbar-inner">
+                                        <h6><i class="icon-asterisk"></i>Showroom Submission Details</h6>
+                                        <a class="btn btn-danger confirm pull-right" href="/admin/lund/showroom/delete/<?php echo $this->recordId; ?>"><b class="icon-trash"></b>Delete Showroom Submission</a>
+                                        <a class="btn btn-info pull-right" href="/admin/lund/showroom/edit/<?php echo $this->recordId; ?>"><b class="icon-pencil"></b>Edit Showroom Submission</a>
+                                        <a class="btn btn-inverse pull-right" href="/admin/lund/showroom"><b class="icon-table"></b>Return to List</a>
+                                    </div>
+                                </div>
+                                <div class="well">
+<?php
+echo $this->partial('admin/form-readonly-partial', array(
+    'form' => $this->form,
+));
+?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

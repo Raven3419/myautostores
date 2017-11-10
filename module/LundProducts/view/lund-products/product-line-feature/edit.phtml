@@ -1,0 +1,56 @@
+<?php
+$form = $this->form;
+$form->setAttributes(array(
+    'action' => '/admin/products/productlines/view/' . $this->productLineId . '/feature/edit/' . $this->productLineFeatureId,
+    'method' => 'POST',
+    'class'  => 'form-horizontal',
+))->prepare();
+$fieldset = $form->getBaseFieldset();
+$errors = $this->formElementErrors()
+            ->setMessageOpenFormat('<span class="help-block">')
+            ->setMessageSeparatorString('</span><span class="help-block">')
+            ->setMessageCloseString('</span>');
+?>
+                    <h5 class="widget-name"><i class="icon-pencil"></i>Edit Product Line Feature</h5>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="widget">
+                                <div class="navbar">
+                                    <div class="navbar-inner">
+                                        <h6><i class="icon-list-ol"></i>Feature Details</h6>
+                                        <a class="btn btn-danger confirm pull-right" href="/admin/products/productlines/view/<?php echo $this->productLineId; ?>/feature/delete/<?php echo $this->productLineFeatureId; ?>"><b class="icon-trash"></b>Delete Product Line Feature</a>
+                                    </div>
+                                </div>
+                                <div class="well">
+                                    <?php echo $this->form()->openTag($form); ?>
+                                    <?php echo $this->formElement($form->get('secret')); ?>
+                                    <?php echo $this->formElement($fieldset->get('productLineFeatureId')); ?>
+                                    <div class="alert alert-error margin">
+                                        <span class="text">* denotes a required field</span>
+                                    </div>
+                                    <?php $featureSeq = $fieldset->get('featureSeq'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($featureSeq) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $featureSeq->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($featureSeq); ?>
+                                            <?php echo ($this->formElementErrors($featureSeq) ? $errors->render($featureSeq) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $featureCopy = $fieldset->get('featureCopy'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($featureCopy) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $featureCopy->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($featureCopy); ?>
+                                            <?php echo ($this->formElementErrors($featureCopy) ? $errors->render($featureCopy) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions align-right">
+                                        <button id="form-submit-btn" type="submit" class="btn btn-primary">Submit</button>
+                                        <button id="form-cancel-btn" type="button" class="btn btn-danger">Cancel</button>
+                                        <button id="form-reset-btn" type="reset" class="btn">Reset</button>
+                                    </div>
+                                    <?php echo $this->form()->closeTag($form); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

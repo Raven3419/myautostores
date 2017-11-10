@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="LundProducts\Entity\ProductReviews" table="product_reviews">
+        <indexes>
+            <index name="userId" columns="user_id"/>
+            <index name="productLineId" columns="product_line_id" />
+        </indexes>
+        <id name="productReviewId" column="product_review_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="createdAt" column="created_at" type="datetime" nullable="true"/>
+        <field name="createdBy" column="created_by" type="string" length="255" nullable="true"/>
+        <field name="modifiedAt" column="modified_at" type="datetime" nullable="true"/>
+        <field name="modifiedBy" column="modified_by" type="string" length="255" nullable="true"/>
+        <field name="deleted" type="boolean" nullable="true"/>
+        <field name="disabled" type="boolean" nullable="true"/>
+        <field name="review" column="review" type="text" nullable="true"/>
+        <field name="rating" column="rating" type="integer" nullable="true"/>
+        <many-to-one field="user" target-entity="RocketUser\Entity\User" fetch="EAGER">
+            <join-column name="user_id" referenced-column-name="user_id" nullable="true" />
+        </many-to-one>
+        <many-to-one field="productLines" target-entity="LundProducts\Entity\ProductLines" fetch="EAGER">
+            <join-column name="product_line_id" referenced-column-name="product_line_id" nullable="true" />
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

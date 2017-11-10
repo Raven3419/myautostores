@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="LundProducts\Entity\ProductLineAsset" table="product_line_asset">
+        <id name="productLineAssetId" column="product_line_asset_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <many-to-one field="productLine" target-entity="LundProducts\Entity\ProductLines" fetch="EAGER">
+            <join-column name="product_line_id" referenced-column-name="product_line_id"/>
+        </many-to-one>
+        <many-to-one field="asset" target-entity="RocketDam\Entity\Asset" fetch="EAGER">
+            <join-column name="asset_id" referenced-column-name="asset_id"/>
+        </many-to-one>
+        <field name="assetSeq" column="asset_seq" type="integer" length="10" nullable="true" />
+        <field name="assetType" column="asset_type" type="string" nullable="true" />
+        <field name="videoType" column="video_type" type="string" nullable="true" />
+    </entity>
+</doctrine-mapping>

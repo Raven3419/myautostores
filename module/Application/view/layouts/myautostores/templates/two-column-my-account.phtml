@@ -1,0 +1,25 @@
+<section class="b-pageHeader">
+			<div class="container">
+				<h1 class="wow zoomInLeft" data-wow-delay="0.7s"><?php echo $this->layout()->page->getTitle(); ?></h1>
+				
+			</div>
+		</section><!--b-pageHeader-->
+
+		<div class="b-breadCumbs s-shadow">
+			<div class="container">
+				<a href="/" class="b-breadCumbs__page">Home</a><span class="fa fa-angle-right"></span><a class="b-breadCumbs__page m-active"><?php echo $this->layout()->page->getTitle(); ?></a>
+			</div>
+		</div><!--b-breadCumbs-->
+
+		<section class="b-best">
+			<div class="container">
+				<div class="row">
+        		<?php echo $templateContent; ?>
+                <?php
+                    if ($loadInclude) {
+                        include(realpath(dirname(__FILE__)) .'/../includes/' . $loadInclude);
+                    }
+                ?>
+            	<?php 
+                	echo $this->render('myautostores/sidebar-my-account'); 
+				 ?>

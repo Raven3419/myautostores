@@ -1,0 +1,25 @@
+                    <h5 class="widget-name"><i class="icon-external-link"></i>View Product Line</h5>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="widget">
+                                <div class="navbar">
+                                    <div class="navbar-inner">
+                                        <h6><i class="icon-th-list"></i>Product Line Details</h6>
+                                        <a class="btn btn-info pull-right" href="/admin/products/productlines/edit/<?php echo $this->recordId; ?>"><b class="icon-pencil"></b>Edit Product Line</a>
+                                        <a class="btn btn-inverse pull-right" href="/admin/products/productlines"><b class="icon-table"></b>Return to List</a>
+                                        <a class="btn pull-right" href="/admin/products/productlines/view/<?php echo $this->recordId; ?>/feature"><b class="icon-list-ol"></b>View Features</a>
+                                        <a class="btn pull-right" href="/admin/products/productlines/view/<?php echo $this->recordId; ?>/asset"><b class="icon-picture"></b>View Assets</a>
+                                        <a class="btn pull-right" href="/admin/products/productlines/view/<?php echo $this->recordId; ?>/parts"><b class="icon-truck"></b>View Parts</a>
+                                    </div>
+                                </div>
+                                <div class="well">
+<?php
+echo $this->partial('admin/form-readonly-partial', array(
+    'form'     => $this->form,
+    'fieldset' => 'product-line-fieldset',
+));
+?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

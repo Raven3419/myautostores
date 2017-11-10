@@ -1,0 +1,10 @@
+        <section>
+            <div class="content-inner">
+                <?php echo ($templateContent ? $templateContent : ''); ?>
+                <?php 
+                    if ($loadInclude) {
+                        include(realpath(dirname(__FILE__)) .'/../includes/' . $loadInclude);
+                    }
+                ?>
+            </div>
+        </section>

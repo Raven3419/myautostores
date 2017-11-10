@@ -1,0 +1,35 @@
+                    <h5 class="widget-name"><i class="icon-table"></i>View All Comparison Chart</h5>
+                    <div class="widget">
+                        <div class="navbar">
+                            <div class="navbar-inner">
+                                <h6><i class="icon-th-list"></i>Comparison Chart</h6>
+                                <a class="btn btn-info pull-right" href="/admin/lund/comparison-chart/create"><b class="icon-plus"></b>Add New Comparison Chart</a>
+                            </div>
+                        </div>
+                        <div class="table-overflow">
+                            <table class="table table-striped table-bordered" id="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th class="actnCol">Actions</th>
+                                        <th class="actnCol">Profile</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($this->records as $record) { ?>
+                                    <tr>
+                                        <td><?php echo $record->getName(); ?></td>
+                                        <td><?php echo $record->getProfile(); ?></td>
+                                        <td>
+                                            <ul class="table-controls">
+                                                <li><a href="/admin/lund/comparison-chart/edit/<?php echo $record->getComparisonChartId(); ?>" class="btn tip" title="Edit Record"><i class="icon-edit"></i> edit</a></li>
+                                                <li><a href="/admin/lund/comparison-chart/view/<?php echo $record->getComparisonChartId(); ?>" class="btn tip" title="View Record"><i class="icon-external-link"></i> view</a></li>
+                                                <li><a href="/admin/lund/comparison-chart/delete/<?php echo $record->getComparisonChartId(); ?>" class="btn tip confirm"><i class="icon-trash"></i> delete</a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>

@@ -1,0 +1,43 @@
+                    <h5 class="widget-name"><i class="icon-table"></i>View All Product Lines</h5>
+                    <div class="widget">
+                        <div class="navbar">
+                            <div class="navbar-inner">
+                                <h6><i class="icon-th-list"></i>Product Lines</h6>
+                                <a class="btn btn-info pull-right" href="/admin/products/productlines/create"><b class="icon-plus"></b>Add New Product Line</a>
+                            </div>
+                        </div>
+                        <div class="table-overflow">
+                            <table class="table table-striped table-bordered" id="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Display Name</th>
+                                        <th>Short Code</th>
+                                        <th>Position</th>
+                                        <th>Brand Position</th>
+                                        <th>Brand</th>
+                                        <th>Product Category</th>
+                                        <th class="actnCol">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($this->records as $record) { ?>
+                                    <tr>
+                                        <td><?php echo $record->getDisplayName(); ?><?php echo ($record->getBpcsCode() ? '[' . $record->getBpcsCode() . ']' : ''); ?></td>
+                                        <td><?php echo $record->getShortCode(); ?></td>
+                                        <td><?php echo $record->getPosition(); ?></td>
+                                        <td><?php echo $record->getBrandPosition(); ?></td>
+                                        <td><a href="/admin/products/brands/view/<?php echo $record->getBrand()->getBrandId(); ?>" class="btn btn-primary tip" title="<?php echo $record->getBrand()->getLabel(); ?>"><i class="icon-external-link"></i><span style="margin-left:5px;"><?php echo $record->getBrand()->getLabel(); ?></span></a></td>
+                                        <td><a href="/admin/products/productcategories/view/<?php echo $record->getProductCategory()->getProductCategoryId(); ?>" class="btn btn-primary tip" title="<?php echo $record->getProductCategory()->getDisplayName(); ?>"><i class="icon-external-link"></i><span style="margin-left:5px;"><?php echo $record->getProductCategory()->getDisplayName(); ?></span></a></td>
+                                        <td>
+                                            <ul class="table-controls">
+                                                <li><a href="/admin/products/productlines/edit/<?php echo $record->getProductLineId(); ?>" class="btn tip" title="Edit Record"><i class="icon-edit"></i> edit</a></li>
+                                                <li><a href="/admin/products/productlines/view/<?php echo $record->getProductLineId(); ?>" class="btn tip" title="View Record"><i class="icon-external-link"></i> view</a></li>
+                                                <li><a href="/admin/products/productlines/delete/<?php echo $record->getProductLineId(); ?>" class="btn tip confirm"><i class="icon-trash"></i> delete</a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>

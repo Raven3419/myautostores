@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="LundProducts\Entity\VehSubmodel" table="veh_submodel">
+        <id name="vehSubmodelId" column="veh_submodel_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="name" column="name" type="string" length="255" nullable="true"/>
+        <field name="shortCode" column="short_code" type="string" length="255" nullable="true"/>
+        <many-to-one field="vehModel" target-entity="LundProducts\Entity\VehModel" fetch="EAGER">
+            <join-column name="veh_model_id" referenced-column-name="veh_model_id"/>
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

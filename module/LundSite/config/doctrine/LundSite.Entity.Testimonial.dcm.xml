@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="LundSite\Entity\Testimonial" table="testimonial">
+        <indexes>
+            <index name="deleted" columns="deleted"/>
+        </indexes>
+        <id name="testimonialId" column="testimonial_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="createdAt" column="created_at" type="datetime" nullable="true"/>
+        <field name="createdBy" column="created_by" type="string" length="255" nullable="true"/>
+        <field name="modifiedAt" column="modified_at" type="datetime" nullable="true"/>
+        <field name="modifiedBy" column="modified_by" type="string" length="255" nullable="true"/>
+        <field name="deleted" type="boolean" nullable="true"/>
+        <field name="disabled" type="boolean" nullable="true"/>
+        <many-to-one field="site" target-entity="RocketCms\Entity\Site" fetch="EAGER">
+            <join-column name="site_id" referenced-column-name="site_id"/>
+        </many-to-one>
+        <field name="position" type="integer" length="10" nullable="true"/>
+        <field name="content" type="text" nullable="true"/>
+    </entity>
+</doctrine-mapping>

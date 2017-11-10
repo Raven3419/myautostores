@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="LundProducts\Entity\Parts" table="parts">
+        <indexes>
+            <index name="deleted" columns="deleted"/>
+        </indexes>
+        <id name="partId" column="part_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="createdAt" column="created_at" type="datetime" nullable="true"/>
+        <field name="createdBy" column="created_by" type="string" length="255" nullable="true"/>
+        <field name="modifiedAt" column="modified_at" type="datetime" nullable="true"/>
+        <field name="modifiedBy" column="modified_by" type="string" length="255" nullable="true"/>
+        <field name="deleted" type="boolean" nullable="true"/>
+        <field name="disabled" type="boolean" nullable="true"/>
+        <field name="partNumber" column="part_number" type="string" length="255" nullable="false"/>
+        <field name="partVariant" column="part_variant" type="string" length="255" nullable="true"/>
+        <field name="productClass" column="product_class" type="string" length="255" nullable="true"/>
+        <field name="detail" column="detail" type="string" nullable="true"/>
+        <field name="jobberPrice" column="jobber_price" type="decimal" scale="2" precision="6" nullable="true" />
+        <field name="msrpPrice" column="msrp_price" type="decimal" scale="2" precision="8" nullable="true" />
+        <field name="salePrice" column="sale_price" type="decimal" scale="2" precision="8" nullable="true" />
+        <field name="shippingPrice" column="shipping_price" type="decimal" scale="2" precision="6" nullable="true" />
+        <field name="color" column="color" type="string" length="255" nullable="true" />
+        <field name="popCode" column="pop_code" type="string" length="255" nullable="true" />
+        <field name="upcCode" column="upc_code" type="string" length="255" nullable="true" />
+        <field name="status" type="string" length="255" nullable="true" />
+        <field name="weight" column="weight" type="decimal" scale="2" precision="6" nullable="true"/>
+        <field name="height" column="height" type="decimal" scale="2" precision="6" nullable="true"/>
+        <field name="width" column="width" type="decimal" scale="2" precision="6" nullable="true"/>
+        <field name="length" column="length" type="decimal" scale="2" precision="6" nullable="true"/>
+        <field name="universal" column="universal" type="boolean" scale="2" nullable="true"/>
+        <field name="countryOfOrigin" column="country_of_origin" type="string" length="255" nullable="true" />
+        <field name="dima" column="dima" type="decimal" scale="2" precision="6" nullable="true" />
+        <field name="dimb" column="dimb" type="decimal" scale="2" precision="6" nullable="true" />
+        <field name="dimc" column="dimc" type="decimal" scale="2" precision="6" nullable="true" />
+        <field name="dimd" column="dimd" type="decimal" scale="2" precision="6" nullable="true" />
+        <field name="dime" column="dime" type="decimal" scale="2" precision="6" nullable="true" />
+        <field name="dimf" column="dimf" type="decimal" scale="2" precision="6" nullable="true" />
+        <field name="dimg" column="dimg" type="decimal" scale="2" precision="6" nullable="true" />
+        <field name="partTypeId" column="part_type_id" type="integer" nullable="true" />
+        <field name="lookupNumber" column="lookup_number" type="string" length="255" nullable="true"/>
+        <field name="bedLength" column="bed_length" type="string" length="255" nullable="true"/>
+        <field name="bedLengthId" column="bed_length_id" type="integer" nullable="true" default="0"/>
+        <field name="flareHeight" column="flare_height" type="decimal" scale="2" precision="6" nullable="true"/>
+        <field name="flareTireCoverage" column="flare_tire_coverage" type="decimal" scale="2" precision="6" nullable="true"/>
+        <field name="vehicleType" column="vehicle_type" type="string" length="5" nullable="true" />
+        <field name="noDrill" column="no_drill" type="string" length="2" nullable="true" />
+        <field name="metaTitle" column="meta_title" type="text" nullable="true"/>
+        <field name="metaKeywords" column="meta_keywords" type="text" nullable="true"/>
+        <field name="metaDescr" column="meta_descr" type="text" nullable="true"/>
+        <field name="isheet" column="isheet" type="string" nullable="true" />
+        <field name="finish" column="finish" type="string" nullable="true" />
+        <field name="style" column="style" type="string" nullable="true" />
+        <field name="material" column="material" type="string" nullable="true" />
+        <field name="materialThickness" column="material_thickness" type="decimal" scale="2" precision="6" nullable="true"/>
+        <field name="soldAs" column="sold_as" type="string" nullable="true" />
+        <field name="tubeShape" column="tube_shape" type="string" nullable="true" />
+        <field name="tubeSize" column="tube_size" type="decimal" scale="2" precision="6" nullable="true"/>
+        <field name="warranty" column="warranty" type="string" nullable="true" />
+        <field name="liquidStorageCapacity" column="liquid_storage_capacity" type="decimal" scale="2" precision="6" nullable="true"/>
+        <field name="boxStyle" column="box_style" type="string" nullable="true" />
+        <field name="boxOpeningType" column="box_opening_type" type="string" nullable="true" />
+        <field name="cutRequired" column="cut_required" type="string" length="2" nullable="true" />
+        <field name="rearFlareHeight" column="rear_flare_height" type="decimal" scale="2" precision="6" nullable="true"/>
+        <field name="rearFlareTireCoverage" column="rear_flare_tire_coverage" type="decimal" scale="2" precision="6" nullable="true"/>
+        <field name="stakeHoles" column="stake_holes" type="string" length="2" nullable="true" />
+        <field name="colorGroup" column="color_group" type="string" length="255" nullable="true" />
+        <field name="mapPrice" column="map_price" type="decimal" scale="2" precision="8" nullable="true" />
+        <field name="saleable" type="boolean" nullable="true"/>
+        <one-to-many field="partAsset" target-entity="LundProducts\Entity\PartAsset" mapped-by="part"/>
+        <one-to-many field="vehCollections" target-entity="LundProducts\Entity\PartVehCollection" mapped-by="part">
+            <order-by>
+                <order-by-field name="sequence" direction="ASC" />
+            </order-by>
+        </one-to-many>
+        <many-to-one field="productLine" target-entity="LundProducts\Entity\ProductLines" fetch="EAGER">
+            <join-column name="product_line_id" referenced-column-name="product_line_id"/>
+        </many-to-one>
+        <many-to-one field="parentPart" target-entity="LundProducts\Entity\Parts" fetch="EAGER">
+            <join-column name="parent_part_id" referenced-column-name="part_id"/>
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

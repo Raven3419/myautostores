@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="LundProducts\Entity\Changesets" table="changesets">
+        <indexes>
+            <index name="deleted" columns="deleted"/>
+        </indexes>
+        <id name="changesetId" column="changeset_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="createdAt" column="created_at" type="datetime" nullable="true"/>
+        <field name="createdBy" column="created_by" type="string" length="255" nullable="true"/>
+        <field name="modifiedAt" column="modified_at" type="datetime" nullable="true"/>
+        <field name="modifiedBy" column="modified_by" type="string" length="255" nullable="true"/>
+        <field name="deleted" type="boolean" nullable="true"/>
+        <field name="disabled" type="boolean" nullable="true"/>
+        <field name="approved" type="boolean" default="false" />
+        <field name="deployed" type="boolean" default="false" />
+        <field name="uploadedAt" column="uploaded_at" type="datetime"/>
+        <field name="summary" type="text" nullable="true"/>
+        <field name="uploadLocation" column="upload_location" type="string" length="255"/>
+        <many-to-one field="asset" target-entity="RocketDam\Entity\Asset" fetch="EAGER">
+            <join-column name="asset_id" referenced-column-name="asset_id" />
+        </many-to-one>
+        <one-to-many field="changesetDetails" target-entity="LundProducts\Entity\ChangesetDetails" mapped-by="changesets" />
+    </entity>
+</doctrine-mapping>

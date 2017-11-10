@@ -1,0 +1,78 @@
+
+<?php
+$form = $this->form;
+
+	$form->setAttributes(array(
+	    'action' => '/contact-us',
+	    'method' => 'POST',
+	    'id'     => 'forms',
+	))->prepare();
+
+$fieldset = $form->getBaseFieldset();
+$errors = $this->formElementErrors()
+            ->setMessageOpenFormat('<span class="help-block">')
+            ->setMessageSeparatorString('</span><span class="help-block">')
+            ->setMessageCloseString('</span>');
+?>
+
+					<div class="col-sm-9 col-xs-12">
+						<div class="b-contacts__form">
+							<header class="b-contacts__form-header s-lineDownLeft wow zoomInUp" data-wow-delay="0.5s">
+								<h2 class="s-titleDet">Contact Form</h2> 
+							</header>
+							<div id="success"></div>
+							<?php if ($this->result == 'success') { ?>
+                                <p class=" wow zoomInUp" data-wow-delay="0.5s">Thank you for contacting My Auto Stores! We appreciate your inquiry and will get back to you with in 24 hours <a href="mailto:info@myautostores.com">info@myautostores.com</a>.</p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                            <?php } else { ?>
+                            
+							<p class=" wow zoomInUp" data-wow-delay="0.5s">Enter your comments through the form below, and our customer service professionals will contact you as soon as possible.</p>
+                        
+                            <?php if ($this->result == 'error') { ?>
+                        		<p style="color:#ff0000"><strong>There was an error processing your request.</strong></p>
+                            <?php } ?>
+							
+							<?php echo $this->form()->openTag($form); ?>
+                        	<?php echo $this->formElement($form->get('secret')); ?>
+								<div class="s-form wow zoomInUp">
+								
+								<!--  
+    								<div class="s-relative">
+    									<select name="user-topic" id="user-topic" class="m-select">
+    										<option value="Not select">SELECT A TOPIC</option>
+    										<option value="General">General Question</option>
+    										<option value="Website">Website Question</option>
+    										<option value="Parts">Parts Question</option>
+    										<option value="Return">Return Question</option>
+    										<option value="Shipping">Shipping Question</option>
+    									</select>
+    									<span class="fa fa-caret-down"></span>
+    								</div>
+    								
+    								-->
+    								<?php $firstName = $fieldset->get('firstName'); ?>
+    								<?php echo $this->formElement($firstName); ?>
+    								
+    								
+    								<?php $lastName = $fieldset->get('lastName'); ?>
+									<?php echo $this->formElement($lastName); ?>
+									
+									
+									<?php $emailAddress = $fieldset->get('emailAddress'); ?>
+									<?php echo $this->formElement($emailAddress); ?>
+									
+									
+									<?php $phoneNumber = $fieldset->get('phoneNumber'); ?>
+									<?php echo $this->formElement($phoneNumber); ?>
+									
+									
+									<?php $comments = $fieldset->get('comments'); ?>
+									<?php echo $this->formElement($comments); ?>
+									
+    								<button type="submit" class="btn m-btn">SUBMIT NOW<span class="fa fa-angle-right"></span></button>
+								</div>
+							<?php echo $this->form()->closeTag($form); ?>
+							<?php } ?>
+						</div>
+					</div>

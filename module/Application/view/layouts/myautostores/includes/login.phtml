@@ -1,0 +1,54 @@
+<?php
+$form = $this->form;
+
+$form->setAttributes(array(
+    'action' => 'login',
+    'method' => 'POST',
+))->prepare();
+
+
+
+$fieldset = $form->getBaseFieldset();
+$errors = $this->formElementErrors()
+            ->setMessageOpenFormat('<span class="help-block">')
+            ->setMessageSeparatorString('</span><span class="help-block">')
+            ->setMessageCloseString('</span>');
+?>
+
+				<div class="col-md-9">
+					<div class="b-submit__main">
+						<header class="s-headerSubmit s-lineDownLeft wow zoomInUp" data-wow-delay="0.5s">
+							<h2 class="">Login Form</h2>
+						</header>
+    				    <?php if(isset($this->errorMessage)) { ?>
+    				    	<ul class="messages"  style="color:red"><li class="error-msg"><ul><li><span><?php echo $this->errorMessage?></span></li></ul></li></ul>    
+    				  	<?php } ?>
+    				  	
+				      	<?php echo $this->form()->openTag($form); ?>
+    						<div class="s-submit clearfix">
+    							<div class="row">
+    								<div class="col-md-10 col-xs-12">
+    									<?php $email = $fieldset->get('email'); ?>
+    									<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+    										<label><?php echo $email->getLabel(); ?> <span>*</span></label>
+    										<div class='s-relative'>
+    											<?php echo $this->formElement($email); ?>
+    										</div>
+    									</div>
+    								</div>
+    								
+    								<?php $password = $fieldset->get('password'); ?>
+    								<div class="col-md-10 col-xs-12">
+    									<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+    										<label><?php echo $password->getLabel(); ?> <span>*</span></label>
+    										<div class='s-relative'>
+    											<?php echo $this->formElement($password); ?>
+    										</div>
+    									</div>
+    								</div>
+    							</div>
+    							<button type="submit" class="btn m-btn">LOGIN<span class="fa fa-angle-right"></span></button>
+    						</div>
+    					<?php echo $this->form()->closeTag($form); ?>
+					</div>
+				</div>

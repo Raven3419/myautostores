@@ -1,0 +1,57 @@
+                    <h5 class="widget-name"><i class="icon-table"></i>View Changeset Details</h5>
+                    <div class="widget">
+                        <div class="navbar">
+                            <div class="navbar-inner">
+                                <h6><i class="icon-th-large"></i>Changeset Details</h6>
+                            </div>
+                        </div>
+                        <div class="table-overflow">
+                            <table class="table table-striped table-bordered" id="data-table">
+                                 <thead>
+                                    <tr>
+                                        <th>Part</th>
+                                        <th>Brand</th>
+                                        <th>Product Category</th>
+                                        <th>Product Line</th>
+                                        <th>Type</th>
+                                        <th>Changes</th>
+                                        <th class="actnCol">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($this->records as $record) { ?>
+                                    <tr>
+                                        <td><?php echo ($record->getParts()) ? $record->getParts()->getPartNumber() : $record->getPartNumber(); ?></td>
+                                        <td><?php echo ($record->getBrand()) ? $record->getBrand()->getName() : $record->getBrandLabel(); ?></td>
+                                        <td><?php echo ($record->getProductCategories()) ? $record->getProductCategories()->getName() : $record->getProductCategoryLabel(); ?></td>
+                                        <td><?php echo ($record->getProductLines()) ? $record->getProductLines()->getName() : $record->getProductLineLabel(); ?></td>
+                                        <td><span class="label label-<?php if ($record->getChange() == 'add') { echo 'success'; } else if ($record->getChange() == 'change') { echo 'info'; } else if ($record->getChange() == 'delete') { echo 'important'; } ?>"><?php echo $record->getChange(); ?></td>
+                                        <td>
+                                            <code>
+                                            <?php
+                                            $changeArray = array();
+                                            if ($record->getAppChanged()) { $changeArray[] = 'Application Data Changed'; }
+                                            if ($record->getStatusChanged()) { $changeArray[] = 'Status Changed'; }
+                                            if ($record->getCountryChanged()) { $changeArray[] = 'Country Changed'; }
+                                            if ($record->getPopChanged()) { $changeArray[] = 'Pop Changed'; }
+                                            if ($record->getColorChanged()) { $changeArray[] = 'Color Changed'; }
+                                            if ($record->getDimsChanged()) { $changeArray[] = 'Dims Changed'; }
+                                            if ($record->getClassChanged()) { $changeArray[] = 'Class Changed'; }
+                                            if ($record->getImageChanged()) { $changeArray[] = 'Image Changed'; }
+                                            foreach ($changeArray as $change) {
+                                            ?>
+                                            <?php echo $change; ?><br />
+                                            <?php } ?>
+                                            </code>
+                                        </td>
+                                        <td>
+                                            <ul class="table-controls">
+                                                <li><a href="/admin/products/changesets/view/<?php echo $record->getChangesets()->getChangesetId(); ?>/viewvehicles/<?php echo $record->getChangesetDetailId(); ?>" class="btn tip" title="View Applicable Vehicles"><i class="icon-external-link"></i> View Applicable Vehicles</a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>

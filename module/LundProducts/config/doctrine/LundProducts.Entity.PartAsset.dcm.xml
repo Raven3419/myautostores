@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="LundProducts\Entity\PartAsset" table="part_asset">
+        <id name="partAssetId" column="part_asset_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <many-to-one field="part" target-entity="LundProducts\Entity\Parts" fetch="EAGER">
+            <join-column name="part_id" referenced-column-name="part_id"/>
+        </many-to-one>
+        <many-to-one field="asset" target-entity="RocketDam\Entity\Asset" fetch="EAGER">
+            <join-column name="asset_id" referenced-column-name="asset_id"/>
+        </many-to-one>
+        <field name="assetType" column="asset_type" type="string" nullable="true" />
+        <field name="amazonName" column="amazon_name" type="string" nullable="true" />
+        <field name="picType" column="pic_type" type="string" nullable="true" />
+        <field name="assetSeq" column="asset_seq" type="integer" length="10" nullable="true" />
+        <field name="videoType" column="video_type" type="string" nullable="true" />
+    </entity>
+</doctrine-mapping>

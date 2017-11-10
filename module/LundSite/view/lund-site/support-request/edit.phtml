@@ -1,0 +1,168 @@
+<?php
+$form = $this->form;
+$form->setAttributes(array(
+    'action' => '/admin/lund/support-request/edit/' . $this->supportRequestId,
+    'method' => 'POST',
+    'class'  => 'form-horizontal',
+))->prepare();
+$fieldset = $form->getBaseFieldset();
+$errors = $this->formElementErrors()
+            ->setMessageOpenFormat('<span class="help-block">')
+            ->setMessageSeparatorString('</span><span class="help-block">')
+            ->setMessageCloseString('</span>');
+?>
+                    <h5 class="widget-name"><i class="icon-pencil"></i>Edit Support Request</h5>
+                    <div class="row-fluid">
+                        <div class="span8">
+                            <div class="widget">
+                                <div class="navbar">
+                                    <div class="navbar-inner">
+                                        <h6><i class="icon-asterisk"></i>Support Request Details</h6>
+                                        <a class="btn btn-danger confirm pull-right" href="/admin/lund/support-request/delete/<?php echo $this->supportRequestId; ?>"><b class="icon-trash"></b>Delete Support Request</a>
+                                    </div>
+                                </div>
+                                <div class="well">
+                                    <?php echo $this->form()->openTag($form); ?>
+                                    <?php echo $this->formElement($form->get('secret')); ?>
+                                    <?php echo $this->formElement($fieldset->get('supportRequestId')); ?>
+                                    <div class="alert alert-error margin">
+                                        <span class="text">* denotes a required field</span>
+                                    </div>
+                                    <?php $site = $fieldset->get('site'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($site) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $site->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($site); ?>
+                                            <?php echo ($this->formElementErrors($site) ? $errors->render($site) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $disabled = $fieldset->get('disabled'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($disabled) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $disabled->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($disabled); ?>
+                                            <?php echo ($this->formElementErrors($disabled) ? $errors->render($disabled) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $firstName = $fieldset->get('firstName'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($firstName) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $firstName->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($firstName); ?>
+                                            <?php echo ($this->formElementErrors($firstName) ? $errors->render($firstName) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $lastName = $fieldset->get('lastName'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($lastName) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $lastName->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($lastName); ?>
+                                            <?php echo ($this->formElementErrors($lastName) ? $errors->render($lastName) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $emailAddress = $fieldset->get('emailAddress'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($emailAddress) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $emailAddress->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($emailAddress); ?>
+                                            <?php echo ($this->formElementErrors($emailAddress) ? $errors->render($emailAddress) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $streetAddress = $fieldset->get('streetAddress'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($streetAddress) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $streetAddress->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($streetAddress); ?>
+                                            <?php echo ($this->formElementErrors($streetAddress) ? $errors->render($streetAddress) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $extStreetAddress = $fieldset->get('extStreetAddress'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($extStreetAddress) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $extStreetAddress->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($extStreetAddress); ?>
+                                            <?php echo ($this->formElementErrors($extStreetAddress) ? $errors->render($extStreetAddress) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $locality = $fieldset->get('locality'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($locality) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $locality->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($locality); ?>
+                                            <?php echo ($this->formElementErrors($locality) ? $errors->render($locality) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $region = $fieldset->get('region'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($region) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $region->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($region); ?>
+                                            <?php echo ($this->formElementErrors($region) ? $errors->render($region) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $postCode = $fieldset->get('postCode'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($postCode) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $postCode->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($postCode); ?>
+                                            <?php echo ($this->formElementErrors($postCode) ? $errors->render($postCode) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $country = $fieldset->get('country'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($country) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $country->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($country); ?>
+                                            <?php echo ($this->formElementErrors($country) ? $errors->render($country) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $phoneNumber = $fieldset->get('phoneNumber'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($phoneNumber) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $phoneNumber->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($phoneNumber); ?>
+                                            <?php echo ($this->formElementErrors($phoneNumber) ? $errors->render($phoneNumber) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $vehicle = $fieldset->get('vehicle'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($vehicle) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $vehicle->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($vehicle); ?>
+                                            <?php echo ($this->formElementErrors($vehicle) ? $errors->render($vehicle) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $partNumber = $fieldset->get('partNumber'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($partNumber) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $partNumber->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($partNumber); ?>
+                                            <?php echo ($this->formElementErrors($partNumber) ? $errors->render($partNumber) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $wherePurchase = $fieldset->get('wherePurchase'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($wherePurchase) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $wherePurchase->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($wherePurchase); ?>
+                                            <?php echo ($this->formElementErrors($wherePurchase) ? $errors->render($wherePurchase) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $comments = $fieldset->get('comments'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($comments) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $comments->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($comments); ?>
+                                            <?php echo ($this->formElementErrors($comments) ? $errors->render($comments) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions align-right">
+                                        <button id="form-submit-btn" type="submit" class="btn btn-primary">Submit</button>
+                                        <button id="form-cancel-btn" type="button" class="btn btn-danger">Cancel</button>
+                                        <button id="form-reset-btn" type="reset" class="btn">Reset</button>
+                                    </div>
+                                    <?php echo $this->form()->closeTag($form); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

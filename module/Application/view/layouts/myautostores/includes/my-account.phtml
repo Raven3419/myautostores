@@ -1,0 +1,127 @@
+		
+				<div class="col-md-9">
+				
+					<div class="b-submit__main">
+							<header class="s-headerSubmit s-lineDownLeft wow zoomInUp" data-wow-delay="0.5s">
+								<h2 class="">Dashboard</h2>
+							</header>
+							
+    						<div class="col-md-12">
+    							<div class="b-article__main-add">
+    								<div class="clearfix"></div>
+    								<p>Welcome <b><?php echo $_SESSION['saved_customer']['firstName']; ?>  <?php echo $_SESSION['saved_customer']['lastName']; ?></b></p>
+    								<p>Welcome to your Dashboard you have the ability to view a snapshot of your recent account activity and update your account information. Select a link below to view or edit information.</p>
+    								
+    							</div>
+    						</div>
+    						
+    						<div class="col-md-12">
+    							<div class="b-article__main-add">
+    							
+        							<header class="s-headerSubmit s-lineDownLeft wow zoomInUp" data-wow-delay="0.5s">
+        								<h2>Account Information</h2>
+        							</header>
+    								<div class="clearfix"></div>
+    								<div class="row">
+    									<div class="col-md-6 ">
+    										<div class="col-md-12 s-lineDownLeft">
+                    							<div class="b-article__main-add">
+                    								<p class="s-titleDet s-margin ">Contact Information</p>
+                    							</div>
+                    						</div>
+                    						<div class="s-margin-top">
+        										<div class="col-md-9">
+                        							<p>
+                        								<?php echo $this->ecomCustomer->getFirstName();?> <?php echo $this->ecomCustomer->getLastName();?> <br />
+                        							    <?php echo $this->ecomCustomer->getEmail();?>
+                        							</p>
+                        						</div>
+                        						<div class="col-md-3">
+                        							<a href="/contact-information">
+                        								<p>Edit</p>
+                        							</a>
+                        						</div>
+                    						</div>
+            							</div>
+    									<div class="col-md-6 ">
+    										<div class="col-md-12 s-lineDownLeft">
+                    							<div class="b-article__main-add">
+                    								<p class="s-titleDet s-margin ">News Letters</p>
+                    							</div>
+                    						</div>
+                    						<div class="s-margin-top">
+        										<div class="col-md-9">
+                        							<p>
+        							                	<?php if($this->ecomCustomer->getNewsletters()) { ?>
+        							                		You are currently subscribed to get newsletter.
+        							                	<?php } else { ?>
+        							                		You are currently not subscribed to any newsletter.
+        							                	<?php } ?>
+                        							</p>
+                        						</div>
+                        						<div class="col-md-3">
+                        								<a href="/newsletter">
+                        									<p>Edit</p>
+                        								</a>
+                        						</div>
+                    						</div>
+            							</div>
+            						</div>
+            						<div class="row">
+    									<div class="col-md-6 ">
+    										<div class="col-md-12 s-lineDownLeft">
+                    							<div class="b-article__main-add">
+                    								<p class="s-titleDet s-margin ">Billing Address</p>
+                    							</div>
+                    						</div>
+                    						<div class="s-margin-top">
+        										<div class="col-md-9">
+                        							<p>
+        							                	<?php if(!empty($this->ecomCustomer->getBillingStreetAddress())) { ?>
+            							                    <?php echo $this->ecomCustomer->getBillingStreetAddress(); ?><br />
+            							                    <?php echo $this->ecomCustomer->getBillingCity(); ?>  <?php echo $this->ecomCustomer->getBillingState()->getSubdivisionName(); ?>,  <?php echo $this->ecomCustomer->getBillingPostCode(); ?><br />
+        							                    <?php } ?>
+        							                </p>
+                        						</div>
+                        						<div class="col-md-3">
+                        							<a href="/address">
+                        								<p>Edit</p>
+                        							</a>
+                        						</div>
+                    						</div>
+            							</div>
+    									<div class="col-md-6 ">
+    										<div class="col-md-12 s-lineDownLeft">
+                    							<div class="b-article__main-add">
+                    								<p class="s-titleDet s-margin ">Shipping Address</p>
+                    							</div>
+                    						</div>
+                    						<div class="s-margin-top">
+        										<div class="col-md-9">
+        							                <p>
+        							                	<?php if($this->ecomCustomer->getSameAsBilling() == '0') { ?>
+        							                		<?php if(!empty($this->ecomCustomer->getBillingStreetAddress())) { ?>
+                							                    <?php echo $this->ecomCustomer->getBillingStreetAddress(); ?><br />
+                							                    <?php echo $this->ecomCustomer->getBillingCity(); ?>  <?php echo $this->ecomCustomer->getBillingState()->getSubdivisionName(); ?>,  <?php echo $this->ecomCustomer->getBillingPostCode(); ?><br />
+        							                    	<?php } ?>
+        							                    <?php } else { ?>
+        							                    	<?php if(!empty($this->ecomCustomer->getShippingStreetAddress())) { ?>
+            							                        <?php echo $this->ecomCustomer->getShippingStreetAddress(); ?><br />
+                							                    <?php echo $this->ecomCustomer->getShippingCity(); ?>  <?php echo $this->ecomCustomer->getShippingState()->getSubdivisionName(); ?>,  <?php echo $this->ecomCustomer->getShippingPostCode(); ?><br />
+        							                    	<?php } ?>
+        							                    <?php } ?>
+        							                </p>
+                        						</div>
+                        						<div class="col-md-3">
+                        							<a href="/address">
+                        								<p>Edit</p>
+                        							</a>
+                        						</div>
+                    						</div>
+            							</div>
+            						</div>
+    							</div>
+    						</div>
+					</div>
+				</div>
+				

@@ -1,0 +1,51 @@
+                    <h5 class="widget-name"><i class="icon-external-link"></i>View Customer</h5>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="widget">
+                                <div class="navbar">
+                                    <div class="navbar-inner">
+                                        <h6><i class="icon-sitemap"></i>Customer Details</h6>
+                                        <a class="btn btn-danger confirm pull-right" href="/admin/accounts/customer/delete/<?php echo $this->recordId; ?>"><b class="icon-trash"></b>Delete Customer</a>
+                                        <a class="btn btn-info pull-right" href="/admin/accounts/customer/edit/<?php echo $this->recordId; ?>"><b class="icon-pencil"></b>Edit Customer</a>
+                                        <a class="btn btn-inverse pull-right" href="/admin/accounts/customer"><b class="icon-table"></b>Return to List</a>
+                                        <a class="btn btn-success pull-right" href="/admin/settings/user/view/<?php echo $this->customer->getUser()->getUserId(); ?>"><b class="icon-user"></b>View User</a>
+                                    </div>
+                                </div>
+                                <div class="well">
+<?php
+echo $this->partial('admin/form-readonly-partial', array(
+    'form' => $this->form,
+));
+?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class="widget-name"><i class="icon-table"></i>Transmit Logs</h5>
+                    <div class="widget">
+                        <div class="navbar">
+                            <div class="navbar-inner">
+                                <h6><i class="icon-th-large"></i>Logs</h6>
+                            </div>
+                        </div>
+                        <div class="table-overflow">
+                            <table class="table table-striped table-bordered" id="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Created At</th>
+                                        <th>Brand</th>
+                                        <th>File</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($this->transmitLogs as $log) { ?>
+                                    <tr>
+                                        <td><?php echo $log->getCreatedAt()->format('Y-m-d H:i:s'); ?></td>
+                                        <td><?php echo $log->getBrand()->getName(); ?></td>
+                                        <td><?php echo $log->getAsset()->getFileName(); ?></td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>

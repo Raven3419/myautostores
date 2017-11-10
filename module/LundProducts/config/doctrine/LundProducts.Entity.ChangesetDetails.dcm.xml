@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="LundProducts\Entity\ChangesetDetails" table="changeset_details">
+        <id name="changesetDetailId" column="changeset_detail_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <many-to-one field="parts" target-entity="LundProducts\Entity\Parts" fetch="EAGER">
+            <join-column name="part_id" referenced-column-name="part_id"/>
+        </many-to-one>
+        <field name="partNumber" column="part_number" type="string" length="255" nullable="true" />
+        <many-to-one field="brand" target-entity="LundProducts\Entity\Brands" fetch="EAGER">
+            <join-column name="brand_id" referenced-column-name="brand_id" />
+        </many-to-one>
+        <field name="brandLabel" column="brand_label" type="string" length="255" nullable="true" />
+        <many-to-one field="productCategories" target-entity="LundProducts\Entity\ProductCategories" fetch="EAGER">
+            <join-column name="product_category_id" referenced-column-name="product_category_id"/>
+        </many-to-one>
+        <field name="productCategoryLabel" column="product_category_label" type="string" length="255" nullable="true" />
+        <many-to-one field="productLines" target-entity="LundProducts\Entity\ProductLines" fetch="EAGER">
+            <join-column name="product_line_id" referenced-column-name="product_line_id"/>
+        </many-to-one>
+        <field name="productLineLabel" column="product_line_label" type="string" length="255" nullable="true" />
+        <many-to-one field="changesets" target-entity="LundProducts\Entity\Changesets" fetch="EAGER">
+            <join-column name="changeset_id" referenced-column-name="changeset_id"/>
+        </many-to-one>
+        <field name="partId" column="part_id" type="integer" nullable="true" />
+        <field name="appChanged" column="app_changed" type="boolean" nullable="true"/>
+        <field name="statusChanged" column="status_changed" type="boolean" nullable="true" />
+        <field name="countryChanged" column="country_changed" type="boolean" nullable="true" />
+        <field name="popChanged" column="pop_changed" type="boolean" nullable="true" />
+        <field name="colorChanged" column="color_changed" type="boolean" nullable="true" />
+        <field name="dimsChanged" column="dims_changed" type="boolean" nullable="true" />
+        <field name="classChanged" column="class_changed" type="boolean" nullable="true"/>
+        <field name="imageChanged" column="image_changed" type="boolean" nullable="true"/>
+        <field name="yearChanged" column="year_changed" type="boolean" nullable="true"/>
+        <field name="change" column="change" type="string" length="255" nullable="false" />
+        <field name="changeFileRow" column="change_file_row" type="text" nullable="false" />
+    </entity>
+</doctrine-mapping>

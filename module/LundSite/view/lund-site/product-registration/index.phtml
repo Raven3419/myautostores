@@ -1,0 +1,41 @@
+                    <h5 class="widget-name"><i class="icon-table"></i>View All Product Registrations</h5>
+                    <div class="widget">
+                        <div class="navbar">
+                            <div class="navbar-inner">
+                                <h6><i class="icon-asterisk"></i>Product Registrations</h6>
+                                <a class="btn btn-info pull-right" href="/admin/lund/product-registration/create"><b class="icon-plus"></b>Add Product Registration</a>
+                            </div>
+                        </div>
+                        <div class="table-overflow">
+                            <table class="table table-striped table-bordered" id="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Site</th>
+                                        <th>Name</th>
+                                        <th>Email Address</th>
+                                        <th>UPC</th>
+                                        <th class="actnCol">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($this->records as $record) { ?>
+                                    <tr>
+                                        <td><?php echo $record->getCreatedAt()->format('Y-m-d'); ?></td>
+                                        <td><?php echo $record->getSite()->getName(); ?></td>
+                                        <td><?php echo $record->getFirstName(); ?> <?php echo $record->getLastName(); ?></td>
+                                        <td><?php echo $record->getEmailAddress(); ?></td>
+                                        <td><?php echo $record->getUpcCode(); ?></td>
+                                        <td>
+                                            <ul class="table-controls">
+                                                <li><a href="/admin/lund/product-registration/edit/<?php echo $record->getProductRegistrationId(); ?>" class="btn tip" title="Edit Record"><i class="icon-edit"></i> edit</a></li>
+                                                <li><a href="/admin/lund/product-registration/view/<?php echo $record->getProductRegistrationId(); ?>" class="btn tip" title="View Record"><i class="icon-external-link"></i> view</a></li>
+                                                <li><a href="/admin/lund/product-registration/delete/<?php echo $record->getProductRegistrationId(); ?>" class="btn tip confirm"><i class="icon-trash"></i> delete</a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
