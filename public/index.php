@@ -4,7 +4,7 @@
 *   * If server version of PHP is lower than 5.4.0 add the following in your index.php
 *    */
 define('REQUEST_MICROTIME', microtime(true));
-//$_SERVER['APP_ENV'] = 'development';
+$_SERVER['APP_ENV'] = 'development';
 /**
 *  * Display all errors when APP_ENV is development.
 *   */
