@@ -1,6 +1,5 @@
 <?php
 
-echo "1";exit;
 /**
 *  * Zend Developer Tools
 *   * If server version of PHP is lower than 5.4.0 add the following in your index.php
