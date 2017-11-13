@@ -1,4 +1,6 @@
 <?php
+
+echo "1";exit;
 /**
 *  * Zend Developer Tools
 *   * If server version of PHP is lower than 5.4.0 add the following in your index.php
@@ -29,7 +31,6 @@ if (php_sapi_name() === 'cli-server' && is_file(__DIR__ . parse_url($_SERVER['RE
     return false;
 }
 
-echo "1";exit;
 // Setup autoloading
 require 'init_autoloader.php';
 
