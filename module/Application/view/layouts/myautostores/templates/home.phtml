@@ -84,57 +84,7 @@
 			<div class="container">
 				<h2 class="s-title">FEATURED PRODUCTS</h2>
 				<div id="carousel-small" class="owl-carousel enable-owl-carousel" data-items="4" data-navigation="true" data-auto-play="true" data-stop-on-hover="true" data-items-desktop="4" data-items-desktop-small="4" data-items-tablet="3" data-items-tablet-small="2">					
-					<?php 
-					for($x=0; $x<count($this->upsale); $x++) { ?>
 					
-					<div>
-						<div class="b-featured__item">
-							<a href="/products/<?php echo urlencode(strtolower($this->upsale[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($this->upsale[$x]['PL_Display'])); ?>">
-								<img src="/assets/library/products/product_lines/<?php echo $this->upsale[$x]['fileName']?>" alt='<?php echo $this->upsale[$x]['PL_Display']; ?>' title='<?php echo $this->upsale[$x]['PL_Display']; ?>' />
-								<!--  
-								    <span class="m-premium">Premium</span>
-								-->
-							</a>
-							<div class="b-featured__item-price">
-								<a href="/products/<?php echo urlencode(strtolower($this->upsale[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($this->upsale[$x]['PL_Display'])); ?>">
-									<?php echo $this->upsale[$x]['sale_price']; ?>
-								</a>
-							</div>
-							<div class="clearfix"></div>
-							<div class="b-title">
-							<h5><a href="/products/<?php echo urlencode(strtolower($this->upsale[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($this->upsale[$x]['PL_Display'])); ?>"><?php echo $this->upsale[$x]['PL_Display']; ?></a></h5>
-							</div>
-							<div class="b-featured__item-links">
-								<a href="/products/<?php echo urlencode(strtolower($this->upsale[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($this->upsale[$x]['PL_Display'])); ?>"><?php echo $this->upsale[$x]['teaser'];?></a>
-							</div>
-						</div>
-						<br />
-						<div class="b-featured__item">
-							<a href="/products/<?php echo urlencode(strtolower($this->upsale[$x+1]['PC_Display'])); ?>/<?php echo urlencode(strtolower($this->upsale[$x+1]['PL_Display'])); ?>">
-								<img src="/assets/library/products/product_lines/<?php echo $this->upsale[$x+1]['fileName']?>" alt='<?php echo $this->upsale[$x+1]['PL_Display']; ?>' title='<?php echo $this->upsale[$x+1]['PL_Display']; ?>' />
-								<!--  
-								    <span class="m-premium">Premium</span>
-								-->
-							</a>
-							<div class="b-featured__item-price">
-								<a href="/products/<?php echo urlencode(strtolower($this->upsale[$x+1]['PC_Display'])); ?>/<?php echo urlencode(strtolower($this->upsale[$x+1]['PL_Display'])); ?>">
-									<?php echo $this->upsale[$x+1]['sale_price']; ?>
-								</a>
-							</div>
-							<div class="clearfix"></div>
-							<div class="b-title">
-							<h5><a href="/products/<?php echo urlencode(strtolower($this->upsale[$x+1]['PC_Display'])); ?>/<?php echo urlencode(strtolower($this->upsale[$x+1]['PL_Display'])); ?>"><?php echo $this->upsale[$x+1]['PL_Display']; ?></a></h5>
-							</div>
-							<div class="b-featured__item-links">
-								<a href="/products/<?php echo urlencode(strtolower($this->upsale[$x+1]['PC_Display'])); ?>/<?php echo urlencode(strtolower($this->upsale[$x+1]['PL_Display'])); ?>"><?php echo $this->upsale[$x+1]['teaser'];?></a>
-							</div>
-						</div>
-						
-					</div>
-					
-					<?php 
-					$x++;
-					} ?>
 					
 				</div>
 			</div>
