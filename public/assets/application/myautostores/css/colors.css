@@ -1,16 +1,6 @@
-/*------------------------------------------------------------------
-[Table of contents]
-
- - Color one
- - Color two
-
-- Author:  Andrey Sokoltsov
-- Profile:	http://themeforest.net/user/andreysokoltsov
-
--------------------------------------------------------------------*/
-
-/* Color one */
-
+/*!
+ * Minify by http://www.MinifyWeb.com/
+ */
 .b-search__main-form-submit button span.fa,
 .m-home .b-count__item-circle:hover,
 .b-compare__links a.btn.m-btn:hover,
@@ -92,14 +82,7 @@ a.btn.m-btn.m-pay:hover,
 .b-items__aside-sell-info a.btn.m-btn:hover span.fa,
 .b-welcome .container,
 .m-index .b-count .m-main,
-.demo_changer .demo-icon
-{
-    background-color:#f76d2b;
-    fill: #f76d2b;
-}
-
-
-.b-nav__logo h3 a,
+.demo_changer .demo-icon{background-color:#f76d2b;fill:#f76d2b}.b-nav__logo h3 a,
 .b-search__main-form-submit a,
 .b-auto__main-toggle:hover,
 .b-auto__main .b-auto__main-toggle.m-active,
@@ -142,13 +125,8 @@ a.btn.m-btn.m-pay:hover,
 .b-nav__list ul li a span.fa,
 .m-home .b-nav__logo h3 a span,
 .b-items__pagination-main > span.m-active a,
-.b-items__pagination-main > span:hover a
-{
-    color:#f76d2b;
-    fill:#f76d2b;
-}
-
-.b-nav__list ul li a:hover,
+.b-items__pagination-main > span:hover
+a{color:#f76d2b;fill:#f76d2b}.b-nav__list ul li a:hover,
 .b-slider__info h3,
 .s-title,
 .b-world__item h2,
@@ -176,24 +154,8 @@ a.btn.m-btn.m-pay:hover,
 .s-headerSubmit h2,
 .b-submit__aside-step-inner-info h4,
 .b-auto__main-nav li:hover:before,
-.b-auto__main-nav li.active:before,
-.b-welcome__services-circle
-{
-    border-color:#f76d2b;
-}
-
-.b-submit__aside-step-inner-info-triangle
-{
-    border-left-color:#f76d2b;
-}
-
-.b-compare__block-title > a,.b-more__info-block-title a
-{
-    border-bottom-color:#f76d2b;
-}
-
-/* Color two */
-body,
+.b-auto__main-nav li.active:before,.b-welcome__services-circle{border-color:#f76d2b}.b-submit__aside-step-inner-info-triangle{border-left-color:#f76d2b}.b-compare__block-title > a,.b-more__info-block-title
+a{border-bottom-color:#f76d2b}body,
 .navbar-toggle span,
 .btn.m-btn,
 .b-slider__info a.btn:hover span,
@@ -266,14 +228,8 @@ body,
 .b-detail__main-aside form textarea,
 .b-article__main-add input[type='text'],
 .b-article__main-add textarea,
-.b-world .container
-{
-    background-color: #fff;
-    fill:#fff;
-}
-
-
-.b-slider__info h3,.b-slider__info h2,.b-slider__info p,
+.b-world
+.container{background-color:#fff;fill:#fff}.b-slider__info h3,.b-slider__info h2,.b-slider__info p,
 .btn.m-btn span.fa,
 .b-slider__info a.btn:hover,
 .b-search__main-title h2,
@@ -376,15 +332,7 @@ a.btn.m-btn.m-pay:hover,
 .b-items__aside-sell-info a.btn.m-btn,
 .b-items__aside-sell-info a.btn.m-btn:hover span,
 .b-items__cell-info a.btn.m-btn:hover,
-.b-compare .b-compare__images .b-compare__images-item-price,
-.b-compare__block-title > a,
-.b-items__cars-one-img-video, .b-items__cars-one-img-video:hover, .b-items__cars-one-img-video:visited, .b-items__cars-one-img-video:active,.b-items__cars-one-img-video:focus
-{
-    color:#fff;
-    fill:#fff;
-}
-
-.b-search__main-title h2,
+.b-compare .b-compare__images .b-compare__images-item-price,.b-compare__block-title>a,.b-items__cars-one-img-video,.b-items__cars-one-img-video:hover,.b-items__cars-one-img-video:visited,.b-items__cars-one-img-video:active,.b-items__cars-one-img-video:focus{color:#fff;fill:#fff}.b-search__main-title h2,
 .b-welcome__text h2,
 .b-count__item-circle,
 .b-items__aside-main-footer button.btn.m-btn:hover,
@@ -396,12 +344,5 @@ a.btn.m-btn.m-pay:hover,
 .b-items__aside-sell-info a,
 .b-pageHeader__search h3,
 .b-article__main-author h3,
-.b-submit__aside-step-inner.m-active .b-submit__aside-step-inner-info h4,
-.b-compare__images-item-price-vs
-{
-    border-color:#fff;
-}
-
-.b-more__info-block-title.m-active a{
-    border-bottom-color:#fff;
-}
+.b-submit__aside-step-inner.m-active .b-submit__aside-step-inner-info h4,.b-compare__images-item-price-vs{border-color:#fff}.b-more__info-block-title.m-active
+a{border-bottom-color:#fff}
