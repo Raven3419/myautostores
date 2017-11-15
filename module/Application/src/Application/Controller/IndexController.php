@@ -740,6 +740,14 @@ class IndexController extends AbstractActionController
         
         $news = $this->lundSiteService->getNewsReleaseService()->getNewsReleaseByUrl($site, $url);
         
+        
+        $this->layout()->setVariables(array(
+            'metaTitle' => 'My Auto Store - News - '.$news->getTitle(),
+            'metaKeywords' => 'My Auto Store - News - '.$news->getTitle(),
+            'metaDescription' => 'My Auto Store - News - '.$news->getTitle(),
+        ));
+       
+        
         $vm->setVariable('type', 'detail');
         $vm->setVariable('news', $news);
         
