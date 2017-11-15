@@ -532,9 +532,15 @@ class IndexController extends AbstractActionController
     protected function index(SiteInterface $site, ViewModel $vm)
     {
         $years = $this->lundProductService->getPartService()->getVehYear();
+        $number ="";
+        for($x=0; $x<20; $x++) {
+            $number .= rand(0, 57).", ";
+        }
         
+        $upsale       = $this->lundProductService->getProductLineService()->getProductLines(substr($number, 0, -2));
         
         $vm->setVariable('years', $years);
+        $vm->setVariable('upsale', $upsale);
 
         return $vm;
     }

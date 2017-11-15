@@ -498,6 +498,7 @@ class ProductLineService implements EventManagerAwareInterface
      */
     public function getProductLines($number = null)
     {
+        
         $foundBrand = $this->prepare("select distinct pl.display_name as PL_Display, pc.display_name as PC_Display, pc.name as PC_Name, pl.name as PL_Name, pl.website_overview as html, pl.teaser, p.sale_price,
     			pl.product_line_id as product_line_id, b.name as brand, bpc.short_descr as short_descr, bpc.long_descr as long_descr, pl.position, pl.total_rating, pl.total_count, bpc.meta_title, bpc.meta_keywords, bpc.meta_descr,
     			a.hash as hash, a.file_name as fileName, a2.file_name as file_name, p.color, p.finish, p.style
@@ -514,7 +515,10 @@ class ProductLineService implements EventManagerAwareInterface
 										and pc.disabled = '0' and pc.deleted = '0'
 										and pl.disabled = '0' and pl.deleted = '0'
 										and p.product_line_id = pl.product_line_id
-                                        order by rand() limit ".$number);
+                                        and p.product_line_id in(".$number.")");
+        
+        
+        
         $foundBrand->execute();
         
         $return = $foundBrand->fetchAll();
