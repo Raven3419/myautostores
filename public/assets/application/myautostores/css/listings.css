@@ -48,6 +48,8 @@ span.fa{font-size:12px;position:absolute;top:3px;left:3px;display:none}.b-items_
 15px 0 290px}.b-items__cars-one-info-header{text-align:right;padding-bottom:15px;margin-bottom:30px}.b-items__cars-one-info-header
 h2{float:left;font:600 20px 'Open Sans',sans-serif;padding-left:15px;border-left:4px solid #f76d2b;margin:8px
 0 0 0;line-height:1;padding:1px
+0 1px 15px}.b-items__cars-one-info-header h3{float:left;font:600 20px 'Open Sans',sans-serif;padding-left:15px;border-left:4px solid #f76d2b;margin:8px
+0 0 0;line-height:1;padding:1px
 0 1px 15px}.b-items__cars-one-info-header>span{padding:5px
 15px;display:inline-block;font:700 20px 'PT Sans',sans-serif}.b-items__cars-one-info
 p{font:300 13px 'Open Sans',sans-serif;margin:0
@@ -87,3 +89,4 @@ a.btn{font:600 10px 'Open Sans',sans-serif!important;border:1px
 solid #ddd;padding-left:12px!important;margin-top:40px}.b-items__cell-info a.btn
 span.fa{width:20px!important;height:20px!important;font-size:13px!important;padding:3px!important;margin-left:10px!important}.b-items__cell .b-items__cars-one-img-check{top:20px}.m-listTable .b-items__pagination{margin-top:35px}.m-listTableTwo .b-items__cars-one-img{float:none;width:auto;height:auto}.m-listTableTwo .b-items__cell-info-price
 span{font:600 11px 'Open Sans',sans-serif;text-transform:uppercase;margin-right:10px}.m-listTableTwo .b-items__cell{border:none;margin-bottom:0}.m-listTableTwo .row.m-border>div{border-right:1px solid #eee;margin-bottom:40px}.m-listTableTwo .row.m-border>div:nth-child(3n){border:none}.m-listTableTwo .b-items__cell .b-items__cars-one-img-check{top:10px}
+.product_line_h2{display:none }
