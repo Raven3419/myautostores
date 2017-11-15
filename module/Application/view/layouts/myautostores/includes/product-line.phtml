@@ -299,8 +299,9 @@ $emptyProductLine = false;
                                     	<div class="col-md-3 col-xs-12">
                                         	<div class="b-items__cars-one-info-price">
                                             	<div class="pull-right">
-                                                	<h5>Price:</h5>
-                                                	<h3 style="color: #F76D2B; margin:0px 0 20px;"><b><?php echo $productLinesArray[$x]['sale_price']; ?></b></h3>
+                                                	<label class="priceLabel">Price:</label>
+                                                	<br/>
+                                                	<label style="color: #F76D2B; margin:0px 0 20px; font-size: 24px;"><b><?php echo $productLinesArray[$x]['sale_price']; ?></b></label>
                                                 </div>
                                                 <a href="/products/<?php echo urlencode(strtolower($productLinesArray[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($productLinesArray[$x]['PL_Display'])); ?>" class="btn m-btn">VIEW DETAILS<span class="fa fa-angle-right"></span></a>
 											</div>
