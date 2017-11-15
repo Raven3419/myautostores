@@ -6,7 +6,7 @@
 button{background:transparent;position:absolute;border:none;display:inline-block;top:50%;font-size:16px;margin-top:-12px;right:15px;-moz-transform:scale(-1, 1);-webkit-transform:scale(-1, 1);-o-transform:scale(-1, 1);transform:scale(-1, 1);filter:FlipH;-ms-filter:"FlipH"}.b-blog__aside-search button:focus{outline:none}.b-blog__aside-search input[type='text']{display:block;width:100%;padding:12px
 20px;font:400 12px 'Open Sans',sans-serif;border:1px
 solid #eee;border-radius:30px}.b-blog__aside-search input[type='text']:focus{outline:none}.b-blog__aside-categories{margin-bottom:40px}.b-blog__aside
-h2{font-size:15px;margin:0}.b-blog__aside
+h2{font-size:15px;margin:0}.b-blog__aside h3{font-size:15px;margin:0}.b-blog__aside
 header{padding-bottom:15px;margin:0
 0 40px 0}.b-blog__aside header:after{left:30px}.b-blog__aside-categories-list{padding-left:0;margin:0;list-style:none}.b-blog__aside-categories-list
 li{padding-bottom:13px;margin-bottom:13px;border-bottom:1px solid #eee;cursor:pointer}.b-blog__aside-categories-list li:hover a,.b-blog__aside-categories-list li.m-active
