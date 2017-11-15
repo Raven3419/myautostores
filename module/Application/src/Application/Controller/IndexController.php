@@ -533,10 +533,8 @@ class IndexController extends AbstractActionController
     {
         $years = $this->lundProductService->getPartService()->getVehYear();
         
-        $upsale       = $this->lundProductService->getProductLineService()->getProductLines('20');
         
         $vm->setVariable('years', $years);
-        $vm->setVariable('upsale', $upsale);
 
         return $vm;
     }
