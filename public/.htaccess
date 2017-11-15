@@ -49,6 +49,11 @@ ExpiresByType text/css "access plus 1 month"
 <IfModule mod_headers.c>
 # Set XSS Protection header
 Header set X-XSS-Protection "1; mode=block"
+
+# Unset Server Signature header
+ServerSignature Off
+# Unset Server Technology header
+Header unset X-Powered-By
 </IfModule>
 
 # Redirect old file path to new file path
