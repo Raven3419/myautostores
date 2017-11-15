@@ -36,7 +36,7 @@
 					<div class="row">
 						<div class="col-sm-9 col-xs-12">
 							<div class="b-detail__head-title">
-								<h1><?php echo $this->productLines[0]->getDisplayName(); ?></h1>
+								<h2><?php echo $this->productLines[0]->getDisplayName(); ?></h2>
 								<!--<h3>Fully Redesigned Upscale Midsize Car</h3>-->
 							</div>
 						</div>
@@ -107,7 +107,7 @@
 										-->
 									</div>
 									<div id="info1">
-                                	<h2 class="s-titleDet">FEATURES</h2>
+                                	<h3 class="s-titleDet">FEATURES</h3>
                     		
                                 	<ul style='font: 300 13px/1.9 "Open Sans",sans-serif;'>
                                 		<?php for($x=0; $x<count($this->features); $x++) { ?>
@@ -115,7 +115,7 @@
                                 		<?php } ?>
                                 	</ul>
 			
-                        			<h2 class="s-titleDet">Details</h2>
+                        			<h3 class="s-titleDet">Details</h3>
                         			
                         			<?php echo $this->productLines[0]->getName(); ?>
                         			<br /><br />
