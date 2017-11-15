@@ -87,7 +87,7 @@
 									    		    { ?>
         									    		<?php $tempImage =  $productLineAsset->getAsset()->getFilePath(); ?>
         												<a href="#" data-slide-index="<?php echo $count?>" class="b-detail__main-info-images-small-one">
-        													<img class="img-responsive" src="/assets/<?php echo $productLineAsset->getAsset()->getFilePath() ?>" alt="<?php echo $this->productLines[0]->getDisplayName()."-".$count; ?>" title="<?php echo $this->productLines[0]->getDisplayName()."-".$count; ?>" />
+        													<img class="img-responsive" src="/assets/library/products/product_lines/108X108/<?php echo $productLineAsset->getAsset()->getFileName() ?>" alt="<?php echo $this->productLines[0]->getDisplayName()."-".$count; ?>" title="<?php echo $this->productLines[0]->getDisplayName()."-".$count; ?>" />
         												</a>	              
     				                        	<?php 
     				                        	   $count++;
@@ -926,7 +926,7 @@
 					<div>
 						<div class="b-featured__item">
 							<a href="/products/<?php echo urlencode(strtolower($this->upsale[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($this->upsale[$x]['PL_Display'])); ?>">
-								<img src="/assets/library/products/product_lines/<?php echo $this->upsale[$x]['fileName']?>" alt='<?php echo $this->upsale[$x]['PL_Display']; ?>' title='<?php echo $this->upsale[$x]['PL_Display']; ?>' />
+								<img src="/assets/library/products/product_lines/230X230/<?php echo $this->upsale[$x]['fileName']?>" alt='<?php echo $this->upsale[$x]['PL_Display']; ?>' title='<?php echo $this->upsale[$x]['PL_Display']; ?>' />
 								<!--  
 								    <span class="m-premium">Premium</span>
 								-->

@@ -109,7 +109,7 @@ class ProductLineAssetFieldset extends Fieldset
                 'find_method' => array(
                     'name' => 'findBy',
                     'params' => array(
-                        'criteria' => array('parentAsset' => '18'),
+                        'criteria' => array('parentAsset' => '1313'),
                         'orderBy' => array('label' => 'ASC'),
                     ),
                 ),
