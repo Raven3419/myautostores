@@ -158,27 +158,29 @@
 						<label class="modal-title" id="myModalLabel">Shopping Cart</label>
 					</div>
 					<div class="modal-body">
-						<?php foreach($this->layout()->cartItems as $cartItems) { 
-						    $total = $total + $cartItems->getPrice();
-						?>
-						<div class="row">
-							<div class="col-md-3">
-								<img class="img-responsive" src="/assets/library/products/product_lines/230X230/<?php echo $cartItems->getProductLinesAsset();?>" alt="<?php echo $cartItems->getProductLinesAsset();?>" title="<?php echo $cartItems->getProductLinesAsset();?>" >
-							
-							</div>
-							<div class="col-md-8">
-								<label style="font-size: 18px;"><?php echo $cartItems->getDescription(); ?></label>
-								<p>
-            					</p>
-								<p>Qty: <?php echo $cartItems->getQuantity(); ?></p>
-								<label style="color: #F76D2B; font-size: 18px;"><?php echo $cartItems->getPrice(); ?></label>
-							</div>
-							<div class="col-md-1">
-								<a href="/cart/remove/<?php echo $cartItems->getCartItemId(); ?>"><img class="img-responsive" src="/assets/application/myautostores/images/round_close_button.png"></a>
-							</div>
-						</div>
-						<hr>
-						<?php } ?>
+						<?php if (count($this->layout()->cartItems) != '0'){?>
+    						<?php foreach($this->layout()->cartItems as $cartItems) { 
+    						    $total = $total + $cartItems->getPrice();
+    						?>
+    						<div class="row">
+    							<div class="col-md-3">
+    								<img class="img-responsive" src="/assets/library/products/product_lines/230X230/<?php echo $cartItems->getProductLinesAsset();?>" alt="<?php echo $cartItems->getProductLinesAsset();?>" title="<?php echo $cartItems->getProductLinesAsset();?>" >
+    							
+    							</div>
+    							<div class="col-md-8">
+    								<label style="font-size: 18px;"><?php echo $cartItems->getDescription(); ?></label>
+    								<p>
+                					</p>
+    								<p>Qty: <?php echo $cartItems->getQuantity(); ?></p>
+    								<label style="color: #F76D2B; font-size: 18px;"><?php echo $cartItems->getPrice(); ?></label>
+    							</div>
+    							<div class="col-md-1">
+    								<a href="/cart/remove/<?php echo $cartItems->getCartItemId(); ?>"><img class="img-responsive" src="/assets/application/myautostores/images/round_close_button.png"></a>
+    							</div>
+    						</div>
+    						<hr>
+    						<?php } ?>
+    					<?php } ?>
 					</div>
 					<div class="modal-footer" style="background: #EEEEEE; border-radius:0 0 5px 5px;">
 						<label class="text-right"><span class="cartAmount"><?php echo count($this->layout()->cartItems); ?></span> Item(s) | Subtotal <?php echo $total; ?> </label>
