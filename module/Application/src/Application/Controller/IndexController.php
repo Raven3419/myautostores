@@ -531,9 +531,7 @@ class IndexController extends AbstractActionController
 
     protected function index(SiteInterface $site, ViewModel $vm)
     {
-        $years = $this->lundProductService->getPartService()->getVehYear();
-        
-        $vm->setVariable('years', $years);
+       
 
         return $vm;
     }
