@@ -1,0 +1,169 @@
+<?php
+$menu = $this->menuService->getMenuByShortCode($this->site, 'footer-menu');
+$elements = $this->menuElementService->getParentElements($menu);
+$activeElement = $this->menuElementService->getMenuElementByUrl($menu, '/' . $this->page->getSlug());
+
+
+if (null != $activeElement) {
+    $parentElement = $activeElement->getParentMenuElement();
+    if (null == $parentElement) { $parentElement = $activeElement; }
+}
+?>
+
+		<div class="b-features">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-9 col-md-offset-3 col-xs-6 col-xs-offset-6">
+						<ul class="b-features__items">
+							<li>Low Prices, No Haggling</li>
+							<li>Best Parts Dealership</li>
+							<li>Multipoint Safety Check</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--b-features-->
+		<div class="b-info">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3 col-xs-6">
+						<aside class="b-info__aside">
+							<article class="b-info__aside-article">
+								<label class="footerh3">OPENING HOURS</label>
+								<div class="b-info__aside-article-item">
+									<label class="footerh6">Sales Department</label>
+									<p>Mon-Fri : 8:00am - 5:00pm EST<br />
+									   Saturday is closed<br />
+									   Sunday is closed</p>
+								</div>
+								<div class="b-info__aside-article-item">
+									<label class="footerh6">Service Department</label>
+									<p>Mon-Fri : 8:00am - 5:00pm EST<br />
+									   Saturday is closed<br />
+									   Sunday is closed</p>
+								</div>
+							</article>
+							<article class="b-info__aside-article">
+								<label class="footerh3">About us</label>
+								<p>Vestibulum varius od lio eget conseq
+									uat blandit, lorem auglue comm lodo 
+									nisl non ultricies lectus nibh mas lsa 
+									Duis scelerisque aliquet. Ante donec
+									libero pede porttitor dacu msan esct
+									venenatis quis.</p>
+							</article>
+							<a href="/about-us" class="btn m-btn">Read More<span class="fa fa-angle-right"></span></a>
+						</aside>
+					</div>
+					<?php 
+					foreach ($elements as $element) {
+						$childElements = null;
+					            	
+					  	if (null == $element->getParentMenuElement()) {
+					     	$childElements = $this->menuElementService->getChildrenElements($element);
+					        ?>
+            					<div class="col-md-3 col-xs-6">
+            						<div class="b-info__twitter">
+            							<label class="footerh3"><?php echo $element->getTitle(); ?></label>
+            							<ul class="ft-ln">
+            								<?php foreach ($childElements as $childElement) { ?>
+            									<li><a href="<?php echo $childElement->getUrl(); ?>"><?php echo $childElement->getTitle(); ?></a></li>
+            								<?php } ?>
+            							</ul>
+            						</div>
+            					</div>
+            				<?php } ?>
+            			<?php } ?>
+            					
+					<div class="col-md-3 col-xs-6">
+						<address class="b-info__contacts">
+							<p>contact us</p>
+							<div class="b-info__contacts-item">
+								<span class="fa fa-map-marker"></span>
+								<em>PO BOX 2175, Cumming, GA 30028</em>
+							</div>
+							<div class="b-info__contacts-item">
+								<span class="fa fa-phone"></span>
+								<em>Phone:  1-800- 624-5462</em>
+							</div>
+							<div class="b-info__contacts-item">
+								<span class="fa fa-fax"></span>
+								<em>FAX:  1-800- 624-5462</em>
+							</div>
+							<div class="b-info__contacts-item">
+								<span class="fa fa-envelope"></span>
+								<em>Email:  <a href="mailto:admin@myautostore.com">Admin Email</a></em>
+							</div>
+						</address>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--b-info-->
+		<footer class="b-footer">
+			<a id="to-top" href="#this-is-top"><i class="fa fa-chevron-up"></i></a>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-4">
+						<div class="b-footer__company">
+							<div class="b-nav__logo">
+								<h3><a href="/"><span>my</span>auto<span>stores</span></a></h3>
+							</div>
+							<p>&copy; 2017 by <b>MY AUTO STORES</b> | All rights reserved</p>
+						</div>
+					</div>
+					<div class="col-xs-8">
+						<div class="b-footer__content">
+							<div class="b-footer__content-social">
+								<a href="#"><span class="fa fa-facebook-square"></span></a>
+								<a href="#"><span class="fa fa-twitter-square"></span></a>
+								<a href="#"><span class="fa fa-google-plus-square"></span></a>
+								<a href="#"><span class="fa fa-instagram"></span></a>
+								<a href="#"><span class="fa fa-youtube-square"></span></a>
+								<a href="#"><span class="fa fa-skype"></span></a>
+							</div>
+							<nav class="b-footer__content-nav">
+								<ul>
+									<li><a href="/">Home</a></li>
+									<li><a href="/">Terms & Conditions</a></li>
+									<li><a href="/">Privacy Statement</a></li>
+									<li><a href="/">Sitemap</a></li>
+									
+								</ul>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!--b-footer-->
+		<!--Main-->   
+		
+		<script src="/assets/application/myautostores/js/jquery-ui.min.js" async></script>
+		<script src="/assets/application/myautostores/js/bootstrap.min.js" async></script>
+		<script src="/assets/application/myautostores/js/modernizr.custom.js" async></script>
+		<script src="/assets/application/myautostores/assets/rendro-easy-pie-chart/dist/jquery.easypiechart.min.js" async></script>
+		<script src="/assets/application/myautostores/js/waypoints.min.js" async></script>
+		<script src="/assets/application/myautostores/js/jquery.easypiechart.min.js" async></script>
+		<script src="/assets/application/myautostores/js/classie.js" async></script>
+
+		<!--Switcher-->
+		<script src="/assets/application/myautostores/assets/switcher/js/switcher.js" async></script>
+		<!--Owl Carousel-->
+		<script src="/assets/application/myautostores/assets/owl-carousel/owl.carousel.min.js"></script>
+		<!--bxSlider-->
+		<script src="/assets/application/myautostores/assets/bxslider/jquery.bxslider.js" ></script>
+		<!-- jQuery UI Slider -->
+		<script src="/assets/application/myautostores/assets/slider/jquery.ui-slider.js" async></script>
+
+		<!--Theme-->
+		<script src="/assets/application/myautostores/js/jquery.smooth-scroll.js" async></script>
+		<script src="/assets/application/myautostores/js/wow.min.js"></script>
+		<script src="/assets/application/myautostores/js/jquery.placeholder.min.js" async></script>
+		<script src="/assets/application/myautostores/js/theme.js" async></script>
+		
+		<script src="/assets/application/myautostores/js/jquery.maskedinput.js" async></script>
+		
+	</body>
+</html>
