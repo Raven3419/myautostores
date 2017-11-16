@@ -533,7 +533,7 @@ class IndexController extends AbstractActionController
     {
         $years = $this->lundProductService->getPartService()->getVehYear();
         $number ="";
-        for($x=0; $x<20; $x++) {
+        for($x=0; $x<30; $x++) {
             $number .= rand(0, 57).", ";
         }
         
