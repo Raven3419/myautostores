@@ -35,7 +35,7 @@ img{width:100%}.b-slider__info{text-transform:uppercase;margin:0
 h3{margin:0
 0 10px 0;font:700 20px 'Open Sans',sans-serif;letter-spacing:4px;padding:0
 10px;border-left:4px solid #f76d2b;border-right:4px solid #f76d2b;float:left}.b-slider__info
-h4{clear:both;margin:0;font:700 56px 'PT Sans',sans-serif;text-transform:none}.b-slider__info
+h4,.b-slider__info .homeh4{clear:both;margin:0;font:700 56px 'PT Sans',sans-serif;text-transform:none}.b-slider__info
 p{font:400 30px 'PT Sans',sans-serif;margin:5px
 0 30px 0}.b-slider__info p
 span{padding:0
@@ -186,7 +186,7 @@ span{position:relative;left:32px}.b-contact__form
 button{border-radius:100%;display:inline-block;font-size:20px;width:35px;height:35px;font-weight:normal;border:none;margin-left:2px;vertical-align:middle;border-radius:35px!important}.b-review{padding:80px
 0 50px 0;position:relative;box-shadow:0px 30px 100px -38px rgba(0,0,0,0.3);z-index:100}.b-review__main{text-align:center;margin-right:23px}.b-review__main-person{overflow:hidden;float:left;width:105px;height:105px;border-radius:100%;border:2px
 solid #ededed;text-align:center;position:relative;text-align:center}.b-review__main-person-inside{background:url(../media/persons/person.jpg) center no-repeat;width:89px;height:89px;border-radius:100%;position:absolute;margin:auto;top:0;bottom:0;left:0;right:0}.b-review__main
-h5{text-align:center;font:600 12px 'Open Sans',sans-serif;border-bottom:1px solid #B4B4B4;position:relative;margin:0
+h5,.b-review__main .homeh5{text-align:center;font:600 12px 'Open Sans',sans-serif;border-bottom:1px solid #B4B4B4;position:relative;margin:0
 0 0 115px;padding-bottom:30px;position:relative}.b-review__main h5:after{background:url(../images/elements/chevron-down.png) center no-repeat;width:100%;height:7px;content:'';position:absolute;top:100%;display:block}.b-review__main h5
 span{text-transform:uppercase;margin-top:10px}.b-review .owl-controls{margin:0
 0 0 115px!important}.b-review__main h5
