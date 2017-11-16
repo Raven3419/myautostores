@@ -155,7 +155,7 @@
 				<div class="modal-content">
 					<div class="modal-header" style="background:#666666; color:#fff; border-radius:5px 5px 0 0;">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background:#fff; border-radius:50%; padding:1px 5px;"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="myModalLabel">Shopping Cart</h4>
+						<label class="modal-title" id="myModalLabel">Shopping Cart</label>
 					</div>
 					<div class="modal-body">
 						<?php foreach($this->layout()->cartItems as $cartItems) { 
@@ -163,15 +163,15 @@
 						?>
 						<div class="row">
 							<div class="col-md-3">
-								<img class="img-responsive" src="/assets/library/products/product_lines/<?php echo $cartItems->getProductLinesAsset();?>" alt="<?php echo $cartItems->getProductLinesAsset();?>" title="<?php echo $cartItems->getProductLinesAsset();?>" >
+								<img class="img-responsive" src="/assets/library/products/product_lines/230X230/<?php echo $cartItems->getProductLinesAsset();?>" alt="<?php echo $cartItems->getProductLinesAsset();?>" title="<?php echo $cartItems->getProductLinesAsset();?>" >
 							
 							</div>
 							<div class="col-md-8">
-								<h4><?php echo $cartItems->getDescription(); ?></h4>
+								<label style="font-size: 18px;"><?php echo $cartItems->getDescription(); ?></label>
 								<p>
             					</p>
 								<p>Qty: <?php echo $cartItems->getQuantity(); ?></p>
-								<h4 style="color: #F76D2B;"><?php echo $cartItems->getPrice(); ?></h4>
+								<label style="color: #F76D2B; font-size: 18px;"><?php echo $cartItems->getPrice(); ?></label>
 							</div>
 							<div class="col-md-1">
 								<a href="/cart/remove/<?php echo $cartItems->getCartItemId(); ?>"><img class="img-responsive" src="/assets/application/myautostores/images/round_close_button.png"></a>
@@ -181,7 +181,7 @@
 						<?php } ?>
 					</div>
 					<div class="modal-footer" style="background: #EEEEEE; border-radius:0 0 5px 5px;">
-						<h5 class="text-right"><span class="cartAmount"><?php echo count($this->layout()->cartItems); ?></span> Item(s) | Subtotal <?php echo $total; ?> </h5>
+						<label class="text-right"><span class="cartAmount"><?php echo count($this->layout()->cartItems); ?></span> Item(s) | Subtotal <?php echo $total; ?> </label>
 						<button type="button" class="btn btn-default" data-dismiss="modal">CONTINUE SHOPPING</button>
 						<a href="/cart" class="btn btn-warning">CHECKOUT</a>
 					</div>
@@ -198,11 +198,11 @@
 						<h4 class="modal-title" id="myModalLabel">Your Vehicle</h4>
 					</div>
 					<div class="modal-footer" style="background: #EEEEEE; border-radius:0 0 5px 5px;">
-						<h5 class="text-right" style="float: right;"> 
+						<label class="text-right" style="float: right;"> 
 							<?php echo $_SESSION['vehicle']['year']?>   -   
     						<?php echo $_SESSION['vehicle']['make']?>   -   
     						<?php echo $_SESSION['vehicle']['model']?>
-						</h5>
+						</label>
 						<button type="button" id="remove" name="remove" class="btn btn-warning" data-dismiss="modal" style="float: left;">Remove Vehicle</button>
 					</div>
 				</div>

@@ -30,22 +30,22 @@ if (null != $activeElement) {
 					<div class="col-md-3 col-xs-6">
 						<aside class="b-info__aside">
 							<article class="b-info__aside-article">
-								<h3>OPENING HOURS</h3>
+								<label class="footerh3">OPENING HOURS</label>
 								<div class="b-info__aside-article-item">
-									<h6>Sales Department</h6>
+									<label class="footerh6">Sales Department</label>
 									<p>Mon-Fri : 8:00am - 5:00pm EST<br />
 									   Saturday is closed<br />
 									   Sunday is closed</p>
 								</div>
 								<div class="b-info__aside-article-item">
-									<h6>Service Department</h6>
+									<label class="footerh6">Service Department</label>
 									<p>Mon-Fri : 8:00am - 5:00pm EST<br />
 									   Saturday is closed<br />
 									   Sunday is closed</p>
 								</div>
 							</article>
 							<article class="b-info__aside-article">
-								<h3>About us</h3>
+								<label class="footerh3">About us</label>
 								<p>Vestibulum varius od lio eget conseq
 									uat blandit, lorem auglue comm lodo 
 									nisl non ultricies lectus nibh mas lsa 
@@ -65,7 +65,7 @@ if (null != $activeElement) {
 					        ?>
             					<div class="col-md-3 col-xs-6">
             						<div class="b-info__twitter">
-            							<h3><?php echo $element->getTitle(); ?></h3>
+            							<label class="footerh3"><?php echo $element->getTitle(); ?></label>
             							<ul class="ft-ln">
             								<?php foreach ($childElements as $childElement) { ?>
             									<li><a href="<?php echo $childElement->getUrl(); ?>"><?php echo $childElement->getTitle(); ?></a></li>

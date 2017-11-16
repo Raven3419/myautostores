@@ -1878,7 +1878,7 @@ class IndexController extends AbstractActionController
                     $recordArray = $this->parsePromoService->getPromoByPartId($this->websiteId, $part->getPartId());
                     
                     $productLinesAsset = $this->lundProductService->getProductLineService()->getProductLineAssets($part->getProductLine()->getproductLineId() );
-                    
+                                        
                     if (null == $cartItem) {
                         $data = array(
                             'product_id' => $part->getPartId(),
