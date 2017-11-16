@@ -366,7 +366,7 @@ class BrandProductCategoryService implements EventManagerAwareInterface
 			order by bpc.position";exit;
 		*/
 		
-    	$foundBrand = $this->prepare("select distinct pc.*, bpc.short_descr, bpc.position 
+    	$foundBrand = $this->prepare("select distinct pc.display_name, pc.group_name, bpc.short_descr, bpc.position 
             from product_categories as pc, brand_product_category as bpc
 			where bpc.product_category_id = pc.product_category_id and bpc.brand_id in ('".$brands."')
 			and pc.deleted = '0' and pc.disabled = '0' and bpc.deleted = '0' and bpc.disabled = '0'
