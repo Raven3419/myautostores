@@ -100,6 +100,8 @@ ul{padding-left:0;list-style:none;margin-top:45px}.b-welcome__text ul
 li{margin-bottom:10px}.b-welcome__text ul li
 span{font-size:18px;margin-right:15px}.b-welcome__services{margin-top:5px}.b-welcome__services
 h3{font:600 14px 'Open Sans',sans-serif;text-transform:uppercase;margin:20px
+0 0 0}.b-welcome__services
+.browse{font:600 14px 'Open Sans',sans-serif;text-transform:uppercase;margin:20px
 0 0 0}.b-welcome__services-img{height:90px;width:90px;border:2px
 solid #efefef;border-radius:100%;display:inline-block;position:relative}.b-welcome__services-auto,.b-welcome__services-trade,.b-welcome__services-buying,.b-welcome__services-support{background-color:#fff;padding:35px
 0;text-align:center}.b-welcome__services-img:hover{border:none;cursor:pointer}.b-welcome__services-circle{display:inline-block;height:50px;width:50px;border-radius:100%;margin:-18px 0;border:10px
@@ -164,6 +166,8 @@ solid #fff;border-radius:100%;margin:0
 auto;position:relative}.b-count__item-circle
 span{font-size:40px;height:40px;position:absolute;top:0;bottom:0;left:0;margin:auto;right:0}.b-count__item
 h2{font:700 30px 'Open Sans',sans-serif;text-align:center;margin:30px
+0 5px 0}.b-count__item
+.numcounter{font:700 30px 'Open Sans',sans-serif;text-align:center;margin:30px
 0 5px 0}.b-count__item h3{font:700 30px 'Open Sans',sans-serif;text-align:center;margin:30px 0 5px 0}.b-count__item
 h5{font:700 14px 'Open Sans',sans-serif;padding:2px
 15px;text-transform:uppercase;margin:0;border-left:3px solid #fff;border-right:3px solid #fff;display:inline-block}.b-contact{padding:60px
