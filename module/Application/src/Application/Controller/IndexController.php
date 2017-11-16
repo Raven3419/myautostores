@@ -989,8 +989,15 @@ class IndexController extends AbstractActionController
         $productLines = $this->lundProductService->getProductLineService()->getProductLinesByName($line);
         $parts        = $this->lundProductService->getPartService()->getPartsByProductLine($productLines[0]);
         $years        = $this->lundProductService->getPartService()->getVehYear($category, $productLines['0']->getDisplayName());
-        $upsale       = $this->lundProductService->getProductLineService()->getProductLines('10');
         $features     = $this->lundProductService->getProductLineService()->getAllBrandProductLineFeature($productLines['0']->getProductLineId());
+        
+        $number ="";
+        for($x=0; $x<20; $x++) {
+            $number .= rand(0, 57).", ";
+        }
+        
+        $upsale       = $this->lundProductService->getProductLineService()->getProductLines(substr($number, 0, -2));
+        
         
         $vm->setVariable('category', $category);
         $vm->setVariable('productLines', $productLines);

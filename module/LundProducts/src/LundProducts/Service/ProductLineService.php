@@ -499,18 +499,12 @@ class ProductLineService implements EventManagerAwareInterface
     public function getProductLines($number = null)
     {
         
-        $foundBrand = $this->prepare("select distinct pl.display_name as PL_Display, pc.display_name as PC_Display, pc.name as PC_Name, pl.name as PL_Name, pl.website_overview as html, pl.teaser, p.sale_price,
-    			pl.product_line_id as product_line_id, b.name as brand, bpc.short_descr as short_descr, bpc.long_descr as long_descr, pl.position, pl.total_rating, pl.total_count, bpc.meta_title, bpc.meta_keywords, bpc.meta_descr,
-    			a.hash as hash, a.file_name as fileName, a2.file_name as file_name, p.color, p.finish, p.style
-										from brand_product_category as bpc, brands as b, parts as p, product_lines as pl
+        $foundBrand = $this->prepare("select distinct pl.display_name as PL_Display, pc.display_name as PC_Display, p.sale_price, a.file_name as fileName
+										from parts as p, product_lines as pl
 										left join product_line_asset as pla on pl.product_line_id = pla.product_line_id and pla.asset_seq = '1'
                                         left join asset as a on pla.asset_id = a.asset_id,
                                         product_categories as pc
-                                        left join asset as a2 on pc.header_asset_id = a2.asset_id
-										where pc.product_category_id = bpc.product_category_id
-										and pl.product_category_id = pc.product_category_id
-										and pl.brand_id = b.brand_id
-										and bpc.disabled = '0' and bpc.deleted = '0'
+										where pl.product_category_id = pc.product_category_id
 										and p.disabled = '0' and p.deleted = '0'
 										and pc.disabled = '0' and pc.deleted = '0'
 										and pl.disabled = '0' and pl.deleted = '0'
