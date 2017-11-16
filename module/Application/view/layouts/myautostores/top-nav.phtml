@@ -1,239 +1,170 @@
-<?php 
-	$menu = $this->menuService->getMenuByShortCode($this->site, 'main-menu');
-	$elements = $this->menuElementService->getParentElements($menu);
-    
-	$exterior = array();
-	$interior = array();
-	$other    = array();
-	for($y=0; $y<count($this->productCategories); $y++) {
-	    
-	    if($this->productCategories[$y]['group_name'] == 1){
-	        
-	        array_push($exterior, $this->productCategories[$y]);
-	        
-	    } elseif($this->productCategories[$y]['group_name'] == 2){
-	       
-	        array_push($interior, $this->productCategories[$y]);
-	        
-	    } else {
-	        
-	        array_push($other, $this->productCategories[$y]);
-	        
-	    }
-	    
-	}
-?>
-	<body class="m-index" data-scrolling-animations="true" data-equal-height=".b-auto__main-item">
-
-		<!-- Loader -->
-			<div id="page-preloader"><span class="spinner"></span></div>
-		<!-- Loader end -->
-		
-		<header class="b-topBar wow slideInDown" data-wow-delay="0.7s">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3 col-xs-6 hidden-xs">
-						<div class="b-topBar__addr">
-							<span class="fa fa-map-marker"></span>
-							PO BOX 2175, Cumming, GA 30028
-						</div>
-					</div>
-					<div class="col-md-2 col-xs-6 hidden-xs">
-						<div class="b-topBar__tel">
-							<span class="fa fa-phone"></span>
-							1-800-888-8888
-						</div>
-					</div>
-					<div class="col-md-3 col-xs-6 hidden-xs">
-						<?php if(isset($_SESSION['vehicle'])) { ?>
-    						<div class="b-topBar__tel">
-    							<a href="#" data-toggle="modal" data-target="#myCar">
-    								<span class="fa fa-car" style="margin-left: 25%;"></span>
-    								<?php echo $_SESSION['vehicle']['year']; ?> - 
-    								<?php echo $_SESSION['vehicle']['make']; ?> - 
-    								<?php echo $_SESSION['vehicle']['model']; ?>
-    							</a>
-    						</div>
-						<?php } ?>
-					</div>
-					<div class="col-md-4 col-xs-6">
-						<nav class="b-topBar__nav">
-							<ul>
-								<li><a href="#" data-toggle="modal" data-target="#myModal" > <span class="fa fa-shopping-cart"></span> Cart (<b class="cartNumber"><?php echo count($this->layout()->cartItems); ?></b>) </a> </li>
-								
-								<?php if($this->layout()->customerId) {?>
-								
-									
-    								<li>Welcome <?php echo $_SESSION['saved_customer']['firstName']; ?>  <?php echo $_SESSION['saved_customer']['lastName']; ?></li>
-    								<li><a href="/logout">Logout</a></li>
-								
-								<?php } else {?>
-								
-    								<li><a href="/registration">Register</a></li>
-    								<li><a href="/login">Sign in</a></li>
-								
-								<?php } ?>
-								
-							</ul>
-						</nav>
-					</div>
-				</div>
-			</div>
-		</header>
-		<!--b-topBar-->
-		<nav class="b-nav">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-3 col-xs-4">
-						<div class="b-nav__logo wow slideInLeft" data-wow-delay="0.3s">
-							<h3><a href="/"><span>my</span>auto<span>stores</span></a></h3>
-							<h4>BEST AUTO ACCESSORIES DEALER</h4>
-						</div>
-					</div>
-					<div class="col-sm-9 col-xs-8">
-						<div class="b-nav__list wow slideInRight" data-wow-delay="0.3s">
-							<div class="navbar-header">
-								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav">
-									<span class="sr-only">Toggle navigation</span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-								</button>
-							</div>
-							<div class="collapse navbar-collapse navbar-main-slide" id="nav">
-								<ul class="navbar-nav-menu">
-									<?php 
-					            		foreach ($elements as $element) {
-					                ?>
-										<li class="dropdown">
-											<a class="dropdown-toggle" data-toggle='dropdown' href="#"><?php echo $element->getTitle();?> <span class="fa fa-caret-down"></span></a>
-											<ul class="dropdown-menu h-nav">
-												<?php 
-												if($element->getMenuElementId() == '1'){
-												    
-    												for($x=0; $x<count($exterior); $x++) { 
-    												    ?>
-    													<div class="col-md-6">
-    												    	<li><a href="/products/<?php echo urlencode(strtolower($exterior[$x]['display_name'])); ?>" alt="<?php echo $exterior[$x]['display_name']; ?>" title="<?php echo $exterior[$x]['display_name']; ?>"><?php echo $exterior[$x]['display_name']; ?></a></li>
-    												 	</div>    
-    											<?php }
-    											
-												} elseif($element->getMenuElementId() == '2'){
-												    for($z=0; $z<count($interior); $z++) { ?>
-    													<div class="col-md-6">
-    												    	<li><a href="/products/<?php echo urlencode(strtolower($interior[$z]['display_name'])); ?>" alt="<?php echo $interior[$z]['display_name']; ?>" title="<?php echo $interior[$z]['display_name']; ?>"><?php echo $interior[$z]['display_name']; ?></a></li>
-    												 	</div>    
-    											<?php }
-    											
-												} else{
-												    for($n=0; $n<count($other); $n++) { ?>
-    													<div class="col-md-6">
-    												    	<li><a href="/products/<?php echo urlencode(strtolower($other[$n]['display_name'])); ?>" alt="<?php echo $other[$n]['display_name']; ?>" title="<?php echo $other[$n]['display_name']; ?>"><?php echo $other[$n]['display_name']; ?></a></li>
-    												 	</div>    
-    											<?php }
-    											}
-									            ?>
-											</ul>
-										</li>
-					            	<?php 		    
-					            		}
-					            	?>
-									
-									<li class="dropdown">
-										<input type="text" name="" value="" />
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</nav>
-		<!--b-nav-->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header" style="background:#666666; color:#fff; border-radius:5px 5px 0 0;">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background:#fff; border-radius:50%; padding:1px 5px;"><span aria-hidden="true">&times;</span></button>
-						<label class="modal-title" id="myModalLabel">Shopping Cart</label>
-					</div>
-					<div class="modal-body">
-						<?php if (count($this->layout()->cartItems) != '0'){?>
-    						<?php foreach($this->layout()->cartItems as $cartItems) { 
-    						    $total = $total + $cartItems->getPrice();
-    						?>
-    						<div class="row">
-    							<div class="col-md-3">
-    								<img class="img-responsive" src="/assets/library/products/product_lines/230X230/<?php echo $cartItems->getProductLinesAsset();?>" alt="<?php echo $cartItems->getProductLinesAsset();?>" title="<?php echo $cartItems->getProductLinesAsset();?>" >
-    							
-    							</div>
-    							<div class="col-md-8">
-    								<label style="font-size: 18px;"><?php echo $cartItems->getDescription(); ?></label>
-    								<p>
-                					</p>
-    								<p>Qty: <?php echo $cartItems->getQuantity(); ?></p>
-    								<label style="color: #F76D2B; font-size: 18px;"><?php echo $cartItems->getPrice(); ?></label>
-    							</div>
-    							<div class="col-md-1">
-    								<a href="/cart/remove/<?php echo $cartItems->getCartItemId(); ?>"><img class="img-responsive" src="/assets/application/myautostores/images/round_close_button.png"></a>
-    							</div>
-    						</div>
-    						<hr>
-    						<?php } ?>
-    					<?php } ?>
-					</div>
-					<div class="modal-footer" style="background: #EEEEEE; border-radius:0 0 5px 5px;">
-						<label class="text-right"><span class="cartAmount"><?php echo count($this->layout()->cartItems); ?></span> Item(s) | Subtotal <?php echo $total; ?> </label>
-						<button type="button" class="btn btn-default" data-dismiss="modal">CONTINUE SHOPPING</button>
-						<a href="/cart" class="btn btn-warning">CHECKOUT</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<!--b-nav-->
-		<div class="modal fade" id="myCar" tabindex="-1" role="dialog" aria-labelledby="myCarLabel">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header" style="background:#666666; color:#fff; border-radius:5px 5px 0 0;">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background:#fff; border-radius:50%; padding:1px 5px;"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="myModalLabel">Your Vehicle</h4>
-					</div>
-					<div class="modal-footer" style="background: #EEEEEE; border-radius:0 0 5px 5px;">
-						<label class="text-right" style="float: right;"> 
-							<?php echo $_SESSION['vehicle']['year']?>   -   
-    						<?php echo $_SESSION['vehicle']['make']?>   -   
-    						<?php echo $_SESSION['vehicle']['model']?>
-						</label>
-						<button type="button" id="remove" name="remove" class="btn btn-warning" data-dismiss="modal" style="float: left;">Remove Vehicle</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		
-		
-		<script type="text/javascript">
-
-    		jQuery(document).ready(function () {
-    
-    			jQuery('#remove').on('click', function () {
-        			
-					jQuery.ajax({
-						url: "/clear-vehicle",
-						type: 'POST',
-						dataType: 'json',
-						success: function(res) {
-							if(res.status == 'complete') {
-								window.location.replace("/");
-							}
-						},
-						error: function(){
-	
-							alert("An error occurred Please re-select");
-						}
-					});
-    			});
-
-    		});
-		</script>
+<?php
+$menu = $this->menuService->getMenuByShortCode($this->site, 'main-menu');
+$elements = $this->menuElementService->getParentElements($menu);
+$exterior = array();
+$interior = array();
+$other    = array();
+for($y=0; $y<count($this->productCategories); $y++) {
+if($this->productCategories[$y]['group_name'] == 1){
+array_push($exterior, $this->productCategories[$y]);
+} elseif($this->productCategories[$y]['group_name'] == 2){
+array_push($interior, $this->productCategories[$y]);
+} else {
+array_push($other, $this->productCategories[$y]);
+}
+}
+?><body
+class="m-index" data-scrolling-animations="true" data-equal-height=".b-auto__main-item"><div
+id="page-preloader"><span
+class="spinner"></span></div>
+<header
+class="b-topBar wow slideInDown" data-wow-delay="0.7s"><div
+class="container"><div
+class="row"><div
+class="col-md-3 col-xs-6 hidden-xs"><div
+class="b-topBar__addr">
+<span
+class="fa fa-map-marker"></span>
+PO BOX 2175, Cumming, GA 30028</div></div><div
+class="col-md-2 col-xs-6 hidden-xs"><div
+class="b-topBar__tel">
+<span
+class="fa fa-phone"></span>
+1-800-888-8888</div></div><div
+class="col-md-3 col-xs-6 hidden-xs">
+<?php if(isset($_SESSION['vehicle'])) { ?><div
+class="b-topBar__tel">
+<a
+href="#" data-toggle="modal" data-target="#myCar">
+<span
+class="fa fa-car" style="margin-left: 25%;"></span>
+<?php echo $_SESSION['vehicle']['year']; ?> -
+<?php echo $_SESSION['vehicle']['make']; ?> -
+<?php echo $_SESSION['vehicle']['model']; ?>
+</a></div>
+<?php } ?></div><div
+class="col-md-4 col-xs-6">
+<nav
+class="b-topBar__nav"><ul><li><a
+href="#" data-toggle="modal" data-target="#myModal" > <span
+class="fa fa-shopping-cart"></span> Cart (<b
+class="cartNumber"><?php echo count($this->layout()->cartItems); ?></b>) </a></li>
+<?php if($this->layout()->customerId) {?><li>Welcome <?php echo $_SESSION['saved_customer']['firstName']; ?>  <?php echo $_SESSION['saved_customer']['lastName']; ?></li><li><a
+href="/logout">Logout</a></li>
+<?php } else {?><li><a
+href="/registration">Register</a></li><li><a
+href="/login">Sign in</a></li>
+<?php } ?></ul>
+</nav></div></div></div>
+</header>
+<nav
+class="b-nav"><div
+class="container"><div
+class="row"><div
+class="col-sm-3 col-xs-4"><div
+class="b-nav__logo wow slideInLeft" data-wow-delay="0.3s"><h3><a
+href="/"><span>my</span>auto<span>stores</span></a></h3><h4>BEST AUTO ACCESSORIES DEALER</h4></div></div><div
+class="col-sm-9 col-xs-8"><div
+class="b-nav__list wow slideInRight" data-wow-delay="0.3s"><div
+class="navbar-header">
+<button
+type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav">
+<span
+class="sr-only">Toggle navigation</span>
+<span
+class="icon-bar"></span>
+<span
+class="icon-bar"></span>
+<span
+class="icon-bar"></span>
+</button></div><div
+class="collapse navbar-collapse navbar-main-slide" id="nav"><ul
+class="navbar-nav-menu">
+<?php
+foreach ($elements as $element) {
+?><li
+class="dropdown">
+<a
+class="dropdown-toggle" data-toggle='dropdown' href="#"><?php echo $element->getTitle();?> <span
+class="fa fa-caret-down"></span></a><ul
+class="dropdown-menu h-nav">
+<?php
+if($element->getMenuElementId() == '1'){
+for($x=0; $x<count($exterior); $x++) {
+?><div
+class="col-md-6"><li><a
+href="/products/<?php echo urlencode(strtolower($exterior[$x]['display_name'])); ?>" alt="<?php echo $exterior[$x]['display_name']; ?>" title="<?php echo $exterior[$x]['display_name']; ?>"><?php echo $exterior[$x]['display_name']; ?></a></li></div>
+<?php }
+} elseif($element->getMenuElementId() == '2'){
+for($z=0; $z<count($interior); $z++) { ?><div
+class="col-md-6"><li><a
+href="/products/<?php echo urlencode(strtolower($interior[$z]['display_name'])); ?>" alt="<?php echo $interior[$z]['display_name']; ?>" title="<?php echo $interior[$z]['display_name']; ?>"><?php echo $interior[$z]['display_name']; ?></a></li></div>
+<?php }
+} else{
+for($n=0; $n<count($other); $n++) { ?><div
+class="col-md-6"><li><a
+href="/products/<?php echo urlencode(strtolower($other[$n]['display_name'])); ?>" alt="<?php echo $other[$n]['display_name']; ?>" title="<?php echo $other[$n]['display_name']; ?>"><?php echo $other[$n]['display_name']; ?></a></li></div>
+<?php }
+}
+?></ul></li>
+<?php
+}
+?><li
+class="dropdown">
+<input
+type="text" name="" value="" /></li></ul></div></div></div></div></div>
+</nav><div
+class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"><div
+class="modal-dialog" role="document"><div
+class="modal-content"><div
+class="modal-header" style="background:#666666; color:#fff; border-radius:5px 5px 0 0;">
+<button
+type="button" class="close" data-dismiss="modal" aria-label="Close" style="background:#fff; border-radius:50%; padding:1px 5px;"><span
+aria-hidden="true">&times;</span></button>
+<label
+class="modal-title" id="myModalLabel">Shopping Cart</label></div><div
+class="modal-body">
+<?php if (count($this->layout()->cartItems) != '0'){?>
+<?php foreach($this->layout()->cartItems as $cartItems) {
+$total = $total + $cartItems->getPrice();
+?><div
+class="row"><div
+class="col-md-3">
+<img
+class="img-responsive" src="/assets/library/products/product_lines/230X230/<?php echo $cartItems->getProductLinesAsset();?>" alt="<?php echo $cartItems->getProductLinesAsset();?>" title="<?php echo $cartItems->getProductLinesAsset();?>" ></div><div
+class="col-md-8">
+<label
+style="font-size: 18px;"><?php echo $cartItems->getDescription(); ?></label><p></p><p>Qty: <?php echo $cartItems->getQuantity(); ?></p>
+<label
+style="color: #F76D2B; font-size: 18px;"><?php echo $cartItems->getPrice(); ?></label></div><div
+class="col-md-1">
+<a
+href="/cart/remove/<?php echo $cartItems->getCartItemId(); ?>"><img
+class="img-responsive" src="/assets/application/myautostores/images/round_close_button.png"></a></div></div><hr>
+<?php } ?>
+<?php } ?></div><div
+class="modal-footer" style="background: #EEEEEE; border-radius:0 0 5px 5px;">
+<label
+class="text-right"><span
+class="cartAmount"><?php echo count($this->layout()->cartItems); ?></span> Item(s) | Subtotal <?php echo $total; ?> </label>
+<button
+type="button" class="btn btn-default" data-dismiss="modal">CONTINUE SHOPPING</button>
+<a
+href="/cart" class="btn btn-warning">CHECKOUT</a></div></div></div></div><div
+class="modal fade" id="myCar" tabindex="-1" role="dialog" aria-labelledby="myCarLabel"><div
+class="modal-dialog" role="document"><div
+class="modal-content"><div
+class="modal-header" style="background:#666666; color:#fff; border-radius:5px 5px 0 0;">
+<button
+type="button" class="close" data-dismiss="modal" aria-label="Close" style="background:#fff; border-radius:50%; padding:1px 5px;"><span
+aria-hidden="true">&times;</span></button><h4 class="modal-title" id="myModalLabel">Your Vehicle</h4></div><div
+class="modal-footer" style="background: #EEEEEE; border-radius:0 0 5px 5px;">
+<label
+class="text-right" style="float: right;">
+<?php echo $_SESSION['vehicle']['year']?>   -
+<?php echo $_SESSION['vehicle']['make']?>   -
+<?php echo $_SESSION['vehicle']['model']?>
+</label>
+<button
+type="button" id="remove" name="remove" class="btn btn-warning" data-dismiss="modal" style="float: left;">Remove Vehicle</button></div></div></div></div> <script type="text/javascript">jQuery(document).ready(function(){jQuery('#remove').on('click',function(){jQuery.ajax({url:"/clear-vehicle",type:'POST',dataType:'json',success:function(res){if(res.status=='complete'){window.location.replace("/");}},error:function(){alert("An error occurred Please re-select");}});});});</script>
+<!--Minify by http://www.MinifyWeb.com/-->
