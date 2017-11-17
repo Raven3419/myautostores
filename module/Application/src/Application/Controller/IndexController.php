@@ -861,9 +861,6 @@ class IndexController extends AbstractActionController
         
         } else if($this->brandType == 'brand'){
             
-            $productCategory = $this->productCategoryService->getProductCategoryByName($category);
-            $brandProductCategory = $this->brandProductCategoryService->getCategoryByBrandAndCategory($productCategory);
-            
             $category = $this->brandName;
             if(isset($_SESSION['vehicle'])) {
                 
