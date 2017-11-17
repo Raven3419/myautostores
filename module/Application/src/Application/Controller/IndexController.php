@@ -1957,6 +1957,7 @@ class IndexController extends AbstractActionController
                             'parts' => $part,
                             'productLinesAsset' => $productLinesAsset[0]['fileName'],
                         );
+                        
                         $cartItem = $this->cartItemService->create($systemUser, $cart, $data, $part);
                     } else {
                         $cartItem = $this->cartItemService->incrementQuantity($systemUser, $cartItem, $cartItem->getQuantity());
