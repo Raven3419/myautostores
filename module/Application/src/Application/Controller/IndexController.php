@@ -116,9 +116,19 @@ class IndexController extends AbstractActionController
     protected $brandSites;
     
     /**
-     * @var BrandSites
+     * @var BrandName
      */
     protected $brandName;
+    
+    /**
+     * @var name
+     */
+    protected $name;
+    
+    /**
+     * @var brandType
+     */
+    protected $brandType;
     
     /**
      * @var standAlone
@@ -280,14 +290,30 @@ class IndexController extends AbstractActionController
 	    $slugthree = $this->params()->fromRoute('slugthree', null);
 	    $slugfour  = $this->params()->fromRoute('slugfour', null);
 	    $slugfive  = $this->params()->fromRoute('slugfive', null);
-        
-	    $siteBrands = array('1');
-	    $this->brandSites = $siteBrands;
-	    $this->brandName = null;
 	    
-        if (null === $slugone) {
-            /* NO PAGE FOUND IN ROUTE */
-        }
+	    if($slugone == 'avs') {
+	        
+	        $siteBrands = array('1');
+	        $this->brandSites = $siteBrands;
+	        $brand = $this->lundProductService->getBrandsService()->getBrand('1');
+	        $this->brandName = $brand->getName();
+	        $this->name = $slugone;
+	       
+	        $slugone = $slugtwo;
+	        $slugtwo = $slugthree;
+	        $slugthree = $slugfour;
+	        $slugfour = $slugfive;
+	        $this->brandType = 'brand';
+	        
+	    } else { 
+        
+    	    $siteBrands = array('1');
+    	    $this->brandSites = $siteBrands;
+    	    $this->brandName = null;
+    	    $this->brandType = null;
+	    
+	    }
+	    
         
 
         if (null != $slugtwo ) {
@@ -366,7 +392,13 @@ class IndexController extends AbstractActionController
 
         $menu = $this->menuService;
 
+        
         $canonical = $slugone;
+        
+        if (null != $this->brandType)
+        {
+            $canonical = $this->name."/".$slugone;
+        }
         
         if (null != $slugtwo) 
         {
@@ -455,7 +487,7 @@ class IndexController extends AbstractActionController
             'slugtwo'            	=> $slugtwo,
             'slugthree'          	=> $slugthree,
             'slugfour'           	=> $slugfour,
-            'currentbrand'       	=> $this->brandSites,
+            'brandSites'           	=> $this->brandSites,
         	'brandName'				=> $this->brandName,
             'brandProductCategory' 	=> $this->lundProductService->getBrandProductCategoryService(),
         	'productCategories'		=> $productCategories,
@@ -757,7 +789,6 @@ class IndexController extends AbstractActionController
     
     protected function products(SiteInterface $site, ViewModel $vm, $category = null, $line = null )
     {
-        
         $color      = $this->params()->fromPost('color', array());
         $price      = $this->params()->fromPost('price', array());
         $finish     = $this->params()->fromPost('finish', array());
@@ -772,7 +803,7 @@ class IndexController extends AbstractActionController
         
         
         
-        if (null != $category && null == $line) {
+        if (null != $category && null == $line || $this->brandType == 'brand') {
             //echo "4";exit;
             $vm = $this->loadProductLinePage($vm, $category, $brandName, $color, $price, $finish, $style, $price);
         } 
@@ -827,12 +858,39 @@ class IndexController extends AbstractActionController
                     
                 }
             }
-            
         
-        } else {
+        } else if($this->brandType == 'brand'){
             
-            $productCategory = $this->productCategoryService->getProductCategoryByName($category);
-            $brandProductCategory = $this->brandProductCategoryService->getCategoryByBrandAndCategory($productCategory);
+            $category = $this->brandName;
+            if(isset($_SESSION['vehicle'])) {
+                
+                $partService        = $this->lundProductService->getPartService();
+                $vehCollectionService = $this->lundProductService->getVehCollectionService();
+                
+                $cars = explode(" - ", $_SESSION['vehicle']['model']);
+                
+                $years = $vehCollectionService->getVehYearsByName($_SESSION['vehicle']['year']);
+                $make = $vehCollectionService->getMake($_SESSION['vehicle']['make']);
+                
+                $model = $partService->getVehModelbyYear($cars['0'], $make);
+                $model[0]['name'];
+                
+                $baseProductLines = $this->lundProductService->getProductLineService()->getCategoryBrandProductCategoryByBrand($years->getVehYearId(), $make[0]->getVehMakeId(), $model[0]['veh_model_id'], $this->brandSites);
+                
+                $productLines = $this->lundProductService->getProductLineService()->getCategoryBrandProductCategoryByBrand($years->getVehYearId(), $make[0]->getVehMakeId(), $model[0]['veh_model_id'], $this->brandSites, $sort, $color, $finish, $style, $price);
+                
+            } else {
+                
+                $baseProductLines = $this->lundProductService->getProductLineService()->getBrandProductCategoryByBrand($this->brandSites);
+                
+                $productLines = $this->lundProductService->getProductLineService()->getBrandProductCategoryByBrand($this->brandSites, $sort, $color, $finish, $style, $price);
+                
+            }
+            
+            $vm->setVariable('productLinesBrands', '1');
+            $vm->setVariable('name', $this->name);
+            
+        } else {
             
             if(isset($_SESSION['vehicle'])) {
                 
@@ -862,6 +920,12 @@ class IndexController extends AbstractActionController
             
         }
         
+        if($this->brandType == 'brand'){
+            
+            $vm->setVariable('productLinesBrands', '1');
+            $vm->setVariable('name', $this->name);
+            
+        }
         
         
         $allBrands = $this->lundProductService->getBrandsService()->getCurrentBrands();

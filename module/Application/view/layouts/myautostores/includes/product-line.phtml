@@ -81,7 +81,11 @@ $emptyProductLine = false;
                     <aside class="b-items__aside">
                         <h3 class="s-title wow zoomInUp" data-wow-delay="0.2s">REFINE YOUR SEARCH</h3>
                         <div class="b-items__aside-main wow zoomInUp" data-wow-delay="0.2s">
-                            <form method="post" action="/products/<?php echo urlencode(strtolower($this->category)); ?>">
+                        	<?php if($this->productLinesBrands) { ?>
+                            	<form method="post" action="/<?php echo $this->name; ?>/products">
+                            <?php } else { ?>
+                            	<form method="post" action="/products/<?php echo urlencode(strtolower($this->category)); ?>">
+                            <?php } ?>
                                 <div class="b-items__aside-main-body">
                                     <div class="b-items__aside-main-body-item">
                                         <label>COLOR</label>
@@ -173,16 +177,18 @@ $emptyProductLine = false;
                                 </footer>
                             </form>
                         </div>
+                        <?php if(!$this->productLinesBrands) { ?>
                         <div class="b-items__aside-sell wow zoomInUp" data-wow-delay="0.1s">
                             <h3 class="s-title wow zoomInUp" data-wow-delay="0.1s" style="width:100%;">Top Brands</h3>
                             <nav>
-									<ul class="b-blog__aside-categories-list text-left">
-										<?php foreach( $this->allBrands as $allBrands) { ?>
-											<li><a href="/"><?php echo $allBrands->getName();; ?></a></li>
-										<?php } ?>
-									</ul>
-								</nav>
+								<ul class="b-blog__aside-categories-list text-left">
+									<?php foreach( $this->allBrands as $allBrands) { ?>
+										<li><a href="/"><?php echo $allBrands->getName();; ?></a></li>
+									<?php } ?>
+								</ul>
+							</nav>
                         </div>
+                        <?php } ?>
 						
 						<div class="b-items__aside-sell wow zoomInUp" data-wow-delay="0.1s">
                             <h3 class="s-title wow zoomInUp" data-wow-delay="0.1s" style="width:100%;">Top Categories</h3>
@@ -247,11 +253,15 @@ $emptyProductLine = false;
                            		$(".brandName_all").attr("checked", false); //uncheck all checkboxes
                           		$(this).attr("checked", true);  //check the clicked one
                             });
-
+                            
                             jQuery('#show').on('change', function(){
                            		//alert(this.value);
                             	$('<form/>', {
-                                    action: "/products/<?php echo urlencode(strtolower($this->category)); ?>",
+                            		<?php if($this->productLinesBrands) { ?>
+                                    	action: "/<?php echo $this->name?>/products",
+                                    <?php } else { ?>
+                                    	action: "/products/<?php echo urlencode(strtolower($this->category)); ?>",
+                                    <?php } ?>
                                     method: "post",
                                     html: "<input name='show' value='"+ this.value +"'><input name='sort' value='"+ jQuery('#sort').val() +"'>",
                                     class: "hidden"
@@ -263,7 +273,11 @@ $emptyProductLine = false;
 
                             jQuery('#sort').on('change', function(){
                             	$('<form/>', {
-                                    action: "/products/<?php echo urlencode(strtolower($this->category)); ?>",
+                            		<?php if($this->productLinesBrands) { ?>
+                                    	action: "/<?php echo $this->name?>/products",
+                                    <?php } else { ?>
+                                    	action: "/products/<?php echo urlencode(strtolower($this->category)); ?>",
+                                    <?php } ?>
                                     method: "post",
                                     html: "<input name='sort' value='"+ this.value +"'><input name='show' value='"+ jQuery('#show').val() +"'>",
                                     class: "hidden"
@@ -280,7 +294,11 @@ $emptyProductLine = false;
                     	<?php for($x=0; $x<count($productLinesArray); $x++) { ?>
                     	    <li class="b-items__cars-one wow zoomInUp" data-wow-delay="0.2s">
                     	    	<div class="b-items__cars-one-img">
-                    	    		<a href="/products/<?php echo urlencode(strtolower($productLinesArray[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($productLinesArray[$x]['PL_Display'])); ?>" class="btn m-btn">
+                    	    		<?php if($this->productLinesBrands) { ?>
+                    	    			<a href="/<?php echo $this->name?>/products/<?php echo urlencode(strtolower($productLinesArray[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($productLinesArray[$x]['PL_Display'])); ?>" class="btn m-btn">
+                    	    		<?php } else { ?>
+                    	    			<a href="/products/<?php echo urlencode(strtolower($productLinesArray[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($productLinesArray[$x]['PL_Display'])); ?>" class="btn m-btn">
+                    	    		<?php } ?>
                     	    			<img src="/assets/library/products/product_lines/230X230/<?php echo $productLinesArray[$x]['fileName']?>" alt='<?php echo $productLinesArray[$x]['PL_Display']; ?>' title='<?php echo $productLinesArray[$x]['PL_Display']; ?>' />
                     	    		</a>
                     	    		<!-- 
@@ -303,7 +321,12 @@ $emptyProductLine = false;
                                                 	<br/>
                                                 	<label style="color: #F76D2B; margin:0px 0 20px; font-size: 24px;"><b><?php echo $productLinesArray[$x]['sale_price']; ?></b></label>
                                                 </div>
-                                                <a href="/products/<?php echo urlencode(strtolower($productLinesArray[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($productLinesArray[$x]['PL_Display'])); ?>" class="btn m-btn">VIEW DETAILS<span class="fa fa-angle-right"></span></a>
+                                                <?php if($this->productLinesBrands) { ?>
+                                                	<a href="/<?php echo $this->name?>/products/<?php echo urlencode(strtolower($productLinesArray[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($productLinesArray[$x]['PL_Display'])); ?>" class="btn m-btn">VIEW DETAILS<span class="fa fa-angle-right"></span></a>
+                                	    		<?php } else { ?>
+                                	    			<a href="/products/<?php echo urlencode(strtolower($productLinesArray[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($productLinesArray[$x]['PL_Display'])); ?>" class="btn m-btn">VIEW DETAILS<span class="fa fa-angle-right"></span></a>
+                                	    		<?php } ?>
+                                                
 											</div>
 										</div>
 									</div>
