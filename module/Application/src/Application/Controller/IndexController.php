@@ -861,6 +861,9 @@ class IndexController extends AbstractActionController
         
         } else if($this->brandType == 'brand'){
             
+            $productCategory = $this->productCategoryService->getProductCategoryByName($category);
+            $brandProductCategory = $this->brandProductCategoryService->getCategoryByBrandAndCategory($productCategory);
+            
             $category = $this->brandName;
             if(isset($_SESSION['vehicle'])) {
                 
@@ -891,6 +894,9 @@ class IndexController extends AbstractActionController
             $vm->setVariable('name', $this->name);
             
         } else {
+            
+            $productCategory = $this->productCategoryService->getProductCategoryByName($category);
+            $brandProductCategory = $this->brandProductCategoryService->getCategoryByBrandAndCategory($productCategory);
             
             if(isset($_SESSION['vehicle'])) {
                 
