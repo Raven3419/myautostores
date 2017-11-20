@@ -13,8 +13,7 @@ a{border-right:0}.b-topBar__nav li a:hover,.b-topBar__lang a:hover{text-decorati
 a{text-transform:uppercase;font:300 12px 'Open Sans',sans-serif}a.m-langLink{font-weight:600;margin-left:10px}.h-lang li
 a{margin-left:0!important;text-align:center}.b-topBar__lang a
 span.fa{margin-left:8px}.b-topBar__lang-flag{display:inline-block;width:20px;height:13px;vertical-align:middle;margin-right:4px}.b-topBar__lang-flag.m-en{background:url(../images/flags/en.jpg)}.b-topBar__lang-flag.m-es{background:url(../images/flags/es.jpg)}.b-topBar__lang-flag.m-de{background:url(../images/flags/de.jpg)}.b-topBar__lang-flag.m-fr{background:url(../images/flags/fr.jpg)}.dropdown-menu{min-width:100px;padding:0;border-radius:0;box-shadow:none}.b-nav{padding:10px
-0 10px;position:relative;z-index:99}.b-nav__logo{float:left;padding:8px
-0 0 5px;background:url(../images/logo/logo.png) left top no-repeat;text-transform:uppercase}.b-nav__logo
+0 10px;position:relative;z-index:99}.b-nav__logo
 h3{margin:0;font-size:26px;line-height:20px}.b-nav__logo h3
 a{text-decoration:none;font:700 26px 'Titillium Web', sans-serif}.b-nav__logo
 h4{margin:0;line-height:15px;font-size:11px;margin-top:-5px;color:#999}.b-nav__logo h4

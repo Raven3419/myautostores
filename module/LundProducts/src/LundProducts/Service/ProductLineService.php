@@ -808,7 +808,7 @@ class ProductLineService implements EventManagerAwareInterface
         
         $foundBrand = $this->prepare("select distinct pc.display_name as PC_Display, pc.name as PC_Name, pl.display_name as PL_Display, pl.name as PL_Name, pl.website_overview as html,  p.sale_price,
     			pl.product_line_id as product_line_id, b.name as brand, bpc.short_descr as short_descr, bpc.long_descr as long_descr, pl.position, pl.total_rating, pl.total_count, bpc.meta_title, bpc.meta_keywords, bpc.meta_descr,
-    			a.hash as hash, a.file_name as fileName, a2.file_name as file_name, p.color, p.finish, p.style
+    			a.hash as hash, a.file_name as fileName, a2.file_name as file_name, p.color_group, p.color, p.finish, p.style
 										from brand_product_category as bpc, brands as b, parts as p, product_lines as pl
 										left join product_line_asset as pla on pl.product_line_id = pla.product_line_id and pla.asset_seq = '1'
                                         left join asset as a on pla.asset_id = a.asset_id,
@@ -962,7 +962,7 @@ class ProductLineService implements EventManagerAwareInterface
     	
     	$foundBrand = $this->prepare("select distinct pc.display_name as PC_Display, pc.name as PC_Name, pl.display_name as PL_Display, pl.name as PL_Name, pl.website_overview as html,  p.sale_price,
     			pl.product_line_id as product_line_id, b.name as brand, bpc.short_descr as short_descr, bpc.long_descr as long_descr, pl.position, pl.total_rating, pl.total_count, bpc.meta_title, bpc.meta_keywords, bpc.meta_descr,
-    			a.hash as hash, a.file_name as fileName, a2.file_name as file_name, p.color, p.finish, p.style
+    			a.hash as hash, a.file_name as fileName, a2.file_name as file_name, p.color_group, p.color, p.finish, p.style
 										from brand_product_category as bpc, brands as b, parts as p, product_lines as pl
 										left join product_line_asset as pla on pl.product_line_id = pla.product_line_id and pla.asset_seq = '1'
                                         left join asset as a on pla.asset_id = a.asset_id,

@@ -873,7 +873,7 @@ class IndexController extends AbstractActionController
                 $make = $vehCollectionService->getMake($_SESSION['vehicle']['make']);
                 
                 $model = $partService->getVehModelbyYear($cars['0'], $make);
-                $model[0]['name'];
+            
                 
                 $baseProductLines = $this->lundProductService->getProductLineService()->getCategoryBrandProductCategoryByBrand($years->getVehYearId(), $make[0]->getVehMakeId(), $model[0]['veh_model_id'], $this->brandSites);
                 
@@ -963,11 +963,11 @@ class IndexController extends AbstractActionController
                         array_push($brandNameProductLineArray, $baseProductLine['brand']);
                     }
                 }
-                if($baseProductLine['color'] != '')
+                if($baseProductLine['color_group'] != '')
                 {
-                    if(!in_array($baseProductLine['color'], $colorProductLineArray))
+                    if(!in_array($baseProductLine['color_group'], $colorProductLineArray))
                     {
-                        array_push($colorProductLineArray, $baseProductLine['color']);
+                        array_push($colorProductLineArray, $baseProductLine['color_group']);
                     }
                 }
                 if($baseProductLine['finish'] != '')

@@ -2227,6 +2227,8 @@ lookup_id                65   ""
                                 $tubeShape = $productAttribute;
                             } else if($productAttribute->attributes()->AttributeID== 'Tube Size') {
                                 $tubeSize = $productAttribute;
+                            } else if($productAttribute->attributes()->AttributeID== 'Color Group') {
+                                $colorGroup = $productAttribute;
                             } else {
                                 
                             }
@@ -2340,7 +2342,6 @@ lookup_id                65   ""
                         $box_opening_type = null;
                         $cut_required = null;
                         $stake_holes = null;
-                        $color_group = null;
                         $map_price = null;
                         $saleable = null;
                         
@@ -2351,7 +2352,7 @@ lookup_id                65   ""
                                     $salePrice, $color, $isheet, $popCode, $upc, $weight, $height, $width, $length, $product_line_id, $countryOfOrigin, $statusCode,
                                     $dima, $dimb, $dimc, $dimd, $dime, $dimf, $dimg, $universal, $partTypeId, $lookup_number, $bedLength, $bed_length_id, $frontFlareHeight,
                                     $frontFlareTireCoverage, $vehicle_type, $no_drill, $finish, $style, $material, $material_thickness, $soldAs, $tubeShape, $tubeSize, $warranty, 
-                                    $liquid_storage_capacity, $box_style, $box_opening_type, $cut_required, $rearFlareHeight, $rearFlareTireCoverage, $stake_holes, $color_group, 
+                                    $liquid_storage_capacity, $box_style, $box_opening_type, $cut_required, $rearFlareHeight, $rearFlareTireCoverage, $stake_holes, $colorGroup, 
                                     $map_price, $saleable);
                                 
                         } else {
@@ -2360,7 +2361,7 @@ lookup_id                65   ""
                                 $isheet, $popCode, $upc, $weight, $height, $width, $length, $product_line_id, $countryOfOrigin, $statusCode, $dima, $dimb, $dimc, 
                                 $dimd, $dime, $dimf, $dimg, $universal, $partTypeId, $lookup_number, $bedLength, $bed_length_id, $frontFlareHeight, $frontFlareTireCoverage, 
                                 $vehicle_type, $no_drill, $finish, $style, $material, $material_thickness, $soldAs, $tubeShape, $tubeSize, $warranty, $liquid_storage_capacity,
-                                $box_style, $box_opening_type, $cut_required, $rearFlareHeight, $rearFlareTireCoverage, $stake_holes, $color_group, $map_price, $saleable);
+                                $box_style, $box_opening_type, $cut_required, $rearFlareHeight, $rearFlareTireCoverage, $stake_holes, $colorGroup, $map_price, $saleable);
                             $part_id = $foundPart['part_id'];
                         }
                         

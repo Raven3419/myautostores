@@ -1,0 +1,139 @@
+		<section class="b-pageHeader">
+			<div class="container">
+				<h1 class="wow zoomInLeft" data-wow-delay="0.5s">Carflector</h1>
+			</div>
+		</section><!--b-pageHeader-->
+
+		<div class="b-breadCumbs s-shadow wow zoomInUp" data-wow-delay="0.5s">
+			<div class="container">
+				<a href="/" alt="Carflector" title="Carflector" class="b-breadCumbs__page">Home</a><span class="fa fa-angle-right"></span>
+				<a href="/products/hood+shields" alt="Hood Shields" title="Hood Shields" class="b-breadCumbs__page">Hood Shields</a><span class="fa fa-angle-right"></span>
+				<a href="#" class="b-breadCumbs__page m-active">Carflector</a>
+			</div>
+		</div><!--b-breadCumbs-->
+		<!--  
+		<div class="b-infoBar">
+			<div class="container">
+				<div class="row wow zoomInUp" data-wow-delay="0.5s">
+					<div class="col-xs-3">
+						<div class="b-infoBar__premium">Premium Listing</div>
+					</div>
+					<div class="col-xs-9">
+						<div class="b-infoBar__btns">
+							<a href="#" class="btn m-btn m-infoBtn"><i class="fa fa-heart"></i> ADD TO FAVOURITES<span class="fa fa-angle-right"></span></a>
+							<a href="#" class="btn m-btn m-infoBtn"><i class="fa fa-print"></i> PRINT THIS PAGE<span class="fa fa-angle-right"></span></a>
+							<a href="#" class="btn m-btn m-infoBtn"><i class="fa fa-download"></i> DOWNLOAD MANUAL<span class="fa fa-angle-right"></span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		-->
+		<!--b-infoBar-->
+		<section class="b-detail s-shadow">
+			<div class="container">
+				<header class="b-detail__head s-lineDownLeft wow zoomInUp" data-wow-delay="0.5s">
+					<div class="row">
+						<div class="col-sm-9 col-xs-12">
+							<div class="b-detail__head-title">
+								<h2>Carflector</h2>
+								<!--<h3>Fully Redesigned Upscale Midsize Car</h3>-->
+							</div>
+						</div>
+						<div class="col-sm-3 col-xs-12">
+							<div class="b-detail__head-price">
+								<div class="b-detail__head-price-num">Starting at $0</div>
+								
+							</div>
+						</div>
+					</div>
+				</header>
+				<div class="b-detail__main">
+					<div class="row">
+						<div class="col-md-8 col-xs-12">
+							<div class="b-detail__main-info">
+								<div class="b-detail__main-info-images">
+									<div class="row m-smallPadding">
+										<div class="col-xs-10">
+											<ul class="b-detail__main-info-images-big bxslider enable-bx-slider" data-pager-custom="#bx-pager" data-mode="horizontal" data-pager-slide="true" data-mode-pager="vertical" data-pager-qty="5">
+											<?php 
+									    		$counter = 0;
+									    		$differentImage = array();
+									    		foreach($this->productLines as $productLines)
+									    		{
+									    		    foreach($productLines->getProductLineAsset() as $productLineAsset)
+									    		    { ?>
+        									    				
+                										<li class="s-relative">    
+                							                 <!--                                    
+                											     <a data-toggle="modal" data-target="#myModal" href="#" class="b-items__cars-one-img-video"><span class="fa fa-film"></span>VIDEO</a>
+                											  --> 
+                											 <img class="img-responsive center-block" src="/assets/<?php echo $productLineAsset->getAsset()->getFilePath() ?>" alt="<?php echo $this->productLines[0]->getDisplayName()."-".$counter; ?>" title="<?php echo $this->productLines[0]->getDisplayName()."-".$counter; ?>" />
+                										</li>                
+    				                        	<?php 
+    				                        	   $counter++;
+									    		    } 
+									    		} ?>
+											</ul>
+										</div>
+										<div class="col-xs-2 pagerSlider pagerVertical">
+											<div class="b-detail__main-info-images-small" id="bx-pager">
+											<?php 
+									    		$count = 0;
+									    		$differentImage = array();
+									    		foreach($this->productLines as $productLines)
+									    		{
+									    		    foreach($productLines->getProductLineAsset() as $productLineAsset)
+									    		    { ?>
+        									    		<?php $tempImage =  $productLineAsset->getAsset()->getFilePath(); ?>
+        												<a href="#" data-slide-index="<?php echo $count?>" class="b-detail__main-info-images-small-one">
+        													<img class="img-responsive" src="/assets/library/products/product_lines/108X108/<?php echo $productLineAsset->getAsset()->getFileName() ?>" alt="<?php echo $this->productLines[0]->getDisplayName()."-".$count; ?>" title="<?php echo $this->productLines[0]->getDisplayName()."-".$count; ?>" />
+        												</a>	              
+    				                        	<?php 
+    				                        	   $count++;
+									    		    } 
+									    		} ?>
+											</div>
+										</div>
+									</div>
+								</div>
+    						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>							
+		<section class="b-brands s-shadow">
+			<div class="container">
+				<h3 class="s-title">RELATED PRODUCTS</h3>
+				<div id="carousel-small" class="owl-carousel enable-owl-carousel" data-items="4" data-navigation="true" data-auto-play="true" data-stop-on-hover="true" data-items-desktop="4" data-items-desktop-small="4" data-items-tablet="3" data-items-tablet-small="2">
+					
+					
+					<div>
+						<div class="b-featured__item">
+							<a href="/products/<?php echo urlencode(strtolower($this->upsale[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($this->upsale[$x]['PL_Display'])); ?>">
+								<img src="/assets/library/products/product_lines/230X230/<?php echo $this->upsale[$x]['fileName']?>" alt='<?php echo $this->upsale[$x]['PL_Display']; ?>' title='<?php echo $this->upsale[$x]['PL_Display']; ?>' />
+								<!--  
+								    <span claSss="m-premium">Premium</span>
+								-->
+							</a>
+							<div class="b-featured__item-price">
+								<a href="/products/<?php echo urlencode(strtolower($this->upsale[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($this->upsale[$x]['PL_Display'])); ?>">
+									<?php echo $this->upsale[$x]['sale_price']; ?>
+								</a>
+							</div>
+							<div class="clearfix"></div>
+							<div class="b-title">
+							<h5><a href="/products/<?php echo urlencode(strtolower($this->upsale[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($this->upsale[$x]['PL_Display'])); ?>"><?php echo $this->upsale[$x]['PL_Display']; ?></a></h5>
+							</div>
+							<div class="b-featured__item-links">
+								<a href="/products/<?php echo urlencode(strtolower($this->upsale[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($this->upsale[$x]['PL_Display'])); ?>"><?php echo $this->upsale[$x]['teaser'];?></a>
+							</div>
+						</div>
+					</div>
+					
+					
+				</div>
+			</div>
+		</section><!--b-brands-->
+		
