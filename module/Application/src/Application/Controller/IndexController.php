@@ -307,7 +307,7 @@ class IndexController extends AbstractActionController
 	        
 	    } else { 
         
-    	    $siteBrands = array('1');
+    	    $siteBrands = array('1', '2');
     	    $this->brandSites = $siteBrands;
     	    $this->brandName = null;
     	    $this->brandType = null;

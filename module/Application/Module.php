@@ -81,6 +81,7 @@ class Module implements
                     $layout->getDirectory() . '/top-nav'    => __DIR__ . '/view/layouts/' . $layout->getDirectory() . '/top-nav.phtml',
                     $layout->getDirectory() . '/sidebar'    => __DIR__ . '/view/layouts/' . $layout->getDirectory() . '/sidebar.phtml',
                     $layout->getDirectory() . '/sidebar-my-account'    => __DIR__ . '/view/layouts/' . $layout->getDirectory() . '/sidebar-my-account.phtml',
+                    $layout->getDirectory() . '/sidebar-customer-information'    => __DIR__ . '/view/layouts/' . $layout->getDirectory() . '/sidebar-customer-information.phtml',
                     $layout->getDirectory() . '/sidebar-login'    => __DIR__ . '/view/layouts/' . $layout->getDirectory() . '/sidebar-login.phtml',
                     $layout->getDirectory() . '/sidebar-privacy-policy'    => __DIR__ . '/view/layouts/' . $layout->getDirectory() . '/sidebar-privacy-policy.phtml',
                     $layout->getDirectory() . '/footer-nav' => __DIR__ . '/view/layouts/' . $layout->getDirectory() . '/footer-nav.phtml',

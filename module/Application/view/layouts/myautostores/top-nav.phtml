@@ -4,14 +4,24 @@ $elements = $this->menuElementService->getParentElements($menu);
 $exterior = array();
 $interior = array();
 $other    = array();
+$pcArray = array();
 for($y=0; $y<count($this->productCategories); $y++) {
-if($this->productCategories[$y]['group_name'] == 1){
-array_push($exterior, $this->productCategories[$y]);
-} elseif($this->productCategories[$y]['group_name'] == 2){
-array_push($interior, $this->productCategories[$y]);
-} else {
-array_push($other, $this->productCategories[$y]);
-}
+    if($this->productCategories[$y]['group_name'] == 1){
+        if(!in_array($this->productCategories[$y]['display_name'], $pcArray)){
+            array_push($pcArray, $this->productCategories[$y]['display_name']);
+            array_push($exterior, $this->productCategories[$y]);
+        }
+    } elseif($this->productCategories[$y]['group_name'] == 2){
+        if(!in_array($this->productCategories[$y]['display_name'], $pcArray)){
+            array_push($pcArray, $this->productCategories[$y]['display_name']);
+            array_push($interior, $this->productCategories[$y]);
+        }
+    } else {
+        if(!in_array($this->productCategories[$y]['display_name'], $pcArray)){
+            array_push($pcArray, $this->productCategories[$y]['display_name']);
+            array_push($other, $this->productCategories[$y]);
+        }
+    }
 }
 ?><body
 class="m-index" data-scrolling-animations="true" data-equal-height=".b-auto__main-item"><div
