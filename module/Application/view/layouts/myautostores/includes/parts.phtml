@@ -42,8 +42,9 @@
 						</div>
 						<div class="col-sm-3 col-xs-12">
 							<div class="b-detail__head-price">
-								<div class="b-detail__head-price-num">Starting at $0</div>
-								
+							<?php if($this->price != '10000') { ?>
+								<div class="b-detail__head-price-num">Starting at <br />$<?php echo money_format('%(#10n', number_format((float)($this->price), 2, '.', '')); ?></div>
+							<?php } ?>	
 							</div>
 						</div>
 					</div>

@@ -932,7 +932,6 @@ class IndexController extends AbstractActionController
         
         
         $allBrands = $this->lundProductService->getBrandsService()->getCurrentBrands();
-        $activeProductCategory = $this->productCategoryService->getActiveProductCategories();
         
             
             $colorProductLineArray= array();
@@ -1024,7 +1023,6 @@ class IndexController extends AbstractActionController
             $vm->setVariable('brandNameArray', $brandNameArray);
             
             $vm->setVariable('allBrands', $allBrands);
-            $vm->setVariable('activeProductCategory', $activeProductCategory);
             $vm->setVariable('brandProductCategory', $brandProductCategory);
             
             $vm->setVariable('productLines', $productLines);
@@ -1058,16 +1056,27 @@ class IndexController extends AbstractActionController
         $years        = $this->lundProductService->getPartService()->getVehYear($category, $productLines['0']->getDisplayName());
         $features     = $this->lundProductService->getProductLineService()->getAllBrandProductLineFeature($productLines['0']->getProductLineId());
         
+        $price = '10000';
         $number ="";
         for($x=0; $x<20; $x++) {
             $number .= rand(0, 57).", ";
         }
         
+        for($n=0; $n<count($parts); $n++) {
+            if($parts[$n]->getSalePrice() !== '0.00')
+            {
+                if($parts[$n]->getSalePrice() < $price)
+                {
+                    $price = $parts[$n]->getSalePrice();
+                }
+            }
+        }
+        
         $upsale       = $this->lundProductService->getProductLineService()->getProductLines(substr($number, 0, -2));
-        
-        
+       
         $vm->setVariable('category', $category);
         $vm->setVariable('productLines', $productLines);
+        $vm->setVariable('price', $price);
         $vm->setVariable('parts', $parts);
         $vm->setVariable('years', $years);
         $vm->setVariable('upsale', $upsale);
