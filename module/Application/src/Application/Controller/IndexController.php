@@ -56,6 +56,7 @@ use Zend\Db\Adapter\Adapter as DbAdapter;
 use Zend\Authentication\Adapter\DbTable as AuthAdapter;
 use RocketEcom\Service\TransactionBuilder;
 use RocketEcom\Service\AvaTaxClient;
+use Symfony\Component\Debug\Tests\Fixtures\ToStringThrower;
 
 /**
  * Sites controller for admin module
@@ -305,7 +306,21 @@ class IndexController extends AbstractActionController
 	        $slugfour = $slugfive;
 	        $this->brandType = 'brand';
 	        
-	    } else { 
+	    } else if($slugone == 'lund') {
+	        
+	        $siteBrands = array('2');
+	        $this->brandSites = $siteBrands;
+	        $brand = $this->lundProductService->getBrandsService()->getBrand('2');
+	        $this->brandName = $brand->getName();
+	        $this->name = $slugone;
+	        
+	        $slugone = $slugtwo;
+	        $slugtwo = $slugthree;
+	        $slugthree = $slugfour;
+	        $slugfour = $slugfive;
+	        $this->brandType = 'brand';
+	        
+	    }else { 
         
     	    $siteBrands = array('1', '2');
     	    $this->brandSites = $siteBrands;
@@ -1475,9 +1490,84 @@ class IndexController extends AbstractActionController
         } else {
             $this->cartService           = $this->rocketEcomService->getCartService();
             $cart = $this->cartService->getCartBySessionId($this->sessionEC->getManager()->getId());
+                        
+            $shipping = $this->cartService->getShipping($cart);
+            
+            $cart->setShippingCost($shipping['shipping_cost']);
             
             if ($this->request->isPost()) {
-                return $this->redirect()->toUrl('/receipt');
+                
+                $ecomCustomer = $this->rocketEcomService->getEcomCustomerService()->getEcomCustomer($this->sessionSC->customerId);
+                
+                //$ccNumber = '4111111111111111';
+                $ccNumber   = $this->params()->fromPost('ccNumber');
+                $ccExpMonth = $this->params()->fromPost('ccExpMonth');
+                $ccExpYear  = $this->params()->fromPost('ccExpYear');
+                $ccCVV      = $this->params()->fromPost('ccCVV');
+                
+                $trxnProperties = array(
+                    "User_Name"                 => "",
+                    "Secure_AuthResult"         => "",
+                    "Ecommerce_Flag"            => "",
+                    "XID"                       => "",
+                    "ExactID"                   => "L29960-23",                          //Payment Gateway
+                    "CAVV"                      => "",
+                    "Password"                  => "y7k0K7OkmWNAE2lrWV4B1M",	         //Gateway Password
+                    "CAVV_Algorithm"            => "",
+                    "Transaction_Type"          => "01",                                 //Transaction Code I.E. Purchase="00" Pre-Authorization="01" etc.
+                    "Reference_No"              => $_POST["tbPOS_Reference_No"],
+                    "Customer_Ref"              => $_POST["tbPOS_Customer_Ref"],
+                    "Reference_3"               => $_POST["tbPOS_Reference_3"],
+                    "Client_IP"                 => $_SERVER['REMOTE_ADDR'],				 //This value is only used for fraud investigation.
+                    "Client_Email"              => $ecomCustomer->getEmail(),			 //This value is only used for fraud investigation.
+                    "Language"                  => "en",			                     //English="en" French="fr"
+                    "Card_Number"               => $ccNumber,		                     //For Testing, Use Test#s VISA="4111111111111111" MasterCard="5500000000000004" etc.
+                    "Expiry_Date"               => $ccExpMonth.$ccExpYear,               //This value should be in the format MM/YY.
+                    "CardHoldersName"           => $ecomCustomer->getFirstName()." ".$ecomCustomer->getLastName(),
+                    "Track1"                    => "",
+                    "Track2"                    => "",
+                    "Authorization_Num"         => "",  //** not sure
+                    "Transaction_Tag"           => "",
+                    "DollarAmount"              => "0",
+                    "VerificationStr1"          => $ecomCustomer->getBillingStreetAddress()."|".$ecomCustomer->getBillingPostCode()."|".$ecomCustomer->getBillingCity()."|".$ecomCustomer->getBillingState()->getSubdivisionName()."|".$ecomCustomer->getBillingState()->getCodeChar2(),
+                    "VerificationStr2"          => $ccCVV,
+                    "CVD_Presence_Ind"          => "",
+                    "Secure_AuthRequired"       => "",
+                    "Currency"                  => "USD",
+                    "PartialRedemption"         => "",
+                    
+                    // Level 2 fields
+                    "ZipCode"                   => "",
+                    "Tax1Amount"                => "",
+                    "Tax1Number"                => "",
+                    "Tax2Amount"                => "",
+                    "Tax2Number"                => "",
+                    
+                );
+                
+                //print_r($trxnProperties);exit;
+                
+                $path_to_wsdl = "https://api.globalgatewaye4.firstdata.com/transaction/v11/wsdl";
+          
+                $client = new SoapClientHMAC( $path_to_wsdl );
+                
+                $trxnResult = $client->SendAndCommit($trxnProperties);
+                
+                //$vm->setVariable('error', '1');
+                //$vm->setVariable('errorMessage', $trxnResult->EXact_Message);
+                
+                if($trxnResult->Transaction_Error == '1')
+                {
+                    $vm->setVariable('error', '1');
+                    $vm->setVariable('errorMessage', $trxnResult->EXact_Message);
+                }
+                
+                if($trxnResult->Transaction_Approved == '1')
+                {
+                    return $this->redirect()->toUrl('/receipt');
+                }
+                
+                print_r($trxnResult);exit;
             }
             
             $vm->setVariable('cart', $cart);
@@ -1870,17 +1960,16 @@ class IndexController extends AbstractActionController
                 
                 $recordArray = $upsService->getUpsRates($address, $totalWeight);
                 
+                //print_r($recordArray);exit;
                 if($recordArray->Response->ResponseStatusDescription == 'Success')
                 {
-                    $amount = $recordArray->RatedShipment->NegotiatedRates->NetSummaryCharges->GrandTotal->MonetaryValue;
+                    $amount = floatval($recordArray->RatedShipment->NegotiatedRates->NetSummaryCharges->GrandTotal->MonetaryValue);
                 } else {
                     $amount = '0';
                 }
                 $amountArray = array('shipping_cost' => $amount);
-                
+                                         
                 $cart = $this->cartService->edit($systemUser, $cart, $amountArray);
-
-               
                 
                 if(!$error) {
                     $ecomSubmission = $ecomCustomerService->edit($systemUser, $data, $ecomCustomer);
@@ -2019,5 +2108,29 @@ class IndexController extends AbstractActionController
         $transport->send($mail);
 
         return true;
+    }
+}
+
+class SoapClientHMAC extends \SoapClient {
+    public function __doRequest($request, $location, $action, $version, $one_way = NULL) {
+        global $context;
+        $hmackey = "Zi88ZCDQYoaMp0AMwnYM9eLt~Rx89PwO"; // <-- Insert your HMAC key here
+        $keyid = "566035"; // <-- Insert the Key ID here
+        $hashtime = date("c");
+        $hashstr = "POST\ntext/xml; charset=utf-8\n" . sha1($request) . "\n" . $hashtime . "\n" . parse_url($location,PHP_URL_PATH);
+        $authstr = base64_encode(hash_hmac("sha1",$hashstr,$hmackey,TRUE));
+        if (version_compare(PHP_VERSION, '5.3.11') == -1) {
+            ini_set("user_agent", "PHP-SOAP/" . PHP_VERSION . "\r\nAuthorization: GGE4_API " . $keyid . ":" . $authstr . "\r\nx-gge4-date: " . $hashtime . "\r\nx-gge4-content-sha1: " . sha1($request));
+        } else {
+            stream_context_set_option($context,array("http" => array("header" => "authorization: GGE4_API " . $keyid . ":" . $authstr . "\r\nx-gge4-date: " . $hashtime . "\r\nx-gge4-content-sha1: " . sha1($request))));
+        }
+        return parent::__doRequest($request, $location, $action, $version, $one_way);
+    }
+    
+    public function SoapClientHMAC($wsdl, $options = NULL) {
+        global $context;
+        $context = stream_context_create();
+        $options['stream_context'] = $context;
+        return parent::SoapClient($wsdl, $options);
     }
 }

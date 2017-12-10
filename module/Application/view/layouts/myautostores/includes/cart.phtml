@@ -127,8 +127,8 @@
                                                     <tbody>
                                                         <?php 
                                                         $count = 1;
+                                                        $subtotal = 0;
                                                         foreach($this->layout()->cartItems as $cartItems) { 
-                                						    $total = $total + $cartItems->getPrice();
                                 						    
                                 						?>
                                                         <tr>
@@ -143,8 +143,9 @@
                                                             	</div>
                                                             </td>
                                                             <td><input style="width:50px;" type="number" min="1" id="number_<?php echo $count; ?>" value="<?php echo $cartItems->getQuantity(); ?>"></td>
-                                                           	<td><?php echo $cartItems->getPrice(); ?></td>
-                                                          	<td><?php echo $cartItems->getPrice(); ?></td>
+                                                           	<td style="width:80px;">$ <?php echo $cartItems->getPrice(); ?></td>
+                                                          	<td style="width:80px;">$ <?php echo $cartItems->getPrice() * $cartItems->getQuantity(); ?></td>
+                                                          	<?php $subtotal = $subtotal + ($cartItems->getPrice() * $cartItems->getQuantity()); ?>
                                                             <td style="width:160px;">
                                                           		<button type="button" class="btn btn-sm btn-warning" onclick="updateQuantity('<?php echo $cartItems->getCartItemId(); ?>', '<?php echo $count; ?>')">Update</button>
                                                           		<a href="/cart/remove/<?php echo $cartItems->getCartItemId(); ?>"><button type="button" class="btn btn-sm btn-danger">Remove</button></a>
@@ -155,7 +156,7 @@
                                                         } ?>
                                                         <tr>
                                                             <td colspan="4" class="text-right">SUBTOTAL</td>
-                                                            <td><?php echo $total; ?></td>
+                                                            <td>$ <?php echo $subtotal; ?></td>
                                                         </tr>
                                                         <!--  
                                                 		<tr>
@@ -183,7 +184,7 @@
                                                     			<div class="col-md-6" style="padding:0px;"><img src="/assets/application/myautostores/images/main.png" alt="main.png" title="main.png" class="img-responsive" style="width:250px;"></div>			
                                                 			</td>
                                                            	<td colspan="3" class="text-right">TOTAL</td>
-                                                            <td><b><?php echo $total; ?></b></td>
+                                                            <td><b>$ <?php echo $subtotal; ?></b></td>
                                                       	</tr>
                                                 	</tbody>
                                                 </table>

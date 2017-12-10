@@ -44,9 +44,8 @@
                                     <?php foreach($this->records as $record) { ?>
                                     <tr>
                                         <td>
-                                            <?php if (preg_match('/image/', $record->getAsset()->getMime())) { ?>
-                                                <img src="/admin/imagine/<?php echo $record->getAsset()->getHash(); ?>/200/200" alt="<?php echo $record->getAsset()->getLabel(); ?>" />
-                                            <?php } ?>
+                                                <img src="/assets/library/products/product_lines/600X600/<?php echo $record->getAsset()->getLabel();?>" alt="<?php echo $record->getAsset()->getLabel(); ?>" width="230"/>
+                                            
                                         </td>
                                         <td><?php echo $record->getAsset()->getLabel(); ?></td>
                                         <td><?php echo $record->getAssetType(); ?></td>
