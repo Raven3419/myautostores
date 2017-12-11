@@ -1567,7 +1567,7 @@ class IndexController extends AbstractActionController
                     return $this->redirect()->toUrl('/receipt');
                 }
                 
-                print_r($trxnResult);exit;
+                //print_r($trxnResult);exit;
             }
             
             $vm->setVariable('cart', $cart);
