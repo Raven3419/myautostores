@@ -1523,7 +1523,7 @@ class IndexController extends AbstractActionController
                 if (null == $this->sessionEC->orderId) {
                     
                     $cartItems = $this->cartItemService->getCartItemsByCart($cart);
-                    
+                    $grandtotal = 0;
                     foreach($cartItems as $item) {
                         
                         $subtotal = $item->getQuantity() * $item->getPrice();
@@ -1600,8 +1600,8 @@ class IndexController extends AbstractActionController
                     "Track2"                    => "",
                     "Authorization_Num"         => "",  //** not sure
                     "Transaction_Tag"           => "",
-                    "DollarAmount"              => $order->getTotal(),
-                    //"DollarAmount"              => "1.00",
+                    //"DollarAmount"              => $order->getTotal(),
+                    "DollarAmount"              => "1.00",
                     "VerificationStr1"          => $ecomCustomer->getBillingStreetAddress()."|".$ecomCustomer->getBillingPostCode()."|".$ecomCustomer->getBillingCity()."|".$ecomCustomer->getBillingState()->getSubdivisionName()."|".$ecomCustomer->getBillingState()->getCodeChar2(),
                     "VerificationStr2"          => $ccCVV,
                     "CVD_Presence_Ind"          => "",
@@ -1620,7 +1620,7 @@ class IndexController extends AbstractActionController
                 
                 //print_r($trxnProperties);exit;
                
-                /*
+             
                 $path_to_wsdl = "https://api.globalgatewaye4.firstdata.com/transaction/v11/wsdl";
           
                 $client = new SoapClientHMAC( $path_to_wsdl );
@@ -1641,20 +1641,22 @@ class IndexController extends AbstractActionController
                 
                     $order = $this->orderService->scrubOrder($order, $scrubCC, $transactionId, $ccExpMonth, $ccExpYear, $ccCVV, $cardType, $ecomCustomer);
                 
+                    $from = 'webmaster@myautostores.com';
+                    $subject = 'Confirmation Order Email';
+                    $to = array($order->getEcomCustomer()->getEmail());
+                    $message = "<p>
+                        You have just placed an order.  Thank you!!
+                    </p>";
+                    
+                    
+                    $this->sendEmail($from, $to, $subject, $message);
+                    
                     return $this->redirect()->toUrl('/receipt');
                 }
-                */
                 
-                $from = 'mailer@myautostores.com';
-                $subject = 'Confirmation Order Email';
-                $to = array($order->getEcomCustomer()->getEmail());
-                $message = "<p>
-                    You have just placed an order.  Thank you!!
-                </p>";
                 
-                $this->sendEmail($from, $to, $subject, $message);
                 
-                return $this->redirect()->toUrl('/receipt');
+                
                 
             }
             
@@ -2199,6 +2201,7 @@ class IndexController extends AbstractActionController
 
         return true;
     }
+    
 }
 
 class SoapClientHMAC extends \SoapClient {
