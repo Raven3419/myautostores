@@ -740,8 +740,7 @@ class IndexController extends AbstractActionController
                          $to = array( $ecomSubmission->getEmail() );
                          $subject = 'My Auto Stores Registration Form Submission';
                          
-                         $message = '<p><b>' . $ecomSubmission->getFirstName() . '</b> has registrater for an account with My Auto Store.</p><p>Please Click the link below to complete your registration</p>
-                                    <p><a href="">CLICK HERE</a></p>';
+                         $message = '<p><b>' . $ecomSubmission->getFirstName() . '</b> has registrater for an account with My Auto Store.</p>';
                          
                          $this->sendEmail($from, $to, $subject, $message);
                          

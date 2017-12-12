@@ -183,9 +183,8 @@ $emptyProductLine = false;
                             <h3 class="s-title wow zoomInUp" data-wow-delay="0.1s" style="width:100%;">Top Brands</h3>
                             <nav>
 								<ul class="b-blog__aside-categories-list text-left">
-									<?php foreach( $this->allBrands as $allBrands) { ?>
-										<li><a href="/"><?php echo $allBrands->getName();; ?></a></li>
-									<?php } ?>
+										<li><a href="/avs/products">Auto Ventshade (AVS)</a></li>
+										<li><a href="/lund/products">Lund</a></li>
 								</ul>
 							</nav>
                         </div>
@@ -322,7 +321,7 @@ $emptyProductLine = false;
                                             	<div class="pull-right">
                                                 	<label class="priceLabel">Price:</label>
                                                 	<br/>
-                                                	<label style="color: #F76D2B; margin:0px 0 20px; font-size: 24px;"><b><?php echo $productLinesArray[$x]['sale_price']; ?></b></label>
+                                                	<label style="color: #F76D2B; margin:0px 0 20px; font-size: 24px;"><b>$ <?php echo $productLinesArray[$x]['sale_price']; ?></b></label>
                                                 </div>
                                                 <?php if($this->productLinesBrands) { ?>
                                                 	<a href="/<?php echo $this->name?>/products/<?php echo urlencode(strtolower($productLinesArray[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($productLinesArray[$x]['PL_Display'])); ?>" class="btn m-btn">VIEW DETAILS<span class="fa fa-angle-right"></span></a>

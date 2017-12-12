@@ -1,4 +1,4 @@
-		<div class="b-infoBar">
+		<div class="b-infoBar noprint">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
@@ -36,7 +36,7 @@
 		<div class="b-submit">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+					<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6 noprint">
 						<aside class="b-submit__aside">
 							<div class="b-submit__aside-step wow zoomInUp" data-wow-delay="0.5s">
 								<h3>Step 1</h3>
@@ -103,18 +103,18 @@
 					</div>
 					<div class="col-lg-9 col-md-8 col-sm-7 col-xs-6">
 						<div class="b-submit__main">
-							<header class="s-headerSubmit s-lineDownLeft wow zoomInUp" data-wow-delay="0.5s">
+							<header class="s-headerSubmit s-lineDownLeft wow zoomInUp noprint" data-wow-delay="0.5s">
 								<h2 class="">Receipt</h2>
 							</header>
 							<form class="s-submit clearfix" action="/" method="POST">
 								<div class="row">
-									<div class="panel panel-default">
+									<div class="panel panel-default noprint">
                                         <div class="panel-heading">Success:</div>
                                         <div class="panel-body">
                                         	<center>
                                         		<h1><i class="fa fa-check-circle-o fa-3x" style="color:#44AB00;"></i></h1>
-                                        		<h2>You have successfully finish your checkout</h2>
-                                        		<p>Thanks for order.</p>
+                                        		<h2>You have successfully finished your checkout process</h2>
+                                        		<p>Thank you for your order.</p>
                                         	</center>
                                     	</div>
                                     </div>
@@ -123,7 +123,7 @@
                                         <div class="panel-body">
 											<div class="table-responsive">
 												<table class="table table-striped">
-                									<h4 class="text-right"><b>INVOICE ID:</b> INV-<?php echo $this->order->getOrderId();?></h4>
+                									<h4 class="text-right"><b>INVOICE ID:</b> <?php echo $this->order->getOrderId();?></h4>
                 									<p class="text-right"><b>Date:</b> <?php echo date('Y-m-d'); ?>
                     									<br><b>Customer Name:</b> <?php echo $_SESSION['saved_customer']['firstName']; ?>  <?php echo $_SESSION['saved_customer']['lastName']; ?>	
                 									</p>
@@ -178,7 +178,7 @@
                                     	</div>
                                     </div>
 								</div>
-								<button type="submit" class="btn m-btn pull-right">Finish<span class="fa fa-angle-right"></span></button>
+								<button type="submit" class="btn m-btn pull-right noprint">Finish<span class="fa fa-angle-right"></span></button>
 							</form>
 						</div>
 					</div>
