@@ -379,7 +379,7 @@
 										</div>
 										<div class="col-xs-8">
 											<div class="s-relative">
-												<select name="bedLength" id="bedLength" class="m-select" style="height: 35px;padding: 2px 12px 0px">
+												<select name="bedLength" id="bedLength" class="m-select" style="height: 35px;padding: 2px 12px 0px" >
 													<option value="">  Select Body Body Length  </option>
 												</select>
 												<span class="fa fa-caret-down"></span>
@@ -542,21 +542,23 @@
 				});
 
 				jQuery('#model').on('change', function(){
+					bedLength();
+				});
 
-					if(!bedLength())
-					{
-						if(!bodyType())
-						{
-							if(!soldAs())
-							{
-								if(!finish())
-								{
-									color()
-								}
-							}
-						}
-					}
+				jQuery("#bedLength").on("change", function() {
+					bodyType();
+				});
 
+				jQuery("#bodyType").on("change", function() {
+					soldAs();
+				});
+
+				jQuery("#soldAs").on("change", function() {
+					finish();
+				});
+
+				jQuery("#finish").on("change", function() {
+					color();
 				});
 
 				jQuery('.m-btn').on('click', function(){
@@ -646,6 +648,7 @@
 
 				function bedLength()
                 {
+					var result = true;
 					var yearForModel = jQuery('#year').val();
 		            var makeForModel = jQuery('#make').val();
 		            var model = jQuery('#model').val();
@@ -670,34 +673,41 @@
     								
     								jQuery('.bedLength').hide();
 
+
         						} else {
         							var $thirdChoice = jQuery("#bedLength");
     						   		$thirdChoice.empty();
     								$thirdChoice.append("<option value='"+json[0]['bed_length']+"' selected='selected'>"+json[0]['bed_length']+"</option>");
-        						} 
+    							
+            					} 
 
-    							return true;
+    				   			bodyType();
+
+    				   			result = false;
 					   		} else {
-
 					   			var $thirdChoice = jQuery("#bedLength");
 						   		$thirdChoice.empty();
 						   		$thirdChoice.append("<option value='' >  Select Bed Length  </option>");
 						   		
 					   			for (var i=0;i<json.length;++i) {
-					   				$thirdChoice.append("<option value='"+json[i]['bedLength']+"' >"+json[i]['bedLength']+"</option>");
+					   				$thirdChoice.append("<option value='"+json[i]['bed_length']+"' >"+json[i]['bed_length']+"</option>");
 					   			}
 					   		}
 				   		},
 				    	error: function(){
 					        alert("An error occurred Please re-select");
 				    	}
+
 		            });
 
-		            return false;
+
+			    	return result;
+		            
                 }
 
 				function bodyType()
                 {
+					var result = true;
 					var yearForModel = jQuery('#year').val();
 		            var makeForModel = jQuery('#make').val();
 		            var model = jQuery('#model').val();
@@ -716,7 +726,6 @@
 					   		{
     				   			if( json[0]['body_type'] === '' || json[0]['body_type'] == null ) 
         				   		{ 
-
     				   				var $thirdChoice = jQuery("#bodyType");
     						   		$thirdChoice.empty();
     								$thirdChoice.append("<option value='' selected='selected'></option>");
@@ -729,7 +738,8 @@
     								$thirdChoice.append("<option value='"+json[0]['body_type']+"' selected='selected'>"+json[0]['body_type']+"</option>");
         						} 
 
-    							return true;
+    				   			soldAs();
+					   			result = false;
 					   		} else {
 
 					   			var $thirdChoice = jQuery("#bodyType");
@@ -739,6 +749,8 @@
 					   			for (var i=0;i<json.length;++i) {
 					   				$thirdChoice.append("<option value='"+json[i]['bodyType']+"' >"+json[i]['bodyType']+"</option>");
 					   			}
+
+					   			result = false;
 					   		}
 				   		},
 				    	error: function(){
@@ -746,11 +758,13 @@
 				    	}
 		            });
 
-		            return false;
+					return result;
+
                 }
 
 				function soldAs()
                 {
+					var result = true;
 					var yearForModel = jQuery('#year').val();
 		            var makeForModel = jQuery('#make').val();
 		            var model = jQuery('#model').val();
@@ -784,8 +798,8 @@
         								
         							} 
     							
-
-    							return true;
+    				   			finish();
+					   			result = false;
 					   		} else {
 					   			var $thirdChoice = jQuery("#soldAs");
 						   		$thirdChoice.empty();
@@ -794,6 +808,7 @@
 					   			for (var i=0;i<json.length;++i) {
 					   				$thirdChoice.append("<option value='"+json[i]['soldAs']+"' >"+json[i]['soldAs']+"</option>");
 					   			}
+
 					   		}
 				   		},
 				    	error: function(){
@@ -801,11 +816,13 @@
 				    	}
 		            });
 
-		            return false;
+					return result;
+
                 }
 
 				function finish()
                 {
+					var result = true;
 					var yearForModel = jQuery('#year').val();
 		            var makeForModel = jQuery('#make').val();
 		            var model = jQuery('#model').val();
@@ -838,7 +855,8 @@
     								$thirdChoice.append("<option value='"+json[0]['finish']+"' selected='selected'>"+json[0]['finish']+"</option>");
         						} 
 
-    							return true;
+    				   			color();
+					   			result = false;
 					   		} else {
 					   			var $thirdChoice = jQuery("#finish");
 						   		$thirdChoice.empty();
@@ -847,6 +865,7 @@
 					   			for (var i=0;i<json.length;++i) {
 					   				$thirdChoice.append("<option value='"+json[i]['finish']+"' >"+json[i]['finish']+"</option>");
 					   			}
+
 					   		}
 				   		},
 				    	error: function(){
@@ -854,11 +873,13 @@
 				    	}
 		            });
 
-		            return false;
+					return result;
+		            
                 }
 
 				function color()
                 {
+					var result = true;
 					var yearForModel = jQuery('#year').val();
 		            var makeForModel = jQuery('#make').val();
 		            var model = jQuery('#model').val();
@@ -893,7 +914,7 @@
     								
     							}
 
-    							return true;
+					   			result = false;
 					   		} else {
 						   		
 					   			var $thirdChoice = jQuery("#color");
@@ -903,14 +924,16 @@
 					   			for (var i=0;i<json.length;++i) {
 					   				$thirdChoice.append("<option value='"+json[i]['color']+"' >"+json[i]['color']+"</option>");
 					   			}
+
 					   		}
 				   		},
 				    	error: function(){
 					        alert("An error occurred Please re-select");
 				    	}
 		            });
+		            
+					return result;
 
-		            return false;
                 }
 			})
 

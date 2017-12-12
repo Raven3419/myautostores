@@ -446,6 +446,14 @@ class IndexController extends AbstractActionController
             
             if(null != $cart) {
                 $cartItems = $this->rocketEcomService->getCartItemService()->getCartItemsByCart($cart);  
+                         
+                foreach($cartItems as $cartItem) { 
+                    
+                $image = $this->rocketEcomService->getCartItemService()->getCartItemImage($cartItem->getCartItemId());
+                
+                $cartItem->setProductLinesAsset($image['product_lines_asset']);
+                
+                }
             } 
           
         }
@@ -1469,8 +1477,19 @@ class IndexController extends AbstractActionController
     {
         
         $this->cartService           = $this->rocketEcomService->getCartService();
+        $this->orderService          = $this->rocketEcomService->getOrderService();
+        $this->orderItemService      = $this->rocketEcomService->getOrderItemService();
         
         $cart = $this->cartService->getCartBySessionId($this->sessionEC->getManager()->getId());
+        
+        $shipping = $this->cartService->getShipping($cart);
+        
+        $cart->setShippingCost($shipping['shipping_cost']);
+        
+        $order = $this->orderService->getOrder($this->sessionEC->orderId);
+        
+        $vm->setVariable('order', $order);
+        $vm->setVariable('cart', $cart);
             
         $this->cartService->disableCart($cart);
         $this->sessionEC->getManager()->getStorage()->clear('saved_cart');
@@ -1490,12 +1509,65 @@ class IndexController extends AbstractActionController
         } else {
             $this->cartService           = $this->rocketEcomService->getCartService();
             $cart = $this->cartService->getCartBySessionId($this->sessionEC->getManager()->getId());
-                        
+            $this->cartItemService       = $this->rocketEcomService->getCartItemService();
+            $this->orderService          = $this->rocketEcomService->getOrderService();
+            $this->orderItemService      = $this->rocketEcomService->getOrderItemService();
+                 
+            $systemUser = $this->userService->getUser(1);
             $shipping = $this->cartService->getShipping($cart);
             
             $cart->setShippingCost($shipping['shipping_cost']);
             
             if ($this->request->isPost()) {
+                
+                if (null == $this->sessionEC->orderId) {
+                    
+                    $cartItems = $this->cartItemService->getCartItemsByCart($cart);
+                    
+                    foreach($cartItems as $item) {
+                        
+                        $subtotal = $item->getQuantity() * $item->getPrice();
+                        $price = $item->getPrice();
+                      
+                        $grandtotal = $grandtotal + $subtotal;
+                    }
+                    
+                    $amount = ($shipping['shipping_cost'] + $grandtotal + 0);
+                    
+                    $data = array(
+                        'user_id'       => $systemUser->getUserId(),
+                        'subtotal'      => $grandtotal,
+                        'total'         => $amount,
+                        'shipping'      => $cart->getShippingCost(),
+                        'taxes'         => 0,
+                        'discount'      => 0,
+                        'cart'          => $cart,
+                    );
+                    
+                    $order = $this->orderService->createOrder($systemUser, $data);
+                    
+                    foreach ($cartItems as $item) {
+                        $data = array(
+                            'product_id'    => $item->getProductId(),
+                            'quantity'      => $item->getQuantity(),
+                            'description'   => $item->getDescription(),
+                            'price'         => $item->getPrice(),
+                            'weight'        => $item->getWeight(),
+                            'length'        => $item->getLength(),
+                            'height'        => $item->getHeight(),
+                            'width'         => $item->getWidth(),
+                            'upc_code'      => $item->getUpcCode(),
+                            'cart_item_id'  => $item,
+                        );
+                        
+                        $orderItem = $this->orderItemService->createOrderItem($systemUser, $order, $data);
+                    }
+                    
+                    $this->sessionEC->orderId = $order->getOrderId();
+                    
+                } else {
+                    $order = $this->orderService->getOrder($this->sessionEC->orderId);
+                }
                 
                 $ecomCustomer = $this->rocketEcomService->getEcomCustomerService()->getEcomCustomer($this->sessionSC->customerId);
                 
@@ -1515,9 +1587,9 @@ class IndexController extends AbstractActionController
                     "Password"                  => "y7k0K7OkmWNAE2lrWV4B1M",	         //Gateway Password
                     "CAVV_Algorithm"            => "",
                     "Transaction_Type"          => "01",                                 //Transaction Code I.E. Purchase="00" Pre-Authorization="01" etc.
-                    "Reference_No"              => $_POST["tbPOS_Reference_No"],
-                    "Customer_Ref"              => $_POST["tbPOS_Customer_Ref"],
-                    "Reference_3"               => $_POST["tbPOS_Reference_3"],
+                    "Reference_No"              => $order->getOrderId(),
+                    "Customer_Ref"              => "",
+                    "Reference_3"               => "",
                     "Client_IP"                 => $_SERVER['REMOTE_ADDR'],				 //This value is only used for fraud investigation.
                     "Client_Email"              => $ecomCustomer->getEmail(),			 //This value is only used for fraud investigation.
                     "Language"                  => "en",			                     //English="en" French="fr"
@@ -1528,7 +1600,8 @@ class IndexController extends AbstractActionController
                     "Track2"                    => "",
                     "Authorization_Num"         => "",  //** not sure
                     "Transaction_Tag"           => "",
-                    "DollarAmount"              => "0",
+                    "DollarAmount"              => $order->getTotal(),
+                    //"DollarAmount"              => "1.00",
                     "VerificationStr1"          => $ecomCustomer->getBillingStreetAddress()."|".$ecomCustomer->getBillingPostCode()."|".$ecomCustomer->getBillingCity()."|".$ecomCustomer->getBillingState()->getSubdivisionName()."|".$ecomCustomer->getBillingState()->getCodeChar2(),
                     "VerificationStr2"          => $ccCVV,
                     "CVD_Presence_Ind"          => "",
@@ -1546,15 +1619,12 @@ class IndexController extends AbstractActionController
                 );
                 
                 //print_r($trxnProperties);exit;
-                
+               
                 $path_to_wsdl = "https://api.globalgatewaye4.firstdata.com/transaction/v11/wsdl";
           
                 $client = new SoapClientHMAC( $path_to_wsdl );
                 
                 $trxnResult = $client->SendAndCommit($trxnProperties);
-                
-                //$vm->setVariable('error', '1');
-                //$vm->setVariable('errorMessage', $trxnResult->EXact_Message);
                 
                 if($trxnResult->Transaction_Error == '1')
                 {
@@ -1564,10 +1634,14 @@ class IndexController extends AbstractActionController
                 
                 if($trxnResult->Transaction_Approved == '1')
                 {
+                    $transactionId = $trxnResult->Transaction_Tag;
+                    $cardType = $trxnResult->CardType;
+                    $scrubCC = $trxnResult->TransarmorToken;
+                
+                    $order = $this->orderService->scrubOrder($order, $scrubCC, $transactionId, $ccExpMonth, $ccExpYear, $ccCVV, $cardType, $ecomCustomer);
+                
                     return $this->redirect()->toUrl('/receipt');
                 }
-                
-                //print_r($trxnResult);exit;
             }
             
             $vm->setVariable('cart', $cart);
@@ -2043,7 +2117,7 @@ class IndexController extends AbstractActionController
                     $recordArray = $this->parsePromoService->getPromoByPartId($this->websiteId, $part->getPartId());
                     
                     $productLinesAsset = $this->lundProductService->getProductLineService()->getProductLineAssets($part->getProductLine()->getproductLineId() );
-                                        
+                                   
                     if (null == $cartItem) {
                         $data = array(
                             'product_id' => $part->getPartId(),
@@ -2058,8 +2132,10 @@ class IndexController extends AbstractActionController
                             'parts' => $part,
                             'productLinesAsset' => $productLinesAsset[0]['fileName'],
                         );
-                        
+                                                
                         $cartItem = $this->cartItemService->create($systemUser, $cart, $data, $part);
+                        
+                        $this->cartItemService->setCartItemImage($cartItem->getCartItemId(), $productLinesAsset[0]['fileName']);
                     } else {
                         $cartItem = $this->cartItemService->incrementQuantity($systemUser, $cartItem, $cartItem->getQuantity());
                     }

@@ -132,37 +132,34 @@
                                                             <td>
                                                 				<div class="row">
                                                                     <div class="col-md-4">
-                                                            			<img class="img-responsive" src="/assets/library/products/product_lines/<?php echo $cartItems->getProductLinesAsset();?>" alt="<?php echo $cartItems->getProductLinesAsset();?>" title="<?php echo $cartItems->getProductLinesAsset();?>" >
+                                                            			<img class="img-responsive" src="/assets/library/products/product_lines/230X230/<?php echo $cartItems->getProductLinesAsset();?>" alt="<?php echo $cartItems->getProductLinesAsset();?>" title="<?php echo $cartItems->getProductLinesAsset();?>" >
                                                             		</div>
                                                             		<div class="col-md-8">
                                                             			<h4><?php echo $cartItems->getDescription(); ?></h4>
                                                             		</div>
                                                             	</div>
                                                             </td>
-                                                            <td><input style="width:50px;" type="number" value="<?php echo $cartItems->getQuantity(); ?>"></td>
-                                                           	<td>$ <?php echo $cartItems->getPrice(); ?></td>
-                                                          	<td>$ <?php echo $cartItems->getPrice() * $cartItems->getQuantity(); ?></td>
+                                                            <td> <?php echo $cartItems->getQuantity(); ?></td>
+                                                           	<td style="width:13%;">$ <?php echo $cartItems->getPrice(); ?></td>
+                                                          	<td style="width:13%;">$ <?php echo $cartItems->getPrice() * $cartItems->getQuantity(); ?></td>
                                                           	<?php $subtotal = $subtotal + ($cartItems->getPrice() * $cartItems->getQuantity()); ?>
-                                                            <td style="width:160px;">
-                                                          		<button type="button" class="btn btn-sm btn-warning">Update</button>
-                                                          		<a href="/cart/remove/<?php echo $cartItems->getCartItemId(); ?>"><button type="button" class="btn btn-sm btn-danger">Remove</button></a>
-                                                            </td>
+                                                           
                                                        	</tr>
                                                        	<?php } ?>
                                                         <tr>
-                                                            <td colspan="4" class="text-right">SUBTOTAL</td>
+                                                            <td colspan="3" class="text-right">SUBTOTAL</td>
                                                             <td>$ <?php echo $subtotal; ?></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="4" class="text-right">SHIPPING</td>
+                                                            <td colspan="3" class="text-right">SHIPPING</td>
                                                             <td>$ <?php echo $this->cart->getShippingCost(); ?></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="4" class="text-right">TAX</td>
+                                                            <td colspan="3" class="text-right">TAX</td>
                                                             <td>$ 0</td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="4" class="text-right">TOTAL</td>
+                                                            <td colspan="3" class="text-right">TOTAL</td>
                                                             <td>$ <?php echo $subtotal + $this->cart->getShippingCost(); ?></td>
                                                         </tr>
                                                 	</tbody>

@@ -119,14 +119,13 @@
                                     	</div>
                                     </div>
 									<div class="panel panel-default">
-                                        <div class="panel-heading">Invoice: <a class="btn btn-xs btn-success pull-right"><i class="fa fa-print"></i> Print this invoice</a></div>
+                                        <div class="panel-heading">Invoice: <a class="btn btn-xs btn-success pull-right" href="javascript:window.print();"><i class="fa fa-print"></i> Print this invoice</a></div>
                                         <div class="panel-body">
 											<div class="table-responsive">
 												<table class="table table-striped">
-                									<h4 class="text-right"><b>INVOICE ID:</b> INV-006</h4>
+                									<h4 class="text-right"><b>INVOICE ID:</b> INV-<?php echo $this->order->getOrderId();?></h4>
                 									<p class="text-right"><b>Date:</b> <?php echo date('Y-m-d'); ?>
-                    									<br><b>Customer Name:</b> <?php echo $_SESSION['saved_customer']['firstName']; ?>  <?php echo $_SESSION['saved_customer']['lastName']; ?>
-                    									<br><b>Total Amount:</b> $ 0
+                    									<br><b>Customer Name:</b> <?php echo $_SESSION['saved_customer']['firstName']; ?>  <?php echo $_SESSION['saved_customer']['lastName']; ?>	
                 									</p>
    													<thead>
                                                         <tr>
@@ -145,7 +144,7 @@
                                                             <td>
                                                 				<div class="row">
                                                                     <div class="col-md-4">
-                                                            			<img class="img-responsive" src="/assets/library/products/product_lines/<?php echo $cartItems->getProductLinesAsset();?>" alt="<?php echo $cartItems->getProductLinesAsset();?>" title="<?php echo $cartItems->getProductLinesAsset();?>" >
+                                                            			<img class="img-responsive" src="/assets/library/products/product_lines/230X230/<?php echo $cartItems->getProductLinesAsset();?>" alt="<?php echo $cartItems->getProductLinesAsset();?>" title="<?php echo $cartItems->getProductLinesAsset();?>" >
                                                             		</div>
                                                             		<div class="col-md-8">
                                                             			<h4><?php echo $cartItems->getDescription(); ?></h4>
@@ -158,20 +157,20 @@
                                                        	</tr>
                                                        	<?php } ?>
                                                         <tr>
-                                                            <td colspan="4" class="text-right">SUBTOTAL</td>
-                                                            <td>$ <?php echo $total; ?></td>
+                                                            <td colspan="3" class="text-right">SUBTOTAL</td>
+                                                            <td style="width:15%;">$ <?php echo $total; ?></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="4" class="text-right">SHIPPING</td>
-                                                            <td>TBD</td>
+                                                            <td colspan="3" class="text-right">SHIPPING</td>
+                                                            <td>$ <?php echo $this->cart->getShippingCost(); ?></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="4" class="text-right">TAX</td>
+                                                            <td colspan="3" class="text-right">TAX</td>
                                                             <td>$ 0</td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="4" class="text-right">TOTAL</td>
-                                                            <td>$ <?php echo $total; ?></td>
+                                                            <td colspan="3" class="text-right">TOTAL</td>
+                                                            <td>$ <?php echo $total + $this->cart->getShippingCost();; ?></td>
                                                         </tr>
                                                 	</tbody>  
                                             	</table>
