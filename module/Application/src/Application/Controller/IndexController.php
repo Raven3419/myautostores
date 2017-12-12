@@ -1491,9 +1491,9 @@ class IndexController extends AbstractActionController
         $vm->setVariable('order', $order);
         $vm->setVariable('cart', $cart);
             
-        $this->cartService->disableCart($cart);
-        $this->sessionEC->getManager()->getStorage()->clear('saved_cart');
-        unset($_SESSION['saved_cart']);
+        //$this->cartService->disableCart($cart);
+        //$this->sessionEC->getManager()->getStorage()->clear('saved_cart');
+        //unset($_SESSION['saved_cart']);
         
         
         return $vm;
@@ -1620,6 +1620,7 @@ class IndexController extends AbstractActionController
                 
                 //print_r($trxnProperties);exit;
                
+                /*
                 $path_to_wsdl = "https://api.globalgatewaye4.firstdata.com/transaction/v11/wsdl";
           
                 $client = new SoapClientHMAC( $path_to_wsdl );
@@ -1642,6 +1643,19 @@ class IndexController extends AbstractActionController
                 
                     return $this->redirect()->toUrl('/receipt');
                 }
+                */
+                
+                $from = 'mailer@myautostores.com';
+                $subject = 'Confirmation Order Email';
+                $to = array($order->getEcomCustomer()->getEmail());
+                $message = "<p>
+                    You have just placed an order.  Thank you!!
+                </p>";
+                
+                $this->sendEmail($from, $to, $subject, $message);
+                
+                return $this->redirect()->toUrl('/receipt');
+                
             }
             
             $vm->setVariable('cart', $cart);
