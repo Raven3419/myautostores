@@ -1482,17 +1482,19 @@ class IndexController extends AbstractActionController
         $cart = $this->cartService->getCartBySessionId($this->sessionEC->getManager()->getId());
         
         $shipping = $this->cartService->getShipping($cart);
+        $taxes = $this->sessionEC->taxes;
         
         $cart->setShippingCost($shipping['shipping_cost']);
         
         $order = $this->orderService->getOrder($this->sessionEC->orderId);
         
+        $vm->setVariable('taxes', $taxes);
         $vm->setVariable('order', $order);
         $vm->setVariable('cart', $cart);
             
-        //$this->cartService->disableCart($cart);
-        //$this->sessionEC->getManager()->getStorage()->clear('saved_cart');
-        //unset($_SESSION['saved_cart']);
+        $this->cartService->disableCart($cart);
+        $this->sessionEC->getManager()->getStorage()->clear('saved_cart');
+        unset($_SESSION['saved_cart']);
         
         
         return $vm;
@@ -1514,6 +1516,7 @@ class IndexController extends AbstractActionController
                  
             $systemUser = $this->userService->getUser(1);
             $shipping = $this->cartService->getShipping($cart);
+            $taxes = $this->sessionEC->taxes;
             
             $cart->setShippingCost($shipping['shipping_cost']);
             
@@ -1531,14 +1534,14 @@ class IndexController extends AbstractActionController
                         $grandtotal = $grandtotal + $subtotal;
                     }
                     
-                    $amount = ($shipping['shipping_cost'] + $grandtotal + 0);
+                    $amount = ($shipping['shipping_cost'] + $grandtotal + $taxes['tax']);
                     
                     $data = array(
                         'user_id'       => $systemUser->getUserId(),
                         'subtotal'      => $grandtotal,
                         'total'         => $amount,
                         'shipping'      => $cart->getShippingCost(),
-                        'taxes'         => 0,
+                        'taxes'         => $taxes['tax'],
                         'discount'      => 0,
                         'cart'          => $cart,
                     );
@@ -1660,6 +1663,7 @@ class IndexController extends AbstractActionController
             }
             
             $vm->setVariable('cart', $cart);
+            $vm->setVariable('taxes', $taxes);
             
             return $vm;
             
@@ -2041,15 +2045,16 @@ class IndexController extends AbstractActionController
                 $cartItems = $this->cartItemService->getCartItemsByCart($cart);
                 
                 $totalWeight = 0;
+                $total = 0;
                 foreach($cartItems as $items) {
                     $totalWeight = $totalWeight + ( $items->getWeight() * $items->getQuantity() );
+                    $total = $total + ( $items->getPrice() * $items->getQuantity() );
                 }
                 
                 $upsService = $this->rocketEcomService->getUpsService();
                 
                 $recordArray = $upsService->getUpsRates($address, $totalWeight);
                 
-                //print_r($recordArray);exit;
                 if($recordArray->Response->ResponseStatusDescription == 'Success')
                 {
                     $amount = floatval($recordArray->RatedShipment->NegotiatedRates->NetSummaryCharges->GrandTotal->MonetaryValue);
@@ -2057,7 +2062,16 @@ class IndexController extends AbstractActionController
                     $amount = '0';
                 }
                 $amountArray = array('shipping_cost' => $amount);
-                                         
+                
+                $tax = array('tax' => '0.00');
+                
+                if($address['state'] == 'Georgia')
+                {;
+                $tax = array('tax' => number_format((float)($amount + $total) * .07, 2, '.', ''));
+                }
+                
+                $this->sessionEC->taxes = $tax;
+                               
                 $cart = $this->cartService->edit($systemUser, $cart, $amountArray);
                 
                 if(!$error) {

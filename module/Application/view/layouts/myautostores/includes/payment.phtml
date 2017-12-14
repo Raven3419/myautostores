@@ -156,11 +156,11 @@
                                                         </tr>
                                                         <tr>
                                                             <td colspan="3" class="text-right">TAX</td>
-                                                            <td>$ 0</td>
+                                                            <td>$ <?php echo $this->taxes['tax'];?></td>
                                                         </tr>
                                                         <tr>
                                                             <td colspan="3" class="text-right">TOTAL</td>
-                                                            <td>$ <?php echo $subtotal + $this->cart->getShippingCost(); ?></td>
+                                                            <td>$ <?php echo $subtotal + $this->cart->getShippingCost() + $this->taxes['tax']; ?></td>
                                                         </tr>
                                                 	</tbody>
                                                 </table>

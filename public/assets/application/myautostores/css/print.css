@@ -1,4 +1,15 @@
+
 .noprint
 {
-    display: none;
+	display: none;
+}
+.outline{
+	width: 165% !important;
+	margin 0;	
+}
+.img-responsive{
+	width: 110px;
+}
+.ltr-direction{
+	display: none;
 }
