@@ -1632,7 +1632,7 @@ class IndexController extends AbstractActionController
                 if($trxnResult->Transaction_Error == '1')
                 {
                     $vm->setVariable('error', '1');
-                    $vm->setVariable('errorMessage', $trxnResult->EXact_Message);
+                    $vm->setVariable('errorMessage', 'Please review your address and re-enter your credit card information.');
                 }
                 
                 if($trxnResult->Transaction_Approved == '1')

@@ -178,7 +178,19 @@ $errors = $this->formElementErrors()
                 												<?php echo $this->formElement($firstName); ?>
                 											</div>
                 										</div>
-                										
+                									</div>
+                									<div class="col-md-6 col-xs-12">
+                										<?php $lastName = $fieldset->get('lastName'); ?>
+                										<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                											<label><?php echo $lastName->getLabel(); ?> <span>*</span></label>
+                											<div class='s-relative'>
+                												<?php echo $this->formElement($lastName); ?>
+                											</div>
+                										</div>
+                									</div>
+                								</div>
+                								<div class="row">
+                									<div class="col-md-6 col-xs-12">
                                     					<?php $billingCountry = $fieldset->get('billingCountry'); ?>
                 										<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
                 											<label><?php echo $billingCountry->getLabel(); ?><span>*</span></label>
@@ -186,7 +198,19 @@ $errors = $this->formElementErrors()
                 												<?php echo $this->formElement($billingCountry); ?>
                 											</div>
                 										</div>
-                										
+                									</div>
+                									<div class="col-md-6 col-xs-12">
+                										<?php $billingState = $fieldset->get('billingState'); ?>
+                    									<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                    										<label><?php echo $billingState->getLabel(); ?> <span>*</span></label>
+                    										<div class='s-relative'>
+                    											<?php echo $this->formElement($billingState); ?>
+                    										</div>
+                    									</div>
+                									</div>
+                								</div>
+                								<div class="row">
+                									<div class="col-md-6 col-xs-12">
                                     					<?php $phoneNumber = $fieldset->get('phoneNumber'); ?>
                 										<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
                 											<label><?php echo $phoneNumber->getLabel(); ?> <span>*</span></label>
@@ -194,8 +218,20 @@ $errors = $this->formElementErrors()
                 												<?php echo $this->formElement($phoneNumber); ?>
                 											</div>
                 										</div>
-        									
-        												<?php $password = $fieldset->get('password'); ?>
+                									</div>
+                									<div class="col-md-6 col-xs-12">
+                										<?php $email = $fieldset->get('email'); ?>
+                    									<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                    										<label><?php echo $email->getLabel(); ?> <span>*</span></label>
+                    										<div class='s-relative'>
+                    											<?php echo $this->formElement($email); ?>
+                    										</div>
+                    									</div>
+                									</div>
+                								</div>
+                								<div class="row">
+                									<div class="col-md-6 col-xs-12">
+                                    					<?php $password = $fieldset->get('password'); ?>
                 										<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
                 											<label><?php echo $password->getLabel(); ?> <span>*</span></label>
                 											<div class='s-relative'>
@@ -204,32 +240,7 @@ $errors = $this->formElementErrors()
                 										</div>
                 									</div>
                 									<div class="col-md-6 col-xs-12">
-                									
-                										<?php $lastName = $fieldset->get('lastName'); ?>
-                										<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
-                											<label><?php echo $lastName->getLabel(); ?> <span>*</span></label>
-                											<div class='s-relative'>
-                												<?php echo $this->formElement($lastName); ?>
-                											</div>
-                										</div>
-                										
-                										<?php $billingState = $fieldset->get('billingState'); ?>
-                    									<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
-                    										<label><?php echo $billingState->getLabel(); ?> <span>*</span></label>
-                    										<div class='s-relative'>
-                    											<?php echo $this->formElement($billingState); ?>
-                    										</div>
-                    									</div>
-                    									
-                    									<?php $email = $fieldset->get('email'); ?>
-                    									<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
-                    										<label><?php echo $email->getLabel(); ?> <span>*</span></label>
-                    										<div class='s-relative'>
-                    											<?php echo $this->formElement($email); ?>
-                    										</div>
-                    									</div>
-                    									
-                    									<?php $passwordVerification = $fieldset->get('passwordVerification'); ?>
+                										<?php $passwordVerification = $fieldset->get('passwordVerification'); ?>
                     									<div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
                     										<label><?php echo $passwordVerification->getLabel(); ?> <span>*</span></label>
                     										<div class='s-relative'>
