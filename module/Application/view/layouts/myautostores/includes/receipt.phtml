@@ -138,7 +138,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <?php foreach($this->layout()->cartItems as $cartItems) { 
-                                						    $total = $total + $cartItems->getPrice();
+                                                            $total = $total + ($cartItems->getPrice() * $cartItems->getQuantity());
                                 						?>
                                                         <tr>
                                                             <td>
@@ -153,7 +153,7 @@
                                                             </td>
                                                             <td><?php echo $cartItems->getQuantity(); ?></td>
                                                            	<td style="width:13%;">$ <?php echo $cartItems->getPrice(); ?></td>
-                                                          	<td style="width:13%;">$ <?php echo $cartItems->getPrice(); ?></td>
+                                                          	<td style="width:13%;">$ <?php echo ($cartItems->getPrice() * $cartItems->getQuantity()); ?></td>
                                                        	</tr>
                                                        	<?php } ?>
                                                         <tr>
