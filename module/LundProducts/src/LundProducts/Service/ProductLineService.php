@@ -350,7 +350,7 @@ class ProductLineService implements EventManagerAwareInterface
          exit;
          */
         
-        $foundBrand = $this->prepare("select pc.display_name as PC_Display, pc.name as PC_Name, pl.display_name as PL_Display, pl.name as PL_Name, pl.teaser as teaser, pl.website_overview as html, pl.product_line_id as product_line_id, b.name as brand, bpc.short_descr as short_descr, p.sale_price,
+        $foundBrand = $this->prepare("select pc.display_name as PC_Display, pc.name as PC_Name, pl.display_name as PL_Display, pl.name as PL_Name, pl.teaser as teaser, pl.website_overview as html, pl.product_line_id as product_line_id, b.label as brand, bpc.short_descr as short_descr, p.sale_price,
     			bpc.long_descr as long_descr, a.hash as hash, a.file_name as fileName, p.color_group, p.color, p.bed_length, p.finish, p.style, p.material, p.sold_as, p.tube_size, p.tube_shape, p.liquid_storage_capacity, p.box_style, p.box_opening_type,  pl.position, pl.total_rating, pl.total_count, p.color_group, bpc.meta_title, bpc.meta_keywords, bpc.meta_descr
 										from brand_product_category as bpc, product_categories as pc, brands as b, parts as p, part_veh_collection as pvc, veh_collection as vc, product_lines as pl
                                         LEFT JOIN product_line_asset as pla on pla.product_line_id = pl.product_line_id
@@ -498,7 +498,7 @@ class ProductLineService implements EventManagerAwareInterface
     									";
     	*/
     	
-    	$foundBrand = $this->prepare("select pc.display_name as PC_Display, pc.name as PC_Name, pl.display_name as PL_Display, pl.name as PL_Name, pl.teaser as teaser, pl.website_overview as html, pl.product_line_id as product_line_id, b.name as brand, bpc.short_descr as short_descr, p.sale_price,
+    	$foundBrand = $this->prepare("select pc.display_name as PC_Display, pc.name as PC_Name, pl.display_name as PL_Display, pl.name as PL_Name, pl.teaser as teaser, pl.website_overview as html, pl.product_line_id as product_line_id, b.label as brand, bpc.short_descr as short_descr, p.sale_price,
     			bpc.long_descr as long_descr, a.hash as hash, a.file_name as fileName, p.color_group, p.color, p.bed_length, p.finish, p.style, p.material, p.sold_as, p.tube_size, p.tube_shape, p.liquid_storage_capacity, p.box_style, p.box_opening_type,  pl.position, pl.total_rating, pl.total_count, p.color_group, bpc.meta_title, bpc.meta_keywords, bpc.meta_descr
 										from brand_product_category as bpc, product_categories as pc, brands as b, parts as p, part_veh_collection as pvc, veh_collection as vc, product_lines as pl
                                         LEFT JOIN product_line_asset as pla on pla.product_line_id = pl.product_line_id
@@ -807,7 +807,7 @@ class ProductLineService implements EventManagerAwareInterface
         */
         
         $foundBrand = $this->prepare("select distinct pc.display_name as PC_Display, pc.name as PC_Name, pl.display_name as PL_Display, pl.name as PL_Name, pl.website_overview as html,  p.sale_price,
-    			pl.product_line_id as product_line_id, b.name as brand, bpc.short_descr as short_descr, bpc.long_descr as long_descr, pl.position, pl.total_rating, pl.total_count, bpc.meta_title, bpc.meta_keywords, bpc.meta_descr,
+    			pl.product_line_id as product_line_id, b.label as brand, bpc.short_descr as short_descr, bpc.long_descr as long_descr, pl.position, pl.total_rating, pl.total_count, bpc.meta_title, bpc.meta_keywords, bpc.meta_descr,
     			a.hash as hash, a.file_name as fileName, a2.file_name as file_name, p.color_group, p.color, p.finish, p.style
 										from brand_product_category as bpc, brands as b, parts as p, product_lines as pl
 										left join product_line_asset as pla on pl.product_line_id = pla.product_line_id and pla.asset_seq = '1'
@@ -961,7 +961,7 @@ class ProductLineService implements EventManagerAwareInterface
     	*/
     	
     	$foundBrand = $this->prepare("select distinct pc.display_name as PC_Display, pc.name as PC_Name, pl.display_name as PL_Display, pl.name as PL_Name, pl.website_overview as html,  p.sale_price,
-    			pl.product_line_id as product_line_id, b.name as brand, bpc.short_descr as short_descr, bpc.long_descr as long_descr, pl.position, pl.total_rating, pl.total_count, bpc.meta_title, bpc.meta_keywords, bpc.meta_descr,
+    			pl.product_line_id as product_line_id, b.label as brand, bpc.short_descr as short_descr, bpc.long_descr as long_descr, pl.position, pl.total_rating, pl.total_count, bpc.meta_title, bpc.meta_keywords, bpc.meta_descr,
     			a.hash as hash, a.file_name as fileName, a2.file_name as file_name, p.color_group, p.color, p.finish, p.style
 										from brand_product_category as bpc, brands as b, parts as p, product_lines as pl
 										left join product_line_asset as pla on pl.product_line_id = pla.product_line_id and pla.asset_seq = '1'

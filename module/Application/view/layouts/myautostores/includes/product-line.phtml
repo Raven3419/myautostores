@@ -194,9 +194,11 @@ $emptyProductLine = false;
                             <h3 class="s-title wow zoomInUp" data-wow-delay="0.1s" style="width:100%;">Top Categories</h3>
                             <nav>
 									<ul class="b-blog__aside-categories-list text-left">
-											<li><a href="/products/side+window+deflectors" alt="Side Window Deflectors" title="Side Window Deflectors" ></a>Side Window Deflectors</li>
-											<li><a href="/products/tonneaus" alt="Tonneau Cover" title="Tonneau Cover" >Tonneau Cover</a></li>
+											<li><a href="/products/side+window+deflectors" alt="Side Window Deflectors" title="Side Window Deflectors" >Side Window Deflectors</a></li>
+											<li><a href="/products/tonneau+cover" alt="Tonneau Cover" title="Tonneau Cover" >Tonneau Cover</a></li>
+											<!--  
 											<li><a href="/products/fender+flare" alt="Fender Flare" title="Fender Flare" >Fender Flare</a></li>
+											-->
 											<li><a href="/products/hood+shields" alt="Hood Shields" title="Hood Shields" >Hood Shields</a></li>
 											<li><a href="/products/floor+coverings" alt="Floor Coverings " title="Floor Coverings " >Floor Coverings </a></li>		
 									</ul>
@@ -308,10 +310,14 @@ $emptyProductLine = false;
                     	    		 -->
                     	    	</div>
                     	    	<div class="b-items__cars-one-info">
-                    	    		<form class="b-items__cars-one-info-header">
+                    	    		<div class="b-items__cars-one-info-header">
                     	    		<h3><?php echo $productLinesArray[$x]['PL_Display']; ?></h3>
-                                	</form><hr>
-                                	<div class="row s-noRightMargin">
+                                	</div>
+                                	<div>
+                                		<img src="/assets/application/myautostores/img/<?php echo $productLinesArray[$x]['brand']; ?>-logo.png" alt="<?php echo $productLinesArray[$x]['brand']; ?>" title="<?php echo $productLinesArray[$x]['brand']; ?>" style="height:35px;float:right;">                               		
+                                	</div>
+                                	<hr>
+                                	<div class="row s-noRightMargin" style="float:left;">
                                     	<div class="col-md-9 col-xs-12">
                                         	<p><?php echo $productLinesArray[$x]['html'];?></p>
             
