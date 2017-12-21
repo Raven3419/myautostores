@@ -1588,7 +1588,7 @@ class IndexController extends AbstractActionController
                     "CAVV"                      => "",
                     "Password"                  => "y7k0K7OkmWNAE2lrWV4B1M",	         //Gateway Password
                     "CAVV_Algorithm"            => "",
-                    "Transaction_Type"          => "01",                                 //Transaction Code I.E. Purchase="00" Pre-Authorization="01" etc.
+                    "Transaction_Type"          => "00",                                 //Transaction Code I.E. Purchase="00" Pre-Authorization="01" etc.
                     "Reference_No"              => $order->getOrderId(),
                     "Customer_Ref"              => "",
                     "Reference_3"               => "",
@@ -1603,7 +1603,7 @@ class IndexController extends AbstractActionController
                     "Authorization_Num"         => "",  //** not sure
                     "Transaction_Tag"           => "",
                     //"DollarAmount"              => $order->getTotal(),
-                    "DollarAmount"              => "1.00",
+                    "DollarAmount"              => "2.00",
                     "VerificationStr1"          => $ecomCustomer->getBillingStreetAddress()."|".$ecomCustomer->getBillingPostCode()."|".$ecomCustomer->getBillingCity()."|".$ecomCustomer->getBillingState()->getSubdivisionName()."|".$ecomCustomer->getBillingState()->getCodeChar2(),
                     "VerificationStr2"          => $ccCVV,
                     "CVD_Presence_Ind"          => "",
