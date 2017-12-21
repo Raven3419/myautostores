@@ -1657,7 +1657,7 @@ class IndexController extends AbstractActionController
                                 					<a href="https://www.myautostores.com">
                                 						<img src="https://www.myautostores.com/assets/application/myautostores/images/logo/logo2.png" alt="myautostores" title="myautostores">
                                 					</a>
-                                				</td><td colspan="3">
+                                				</td><td colspan="2">
                                 					<center>
                                 						<font size="40">Thank You For Your Order!</font>
                                 						<br />
