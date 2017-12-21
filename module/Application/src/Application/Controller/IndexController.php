@@ -1644,7 +1644,8 @@ class IndexController extends AbstractActionController
                 
                     $from = 'webmaster@myautostores.com';
                     $subject = 'Confirmation Order Email';
-                    $to = array($order->getEcomCustomer()->getEmail());
+                    $to = array($order->getEcomCustomer()->getEmail(),
+                                'webmaster@myautostores.com');
                     $message = '<!DOCTYPE html><html lang="en">
                                 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
                                 	<head>
