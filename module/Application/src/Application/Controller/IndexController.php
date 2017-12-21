@@ -1657,39 +1657,38 @@ class IndexController extends AbstractActionController
                                 					<a href="https://www.myautostores.com">
                                 						<img src="https://www.myautostores.com/assets/application/myautostores/images/logo/logo2.png" alt="myautostores" title="myautostores">
                                 					</a>
-                                				</td>
-                                				<td colspan="2" style="text-align: center;">
-                                					<label>
-                                						<spam style="font-size:40px;">Thank You For Your Order!</spam>
+                                				</td><td colspan="3">
+                                					<center>
+                                						<font size="40">Thank You For Your Order!</font>
                                 						<br />
                                 						Order # '.$order->getOrderId().'
-                                					</label>
+                                					</center>
                                 				</td>
                                 			</tr>
                                 			<tr>
                                 				<td colspan="3">
                                 					<p>Thank you for shopping with us!  Your order has been received and you will receive a confirmation once your order ships.</p>
-                                					<p>Give us a call if you have any questions, please visit us at MyAutoStores.com or call us at 770-406-0442</p>
+                                					<p>Give us a call if you have any questions, please visit us at <a href="https://www.myautostores.com">MyAutoStores.com</a> or call us at 770-406-0442</p>
                                 					<p>Kind regards,</p>
                                 					<p>My Auto Stores Team</p>
                                 					<p>P.S.  Be on the lookout for an email with the shipping information as soon as it ships!  Also, be sure to update to your account for newsletters to receive special promos and deals!!</p>
                                 				</td>
                                 			</tr>
-                                			<table border="0" width="120%">
+                                			<table border="0" width="130%">
                                 				<tr>
                                 					<td colspan="3" style="background-color: #f76d2b;text-align: center;">
                                 						ORDER # '.$order->getOrderId().'
                                 					</td>
                                 				</tr>
                                 				<tr>
-                                					<td colspan="3">
+                                					<td colspan="3"  height="120px">
                                 						Shipping Method: UPS Ground <br />
                                 						Shipping Address: <br />'.
                                 						$order->getEcomCustomer()->getShippingStreetAddress().' <br />'.
                                 						$order->getEcomCustomer()->getShippingCity().', '.$order->getEcomCustomer()->getShippingState()->getSubdivisionName().' '. $order->getEcomCustomer()->getShippingPostCode() .'<br/>
                                 					</td>
                                 				</tr>
-                                				<tr>
+                                				<tr height="30px">
                                 					<td>
                                 						<b>Description</b>
                                 					</td>
@@ -1703,7 +1702,7 @@ class IndexController extends AbstractActionController
                                 				
                                 				foreach ($cartItems as $item){ 
 
-                                   $message .= '<tr>
+                                   $message .= '<tr height="30px">
                                 					<td>'.
                                 					   $item->getDescription()
                                 					.'</td>
@@ -1715,7 +1714,7 @@ class IndexController extends AbstractActionController
                                 					.'</td>
                                 				</tr>';
                                 				}
-                                	$message .= '<tr>
+                                	$message .= '<tr height="30px">
                                 					<td colspan="2" style="text-align: right;">
                                 						Subtotal :
                                 					</td>
@@ -1723,7 +1722,7 @@ class IndexController extends AbstractActionController
                                 					   $order->getSubtotal()
                                 					.'</td>
                                 				</tr>
-                                				<tr>
+                                				<tr height="30px">
                                 					<td colspan="2" style="text-align: right;">
                                 						Shipping :
                                 					</td>
@@ -1731,7 +1730,7 @@ class IndexController extends AbstractActionController
                                 					   $order->getShippingCost()
                                 					.'</td>
                                 				</tr>
-                                				<tr>
+                                				<tr height="30px">
                                 					<td colspan="2" style="text-align: right;">
                                 						Tax :
                                 					</td>
@@ -1739,7 +1738,7 @@ class IndexController extends AbstractActionController
                                 					   $order->getTaxCost()
                                 					.'</td>
                                 				</tr>
-                                				<tr>
+                                				<tr height="30px">
                                 					<td colspan="2" style="text-align: right;">
                                 						Total :
                                 					</td>
