@@ -1646,9 +1646,136 @@ class IndexController extends AbstractActionController
                     $from = 'webmaster@myautostores.com';
                     $subject = 'Confirmation Order Email';
                     $to = array($order->getEcomCustomer()->getEmail());
-                    $message = "<p>
-                        You have just placed an order.  Thank you!!
-                    </p>";
+                    $message = '<!DOCTYPE html><html lang="en">
+                                	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+                                	<head>
+                                	</head>
+                                	<body>
+                                		<table border = "0" width="100%">
+                                			<tr>
+                                				<td colspan="1">
+                                					<a href="https://www.myautostores.com">
+                                						<img src="https://www.myautostores.com/assets/application/myautostores/images/logo/logo2.png" alt="myautostores" title="myautostores">
+                                					</a>
+                                				</td>
+                                				<td colspan="3" style="text-align: center;">
+                                					<label>
+                                						<spam style="font-size:40px;">Thank You For Your Order!</spam>
+                                						<br />
+                                						Order # '.$order->getOrderId().'
+                                					</label>
+                                				</td>
+                                			</tr>
+                                			<tr>
+                                				<td colspan="4">
+                                					<p>Thank you for shopping with us!  Your order has been received and you will receive a confirmation once your order ships.</p>
+                                					<p>Give us a call if you have any questions, please visit us at MyAutoStores.com or call us at 770-406-0442</p>
+                                					<p>Kind regards,</p>
+                                					<p>My Auto Stores Team</p>
+                                					<p>P.S.  Be on the lookout for an email with the shipping information as soon as it ships!  Also, be sure to update to your account for newsletters to receive special promos and deals!!</p>
+                                				</td>
+                                			</tr>
+                                			<table border="0" width="100%">
+                                				<tr>
+                                					<td colspan="4" style="background-color: #f76d2b;text-align: center;">
+                                						ORDER # '.$order->getOrderId().'
+                                					</td>
+                                				</tr>
+                                				<tr>
+                                					<td colspan="4">
+                                						Shipping Method: UPS Ground <br />
+                                						Shipping Address: <br />'.
+                                						$order->getEcomCustomer()->getShippingStreetAddress().' <br />'.
+                                						$order->getEcomCustomer()->getShippingCity().', '.$order->getEcomCustomer()->getShippingState()->getSubdivisionName().' '. $order->getEcomCustomer()->getShippingPostCode() .'<br/>
+                                					</td>
+                                				</tr>
+                                				<tr>
+                                					<td>
+                                						<b>Item #</b>
+                                					</td>
+                                					<td>
+                                						<b>Description</b>
+                                					</td>
+                                					<td>
+                                						<b>Price</b>
+                                					</td>
+                                					<td>
+                                						<b>Total Cost</b>
+                                					</td>
+                                				</tr>
+                                				<tr>
+                                					<td>
+                                						4578
+                                					</td>
+                                					<td>
+                                						(1) Aeroskin
+                                					</td>
+                                					<td>
+                                						$34.99
+                                					</td>
+                                					<td>
+                                						$34.99
+                                					</td>
+                                				</tr>
+                                				<tr>
+                                					<td>
+                                						234235
+                                					</td>
+                                					<td>
+                                						(2) Genesis Snap Tonneau
+                                					</td>
+                                					<td>
+                                						$99.99
+                                					</td>
+                                					<td>
+                                						$198.99
+                                					</td>
+                                				</tr>
+                                				<tr>
+                                					<td colspan="3" style="text-align: right;">
+                                						Subtotal :
+                                					</td>
+                                					<td>
+                                						$1999.00
+                                					</td>
+                                				</tr>
+                                				<tr>
+                                					<td colspan="3" style="text-align: right;">
+                                						Shipping :
+                                					</td>
+                                					<td>
+                                						$100.00
+                                					</td>
+                                				</tr>
+                                				<tr>
+                                					<td colspan="3" style="text-align: right;">
+                                						Tax :
+                                					</td>
+                                					<td>
+                                						$30.00
+                                					</td>
+                                				</tr>
+                                				<tr>
+                                					<td colspan="3" style="text-align: right;">
+                                						Total :
+                                					</td>
+                                					<td>
+                                						$4999.00
+                                					</td>
+                                				</tr>
+                                			</table>
+                                			<tr>
+                                				<td colspan="4">
+                                					<p>You are receiving this email because you registered on <a href="https://www.myautostores.com">MyAutoStores.com</a> with this email address.  By placing your order, you agree to MyAutoStore.com’s Privacy Notice 
+                                						and Terms & Conditions and your order will be processed by The My Auto Stores, 3482 Keith Bridge Rd Suite 336, Cumming GA 30041. 
+                                						If you need more information, please contact 770-406-0442. Unless otherwise noted, items sold by <a href="https://www.myautostores.com">MyAutostores</a> are subject to sales tax 
+                                						in select states in accordance with the applicable laws of that state</p>
+                                					<p>*This email was sent from a notification-only address that cannot accept incoming email. Please do not reply to this message.</p>
+                                				</td>
+                                			</tr>
+                                		</table>
+                                	</body>
+                                </html>';
                     
                     
                     $this->sendEmail($from, $to, $subject, $message);
