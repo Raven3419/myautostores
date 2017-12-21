@@ -2349,7 +2349,7 @@ lookup_id                65   ""
                         if (null != $foundPart) {
                             $part_id = $foundPart['part_id'];
                                 $updatePartType = $this->masterService->updatePart($part_id, $modified_at, $deleted, $disabled, $partNumber, $jobberPrice, $msrpPrice,
-                                    $salePrice, $color, $isheet, $popCode, $upc, $weight, $height, $width, $length, $product_line_id, $countryOfOrigin, $statusCode,
+                                    $color, $isheet, $popCode, $upc, $weight, $height, $width, $length, $product_line_id, $countryOfOrigin, $statusCode,
                                     $dima, $dimb, $dimc, $dimd, $dime, $dimf, $dimg, $universal, $partTypeId, $lookup_number, $bedLength, $bed_length_id, $frontFlareHeight,
                                     $frontFlareTireCoverage, $vehicle_type, $no_drill, $finish, $style, $material, $material_thickness, $soldAs, $tubeShape, $tubeSize, $warranty, 
                                     $liquid_storage_capacity, $box_style, $box_opening_type, $cut_required, $rearFlareHeight, $rearFlareTireCoverage, $stake_holes, $colorGroup, 

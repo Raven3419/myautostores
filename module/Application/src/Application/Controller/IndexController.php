@@ -1658,7 +1658,7 @@ class IndexController extends AbstractActionController
                                 						<img src="https://www.myautostores.com/assets/application/myautostores/images/logo/logo2.png" alt="myautostores" title="myautostores">
                                 					</a>
                                 				</td>
-                                				<td colspan="3" style="text-align: center;">
+                                				<td colspan="2" style="text-align: center;">
                                 					<label>
                                 						<spam style="font-size:40px;">Thank You For Your Order!</spam>
                                 						<br />
@@ -1667,7 +1667,7 @@ class IndexController extends AbstractActionController
                                 				</td>
                                 			</tr>
                                 			<tr>
-                                				<td colspan="4">
+                                				<td colspan="3">
                                 					<p>Thank you for shopping with us!  Your order has been received and you will receive a confirmation once your order ships.</p>
                                 					<p>Give us a call if you have any questions, please visit us at MyAutoStores.com or call us at 770-406-0442</p>
                                 					<p>Kind regards,</p>
@@ -1675,14 +1675,14 @@ class IndexController extends AbstractActionController
                                 					<p>P.S.  Be on the lookout for an email with the shipping information as soon as it ships!  Also, be sure to update to your account for newsletters to receive special promos and deals!!</p>
                                 				</td>
                                 			</tr>
-                                			<table border="0" width="100%">
+                                			<table border="0" width="120%">
                                 				<tr>
-                                					<td colspan="4" style="background-color: #f76d2b;text-align: center;">
+                                					<td colspan="3" style="background-color: #f76d2b;text-align: center;">
                                 						ORDER # '.$order->getOrderId().'
                                 					</td>
                                 				</tr>
                                 				<tr>
-                                					<td colspan="4">
+                                					<td colspan="3">
                                 						Shipping Method: UPS Ground <br />
                                 						Shipping Address: <br />'.
                                 						$order->getEcomCustomer()->getShippingStreetAddress().' <br />'.
@@ -1690,9 +1690,6 @@ class IndexController extends AbstractActionController
                                 					</td>
                                 				</tr>
                                 				<tr>
-                                					<td>
-                                						<b>Item #</b>
-                                					</td>
                                 					<td>
                                 						<b>Description</b>
                                 					</td>
@@ -1702,70 +1699,57 @@ class IndexController extends AbstractActionController
                                 					<td>
                                 						<b>Total Cost</b>
                                 					</td>
-                                				</tr>
-                                				<tr>
-                                					<td>
-                                						4578
-                                					</td>
-                                					<td>
-                                						(1) Aeroskin
-                                					</td>
-                                					<td>
-                                						$34.99
-                                					</td>
-                                					<td>
-                                						$34.99
-                                					</td>
-                                				</tr>
-                                				<tr>
-                                					<td>
-                                						234235
-                                					</td>
-                                					<td>
-                                						(2) Genesis Snap Tonneau
-                                					</td>
-                                					<td>
-                                						$99.99
-                                					</td>
-                                					<td>
-                                						$198.99
-                                					</td>
-                                				</tr>
-                                				<tr>
-                                					<td colspan="3" style="text-align: right;">
+                                				</tr>';
+                                				
+                                				foreach ($cartItems as $item){ 
+
+                                   $message .= '<tr>
+                                					<td>'.
+                                					   $item->getDescription()
+                                					.'</td>
+                                					<td>'.
+                                					   $item->getPrice()
+                                					.'</td>
+                                					<td>'.
+                                					   $item->getPrice() * $item->getQuantity()
+                                					.'</td>
+                                				</tr>';
+                                				}
+                                	$message .= '<tr>
+                                					<td colspan="2" style="text-align: right;">
                                 						Subtotal :
                                 					</td>
-                                					<td>
-                                						$1999.00
-                                					</td>
+                                					<td>'.
+                                					   $order->getSubtotal()
+                                					.'</td>
                                 				</tr>
                                 				<tr>
-                                					<td colspan="3" style="text-align: right;">
+                                					<td colspan="2" style="text-align: right;">
                                 						Shipping :
                                 					</td>
-                                					<td>
-                                						$100.00
-                                					</td>
+                                					<td>'.
+                                					   $order->getShippingCost()
+                                					.'</td>
                                 				</tr>
                                 				<tr>
-                                					<td colspan="3" style="text-align: right;">
+                                					<td colspan="2" style="text-align: right;">
                                 						Tax :
                                 					</td>
-                                					<td>
-                                						$30.00
-                                					</td>
+                                					<td>'.
+                                					   $order->getTaxCost()
+                                					.'</td>
                                 				</tr>
                                 				<tr>
-                                					<td colspan="3" style="text-align: right;">
+                                					<td colspan="2" style="text-align: right;">
                                 						Total :
                                 					</td>
-                                					<td>
-                                						$4999.00
-                                					</td>
+                                					<td>'.
+                                					   $order->getTotal()
+                                					.'</td>
                                 				</tr>
                                 			</table>
                                 			<tr>
-                                				<td colspan="4">
+                                				<td colspan="3">
                                 					<p>You are receiving this email because you registered on <a href="https://www.myautostores.com">MyAutoStores.com</a> with this email address.  By placing your order, you agree to MyAutoStore.com’s Privacy Notice 
                                 						and Terms & Conditions and your order will be processed by The My Auto Stores, 3482 Keith Bridge Rd Suite 336, Cumming GA 30041. 
                                 						If you need more information, please contact 770-406-0442. Unless otherwise noted, items sold by <a href="https://www.myautostores.com">MyAutostores</a> are subject to sales tax 

@@ -699,7 +699,7 @@ class ParseMasterService implements EventManagerAwareInterface
      */
       
     public function updatePart($part_id = null, $modified_at = null, $deleted = null, $disabled = null, $part_number = null, $jobber_price = null,
-    		$msrp_price = null, $sale_price = null, $color = null, $isheet = null,  $pop_code = null, $upc_code = null, $weight = null,
+    		$msrp_price = null, $color = null, $isheet = null,  $pop_code = null, $upc_code = null, $weight = null,
     		$height = null, $width = null, $length = null, $product_line_id = null, $country_of_origin = null, $status_code = null, $dima = null, $dimb = null, $dimc = null,
     		$dimd = null, $dime = null, $dimf = null, $dimg = null, $universal = false, $lookup_parttype_id = null, $lookup_number = null,
     		$bed_length = null, $bed_length_id = null, $flare_height = null, $flare_tire_coverage = null, $vehicle_type = null, $no_drill = null, $finish = null, $style = null,
@@ -729,7 +729,6 @@ class ParseMasterService implements EventManagerAwareInterface
     			'part_number'       		=> $part_number,
     			'jobber_price'      		=> $jobber_price,
     			'msrp_price'        		=> $msrp_price,
-    			'sale_price'        		=> $sale_price,
     			'color'             		=> $color,
     			'isheet'            		=> $isheet,
     			'pop_code'          		=> $pop_code,
@@ -779,7 +778,7 @@ class ParseMasterService implements EventManagerAwareInterface
     	);
     
     	$part = $this->prepare('UPDATE parts set modified_at = :modified_at, deleted = :deleted, disabled = :disabled, part_number = :part_number, 
-    											 jobber_price = :jobber_price, msrp_price = :msrp_price, sale_price = :sale_price, color = :color, 
+    											 jobber_price = :jobber_price, msrp_price = :msrp_price, color = :color, 
     											 isheet = :isheet, pop_code = :pop_code, upc_code = :upc_code, status = :status, weight = :weight, 
     											 height = :height, width = :width, length = :length, dima = :dima, dimb = :dimb, dimc = :dimc, 
     											 dimd = :dimd, dime = :dime, dimf = :dimf, dimg = :dimg, universal = :universal, 
@@ -801,7 +800,6 @@ class ParseMasterService implements EventManagerAwareInterface
     	$part->bindParam(':part_number', $return['part_number']);
     	$part->bindParam(':jobber_price', $return['jobber_price']);
     	$part->bindParam(':msrp_price', $return['msrp_price']);
-    	$part->bindParam(':sale_price', $return['sale_price']);
     	$part->bindParam(':color', $return['color']);
     	$part->bindParam(':isheet', $return['isheet']);
     	$part->bindParam(':pop_code', $return['pop_code']);
