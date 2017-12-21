@@ -1602,8 +1602,7 @@ class IndexController extends AbstractActionController
                     "Track2"                    => "",
                     "Authorization_Num"         => "",  //** not sure
                     "Transaction_Tag"           => "",
-                    //"DollarAmount"              => $order->getTotal(),
-                    "DollarAmount"              => "2.00",
+                    "DollarAmount"              => $order->getTotal(),
                     "VerificationStr1"          => $ecomCustomer->getBillingStreetAddress()."|".$ecomCustomer->getBillingPostCode()."|".$ecomCustomer->getBillingCity()."|".$ecomCustomer->getBillingState()->getSubdivisionName()."|".$ecomCustomer->getBillingState()->getCodeChar2(),
                     "VerificationStr2"          => $ccCVV,
                     "CVD_Presence_Ind"          => "",
