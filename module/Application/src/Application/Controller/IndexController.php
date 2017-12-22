@@ -578,6 +578,9 @@ class IndexController extends AbstractActionController
                 $vm = $this->news($site, $vm);
             }
         } 
+        elseif($page->getSlug()== 'affiliates') {
+            $vm = $this->affiliates($site, $vm);
+        }
 
         
 
@@ -2303,6 +2306,14 @@ class IndexController extends AbstractActionController
         }
         
         
+        return $vm;
+    }
+    
+    protected function affiliates(SiteInterface $site, ViewModel $vm)
+    {
+        $retailersOnline = $this->retailerService->getActiveOnlineRetailers();
+        
+        $vm->setVariable('retailersOnline', $retailersOnline);
         return $vm;
     }
     
