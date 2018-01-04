@@ -5,121 +5,92 @@ $activeElement = $this->menuElementService->getMenuElementByUrl($menu, '/' . $th
 $parentElement = $activeElement->getParentMenuElement();
 if (null == $parentElement) { $parentElement = $activeElement; }
 }
-?><div
-class="b-features noprint"><div
-class="container"><div
-class="row"><div
-class="col-md-9 col-md-offset-3 col-xs-6 col-xs-offset-6"><ul
-class="b-features__items"><li>Low Prices, No Haggling</li><li>Best Parts Dealership</li><li>Multipoint Safety Check</li></ul></div></div></div></div><div
-class="b-info noprint"><div
-class="container"><div
-class="row"><div
-class="col-md-3 col-xs-6">
-<aside
-class="b-info__aside">
-<article
-class="b-info__aside-article">
-<label
-class="footerh3">OPENING HOURS</label><div
-class="b-info__aside-article-item">
-<label
-class="footerh6">Sales Department</label><p>Mon-Fri : 8:00am - 5:00pm EST<br
-/>
-Saturday is closed<br
-/>
-Sunday is closed</p></div><div
-class="b-info__aside-article-item">
-<label
-class="footerh6">Service Department</label><p>Mon-Fri : 8:00am - 5:00pm EST<br
-/>
-Saturday is closed<br
-/>
+?>
+<div class="b-features noprint">
+<div class="container">
+<div class="row">
+<div class="col-md-9 col-md-offset-3 col-xs-6 col-xs-offset-6">
+<ul class="b-features__items"><li>Low Prices, No Haggling</li><li>Best Parts Dealership</li><li>Multipoint Safety Check</li></ul></div></div></div></div>
+<div class="b-info noprint">
+<div class="container">
+<div class="row">
+<div class="col-md-3 col-xs-6">
+<aside class="b-info__aside">
+<article class="b-info__aside-article">
+<label class="footerh3">OPENING HOURS</label>
+<div class="b-info__aside-article-item">
+<label class="footerh6">Sales Department</label><p>Mon-Fri : 8:00am - 5:00pm EST<br />
+Saturday is closed<br />
+Sunday is closed</p></div>
+<div class="b-info__aside-article-item">
+<label class="footerh6">Service Department</label><p>Mon-Fri : 8:00am - 5:00pm EST<br />
+Saturday is closed<br />
 Sunday is closed</p></div>
 </article>
-<article
-class="b-info__aside-article">
-<label
-class="footerh3">About us</label><p>MyAutoStores is an online retailer of both interior and exterior car parts. We specialize in finding you the part you need for your car, so you don't have to search the ends of the earth for that one specific piece unique to your car.</p>
+<article class="b-info__aside-article">
+<label class="footerh3">About us</label><p>MyAutoStores is an online retailer of both interior and exterior car parts. We specialize in finding you the part you need for your car, so you don't have to search the ends of the earth for that one specific piece unique to your car.</p>
 </article>
-<a
-href="/about-us" class="btn m-btn">Read More<span
-class="fa fa-angle-right"></span></a>
+<a href="/about-us" class="btn m-btn">Read More
+<span class="fa fa-angle-right"></span></a>
 </aside></div>
 <?php
 foreach ($elements as $element) {
 $childElements = null;
 if (null == $element->getParentMenuElement()) {
 $childElements = $this->menuElementService->getChildrenElements($element);
-?><div
-class="col-md-3 col-xs-6"><div
-class="b-info__twitter">
-<label
-class="footerh3"><?php echo $element->getTitle(); ?></label><ul
-class="ft-ln">
-<?php foreach ($childElements as $childElement) { ?><li><a
-href="<?php echo $childElement->getUrl(); ?>"><?php echo $childElement->getTitle(); ?></a></li>
+?>
+<div class="col-md-3 col-xs-6">
+<div class="b-info__twitter">
+<label class="footerh3"><?php echo $element->getTitle(); ?></label>
+<ul class="ft-ln">
+<?php foreach ($childElements as $childElement) { ?>
+<li><a href="<?php echo $childElement->getUrl(); ?>"><?php echo $childElement->getTitle(); ?></a></li>
 <?php } ?></ul></div></div>
 <?php } ?>
-<?php } ?><div
-class="col-md-3 col-xs-6">
-<address
-class="b-info__contacts"><p>contact us</p><div
-class="b-info__contacts-item">
-<span
-class="fa fa-map-marker"></span>
-<em>3482 Keith Bridge Rd Suite 336, Cumming, GA 30041</em></div><div
-class="b-info__contacts-item">
-<span
-class="fa fa-phone"></span>
-<em>Phone: 770-406-0442</em></div><div
-class="b-info__contacts-item">
-<span
-class="fa fa-envelope"></span>
+<?php } ?>
+<div class="col-md-3 col-xs-6">
+<address class="b-info__contacts"><p>contact us</p>
+<div class="b-info__contacts-item">
+<span class="fa fa-map-marker"></span>
+<em>3482 Keith Bridge Rd Suite 336, Cumming, GA 30041</em></div>
+<div class="b-info__contacts-item">
+<span class="fa fa-phone"></span>
+<em>Phone: 770-406-0442</em></div>
+<div class="b-info__contacts-item">
+<span class="fa fa-envelope"></span>
 <em>Email:  <a href="mailto:webmaster@myautostores.com">Admin Email</a></em></div>
 </address></div></div></div></div>
-<footer
-class="b-footer noprint">
-<a
-id="to-top" href="#this-is-top"><i
-class="fa fa-chevron-up"></i></a><div
-class="container"><div
-class="row"><div
-class="col-xs-4"><div
-class="b-footer__company"><div
-class="b-nav__logo"><h3><a
-href="/"><span>my</span>auto<span>stores</span></a></h3></div><p>&copy; 2017 by <b>MY AUTO STORES</b> | All rights reserved</p></div></div><div
-class="col-xs-8"><div
-class="b-footer__content"><div
-class="b-footer__content-social">
-<a
-href="#"><span
-class="fa fa-facebook-square"></span></a>
-<a
-href="#"><span
-class="fa fa-twitter-square"></span></a>
-<a
-href="#"><span
-class="fa fa-google-plus-square"></span></a>
-<a
-href="#"><span
-class="fa fa-instagram"></span></a>
-<a
-href="#"><span
-class="fa fa-youtube-square"></span></a>
-<a
-href="#"><span
-class="fa fa-skype"></span></a></div>
-<nav
-class="b-footer__content-nav"><ul><li><a
-href="/">Home</a></li><li><a
-href="/terms-of-use">Terms & Conditions</a></li><li><a
-href="/privacy-policy">Privacy Statement</a></li><li><a
-href="/">Sitemap</a></li></ul>
+<footer class="b-footer noprint">
+<a id="to-top" href="#this-is-top">
+<i class="fa fa-chevron-up"></i></a>
+<div class="container">
+<div class="row">
+<div class="col-xs-4">
+<div class="b-footer__company">
+<div class="b-nav__logo"><h3>
+<a href="/"><span>my</span>auto<span>stores</span></a></h3></div><p>&copy; 2017 by <b>MY AUTO STORES</b> | All rights reserved</p></div></div>
+<div class="col-xs-8">
+<div class="b-footer__content">
+<div class="b-footer__content-social">
+<a href="#">
+<span class="fa fa-facebook-square"></span></a>
+<a href="#">
+<span class="fa fa-twitter-square"></span></a>
+<a href="#">
+<span class="fa fa-google-plus-square"></span></a>
+<a href="#">
+<span class="fa fa-instagram"></span></a>
+<a href="#">
+<span class="fa fa-youtube-square"></span></a>
+<a href="#">
+<span class="fa fa-skype"></span></a></div>
+<nav class="b-footer__content-nav"><ul><li>
+<a href="/">Home</a></li><li><a
+href="/terms-of-use">Terms & Conditions</a></li><li>
+<a href="/privacy-policy">Privacy Statement</a></li><li>
+<a href="/">Sitemap</a></li></ul>
 </nav></div></div></div></div>
 </footer>
 <script src="/assets/application/myautostores/js/bootstrap.min.js" async></script> <script src="/assets/application/myautostores/js/modernizr.custom.js" async></script> <script src="/assets/application/myautostores/assets/rendro-easy-pie-chart/dist/jquery.easypiechart.min.js" async></script> <script src="/assets/application/myautostores/js/waypoints.min.js" async></script> <script src="/assets/application/myautostores/js/jquery.easypiechart.min.js" async></script> <script src="/assets/application/myautostores/js/classie.js" async></script>  <script src="/assets/application/myautostores/assets/switcher/js/switcher.js" async></script>  <script src="/assets/application/myautostores/assets/owl-carousel/owl.carousel.min.js" defer></script>  <script src="/assets/application/myautostores/assets/bxslider/jquery.bxslider.js" defer></script>  <script src="/assets/application/myautostores/assets/slider/jquery.ui-slider.js" async></script>  <script src="/assets/application/myautostores/js/jquery.smooth-scroll.js" async></script> <script src="/assets/application/myautostores/js/wow.min.js" defer></script> <script src="/assets/application/myautostores/js/jquery.placeholder.min.js" async></script> <script src="/assets/application/myautostores/js/theme.js" async></script> <script src="/assets/application/myautostores/js/jquery.maskedinput.js" async></script>
-<!--Start of Tawk.to Script-->
-
-<!--End of Tawk.to Script-->
 </body></html>
 <!--Minify by http://www.MinifyWeb.com/-->
