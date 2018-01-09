@@ -590,15 +590,28 @@ class IndexController extends AbstractActionController
     protected function index(SiteInterface $site, ViewModel $vm)
     {
         $years = $this->lundProductService->getPartService()->getVehYear();
+        /*
         $number ="";
         for($x=0; $x<40; $x++) {
-            $number .= rand(0, 57).", ";
+            $number .= rand(0, 200).", ";
         }
+        */
+        
+        $number = '46, 25, 86, 4, 52, 201, 193, 129, 150, 12, 53, 210, 6, 7, 9, 215, 218, 219, 206, 26, ';
         
         $upsale       = $this->lundProductService->getProductLineService()->getProductLines(substr($number, 0, -2));
         
+        $upsales = array();
+        $upsalesArray = array();
+        for($x=0; $x<count($upsale); $x++) {
+            if(!in_array($upsale[$x]['PL_Display'], $upsalesArray)) {
+                array_push($upsalesArray, $upsale[$x]['PL_Display']);
+                array_push($upsales, $upsale[$x]);
+            }
+        }
+        
         $vm->setVariable('years', $years);
-        $vm->setVariable('upsale', $upsale);
+        $vm->setVariable('upsale', $upsales);
 
         return $vm;
     }
@@ -1083,9 +1096,6 @@ class IndexController extends AbstractActionController
         
         $price = '10000';
         $number ="";
-        for($x=0; $x<20; $x++) {
-            $number .= rand(0, 57).", ";
-        }
         
         for($n=0; $n<count($parts); $n++) {
             if($parts[$n]->getSalePrice() !== '0.00')
@@ -1097,14 +1107,32 @@ class IndexController extends AbstractActionController
             }
         }
         
+        /*
+         $number ="";
+         for($x=0; $x<40; $x++) {
+         $number .= rand(0, 200).", ";
+         }
+         */
+        
+        $number = '46, 25, 86, 4, 52, 201, 193, 129, 150, 12, 53, 210, 6, 7, 9, 215, 218, 219, 206, 26, ';
+        
         $upsale       = $this->lundProductService->getProductLineService()->getProductLines(substr($number, 0, -2));
-       
+        
+        $upsales = array();
+        $upsalesArray = array();
+        for($x=0; $x<count($upsale); $x++) {
+            if(!in_array($upsale[$x]['PL_Display'], $upsalesArray)) {
+                array_push($upsalesArray, $upsale[$x]['PL_Display']);
+                array_push($upsales, $upsale[$x]);
+            }
+        }
+        
         $vm->setVariable('category', $category);
         $vm->setVariable('productLines', $productLines);
         $vm->setVariable('price', $price);
         $vm->setVariable('parts', $parts);
         $vm->setVariable('years', $years);
-        $vm->setVariable('upsale', $upsale);
+        $vm->setVariable('upsale', $upsales);
         $vm->setVariable('features', $features);
         $vm->setVariable('loadInclude', 'parts.phtml');
         
@@ -1441,6 +1469,12 @@ class IndexController extends AbstractActionController
                         $error = '1';
                     }
                     
+                    // checking for valid emails
+                    if ($ecomCustomerService->getEcomCustomerByEmail($data['ecom-customer-fieldset']['email']) != null) {
+                        $emailErr .= "User Account has already been created please log in. <br />";
+                        $error = '1';
+                    }
+                    
                     if(!$error) {
                         
                         $ecomSubmission = $ecomCustomerService->create($systemUser, $data);
@@ -1462,7 +1496,7 @@ class IndexController extends AbstractActionController
                         
                     } else {
                         $vm->setVariable('error', $error);
-                        $vm->setVariable('emailErr', $emailErr);
+                        $vm->setVariable('errorMessage', $emailErr);
                         $form->setData($this->request->getPost());
                     }
                     
