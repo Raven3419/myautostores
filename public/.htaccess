@@ -1,6 +1,9 @@
 
 RewriteEngine On
 # The following rule tells Apache that if the requested filename
+RewriteCond %{SERVER_PORT} 80 
+RewriteRule ^(.*)$ https://www.myautostores.com/$1 [R,L]
+
 # exists, simply serve it.
 RewriteCond %{REQUEST_FILENAME} -s [OR]
 RewriteCond %{REQUEST_FILENAME} -l [OR]
@@ -44,6 +47,7 @@ ExpiresByType text/x-javascript "access plus 1 month"
 
 #CSS
 ExpiresByType text/css "access plus 1 month"
+
 
 </IfModule>
 <IfModule mod_headers.c>
