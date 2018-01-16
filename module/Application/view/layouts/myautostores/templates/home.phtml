@@ -297,19 +297,22 @@ class="fa fa-angle-right"></span></button></form></div></div></div></div>
 class="b-review" style="background:url('assets/application/myautostores/images/backgrounds/reviews.jpg');"><div
 class="container"><div
 class="col-sm-10 col-sm-offset-1 col-xs-12" style="background:rgba(255,255,255,0.7); border-radius:10px;"><div
-id="carousel-small-rev" class="owl-carousel enable-owl-carousel" data-items="1" data-navigation="true" data-auto-play="true" data-stop-on-hover="true" data-items-desktop="1" data-items-desktop-small="1" data-items-tablet="1" data-items-tablet-small="1"><div
-class="b-review__main"><div
-class="b-review__main-person"><div
-class="b-review__main-person-inside"></div></div><br><label class="homeh5"><span>DONALD BROOKS</span>, Customer, Ferrari 488 GTB 2 Owner<em>"</em></label><p>Donec facilisis velit eust. Phasellus cons quat. Aenean vitae quam. Vivamus et nunc. Nunc consequsem
-velde metus imperdiet lacinia.  Nam rutrum congue diam. Vestibulum acda risus eros auctor egestas. Morbids sem magna, viverra quis sollicitudin quis consectetuer quis nec magna.</p></div><div
-class="b-review__main"><div
-class="b-review__main-person"><div
-class="b-review__main-person-inside"></div></div><label class="homeh5"><span>DONALD BROOKS</span>, Customer, Ferrari 488 GTB 2 Owner<em>"</em></label><p>Donec facilisis velit eust. Phasellus cons quat. Aenean vitae quam. Vivamus et nunc. Nunc consequsem
-velde metus imperdiet lacinia.  Nam rutrum congue diam. Vestibulum acda risus eros auctor egestas. Morbids sem magna, viverra quis sollicitudin quis consectetuer quis nec magna.</p></div><div
-class="b-review__main"><div
-class="b-review__main-person"><div
-class="b-review__main-person-inside"></div></div><label class="homeh5"><span>DONALD BROOKS</span>, Customer, Ferrari 488 GTB 2 Owner<em>"</em></label><p>Donec facilisis velit eust. Phasellus cons quat. Aenean vitae quam. Vivamus et nunc. Nunc consequsem
-velde metus imperdiet lacinia.  Nam rutrum congue diam. Vestibulum acda risus eros auctor egestas. Morbids sem magna, viverra quis sollicitudin quis consectetuer quis nec magna.</p></div></div></div></div>
+id="carousel-small-rev" class="owl-carousel enable-owl-carousel" data-items="1" data-navigation="true" data-auto-play="true" data-stop-on-hover="true" data-items-desktop="1" data-items-desktop-small="1" data-items-tablet="1" data-items-tablet-small="1">
+<div class="b-review__main">
+<div class="b-review__main-person">
+<div class="b-review__main-person-inside"></div></div><br><label class="homeh5"><span>Kanesia Oxendine</span>, Customer, 2013 Honda Accord <em>"</em></label><p>I love the AVS Ventvisors! They allow me to crack my windows
+to allow air in when it’s raining without getting wet or when it’s really hot out, to allow the heat to escape.  It is a cute addition to my car with a nice gray color that matches my car perfectly!</p></div>
+<!--  
+<div class="b-review__main">
+<div class="b-review__main-person">
+<div class="b-review__main-person-inside"></div></div><label class="homeh5"><span>DONALD BROOKS</span>, Customer, Ferrari 488 GTB 2 Owner<em>"</em></label><p>Donec facilisis velit eust. Phasellus cons quat. Aenean vitae quam. Vivamus et nunc. Nunc consequsem
+velde metus imperdiet lacinia.  Nam rutrum congue diam. Vestibulum acda risus eros auctor egestas. Morbids sem magna, viverra quis sollicitudin quis consectetuer quis nec magna.</p></div>
+<div class="b-review__main">
+<div class="b-review__main-person">
+<div class="b-review__main-person-inside"></div></div><label class="homeh5"><span>DONALD BROOKS</span>, Customer, Ferrari 488 GTB 2 Owner<em>"</em></label><p>Donec facilisis velit eust. Phasellus cons quat. Aenean vitae quam. Vivamus et nunc. Nunc consequsem
+velde metus imperdiet lacinia.  Nam rutrum congue diam. Vestibulum acda risus eros auctor egestas. Morbids sem magna, viverra quis sollicitudin quis consectetuer quis nec magna.</p></div>
+-->
+</div></div></div>
 </section> <script type="text/javascript">jQuery(document).ready(function(){jQuery('#year').on('change',function(){var year=this.value;jQuery('#make').attr('disabled',"");jQuery('#model').attr('disabled',"");jQuery('#price').attr('disabled',"");jQuery('#make').attr('required','required');jQuery('#model').attr('required','required');var data={module:'getMake',vehYear:year}
 jQuery.ajax({url:"/ajax-vehicleSelector",type:'POST',dataType:'json',data:data,success:function(res){var $secondChoice=jQuery("#make");$secondChoice.empty();$secondChoice.append("<option value='false'>Select Make</option>");$.each(res,function(index,value){$.each(value,function(key2,value2)
 {$secondChoice.append("<option value='"+value2+"'>"+value2+"</option>");});});jQuery('#make').removeAttr('disabled');},error:function(){alert("An error occurred Please re-select");}});});jQuery('#make').on('change',function(){var year=jQuery('#year').val();var make=this.value;jQuery("#model").empty();jQuery('#model').attr('required','required');var data={module:'getModelSubmodel',vehYear:year,vehMake:make}
