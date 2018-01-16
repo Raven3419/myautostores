@@ -1,8 +1,6 @@
 
 RewriteEngine On
 # The following rule tells Apache that if the requested filename
-# RewriteCond %{SERVER_PORT} 80 
-# RewriteRule ^(.*)$ https://www.myautostores.com/$1 [R,L]
 
 # exists, simply serve it.
 RewriteCond %{REQUEST_FILENAME} -s [OR]
