@@ -127,35 +127,35 @@
     									<div class="row">
 										<table class="table table-striped">
                                             <tbody>
-                                            	<?php if($this->parts[0]->getWidth() != '0.00') { ?>
+                                            	<?php if($this->parts[0]->getWidth() != '0.00' && $this->parts[0]->getWidth() != null ) { ?>
                                                 <tr>
                                                     <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span> Weight</th>
                                                     <td><?php echo $this->parts[0]->getWidth(); ?></td>
                                                 </tr>
                                                 <?php } ?>
                                                
-                                            	<?php if($this->parts[0]->getHeight() != '0.00') { ?>
+                                            	<?php if($this->parts[0]->getHeight() != '0.00' && $this->parts[0]->getHeight() != null ) { ?>
                                         	    <tr>
                                                     <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span> Height</th>
                                                     <td><?php echo $this->parts[0]->getHeight(); ?></td>
                                                 </tr>
                                                 <?php } ?>
                                                
-                                            	<?php if($this->parts[0]->getWidth() != '0.00') { ?>
+                                            	<?php if($this->parts[0]->getWidth() != '0.00' && $this->parts[0]->getWidth() != null ) { ?>
                                         		<tr>
                                                     <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span> Width</th>
                                                     <td><?php echo $this->parts[0]->getWidth(); ?></td>
                                                 </tr>
                                                 <?php } ?>
                                                
-                                            	<?php if($this->parts[0]->getLength() != '0.00') { ?>
+                                            	<?php if($this->parts[0]->getLength() != '0.00' && $this->parts[0]->getLength() != null ) { ?>
                                         		<tr>
                                                     <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span> Length</th>
                                                     <td><?php echo $this->parts[0]->getLength(); ?></td>
                                                 </tr>
                                                 <?php } ?>
                                                
-                                            	<?php if($this->parts[0]->getBedLength() != '0.00') { ?>
+                                            	<?php if($this->parts[0]->getBedLength() != '0.0' && $this->parts[0]->getBedLength() != null ) { ?>
                                         		<tr>
                                                     <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span>  Bed Length</th>
                                                     <td><?php echo $this->parts[0]->getBedLength(); ?></td>
@@ -183,28 +183,28 @@
                                                 </tr>
                                                 <?php } ?>
                                                
-                                            	<?php if($this->parts[0]->getFlareHeight() != '0.00') { ?>
+                                            	<?php if($this->parts[0]->getFlareHeight() != '0.00' && $this->parts[0]->getFlareHeight() != null ) { ?>
                                         		<tr>
                                                     <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span>  Front Flare Height</th>
                                                     <td><?php echo $this->parts[0]->getFlareHeight(); ?></td>
                                                 </tr>
                                                 <?php } ?>
                                                
-                                            	<?php if($this->parts[0]->getRearFlareHeight() != '0.00') { ?>
+                                            	<?php if($this->parts[0]->getRearFlareHeight() != '0.00' && $this->parts[0]->getRearFlareHeight() != null ) { ?>
                                         		<tr>
                                                     <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span> Rear Flare Height</th>
                                                     <td><?php echo $this->parts[0]->getRearFlareHeight(); ?></td>
                                                 </tr>
                                                 <?php } ?>
                                                
-                                            	<?php if($this->parts[0]->getFlareTireCoverage() != '0.00') { ?>
+                                            	<?php if($this->parts[0]->getFlareTireCoverage() != '0.00' && $this->parts[0]->getFlareTireCoverage() != null ) { ?>
                                         		<tr>
                                                     <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span> Front Flare Tire Coverage</th>
                                                     <td><?php echo $this->parts[0]->getFlareTireCoverage(); ?></td>
                                                 </tr>
                                                 <?php } ?>
                                                
-                                            	<?php if($this->parts[0]->getRearFlareTireCoverage() != '0.00') { ?>
+                                            	<?php if($this->parts[0]->getRearFlareTireCoverage() != '0.00' && $this->parts[0]->getRearFlareTireCoverage() != null ) { ?>
                                         		<tr>
                                                     <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span> Rear Flare Tire Coverage</th>
                                                     <td><?php echo $this->parts[0]->getRearFlareTireCoverage(); ?></td>
@@ -218,7 +218,7 @@
                                                 </tr>
                                                 <?php } ?>
                                                
-                                            	<?php if($this->parts[0]->getTubeSize() != '0.00') { ?>
+                                            	<?php if($this->parts[0]->getTubeSize() != '0.00' && $this->parts[0]->getTubeSize() != null ) { ?>
                                         		<tr>
                                                     <th scope="row"><span class="fa fa-check" style="color:#F76D2B;"></span> Tube Size</th>
                                                     <td><?php echo $this->parts[0]->getTubeSize(); ?></td>
