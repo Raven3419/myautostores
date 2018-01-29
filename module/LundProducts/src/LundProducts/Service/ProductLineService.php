@@ -856,6 +856,189 @@ class ProductLineService implements EventManagerAwareInterface
     /**
      * Return product line by brand product category
      *
+     * @return string
+     */
+    public function getProductLineByMakeModel($make, $model, $productCategory=null, $sort=null, $color=null, $finish=null, $style=null, $price=null, $brand=null)
+    {
+        $productCategories = null;
+        
+        switch($sort)
+        {
+            case 1:
+                $sortText = ' ORDER BY pl.position asc';
+                break;
+            case 2:
+                $sortText = ' ORDER BY pl.display_name asc';
+                break;
+            case 3:
+                $sortText = ' ORDER BY pl.display_name desc';
+                break;
+            case 4:
+                $sortText = ' ORDER BY pl.total_rating asc';
+                break;
+            default:
+                $sortText = ' ORDER BY pl.position asc';
+                break;
+        }
+        
+        
+        if(null != $productCategory)
+        {
+            if($productCategory['all'] != 'on')
+            {
+                $productCategory= array_keys($productCategory);
+                
+                for($x=0; $x<count($productCategory); $x++)
+                {
+                    $productCategories.= $productCategory[$x]."','";
+                }
+            }
+        }
+        
+        if(null != $color)
+        {
+            if($color['all'] != 'on')
+            {
+                $color = array_keys($color);
+                
+                for($x=0; $x<count($color); $x++)
+                {
+                    $colors .= $color[$x]."','";
+                }
+            }
+        }
+        
+        if(null != $finish)
+        {
+            if($finish['all'] != 'on')
+            {
+                $finish = array_keys($finish);
+                for($x=0; $x<count($finish); $x++)
+                {
+                    $finishs .= $finish[$x]."','";
+                }
+            }
+        }
+        
+        if(null != $style)
+        {
+            if($style['all'] != 'on')
+            {
+                $style = array_keys($style);
+                for($x=0; $x<count($style); $x++)
+                {
+                    $styles .= $style[$x]."','";
+                }
+            }
+        }
+        
+        if(null != $brand)
+        {
+            if($brand['all'] != 'on')
+            {
+                $brand = array_keys($brand);
+                for($x=0; $x<count($brand); $x++)
+                {
+                    $brands .= $brand[$x]."','";
+                }
+            }
+        }
+        
+        if(null != $price)
+        {
+            if($price['all'] != 'on')
+            {
+                $price = array_keys($price);
+                
+                for($x=0; $x<count($price); $x++)
+                {
+                    $allPrices = explode("-",$price[$x]);
+                    if($x==0) {
+                        $prices .= " and p.sale_price between '".$allPrices['0']."' and '".$allPrices['1']."' ";
+                    } else {
+                        $prices .= " or p.sale_price between '".$allPrices['0']."' and '".$allPrices['1']."' ";
+                    }
+                    //$prices .= $price[$x]."','";
+                }
+            }
+        }
+        
+        /*
+         echo "select distinct pc.display_name as PC_Display, pc.name as PC_Name, pl.display_name as PL_Display, pl.name as PL_Name, pl.website_overview as html,  p.sale_price,
+    			pl.product_line_id as product_line_id, b.label as brand, bpc.short_descr as short_descr, bpc.long_descr as long_descr, pl.position, pl.total_rating, pl.total_count, bpc.meta_title, bpc.meta_keywords, bpc.meta_descr,
+    			a.hash as hash, a.file_name as fileName, a2.file_name as file_name, p.color_group, p.color, p.finish, p.style
+			from brand_product_category as bpc, brands as b, parts as p, part_veh_collection as pvc, veh_collection as vc, veh_make as vm, veh_model as vmo, product_lines as pl
+				left join product_line_asset as pla on pl.product_line_id = pla.product_line_id and pla.asset_seq = '1'
+                left join asset as a on pla.asset_id = a.asset_id,
+                product_categories as pc
+                left join asset as a2 on pc.header_asset_id = a2.asset_id
+		    where pc.product_category_id = bpc.product_category_id
+			    and pl.product_category_id = pc.product_category_id
+				and pl.brand_id = b.brand_id
+				and bpc.disabled = '0' and bpc.deleted = '0'
+				and p.disabled = '0' and p.deleted = '0'
+				and pc.disabled = '0' and pc.deleted = '0'
+				and pl.disabled = '0' and pl.deleted = '0'
+				and p.product_line_id = pl.product_line_id
+                and p.part_id = pvc.part_id
+                and pvc.veh_collection_id = vc.veh_collection_id
+                and vc.veh_make_id = vm.veh_make_id
+                and vc.veh_model_id = vmo.veh_model_id
+                and vm.name = '".$make."'
+                and vmo.name = '".$model."'
+    			".((null != $productCategories) ? " and pc.display_name = '".substr($productCategories, 0, -3)."' " : "" )."
+    			".((null != $colors) ? " and p.color in ('".substr($colors, 0, -3)."') " : "" )."
+    			".((null != $finishs) ? " and p.finish in ('".substr($finishs, 0, -3)."') " : "" )."
+    			".((null != $styles) ? " and p.style in ('".substr($styles, 0, -3)."') " : "" )."
+    			".((null != $brands) ? " and b.label in ('".substr($brands, 0, -3)."') " : "" )."
+    			".((null != $prices) ? $prices : "")."
+    			".$sortText."
+                ";
+         exit;
+        */
+        
+        $foundBrand = $this->prepare("select distinct pc.display_name as PC_Display, pc.name as PC_Name, pl.display_name as PL_Display, pl.name as PL_Name, pl.website_overview as html,  p.sale_price,
+    			pl.product_line_id as product_line_id, b.label as brand, bpc.short_descr as short_descr, bpc.long_descr as long_descr, pl.position, pl.total_rating, pl.total_count, bpc.meta_title, bpc.meta_keywords, bpc.meta_descr,
+    			a.hash as hash, a.file_name as fileName, a2.file_name as file_name, p.color_group, p.color, p.finish, p.style
+			from brand_product_category as bpc, brands as b, parts as p, part_veh_collection as pvc, veh_collection as vc, veh_make as vm, veh_model as vmo, product_lines as pl
+				left join product_line_asset as pla on pl.product_line_id = pla.product_line_id and pla.asset_seq = '1'
+                left join asset as a on pla.asset_id = a.asset_id,
+                product_categories as pc
+                left join asset as a2 on pc.header_asset_id = a2.asset_id
+		    where pc.product_category_id = bpc.product_category_id
+			    and pl.product_category_id = pc.product_category_id
+				and pl.brand_id = b.brand_id
+				and bpc.disabled = '0' and bpc.deleted = '0'
+				and p.disabled = '0' and p.deleted = '0'
+				and pc.disabled = '0' and pc.deleted = '0'
+				and pl.disabled = '0' and pl.deleted = '0'
+				and p.product_line_id = pl.product_line_id
+                and p.part_id = pvc.part_id
+                and pvc.veh_collection_id = vc.veh_collection_id
+                and vc.veh_make_id = vm.veh_make_id
+                and vc.veh_model_id = vmo.veh_model_id
+                and vm.name = '".$make."'
+                and vmo.name = '".$model."'
+    			".((null != $productCategories) ? " and pc.display_name = '".substr($productCategories, 0, -3)."' " : "" )."
+    			".((null != $colors) ? " and p.color in ('".substr($colors, 0, -3)."') " : "" )."
+    			".((null != $finishs) ? " and p.finish in ('".substr($finishs, 0, -3)."') " : "" )."
+    			".((null != $styles) ? " and p.style in ('".substr($styles, 0, -3)."') " : "" )."
+    			".((null != $brands) ? " and b.label in ('".substr($brands, 0, -3)."') " : "" )."
+    			".((null != $prices) ? $prices : "")."
+    			".$sortText."
+                ");
+        $foundBrand->execute();
+        
+        $return = $foundBrand->fetchAll();
+        
+        //echo count($return);exit;
+        
+        return $return;
+    }
+    
+    /**
+     * Return product line by brand product category
+     *
      * @return string 
      */
     public function getBrandProductCategory($category, $brand, $sort=null, $color=null, $finish=null, $style=null, $price=null)

@@ -530,6 +530,22 @@ class PartService implements EventManagerAwareInterface
     }
     
     /**
+     * Return a list of make
+     */
+    public function getMake()
+    {
+        return $this->repository->findMake();
+    }
+    
+    /**
+     * Return a list of make
+     */
+    public function getModel($make)
+    {
+        return $this->repository->findModel($make);
+    }
+    
+    /**
      * Return a list of models  by year and make
      */
     public function getVehModelbyYear($model, $make)

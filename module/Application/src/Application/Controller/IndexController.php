@@ -334,7 +334,7 @@ class IndexController extends AbstractActionController
         
 
         if (null != $slugtwo ) {
-            if ($slugone != 'products' && $slugone != 'news' && $slugone != 'cart') {
+            if ($slugone != 'products' && $slugone != 'news' && $slugone != 'cart' && $slugone != 'vehicle') {
                 $slug = $slugone . '/' . $slugtwo;
             } else {
                 $slug = $slugone;
@@ -573,13 +573,16 @@ class IndexController extends AbstractActionController
         elseif ($page->getSlug() == 'my-account') {
             $vm = $this->myAccount($site, $vm);
         }
+        elseif ($page->getSlug() == 'vehicle') {
+            $vm = $this->vehicle($site, $vm, $slugtwo, $slugthree);
+        }
         elseif ($page->getSlug() == 'news') {
             if (null != $slugtwo) {
                 $vm = $this->newsDetail($site, $vm, $slugtwo);
             } else {
                 $vm = $this->news($site, $vm);
             }
-        } 
+        }
         elseif($page->getSlug()== 'affiliates') {
             $vm = $this->affiliates($site, $vm);
         }
@@ -2358,6 +2361,144 @@ class IndexController extends AbstractActionController
         $retailersOnline = $this->retailerService->getActiveOnlineRetailers();
         
         $vm->setVariable('retailersOnline', $retailersOnline);
+        return $vm;
+    }
+    
+    protected function vehicle(SiteInterface $site, ViewModel $vm, $slugtwo=null, $slugthree=null)
+    {
+        if(null != $slugthree) {
+            
+            $show           = $this->params()->fromPost('show', 10);
+            $sort           = $this->params()->fromPost('sort', 1);
+            $categories     = $this->params()->fromPost('categories', array());
+            $color          = $this->params()->fromPost('color', array());
+            $price          = $this->params()->fromPost('price', array());
+            $finish         = $this->params()->fromPost('finish', array());
+            $style          = $this->params()->fromPost('style', array());
+            $price          = $this->params()->fromPost('price', array());
+            $brandName      = $this->params()->fromPost('brandName', array());
+            
+            $baseProductLines = $this->lundProductService->getProductLineService()->getProductLineByMakeModel($slugtwo, $slugthree);
+            
+            $productLines = $this->lundProductService->getProductLineService()->getProductLineByMakeModel($slugtwo, $slugthree, $categories, $sort, $color, $finish, $style, $price, $brandName);
+            
+            $categoriesProductLineArray= array();
+            $colorProductLineArray= array();
+            $finishProductLineArray= array();
+            $styleProductLineArray= array();
+            $priceProductLineArray= array();
+            $brandNameProductLineArray= array();
+            
+            $categories = array_keys($categories);
+            $color = array_keys($color);
+            $finish = array_keys($finish);
+            $style = array_keys($style);
+            $price = array_keys($price);
+            $brandName = array_keys($brandName);
+            
+            //print_r($finish);exit;
+            $categoriesArray = array();
+            $colorArray = array();
+            $finishArray = array();
+            $styleArray = array();
+            $priceArray = array();
+            $brandNameArray = array();
+            
+            foreach($baseProductLines as $baseProductLine)
+            {
+                if($baseProductLine['brand'] != '')
+                {
+                    if(!in_array($baseProductLine['brand'], $brandNameProductLineArray))
+                    {
+                        array_push($brandNameProductLineArray, $baseProductLine['brand']);
+                    }
+                }
+                if($baseProductLine['display_name'] != '')
+                {
+                    if(!in_array($baseProductLine['display_name'], $categoriesProductLineArray))
+                    {
+                        array_push($categoriesProductLineArray, $baseProductLine['display_name']);
+                    }
+                }
+                if($baseProductLine['color_group'] != '')
+                {
+                    if(!in_array($baseProductLine['color_group'], $colorProductLineArray))
+                    {
+                        array_push($colorProductLineArray, $baseProductLine['color_group']);
+                    }
+                }
+                if($baseProductLine['finish'] != '')
+                {
+                    if(!in_array($baseProductLine['finish'], $finishProductLineArray))
+                    {
+                        array_push($finishProductLineArray, $baseProductLine['finish']);
+                    }
+                }
+                if($baseProductLine['style'] != '')
+                {
+                    if(!in_array($baseProductLine['style'], $styleProductLineArray))
+                    {
+                        array_push($styleProductLineArray, $baseProductLine['style']);
+                    }
+                }
+                if($baseProductLine['sale_price'] != '')
+                {
+                    if(!in_array($baseProductLine['sale_price'], $priceProductLineArray))
+                    {
+                        array_push($priceProductLineArray, $baseProductLine['sale_price']);
+                    }
+                }
+            }
+            
+            $vm->setVariable('categoriesProductLineArray', $categoriesProductLineArray);
+            $vm->setVariable('colorProductLineArray', $colorProductLineArray);
+            $vm->setVariable('finishProductLineArray', $finishProductLineArray);
+            $vm->setVariable('styleProductLineArray', $styleProductLineArray);
+            $vm->setVariable('priceProductLineArray', $priceProductLineArray);
+            $vm->setVariable('brandNameProductLineArray', $brandNameProductLineArray);
+            
+            $vm->setVariable('categories', $categories);
+            $vm->setVariable('color', $color);
+            $vm->setVariable('finish', $finish);
+            $vm->setVariable('style', $style);
+            $vm->setVariable('price', $price);
+            $vm->setVariable('brandName', $brandName);
+            
+            $vm->setVariable('categoriesArray', $categoriesArray);
+            $vm->setVariable('colorArray', $colorArray);
+            $vm->setVariable('finishArray', $finishArray);
+            $vm->setVariable('styleArray', $styleArray);
+            $vm->setVariable('priceArray', $priceArray);
+            $vm->setVariable('brandNameArray', $brandNameArray);
+            
+            
+            $vm->setVariable('productLines', $productLines);
+            $vm->setVariable('baseProductLines', $baseProductLines);
+            $vm->setVariable('show', $show);
+            $vm->setVariable('sort', $sort);
+            $vm->setVariable('make', $slugtwo);
+            $vm->setVariable('model', $slugthree);
+            $vm->setVariable('status', 'lookup');
+            $vm->setVariable('loadInclude', 'vehicle-line.phtml');
+            
+        }
+        elseif(null != $slugtwo) {
+            $model = $this->lundProductService->getPartService()->getModel($slugtwo);
+            
+            $vm->setVariable('make', $slugtwo);
+            $vm->setVariable('model', $model);
+            $vm->setVariable('status', 'model');
+            
+        }
+        else {
+            
+            $make = $this->lundProductService->getPartService()->getMake();
+            
+            $vm->setVariable('make', $make);
+            $vm->setVariable('status', 'make');
+            
+        }
+        
         return $vm;
     }
     

@@ -748,6 +748,29 @@ class PartsRepository implements PartsRepositoryInterface, ObjectRepository
     	return $foundModelCollection->fetchAll();
     }
     
+    public function findMake()
+    {
+        
+        $foundMakeCollection = $this->prepare("select distinct * from 
+            veh_make where name is not null order by name ");
+        
+        $foundMakeCollection->execute();
+        
+        return $foundMakeCollection->fetchAll();
+    }
+    
+    public function findModel($make)
+    {
+        
+        $foundMakeCollection = $this->prepare("select distinct veh_model.* from veh_model, veh_make 
+            where veh_model.veh_make_id = veh_make.veh_make_id 
+            and veh_make.name='". $make."' order by name;");
+        
+        $foundMakeCollection->execute();
+        
+        return $foundMakeCollection->fetchAll();
+    }
+    
     public function findModelByYearMake($model, $make)
     {
         

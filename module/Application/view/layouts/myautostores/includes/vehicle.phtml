@@ -1,0 +1,65 @@
+<?php 
+
+
+
+?>
+
+     <section class="b-pageHeader">
+        <div class="container">
+        	<h1 class=" wow zoomInLeft" data-wow-delay="0.2s"><?php if($this->status == 'model') { ?> Select A Model <?php } else { ?> Select A Make <?php } ?></h1>
+        </div>
+    </section><!--b-pageHeader-->
+    
+    <div class="b-breadCumbs s-shadow">
+        <div class="container wow zoomInUp" data-wow-delay="0.2s">
+            <a href="/" class="b-breadCumbs__page">Home</a><span class="fa fa-angle-right"></span>
+            <?php if($this->status == 'model') { echo $this->make; } else { ?>
+            	Make
+            <?php } ?>
+        </div>
+    </div><!--b-breadCumbs-->
+    	<div class="b-breadCumbs s-shadow">
+            <div class="container">
+        		<div class="row">
+        			<div class="col-lg-1 col-xs-12">&nbsp</div>
+        			<div class="col-lg-10 col-xs-12">
+        				<?php 
+        				if($this->status == 'model') {
+        				    for($x=0; $x<count($this->model); $x++) {
+        				        ?>
+            					<div class="vehicle_make">
+                                   	<a href="/vehicle/<?php echo $this->make; ?>/<?php echo $this->model[$x]['name']; ?>">
+                                  		<div>
+                                       		<p>
+                                        		<b><?php echo $this->model[$x]['name']; ?></b>
+                                       		</p>                                		                                                                                                                                 	
+                                    	</div>   
+                                	</a>                      	
+                             	</div>
+            				<?php 
+            				  
+            				}
+        				} else {
+        				  
+            				for($x=0; $x<count($this->make); $x++) { 
+            				?>
+            					<div class="vehicle_make">
+                                   	<a href="/vehicle/<?php echo $this->make[$x]['name']; ?>">
+                                  		<div>
+                                       		<p>
+                                        		<b><?php echo $this->make[$x]['name']; ?></b>
+                                       		</p>                                		                                                                                                                                 	
+                                    	</div>   
+                                	</a>                      	
+                             	</div>
+            				<?php 
+            				  
+            				}
+        				}
+        				    
+        				?>
+        			</div>
+        			<div class="col-lg-1 col-xs-12">&nbsp</div>
+        		</div>
+        	</div>
+        </div>

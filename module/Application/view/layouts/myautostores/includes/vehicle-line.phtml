@@ -1,0 +1,370 @@
+<?php 
+$productArray = array();
+$productLinesArray = array();
+$productSalesPrice = $this->productLines[0]['sale_price'];
+
+for($x=0; $x<count($this->productLines); $x++) {
+    if($this->productLines[$x]['sale_price'] < $productSalesPrice)
+    {
+        $productSalesPrice = $this->productLines[$x]['sale_price'];
+    }
+    if(!in_array($this->productLines[$x]['PL_Display'], $productArray)) {
+        $var = $this->productLines[$x]['PL_Display'];
+        array_push($productArray, $var);
+        array_push($productLinesArray, $this->productLines[$x]);
+    }
+}
+
+$emptyProductLine = false;
+
+?>
+
+	<section class="b-pageHeader">
+		<div class="container">
+			<h1 class=" wow zoomInLeft" data-wow-delay="0.2s"><?php echo ucwords($this->make); ?> <?php echo ucwords($this->model); ?></h1>
+            <div class="b-pageHeader__search wow zoomInRight" data-wow-delay="0.2s">
+                <h3>Your search returned <b><?php echo count($productLinesArray);?></b> results</h3>
+            </div>
+        </div>
+    </section><!--b-pageHeader-->
+    
+    <div class="b-breadCumbs s-shadow">
+        <div class="container wow zoomInUp" data-wow-delay="0.2s">
+            <a href="/" class="b-breadCumbs__page">Home</a><span class="fa fa-angle-right"></span><a href="/vehicle/<?php echo ucwords($this->make); ?>" class="b-breadCumbs__page"><?php echo ucwords($this->make); ?></a><span class="fa fa-angle-right"></span><?php echo ucwords($this->model); ?>
+        </div>
+    </div><!--b-breadCumbs-->  
+    <div class="b-infoBar">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-xs-12">
+                    <div class="b-infoBar__compare wow zoomInUp" data-wow-delay="0.2s">
+                        <div class="dropdown">
+                        </div>
+                        
+                    </div>
+                </div>
+                <h2 class="product_line_h2"><?php echo ucwords($this->make); ?> <?php echo ucwords($this->model); ?></h2>
+                <div class="col-lg-8 col-xs-12">
+                    <div class="b-infoBar__select wow zoomInUp" data-wow-delay="0.2s">
+                            <div class="b-infoBar__select-one">
+                                <span class="b-infoBar__select-one-title">SHOW ON PAGE</span>
+                                <select name="show" id="show" class="m-select">
+                                    <option value="10" <?php (($this->show == '10') ? print 'selected="selected"' : '' );  ?> >10 items</option>
+                                    <option value="25" <?php (($this->show == '25') ? print 'selected="selected"' : '' );  ?> >25 items</option>
+                                    <option value="50" <?php (($this->show == '50') ? print 'selected="selected"' : '' );  ?> >50 items</option>
+                                </select>
+                                <span class="fa fa-caret-down"></span>
+                            </div>
+                            <div class="b-infoBar__select-one">
+                                <span class="b-infoBar__select-one-title sorts">SORT BY</span>
+                                <select name="sort" id="sort" class="m-select">
+                                    <option value="1" <?php (($this->sort == '1') ? print 'selected="selected"' : '' );  ?> >Position</option>
+                                    <option value="2" <?php (($this->sort == '2') ? print 'selected="selected"' : '' );  ?> >A - Z</option>
+                                    <option value="3" <?php (($this->sort == '3') ? print 'selected="selected"' : '' );  ?> >Z - A</option>
+                                </select>
+                                <span class="fa fa-caret-down"></span>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--b-infoBar-->
+    <div class="b-items">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-4 col-xs-12">
+                    <aside class="b-items__aside">
+                        <h3 class="s-title wow zoomInUp" data-wow-delay="0.2s">REFINE YOUR SEARCH</h3>
+                        <div class="b-items__aside-main wow zoomInUp" data-wow-delay="0.2s">
+                            <form method="post" action="/vehicle/<?php echo ucwords($this->make); ?>/<?php echo ucwords($this->model); ?>">
+
+                                <div class="b-items__aside-main-body">
+                                	<div class="b-items__aside-main-body-item">
+                                   		<label>Products Categories</label>
+    									<div class="checkbox">
+    										<label class="lbl">
+    											<input type="checkbox" class="categories_all" name="categories[all]" <?php ( (empty($this->categories) || ($this->categories[0] == 'all')) ? print "checked='checked'" : ""); ?> > All
+    										</label>
+    										<?php for($a=0; $a<count($this->layout()->productCategories); $a++) { ?>
+        										<label class="lbl">
+        											<input type="checkbox" class="categories_other" name="categories[<?php echo $this->layout()->productCategories[$a]['display_name']; ?>]" <?php (in_array($this->layout()->productCategories[$a]['display_name'], $this->categories) ? print "checked='checked'" : ""); ?> > <?php echo $this->layout()->productCategories[$a]['display_name']; ?>
+        										</label>
+    										<?php } ?>
+    									</div>
+                                	</div>
+                                    <div class="b-items__aside-main-body-item">
+                                        <label>COLOR</label>
+										<div class="checkbox">
+											<label class="lbl">
+											  <input type="checkbox" class="color_all" name="color[all]" <?php ( (empty($this->color) || ($this->color[0] == 'all')) ? print "checked='checked'" : ""); ?> > All
+											</label>
+											<?php for($a=0; $a<count($this->colorProductLineArray); $a++) { ?>
+    											<label class="lbl">
+    											  <input type="checkbox" class="color_other" name="color[<?php echo $this->colorProductLineArray[$a]; ?>]" <?php (in_array($this->colorProductLineArray[$a], $this->color) ? print "checked='checked'" : ""); ?> > <?php echo $this->colorProductLineArray[$a]; ?>
+    											</label>
+											<?php } ?>
+										</div>
+                                    </div>
+                                    <div class="b-items__aside-main-body-item">
+                                        <label>FINISH</label>
+										<div class="checkbox">
+											<label class="lbl">
+											  <input type="checkbox"  class="finish_all"  name="finish[all]" <?php ( (empty($this->finish) || ($this->finish[0] == 'all')) ? print "checked='checked'" : ""); ?> > All
+											</label>
+											<?php for($b=0; $b<count($this->finishProductLineArray); $b++) { ?>
+    											<label class="lbl">
+    											  <input type="checkbox" class="finish_other" name="finish[<?php echo $this->finishProductLineArray[$b]; ?>]" <?php (in_array($this->finishProductLineArray[$b], $this->finish) ? print "checked='checked'" : ""); ?> > <?php echo $this->finishProductLineArray[$b]; ?>
+    											</label>
+											<?php } ?>
+										</div>
+                                    </div>
+									
+									<div class="b-items__aside-main-body-item">
+                                        <label>STYLE</label>
+										<div class="checkbox">
+											<label class="lbl">
+											  <input type="checkbox" class="style_all" name="style[all]" <?php ( (empty($this->style) || ($this->style[0] == 'all')) ? print "checked='checked'" : ""); ?> > All
+											</label>
+											<?php for($c=0; $c<count($this->styleProductLineArray); $c++) { ?>
+    											<label class="lbl">
+    											  <input type="checkbox" class="style_other" name="style[<?php echo $this->styleProductLineArray[$c]; ?>]" <?php (in_array($this->styleProductLineArray[$c], $this->style) ? print "checked='checked'" : ""); ?> > <?php echo $this->styleProductLineArray[$c]; ?>
+    											</label>
+											<?php } ?>
+										</div>
+                                    </div>
+									
+									
+                                    <div class="b-items__aside-main-body-item">
+                                        <label>PRICE RANGE</label>
+                                        <div class="checkbox">
+											<label class="lbl">
+											  <input type="checkbox" class="price_all" name="price[all]"<?php ( (empty($this->price) || ($this->price[0] == 'all')) ? print "checked='checked'" : ""); ?> > All
+											</label>
+											<label class="lbl">
+											  <input type="checkbox" class="price_other" name="price[0-20]" <?php (in_array('0-20', $this->price) ? print "checked='checked'" : ""); ?> > Under $20.00
+											</label>
+											<label class="lbl">
+											  <input type="checkbox" class="price_other" name="price[20-40]" <?php (in_array('20-40', $this->price) ? print "checked='checked'" : ""); ?> > $20.00 - $40.00
+											</label>
+											<label class="lbl">
+											  <input type="checkbox" class="price_other" name="price[40-60]" <?php (in_array('40-60', $this->price) ? print "checked='checked'" : ""); ?> > $40.00 - $60.00
+											</label>
+											<label class="lbl">
+											  <input type="checkbox" class="price_other" name="price[60-80]" <?php (in_array('60-80', $this->price) ? print "checked='checked'" : ""); ?> > $60.00 - $80.00
+											</label>
+											<label class="lbl">
+											  <input type="checkbox" class="price_other" name="price[80-100]" <?php (in_array('80-100', $this->price) ? print "checked='checked'" : ""); ?> > $80.00 - $100.00
+											</label>
+											<label class="lbl">
+											  <input type="checkbox" class="price_other" name="price[100-10000]" <?php (in_array('100-10000', $this->price) ? print "checked='checked'" : ""); ?> > $100.00 Over
+											</label>
+										  </div>
+                                    </div>
+                                    <?php if(!$this->productLinesBrands) { ?>
+                                    <div class="b-items__aside-main-body-item">
+                                        <label>BRANDS</label>
+										<div class="checkbox">
+											<label class="lbl">
+											  <input type="checkbox" class="brandName_all" name="brandName[all]" <?php ( (empty($this->brandName) || ($this->brandName[0] == 'all')) ? print "checked='checked'" : ""); ?> > All
+											</label>
+											<?php for($g=0; $g<count($this->brandNameProductLineArray); $g++) { ?>
+    											<label class="lbl">
+    											  <input type="checkbox" class="brandName_other" name="brandName[<?php echo $this->brandNameProductLineArray[$g];?>]" <?php (in_array($this->brandNameProductLineArray[$g], $this->brandName) ? print "checked='checked'" : ""); ?> > <?php echo $this->brandNameProductLineArray[$g];?>
+    											</label>
+											<?php } ?>
+										</div>
+                                    </div>
+                                    <?php } ?>
+                                   
+                                </div>
+                                <footer class="b-items__aside-main-footer">
+                                    <button type="submit" class="btn m-btn"><i class="fa fa-search"></i> FILTER NOW<span class="fa fa-angle-right"></span></button><br />
+                                    <a href="/products/<?php echo urlencode(strtolower($this->category)); ?>">RESET ALL FILTERS</a>
+                                </footer>
+                            </form>
+                        </div>
+                        <div class="b-items__aside-sell wow zoomInUp" data-wow-delay="0.1s">
+                            <h3 class="s-title wow zoomInUp" data-wow-delay="0.1s" style="width:100%;">Top Brands</h3>
+                            <nav>
+								<ul class="b-blog__aside-categories-list text-left">
+										<li><a href="/avs/products">Auto Ventshade (AVS)</a></li>
+										<li><a href="/lund/products">Lund</a></li>
+								</ul>
+							</nav>
+                        </div>
+						
+						<div class="b-items__aside-sell wow zoomInUp" data-wow-delay="0.1s">
+                            <h3 class="s-title wow zoomInUp" data-wow-delay="0.1s" style="width:100%;">Top Categories</h3>
+                            <nav>
+									<ul class="b-blog__aside-categories-list text-left">
+											<li><a href="/products/side+window+deflectors" alt="Side Window Deflectors" title="Side Window Deflectors" >Side Window Deflectors</a></li>
+											<li><a href="/products/tonneau+cover" alt="Tonneau Cover" title="Tonneau Cover" >Tonneau Cover</a></li>
+											<li><a href="/products/fender+flare" alt="Fender Flare" title="Fender Flare" >Fender Flare</a></li>
+											<li><a href="/products/hood+shields" alt="Hood Shields" title="Hood Shields" >Hood Shields</a></li>
+											<li><a href="/products/floor+coverings" alt="Floor Coverings " title="Floor Coverings " >Floor Coverings </a></li>	
+											<li><a href="/products/running+boards" alt="Running Boards" title="Running Boards" >Running Boards</a></li>	
+											<li><a href="/products/nerf+bars" alt="Nerf Bars" title="Nerf Bars" >Nerf Bars</a></li>	
+									</ul>
+								</nav>
+                        </div>
+                    </aside>
+                    <script type="text/javascript">
+                        jQuery(document).ready(function () {
+                            
+                            jQuery(".categories_all").click(function() {
+                           		$(".categories_other").attr("checked", false); //uncheck all checkboxes
+                          		$(this).attr("checked", true);  //check the clicked one
+                            });
+
+                            jQuery(".categories_other").click(function() {
+                           		$(".categories_all").attr("checked", false); //uncheck all checkboxes
+                          		$(this).attr("checked", true);  //check the clicked one
+                            });
+                            
+                            jQuery(".color_all").click(function() {
+                           		$(".color_other").attr("checked", false); //uncheck all checkboxes
+                          		$(this).attr("checked", true);  //check the clicked one
+                            });
+
+                            jQuery(".color_other").click(function() {
+                           		$(".color_all").attr("checked", false); //uncheck all checkboxes
+                          		$(this).attr("checked", true);  //check the clicked one
+                            });
+
+                            jQuery(".finish_all").click(function() {
+                           		$(".finish_other").attr("checked", false); //uncheck all checkboxes
+                          		$(this).attr("checked", true);  //check the clicked one
+                            });
+
+                            jQuery(".finish_other").click(function() {
+                           		$(".finish_all").attr("checked", false); //uncheck all checkboxes
+                          		$(this).attr("checked", true);  //check the clicked one
+                            });
+
+                            jQuery(".style_all").click(function() {
+                           		$(".style_other").attr("checked", false); //uncheck all checkboxes
+                          		$(this).attr("checked", true);  //check the clicked one
+                            });
+
+                            jQuery(".style_other").click(function() {
+                           		$(".style_all").attr("checked", false); //uncheck all checkboxes
+                          		$(this).attr("checked", true);  //check the clicked one
+                            });
+
+                            jQuery(".price_all").click(function() {
+                           		$(".price_other").attr("checked", false); //uncheck all checkboxes
+                          		$(this).attr("checked", true);  //check the clicked one
+                            });
+
+                            jQuery(".price_other").click(function() {
+                           		$(".price_all").attr("checked", false); //uncheck all checkboxes
+                          		$(this).attr("checked", true);  //check the clicked one
+                            });
+
+                            jQuery(".brandName_all").click(function() {
+                           		$(".brandName_other").attr("checked", false); //uncheck all checkboxes
+                          		$(this).attr("checked", true);  //check the clicked one
+                            });
+
+                            jQuery(".brandName_other").click(function() {
+                           		$(".brandName_all").attr("checked", false); //uncheck all checkboxes
+                          		$(this).attr("checked", true);  //check the clicked one
+                            });
+                            
+                            jQuery('#show').on('change', function(){
+                           		//alert(this.value);
+                            	$('<form/>', {
+                            		<?php if($this->productLinesBrands) { ?>
+                                    	action: "/<?php echo $this->name?>/products",
+                                    <?php } else { ?>
+                                    	action: "/products/<?php echo urlencode(strtolower($this->category)); ?>",
+                                    <?php } ?>
+                                    method: "post",
+                                    html: "<input name='show' value='"+ this.value +"'><input name='sort' value='"+ jQuery('#sort').val() +"'>",
+                                    class: "hidden"
+                                })
+                                    .appendTo('body')
+                                    .submit()
+                                ;
+                            });
+
+                            jQuery('#sort').on('change', function(){
+                            	$('<form/>', {
+                            		<?php if($this->productLinesBrands) { ?>
+                                    	action: "/<?php echo $this->name?>/products",
+                                    <?php } else { ?>
+                                    	action: "/products/<?php echo urlencode(strtolower($this->category)); ?>",
+                                    <?php } ?>
+                                    method: "post",
+                                    html: "<input name='sort' value='"+ this.value +"'><input name='show' value='"+ jQuery('#show').val() +"'>",
+                                    class: "hidden"
+                                })
+                                    .appendTo('body')
+                                    .submit()
+                                ;
+                            });
+                        });
+                    </script>
+                </div>
+                <div class="col-lg-9 col-sm-8 col-xs-12">
+                    <div class="b-items__cars"  id="easyPaginate" >
+                    	<?php for($x=0; $x<count($productLinesArray); $x++) { ?>
+                    	    <li class="b-items__cars-one wow zoomInUp" data-wow-delay="0.2s">
+                    	    	<div class="b-items__cars-one-img">
+                    	    		<?php if($this->productLinesBrands) { ?>
+                    	    			<a href="/<?php echo $this->name?>/products/<?php echo urlencode(strtolower($productLinesArray[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($productLinesArray[$x]['PL_Display'])); ?>" class="btn m-btn">
+                    	    		<?php } else { ?>
+                    	    			<a href="/products/<?php echo urlencode(strtolower($productLinesArray[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($productLinesArray[$x]['PL_Display'])); ?>" class="btn m-btn">
+                    	    		<?php } ?>
+                    	    			<img src="/assets/library/products/product_lines/230X230/<?php echo $productLinesArray[$x]['fileName']?>" alt='<?php echo $productLinesArray[$x]['PL_Display']; ?>' title='<?php echo $productLinesArray[$x]['PL_Display']; ?>' />
+                    	    		</a>
+                    	    		<!-- 
+                    	    		<span class="b-items__cars-one-img-type m-premium">PREMIUM</span>
+                    	    		 -->
+                    	    	</div>
+                    	    	<div class="b-items__cars-one-info">
+                    	    		<div class="b-items__cars-one-info-header">
+                    	    		<h3><?php echo $productLinesArray[$x]['PL_Display']; ?></h3>
+                                	</div>
+                                	<div>
+                                		<img src="/assets/application/myautostores/img/<?php echo $productLinesArray[$x]['brand']; ?>-logo.png" alt="<?php echo $productLinesArray[$x]['brand']; ?>" title="<?php echo $productLinesArray[$x]['brand']; ?>" style="height:35px;float:right;">                               		
+                                	</div>
+                                	<div class="row s-noRightMargin" style="float:left;">
+                                    	<div class="col-md-9 col-xs-12">
+                                        	<p><?php echo $productLinesArray[$x]['html'];?></p>
+            
+                                    	</div>
+                                    	<div class="col-md-3 col-xs-12">
+                                        	<div class="b-items__cars-one-info-price">
+                                            	<div class="pull-right">
+                                                	<label class="priceLabel">Price:</label>
+                                                	<br/>
+                                                	<label style="color: #F76D2B; margin:0px 0 20px; font-size: 24px;"><b>$ <?php echo $productLinesArray[$x]['sale_price']; ?></b></label>
+                                                </div>
+                                                <?php if($this->productLinesBrands) { ?>
+                                                	<a href="/<?php echo $this->name?>/products/<?php echo urlencode(strtolower($productLinesArray[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($productLinesArray[$x]['PL_Display'])); ?>" class="btn m-btn">VIEW DETAILS<span class="fa fa-angle-right"></span></a>
+                                	    		<?php } else { ?>
+                                	    			<a href="/products/<?php echo urlencode(strtolower($productLinesArray[$x]['PC_Display'])); ?>/<?php echo urlencode(strtolower($productLinesArray[$x]['PL_Display'])); ?>" class="btn m-btn">VIEW DETAILS<span class="fa fa-angle-right"></span></a>
+                                	    		<?php } ?>
+                                                
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+                    	<?php } ?>
+                   
+                    </div>
+                   	<script>
+                    $('#easyPaginate').easyPaginate({
+                        paginateElement: 'li',
+                        elementsPerPage: <?php echo $this->show?>,
+                        effect: 'climb',
+                        firstButton: false,
+                        lastButton: false
+                    });
+                   	</script>
+                </div>
+            </div>
+        </div>
+    </div><!--b-items-->
