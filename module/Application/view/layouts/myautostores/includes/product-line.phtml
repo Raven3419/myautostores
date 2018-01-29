@@ -23,7 +23,9 @@ $emptyProductLine = false;
 
      <section class="b-pageHeader">
         <div class="container">
-            <h1 class=" wow zoomInLeft" data-wow-delay="0.2s"><?php echo ucwords($this->category); ?></h1>
+        	<?php if(!$this->productLinesBrands) { ?>
+            	<h1 class=" wow zoomInLeft" data-wow-delay="0.2s"><?php echo ucwords($this->category); ?></h1>
+            <?php } ?>
             <div class="b-pageHeader__search wow zoomInRight" data-wow-delay="0.2s">
                 <h3>Your search returned <b><?php echo count($productLinesArray);?></b> results</h3>
             </div>
@@ -36,13 +38,31 @@ $emptyProductLine = false;
         </div>
     </div><!--b-breadCumbs-->
         
+    <?php if($this->productLinesBrands) { ?>
+    	<div class="b-breadCumbs s-shadow">
+            <div class="container">
+                <div class="row">
+                	<div class="col-lg-5 col-xs-12">&nbsp</div>
+                	<div class="col-lg-7 col-xs-12 brandlabel">
+        				<?php echo ucwords($this->category); ?>
+        			</div>
+        		</div>
+        		<div class="row">
+        			<div class="col-lg-1 col-xs-12">&nbsp</div>
+        			<div class="col-lg-10 col-xs-12">
+        				<?php echo $this->brandContent; ?>
+        			</div>
+        			<div class="col-lg-1 col-xs-12">&nbsp</div>
+        		</div>
+        	</div>
+        </div>
+    <?php } ?>    
     <div class="b-infoBar">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-xs-12">
                     <div class="b-infoBar__compare wow zoomInUp" data-wow-delay="0.2s">
                         <div class="dropdown">
-                            
                         </div>
                         
                     </div>
@@ -73,15 +93,6 @@ $emptyProductLine = false;
             </div>
         </div>
     </div><!--b-infoBar-->
-    <?php if(0) { ?>
-        <div class="row">
-        	<div class="col-lg-5"></div>
-        	<div class="col-lg-2">
-        		<img src="/assets/application/myautostores/img/<?php echo $this->name; ?>.png" alt="<?php echo $productLinesArray[$x]['brand']; ?>" title="<?php echo $productLinesArray[$x]['brand']; ?>" style="height:75px;float:right;"> 
-        	</div>
-        	<div class="col-lg-5"></div>
-        </div>
-    <?php } ?>
     <div class="b-items">
         <div class="container">
             <div class="row">
@@ -95,6 +106,22 @@ $emptyProductLine = false;
                             	<form method="post" action="/products/<?php echo urlencode(strtolower($this->category)); ?>">
                             <?php } ?>
                                 <div class="b-items__aside-main-body">
+                                	<?php if($this->productLinesBrands) { ?>
+                                		<div class="b-items__aside-main-body-item">
+                                            <label>Products Categories</label>
+    										<div class="checkbox">
+    											<label class="lbl">
+    											  <input type="checkbox" class="categories_all" name="categories[all]" <?php ( (empty($this->categories) || ($this->categories[0] == 'all')) ? print "checked='checked'" : ""); ?> > All
+    											</label>
+    											<?php for($a=0; $a<count($this->layout()->productCategories); $a++) { ?>
+        											<label class="lbl">
+        											  <input type="checkbox" class="categories_other" name="categories[<?php echo $this->layout()->productCategories[$a]['display_name']; ?>]" <?php (in_array($this->layout()->productCategories[$a]['display_name'], $this->categories) ? print "checked='checked'" : ""); ?> > <?php echo $this->layout()->productCategories[$a]['display_name']; ?>
+        											</label>
+    											<?php } ?>
+    										</div>
+                                        </div>
+                                	
+                                	<?php } ?>
                                     <div class="b-items__aside-main-body-item">
                                         <label>COLOR</label>
 										<div class="checkbox">
@@ -215,6 +242,16 @@ $emptyProductLine = false;
                     </aside>
                     <script type="text/javascript">
                         jQuery(document).ready(function () {
+                            
+                            jQuery(".categories_all").click(function() {
+                           		$(".categories_other").attr("checked", false); //uncheck all checkboxes
+                          		$(this).attr("checked", true);  //check the clicked one
+                            });
+
+                            jQuery(".categories_other").click(function() {
+                           		$(".categories_all").attr("checked", false); //uncheck all checkboxes
+                          		$(this).attr("checked", true);  //check the clicked one
+                            });
                             
                             jQuery(".color_all").click(function() {
                            		$(".color_other").attr("checked", false); //uncheck all checkboxes

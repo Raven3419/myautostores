@@ -298,6 +298,7 @@ class IndexController extends AbstractActionController
 	        $this->brandSites = $siteBrands;
 	        $brand = $this->lundProductService->getBrandsService()->getBrand('1');
 	        $this->brandName = $brand->getName();
+	        $this->brandContent = $brand->getHtml();
 	        $this->name = $slugone;
 	       
 	        $slugone = $slugtwo;
@@ -312,6 +313,7 @@ class IndexController extends AbstractActionController
 	        $this->brandSites = $siteBrands;
 	        $brand = $this->lundProductService->getBrandsService()->getBrand('2');
 	        $this->brandName = $brand->getName();
+	        $this->brandContent = $brand->getHtml();
 	        $this->name = $slugone;
 	        
 	        $slugone = $slugtwo;
@@ -827,12 +829,13 @@ class IndexController extends AbstractActionController
     
     protected function products(SiteInterface $site, ViewModel $vm, $category = null, $line = null )
     {
-        $color      = $this->params()->fromPost('color', array());
-        $price      = $this->params()->fromPost('price', array());
-        $finish     = $this->params()->fromPost('finish', array());
-        $style      = $this->params()->fromPost('style', array());
-        $price      = $this->params()->fromPost('price', array());
-        $brandName  = $this->params()->fromPost('brandName', array());
+        $categories     = $this->params()->fromPost('categories', array());
+        $color          = $this->params()->fromPost('color', array());
+        $price          = $this->params()->fromPost('price', array());
+        $finish         = $this->params()->fromPost('finish', array());
+        $style          = $this->params()->fromPost('style', array());
+        $price          = $this->params()->fromPost('price', array());
+        $brandName      = $this->params()->fromPost('brandName', array());
         
         $this->brandsService               = $this->lundProductService->getBrandsService();
         $this->productCategoryService      = $this->lundProductService->getProductCategoryService();
@@ -843,7 +846,7 @@ class IndexController extends AbstractActionController
         
         if (null != $category && null == $line || $this->brandType == 'brand') {
             //echo "4";exit;
-            $vm = $this->loadProductLinePage($vm, $category, $brandName, $color, $price, $finish, $style, $price);
+            $vm = $this->loadProductLinePage($vm, $category, $brandName, $color, $price, $finish, $style, $price, $categories);
         } 
         if (null != $category && null != $line) {
             //echo "5";exit;
@@ -853,7 +856,7 @@ class IndexController extends AbstractActionController
         return $vm;
     }
 
-    protected function loadProductLinePage(ViewModel $vm, $category = null, $brandName = null, $color=null, $price=null, $finish=null, $style=null, $price=null)
+    protected function loadProductLinePage(ViewModel $vm, $category = null, $brandName = null, $color=null, $price=null, $finish=null, $style=null, $price=null, $categories=null)
     {
         $show  = $this->params()->fromPost('show', 10);
         $sort  = $this->params()->fromPost('sort', 1);
@@ -883,7 +886,7 @@ class IndexController extends AbstractActionController
                     
                     $baseProductLines = $this->lundProductService->getProductLineService()->getCategoryBrandProductCategory('', $years->getVehYearId(), $make[0]->getVehMakeId(), $model[0]['veh_model_id'], $this->brandSites, '', $subModel[0]['veh_submodel_id']);
                     
-                    $productLines = $this->lundProductService->getProductLineService()->getCategoryBrandProductCategory('', $years->getVehYearId(), $make[0]->getVehMakeId(), $model[0]['veh_model_id'], $this->brandSites, '', $subModel[0]['veh_submodel_id'], $color, $finish, $style);
+                    $productLines = $this->lundProductService->getProductLineService()->getCategoryBrandProductCategory('', $years->getVehYearId(), $make[0]->getVehMakeId(), $model[0]['veh_model_id'], $this->brandSites, '', $subModel[0]['veh_submodel_id'], $color, $finish, $style, $price);
                     
                     
                 } else {
@@ -915,18 +918,20 @@ class IndexController extends AbstractActionController
                 
                 $baseProductLines = $this->lundProductService->getProductLineService()->getCategoryBrandProductCategoryByBrand($years->getVehYearId(), $make[0]->getVehMakeId(), $model[0]['veh_model_id'], $this->brandSites);
                 
-                $productLines = $this->lundProductService->getProductLineService()->getCategoryBrandProductCategoryByBrand($years->getVehYearId(), $make[0]->getVehMakeId(), $model[0]['veh_model_id'], $this->brandSites, $sort, $color, $finish, $style, $price);
+                $productLines = $this->lundProductService->getProductLineService()->getCategoryBrandProductCategoryByBrand($years->getVehYearId(), $make[0]->getVehMakeId(), $model[0]['veh_model_id'], $this->brandSites, $sort, $color, $finish, $style, $price, $categories);
                 
             } else {
                 
                 $baseProductLines = $this->lundProductService->getProductLineService()->getBrandProductCategoryByBrand($this->brandSites);
                 
-                $productLines = $this->lundProductService->getProductLineService()->getBrandProductCategoryByBrand($this->brandSites, $sort, $color, $finish, $style, $price);
+                $productLines = $this->lundProductService->getProductLineService()->getBrandProductCategoryByBrand($this->brandSites, $sort, $color, $finish, $style, $price, $categories);
                 
             }
             
+            $vm->setVariable('brandContent', $this->brandContent);
             $vm->setVariable('productLinesBrands', '1');
             $vm->setVariable('name', $this->name);
+            
             
         } else {
             
@@ -961,23 +966,17 @@ class IndexController extends AbstractActionController
             
         }
         
-        if($this->brandType == 'brand'){
-            
-            $vm->setVariable('productLinesBrands', '1');
-            $vm->setVariable('name', $this->name);
-            
-        }
-        
         
         $allBrands = $this->lundProductService->getBrandsService()->getCurrentBrands();
-        
-            
+       
+            $categoriesProductLineArray= array();
             $colorProductLineArray= array();
             $finishProductLineArray= array();
             $styleProductLineArray= array();
             $priceProductLineArray= array();
             $brandNameProductLineArray= array();
             
+            $categories = array_keys($categories);
             $color = array_keys($color);
             $finish = array_keys($finish);
             $style = array_keys($style);
@@ -985,6 +984,7 @@ class IndexController extends AbstractActionController
             $brandName = array_keys($brandName);
             
             //print_r($finish);exit;
+            $categoriesArray = array();
             $colorArray = array();
             $finishArray = array();
             $styleArray = array();
@@ -998,6 +998,13 @@ class IndexController extends AbstractActionController
                     if(!in_array($baseProductLine['brand'], $brandNameProductLineArray))
                     {
                         array_push($brandNameProductLineArray, $baseProductLine['brand']);
+                    }
+                }
+                if($baseProductLine['display_name'] != '')
+                {
+                    if(!in_array($baseProductLine['display_name'], $categoriesProductLineArray))
+                    {
+                        array_push($categoriesProductLineArray, $baseProductLine['display_name']);
                     }
                 }
                 if($baseProductLine['color_group'] != '')
@@ -1038,7 +1045,8 @@ class IndexController extends AbstractActionController
                 }
                 */
             }
-                    
+            
+            $vm->setVariable('categoriesProductLineArray', $categoriesProductLineArray);
             $vm->setVariable('colorProductLineArray', $colorProductLineArray);
             $vm->setVariable('finishProductLineArray', $finishProductLineArray);
             $vm->setVariable('styleProductLineArray', $styleProductLineArray);
@@ -1048,12 +1056,14 @@ class IndexController extends AbstractActionController
             $vm->setVariable('show', $show);
             $vm->setVariable('sort', $sort);
             
+            $vm->setVariable('categories', $categories);
             $vm->setVariable('color', $color);
             $vm->setVariable('finish', $finish);
             $vm->setVariable('style', $style);
             $vm->setVariable('price', $price);
             $vm->setVariable('brandName', $brandName);
             
+            $vm->setVariable('categoriesArray', $categoriesArray);
             $vm->setVariable('colorArray', $colorArray);
             $vm->setVariable('finishArray', $finishArray);
             $vm->setVariable('styleArray', $styleArray);

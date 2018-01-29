@@ -694,12 +694,13 @@ class ProductLineService implements EventManagerAwareInterface
      *
      * @return string
      */
-    public function getBrandProductCategoryByBrand($brand, $sort=null, $color=null, $finish=null, $style=null, $price=null)
+    public function getBrandProductCategoryByBrand($brand, $sort=null, $color=null, $finish=null, $style=null, $price=null, $categories=null)
     {
         $colors = null;
         $finishs = null;
         $styles = null;
         $prices = null;
+        $category = null;
         
         switch($sort)
         {
@@ -721,6 +722,19 @@ class ProductLineService implements EventManagerAwareInterface
         }
         
         $brands = implode("', '", $brand);
+        
+        if(null != $categories)
+        {
+            if($categories['all'] != 'on')
+            {
+                $categories= array_keys($categories);
+                
+                for($x=0; $x<count($categories); $x++)
+                {
+                    $category .= $categories[$x]."','";
+                }
+            }
+        }
         
         if(null != $color)
         {
@@ -826,6 +840,7 @@ class ProductLineService implements EventManagerAwareInterface
     									".((null != $colors) ? " and p.color in ('".substr($colors, 0, -3)."') " : "" )."
     									".((null != $finishs) ? " and p.finish in ('".substr($finishs, 0, -3)."') " : "" )."
     									".((null != $styles) ? " and p.style in ('".substr($styles, 0, -3)."') " : "" )."
+    									".((null != $category) ? " and pc.display_name in ('".substr($category, 0, -3)."') " : "" )."
     									".((null != $prices) ? $prices : "")."
     									".$sortText."
                                         ");
