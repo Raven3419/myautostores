@@ -9,7 +9,6 @@
  * @author     Raven Sampson <rsampson@thesmartdata.com>
  * @license    http://framework.zend.com/license/new-bsd New BSD License
  * @version    GIT: $Id$
- * @link       https://github.com/rocketred/www-lunddigitalplatform for the canonical source repository
  * @since      File available since Release 1.0.0
  */
 
@@ -33,7 +32,6 @@ use RocketAdmin\Service\MessageService;
  * @author     Raven Sampson <rsampson@thesmartdata.com>
  * @license    http://framework.zend.com/license/new-bsd New BSD License
  * @version    GIT: $Id$
- * @link       https://github.com/rocketred/www-lunddigitalplatform for the canonical source repository
  */
 class BrandsController extends AbstractActionController
 {

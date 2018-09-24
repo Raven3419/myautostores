@@ -284,7 +284,6 @@ class IndexController extends AbstractActionController
      */
     public function indexAction()
     {
-    	
     	$slugone   = $this->params()->fromRoute('slugone', null);
     	
 	  	$slugtwo   = $this->params()->fromRoute('slugtwo', null);
@@ -1049,6 +1048,162 @@ class IndexController extends AbstractActionController
                 */
             }
             
+            $productLineMetaNames = array('Side Window Deflectors'  => array('Car Window Shades',
+                                                                             'Rain Guards',
+                                                                             'Window Guards',
+                                                                             'Wind Deflectors',
+                                                                             'Auto Ventshade',
+                                                                             'Car Window Shades',
+                                                                             'Rain Guards',
+                                                                             'Window Guards',
+                                                                             'Wind Deflectors',
+                                                                             'Auto Ventshade'
+                                                                            ),
+                                          'Tonneau Cover'          => array('Truck Accessories',
+                                                                             'Tonneau Cover',
+                                                                             'Truck Bed Covers',
+                                                                             'Tonneau Covers',
+                                                                             'Bed Cover',
+                                                                             'Truck Accessories',
+                                                                             'Tonneau Cover',
+                                                                             'Truck Bed Covers',
+                                                                             'Tonneau Covers',
+                                                                             'Bed Cover'
+                                                                            ),
+                                          'Fender Flare'            => array('Bushwacker',
+                                                                             'Fender Flare',
+                                                                             'Fender Flares',
+                                                                             'Fender Mustang',
+                                                                             'Bushwacker Fender Flare',
+                                                                             'Bushwacker',
+                                                                             'Fender Flare',
+                                                                             'Fender Flares',
+                                                                             'Fender Mustang',
+                                                                             'Bushwacker Fender Flare'
+                                                                            ),
+                                          'Running Boards'          => array('Running Boards',
+                                                                             'Truck Steps',
+                                                                             'Sidestep',
+                                                                             'Truckingboards',
+                                                                             'Running Boards For Trucks',
+                                                                             'Running Boards',
+                                                                             'Truck Steps',
+                                                                             'Sidestep',
+                                                                             'Truckingboards',
+                                                                             'Running Boards For Trucks'
+                                                                            ),
+                                          'Light Covers'            => array('Light Covers',
+                                                                             'Tail Light Cover',
+                                                                             'Tail Light Covers',
+                                                                             'Headlight Cover',
+                                                                             'Headlight Covers',
+                                                                             'Light Covers',
+                                                                             'Tail Light Cover',
+                                                                             'Tail Light Covers',
+                                                                             'Headlight Cover',
+                                                                             'Headlight Covers'
+                                                                            ),
+                                          'Hood Scoops'             => array('Carscoops',
+                                                                             'Hood Scoops',
+                                                                             'Body Kit',
+                                                                             'Wide Body Kits',
+                                                                             'Car Body Kit',
+                                                                             'Carscoops',
+                                                                             'Hood Scoops',
+                                                                             'Body Kit',
+                                                                             'Wide Body Kits',
+                                                                             'Car Body Kit',
+                                                                            ),
+                                          'Hood Shields'            => array('Bug Car',
+                                                                             'Wind Deflectors',
+                                                                             'Bug Deflector',
+                                                                             'Bug Shield',
+                                                                             'AVS Bug Shield',
+                                                                             'Bug Car',
+                                                                             'Wind Deflectors',
+                                                                             'Bug Deflector',
+                                                                             'Bug Shield',
+                                                                             'AVS Bug Shield'
+                                                                            ),
+                                          'Aeroskin'                => array('Auto Ventshade',
+                                                                             'AVS Vent Visors',
+                                                                             'Ventshade',
+                                                                             'AVS Window Visors',
+                                                                             'AVS Rain Guards',
+                                                                             'Auto Ventshade',
+                                                                             'AVS Vent Visors',
+                                                                             'Ventshade',
+                                                                             'AVS Window Visors',
+                                                                             'AVS Rain Guards'
+                                                                            ),
+                                          'Rocker Guards'           => array('Jeep Accessories',
+                                                                             'Jeep Parts',
+                                                                             'Rhino Liner',
+                                                                             'Bumper',
+                                                                             'Jeep Wrangler Accessories',
+                                                                             'Jeep Accessories',
+                                                                             'Jeep Parts',
+                                                                             'Rhino Liner',
+                                                                             'Bumper',
+                                                                             'Jeep Wrangler Accessories'
+                                                                            ),
+                                          'Bull Bars'               => array('Bull Bars',
+                                                                             'Bullguard',
+                                                                             'Push Far',
+                                                                             'Bull Bar F150',
+                                                                             'Bull Bars for Trucks',
+                                                                             'Bull Bars',
+                                                                             'Bullguard',
+                                                                             'Push Far',
+                                                                             'Bull Bar F150',
+                                                                             'Bull Bars for Trucks'
+                                                                            ),
+                                          'Nerf Bars'               => array('Sidebar',
+                                                                             'Nerf Bars',
+                                                                             'Truck Steps',
+                                                                             'Sidestep',
+                                                                             'Rock Bar',
+                                                                             'Sidebar',
+                                                                             'Nerf Bars',
+                                                                             'Truck Steps',
+                                                                             'Sidestep',
+                                                                             'Rock Bar'
+                                                                            ),
+                                          'Floor Covering'          => array('Weathertech',
+                                                                             'Weathertech Floor Liner',
+                                                                             'Weathertech Floor Mats',
+                                                                             'Floor Mats',
+                                                                             'Car Floor Mats',
+                                                                             'Weathertech',
+                                                                             'Weathertech Floor Liner',
+                                                                             'Weathertech Floor Mats',
+                                                                             'Floor Mats',
+                                                                             'Car Floor Mats'
+                                                                            ),
+                                          'Air Deflectors'          => array('Rain Guards',
+                                                                             'Air Vent Deflector',
+                                                                             'Air Vent Deflectors',
+                                                                             'Rain Guards',
+                                                                             'Air Vent Deflector',
+                                                                             'Air Vent Deflectors',
+                                                                             'Rain Guards',
+                                                                             'Air Vent Deflector',
+                                                                             'Air Vent Deflectors',
+                                                                             'Rain Guards'
+                                                                            ),
+                                          'Chrome Accessories'      => array('Car Accessories',
+                                                                             'Auto Accessories',
+                                                                             'Chrome Shop',
+                                                                             'Pickup Truck Accessories',
+                                                                             'Car Accessories',
+                                                                             'Auto Accessories',
+                                                                             'Chrome Shop',
+                                                                             'Pickup Truck Accessories',
+                                                                             'Car Accessories',
+                                                                             'Auto Accessories'
+                                                                            )
+                                         );
+            
             $vm->setVariable('categoriesProductLineArray', $categoriesProductLineArray);
             $vm->setVariable('colorProductLineArray', $colorProductLineArray);
             $vm->setVariable('finishProductLineArray', $finishProductLineArray);
@@ -1079,6 +1234,7 @@ class IndexController extends AbstractActionController
             $vm->setVariable('productLines', $productLines);
             $vm->setVariable('baseProductLines', $baseProductLines);
             $vm->setVariable('category', $category);
+            $vm->setVariable('productLineMetaNames', $productLineMetaNames);
             
         
         

@@ -166,7 +166,7 @@ $emptyProductLine = false;
                                         <label>PRICE RANGE</label>
                                         <div class="checkbox">
 											<label class="lbl">
-											  <input type="checkbox" class="price_all" name="price[all]"<?php ( (empty($this->price) || ($this->price[0] == 'all')) ? print "checked='checked'" : ""); ?> > All
+											  <input type="checkbox" class="price_all" name="price[all]" <?php ( (empty($this->price) || ($this->price[0] == 'all')) ? print "checked='checked'" : ""); ?> > All
 											</label>
 											<label class="lbl">
 											  <input type="checkbox" class="price_other" name="price[0-20]" <?php (in_array('0-20', $this->price) ? print "checked='checked'" : ""); ?> > Under $20.00
@@ -357,7 +357,9 @@ $emptyProductLine = false;
                     	    		<h3><?php echo $productLinesArray[$x]['PL_Display']; ?></h3>
                                 	</div>
                                 	<div>
-                                		<img src="/assets/application/myautostores/img/<?php echo $productLinesArray[$x]['brand']; ?>-logo.png" alt="<?php echo $productLinesArray[$x]['brand']; ?>" title="<?php echo $productLinesArray[$x]['brand']; ?>" style="height:35px;float:right;">                               		
+                                	<?php echo $productLinesArray[$x]['PC_Display'];?>
+                                	<?php print_r($this->productLineMetaNames[$productLinesArray[$x]['PC_Display']]);?>
+                                		<img src="/assets/application/myautostores/img/<?php echo $productLinesArray[$x]['brand']; ?>-logo.png" alt="<?php echo $this->productLineMetaNames[$productLinesArray[$x]['PC_Display']][substr($x,-1)];?>" title="<?php echo $this->productLineMetaNames[$productLinesArray[$x]['PC_Display']][substr($x,-1)];?>" style="height:35px;float:right;">                               		
                                 	</div>
                                 	<div class="row s-noRightMargin" style="float:left;">
                                     	<div class="col-md-9 col-xs-12">

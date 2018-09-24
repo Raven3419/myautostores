@@ -19,7 +19,7 @@ return array(
     'navigation' => array(
         'admin' => array(
             array(
-                'label'      => 'Lund Site Objects',
+                'label'      => 'Site Objects',
                 'route'      => 'rocket-admin/lund',
                 'permission' => 'LundSite\Controller\NewsRelease:index',
                 'icon'       => 'icon-asterisk',
