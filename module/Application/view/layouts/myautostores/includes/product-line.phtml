@@ -394,6 +394,17 @@ $emptyProductLine = false;
                         lastButton: false
                     });
                    	</script>
+                   	
+                   	<?php if(!empty($productLinesArray[0]['long_descr'])) { ?>
+                   	<div class="b-items__cars__info2">
+                        <div data-wow-delay="0.2s">
+                            <div class="b-items__cars-one-img">
+                            	<?php echo $productLinesArray[0]['long_descr'];?>
+                            </div>
+                     	</div>
+           			</div>
+           			<?php } ?>
+           			
                 </div>
             </div>
         </div>
