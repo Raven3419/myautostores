@@ -497,6 +497,7 @@ class IndexController extends AbstractActionController
         
         //echo count($this->menuService->getMenuByShortCode());exit;
 
+        //echo $page->getMetaDescription();exit;
         
         $this->layout()->setVariables(array(
             'menuService'        	=> $this->menuService,
@@ -1242,7 +1243,7 @@ class IndexController extends AbstractActionController
             $this->layout()->setVariables(array(
                 'metaTitle'       => ($brandProductCategory->getMetaTitle() == '' ? $productCategory->getName() : $brandProductCategory->getMetaTitle()),
                 'metaKeywords'    => ($brandProductCategory->getMetaKeywords() == '' ? $productCategory->getName() : $brandProductCategory->getMetaKeywords()),
-                'metaDescription' => ($brandProductCategory->getMetaDescr() == '' ? $productCategory->getName() : $brandProductCategory->getMetaDescr()).' is the product you and your car have been looking for.',
+                'metaDescription' => ($brandProductCategory->getMetaDescr() == '' ? $productCategory->getName() : $brandProductCategory->getMetaDescr()),
             ));
         } else {
             $this->layout()->setVariables(array(
