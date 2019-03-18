@@ -1247,9 +1247,9 @@ class IndexController extends AbstractActionController
             ));
         } else {
             $this->layout()->setVariables(array(
-                'metaTitle' => 'My Auto Store | AVS | LUND | Assessories',
-                'metaKeywords' => 'My Auto Store | AVS | LUND | Assessories',
-                'metaDescription' => 'My Auto Store | AVS | LUND | Assessories for any part you will ever need for your car',
+                'metaTitle' => 'My Auto Store | AVS | LUND | Accessories',
+                'metaKeywords' => 'My Auto Store | AVS | LUND | Accessories',
+                'metaDescription' => 'My Auto Store | AVS | LUND | Accessories for any part you will ever need for your car',
             ));
         }
         
