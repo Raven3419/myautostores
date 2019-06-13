@@ -37,8 +37,7 @@ h3{margin:25px
 a{border:1px
 solid #fff;font:600 11px 'Open Sans',sans-serif!important;padding-left:15px!important;margin-top:15px}.b-items__aside-sell-info a
 span.fa{width:25px!important;height:25px!important;font-size:13px!important}.b-items__cars__info2{margin-top: 5%;}.b-items__cars-one{overflow:hidden}.b-items__cars-one-img{position:relative;float:left}.b-items__cars-one-img
-img{width:230px}.b-items__cars-one{padding:5px
-5px 8px;border:1px
+img{width:230px}.b-items__cars-one{list-style-type: none;padding:5px 5px 8px;border:1px
 solid #eee;margin-bottom:10px;box-shadow:0 -4px 0 0 #dfe2f0 inset, 0 10px 20px 0 rgba(192,196,215,0.25)}.b-items__cars-one:last-child{margin-bottom:0}.b-items__cars-one-img-video{position:absolute;bottom:0;left:0;padding:8px
 10px;font:400 11px 'Open Sans',sans-serif}.b-items__cars-one-img-video
 span.fa{margin-right:5px }.b-items__cars-one-img-video,.b-items__cars-one-img-video:hover,.b-items__cars-one-img-video:visited,.b-items__cars-one-img-video:active,.b-items__cars-one-img-video:focus{text-decoration:none}.b-items__cars-one-img-type{font:700 10px 'Open Sans',sans-serif;padding:5px;text-transform:uppercase;position:absolute;top:15px;left:10px;z-index:1000}.b-items form input[type='checkbox']{position:absolute}.b-items form input[type='checkbox']:checked + .b-items__cars-one-img-check
