@@ -43,7 +43,42 @@
 <link rel="alternate stylesheet" type="text/css" href="/assets/application/myautostores/assets/switcher/css/color5.css" title="color5" media="all" />
 <link rel="alternate stylesheet" type="text/css" href="/assets/application/myautostores/assets/switcher/css/color6.css" title="color6" media="all" /> <script src="/assets/application/myautostores/js/jquery-1.11.3.min.js"></script>
 <script src="/assets/application/myautostores/js/jquery.easyPaginate.js"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"My Auto Stores","url":"https://www.myautostores.com/"}</script>
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name":"My Auto Stores",
+    "url":"https://www.myautostores.com<?php echo (null !== $this->canonical ? '/'.$this->canonical : ''); ?>",
+    <?php if($this->slugtwo == 'side+window+deflectors') { ?>
+    "itemListElement": [
+        {
+            "@type": "Product",
+            "image": "https://www.myautostores.com/assets/library/products/product_lines/230X230/in-channelventvisor2pc-1.jpeg",
+            "url": "https://www.myautostores.com/products/side+window+deflectors",
+            "name": "Auto VentShade",
+            "offers": {
+                "@type": "Offer",
+                "price": "$ 35.99"
+            }
+        }
+    ]
+    <?php } else if ($this->slugtwo == 'tonneau+cover') { ?>
+    "itemListElement": [
+        {
+            "@type": "Product",
+            "image": "https://www.myautostores.com/assets/library/products/product_lines/230X230/xLE-MAIN.jpeg",
+            "url": "https://www.myautostores.com/products/tonneau+cover",
+            "name": "Lund",
+            "offers": {
+                "@type": "Offer",
+                "price": "$ 262.99"
+            }
+        }
+    ]
+    <?php } else { ?>
+    <?php } ?>
+}
+{"@context":"https://schema.org","@type":"WebSite","name":"My Auto Stores","url":"https://www.myautostores.com<?php echo (null !== $this->canonical ? '/'.$this->canonical : ''); ?>"}</script>
 <!--[if lt IE 9]> <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111029227-1"></script>
