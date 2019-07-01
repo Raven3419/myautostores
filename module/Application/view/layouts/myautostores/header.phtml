@@ -44,12 +44,13 @@
 <link rel="alternate stylesheet" type="text/css" href="/assets/application/myautostores/assets/switcher/css/color6.css" title="color6" media="all" /> <script src="/assets/application/myautostores/js/jquery-1.11.3.min.js"></script>
 <script src="/assets/application/myautostores/js/jquery.easyPaginate.js"></script>
 <script type="application/ld+json">
-        {"@context":"https://schema.org","@type":"WebSite","name":"My Auto Stores","url":"https://www.myautostores.com<?php echo (null !== $this->canonical ? '/'.$this->canonical : ''); ?>", "offers" : { "@type" : "Offer", "price" : "35.99", "priceCurrency": "USD" } }
+        
     <?php if($this->slugtwo == 'side+window+deflectors') { ?>
         { "@context" : "http://schema.org", "@type" : "Product", "name" : "Side Window Deflectors", "image" : "https://www.myautostores.com/assets/library/products/product_lines/230X230/in-channelventvisor2pc-1.jpeg", "description" : "AVS In-Channel Ventvisor® Side Window Deflectors are designed to complete the look of your vehicle adding subtle style while maintaining the functionality you desire from a side window deflector.  The Ventvisor installs in the window channel for a streamlined appearance, but still allows fresh air to naturally circulate through open windows while keeping the rain and wind out.", "offers" : { "@type" : "Offer", "price" : "35.99", "priceCurrency": "USD" }, "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.5", "reviewCount": "5"  } }
     <?php } else if ($this->slugtwo == 'tonneau+cover') { ?>
         { "@context" : "http://schema.org", "@type" : "Product", "name" : "Tonneau Cover", "image" : "https://www.myautostores.com/assets/library/products/product_lines/230X230/xLE-MAIN.jpeg", "description" : "The Lund Genesis Snap Tonneau is one of the truck accessories that every truck needs as there bed cover.  Featuring a low-profile design and black leather appearance premium vinyl that most tonneau covers never live up to.", "offers" : { "@type" : "Offer", "price" : "262.99", "priceCurrency": "USD" },  "aggregateRating": {   "@type": "AggregateRating",   "ratingValue": "4",    "reviewCount": "3"  }, }
     <?php } else { ?>
+{"@context":"https://schema.org","@type":"WebSite","name":"My Auto Stores","url":"https://www.myautostores.com<?php echo (null !== $this->canonical ? '/'.$this->canonical : ''); ?>"}
     <?php } ?>
 </script>
 <!--[if lt IE 9]> <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
