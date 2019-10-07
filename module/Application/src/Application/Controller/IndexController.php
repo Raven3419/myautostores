@@ -964,7 +964,8 @@ class IndexController extends AbstractActionController
                 
                 $productLines = $this->lundProductService->getProductLineService()->getBrandProductCategory($category, $this->brandSites, $sort, $color, $finish, $style, $price);
                 
-                echo count($baseProductLines);exit;
+                print_r($baseProductLines);exit;
+                //echo count($baseProductLines);exit;
             }
             
         }
