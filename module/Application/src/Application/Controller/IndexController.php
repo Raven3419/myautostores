@@ -535,6 +535,7 @@ class IndexController extends AbstractActionController
             $vm = $this->logout($site, $vm);
         }
         elseif ($page->getSlug() == 'products') {
+            echo "hello";exit;
             $vm = $this->products($site, $vm, urldecode($slugtwo), urldecode($slugthree), urldecode($slugfour));
         } 
         elseif ($page->getSlug() == 'contact-us') {
