@@ -535,7 +535,6 @@ class IndexController extends AbstractActionController
             $vm = $this->logout($site, $vm);
         }
         elseif ($page->getSlug() == 'products') {
-            echo "hello";exit;
             $vm = $this->products($site, $vm, urldecode($slugtwo), urldecode($slugthree), urldecode($slugfour));
         } 
         elseif ($page->getSlug() == 'contact-us') {
@@ -849,11 +848,11 @@ class IndexController extends AbstractActionController
         
         
         if (null != $category && null == $line || $this->brandType == 'brand') {
-            //echo "4";exit;
+            echo "4";exit;
             $vm = $this->loadProductLinePage($vm, $category, $brandName, $color, $price, $finish, $style, $price, $categories);
         } 
         if (null != $category && null != $line) {
-            //echo "5";exit;
+            echo "5";exit;
             $vm = $this->loadPartsPage($vm, $category, $line, $brandName);
         } 
         
